@@ -1,6 +1,5 @@
 #include "Render.h"
 #include "../Debug/EngineLog.h"
-#include "../Platform/Windows/WindowsEngine.h"
 
 vector<IRenderingInterface*> IRenderingInterface::RenderingInterface;
 

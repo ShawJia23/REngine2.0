@@ -1,21 +1,21 @@
-#pragma once
+ï»¿#pragma once
 //Copyright (C) RenZhai.2019.All Rights Reserved.
-//×÷Õß ÈËÕ¬
-//¸Ãc¿âµÄÏêÏ¸Ô´Âë½²½âÔÚAboutCG ¡¶ÊÖ°ÑÊÖÈëÃÅÓ²ºËcÓïÑÔ¡·ÊÓÆµ¹¤³ÌÀïÃæ£º
+//ä½œè€… äººå®…
+//è¯¥cåº“çš„è¯¦ç»†æºç è®²è§£åœ¨AboutCG ã€Šæ‰‹æŠŠæ‰‹å…¥é—¨ç¡¬æ ¸cè¯­è¨€ã€‹è§†é¢‘å·¥ç¨‹é‡Œé¢ï¼š
 //https://www.aboutcg.org/courseDetails/902/introduce
-//Ï£ÍûÑ§Ï°ÆäËû·½Ãæ¼¼Êõ ±ÈÈç×öUE4ÓÎÏ·, ¿ÉÒÔ·ÃÎÊÏÂÁĞÍøÖ·£º
+//å¸Œæœ›å­¦ä¹ å…¶ä»–æ–¹é¢æŠ€æœ¯ æ¯”å¦‚åšUE4æ¸¸æˆ, å¯ä»¥è®¿é—®ä¸‹åˆ—ç½‘å€ï¼š
 //https://zhuanlan.zhihu.com/p/60117613
 //
-//bibi¿ÉÒÔ¿´µ½¸÷¸öÈËÕ¬ÏµÁĞ½Ì³Ì½éÉÜ£º
+//bibiå¯ä»¥çœ‹åˆ°å„ä¸ªäººå®…ç³»åˆ—æ•™ç¨‹ä»‹ç»ï¼š
 //https://space.bilibili.com/29544409
 //
-//¸öÈË²©¿ÍÍøÕ¾
+//ä¸ªäººåšå®¢ç½‘ç«™
 //http://renzhai.net
 //
-//¹ØÓÚ±¾Ì×°¸ÀıµÄÏêÏ¸²Ù×÷ :
-//ÎÄ×Ö°æ±¾(ÏêÏ¸)£º
+//å…³äºæœ¬å¥—æ¡ˆä¾‹çš„è¯¦ç»†æ“ä½œ :
+//æ–‡å­—ç‰ˆæœ¬(è¯¦ç»†)ï¼š
 //https://zhuanlan.zhihu.com/p/144558934
-//ÊÓÆµ°æ±¾£º
+//è§†é¢‘ç‰ˆæœ¬ï¼š
 //https://www.bilibili.com/video/BV1x5411s7s3
 #include "Core/simple_array_c_macro.h"
 #include "../../../simple_library_macro.h"
@@ -33,8 +33,8 @@ typedef struct
 SIMPLE_ARRAY_C_STRUCT(simple_c_string,str_node)
 
 _CRT_BEGIN_C_HEADER
-//Õ­×Ö·û
- void init_string(simple_c_string *array_c);//³õÊ¼»¯ ·ÖÅäÄÚ´æ
+//çª„å­—ç¬¦
+ void init_string(simple_c_string *array_c);//åˆå§‹åŒ– åˆ†é…å†…å­˜
 
  void destroy_string(simple_c_string *array_c);
 
@@ -50,10 +50,10 @@ _CRT_BEGIN_C_HEADER
 
  bool is_exist(char const *  in_data, simple_c_string *array_c);
  
- //¿í×Ö·û
+ //å®½å­—ç¬¦
  void dismantling_wstring(const wchar_t* in_data, const wchar_t* str_sub, simple_c_wstring* array_c);
  
- void init_wstring(simple_c_wstring* array_c);//³õÊ¼»¯ ·ÖÅäÄÚ´æ
+ void init_wstring(simple_c_wstring* array_c);//åˆå§‹åŒ– åˆ†é…å†…å­˜
 
  void destroy_wstring(simple_c_wstring* array_c);
 

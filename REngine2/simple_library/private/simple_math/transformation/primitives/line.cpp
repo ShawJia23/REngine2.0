@@ -1,4 +1,4 @@
-#include "../../../../public/simple_math/transformation/primitives/line.h"
+﻿#include "../../../../public/simple_math/transformation/primitives/line.h"
 #include "../../../../public/simple_math/math_utils.h"
 
 namespace primitives

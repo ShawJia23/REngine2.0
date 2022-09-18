@@ -1,4 +1,4 @@
-#include "../../../../public/simple_math/transformation/vector/vector_2id.h"
+﻿#include "../../../../public/simple_math/transformation/vector/vector_2id.h"
 
 fvector_2id::fvector_2id()
 	:x(0)

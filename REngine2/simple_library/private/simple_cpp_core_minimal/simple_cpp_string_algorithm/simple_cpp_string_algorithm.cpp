@@ -1,4 +1,4 @@
-#ifndef _CRT_SECURE_NO_WARNINGS
+ï»¿#ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 #endif // !_CRT_SECURE_NO_WARNINGS
 
@@ -47,7 +47,7 @@ namespace simple_cpp_string_algorithm
 				in_string.resize(frame_buffer.offset);
 				char* in_ptr = const_cast<char*>(in_string.c_str());
 
-				//Êı¾İ¿½±´
+				//æ•°æ®æ‹·è´
 				strncpy(in_ptr, &string_content[frame_buffer.strat_pos], frame_buffer.offset);
 			};
 
@@ -64,7 +64,7 @@ namespace simple_cpp_string_algorithm
 				bloop = true;
 			}
 
-			//´æÔÚ×îºóÒ»´Î
+			//å­˜åœ¨æœ€åä¸€æ¬¡
 			if (bloop)
 			{
 				frame_buffer.offset = string_content_len - frame_buffer.strat_pos;

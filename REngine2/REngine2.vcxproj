@@ -23,7 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{39903dd4-ed6b-4576-a61f-e3ff6227eb52}</ProjectGuid>
     <RootNamespace>REngine2</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.20348.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -74,8 +74,10 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -138,16 +140,6 @@
     <ClCompile Include="Engine\main.cpp" />
     <ClCompile Include="Engine\Render\Render.cpp" />
     <ClCompile Include="Engine\Shader\Shader.cpp" />
-    <ClCompile Include="simple_library\private\simple_channel\simple_io_stream\simple_io_stream.cpp" />
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_channel\simple_channel.cpp" />
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_connetion\simple_connetion.cpp" />
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_connetion\simple_connetion_tcp.cpp" />
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_connetion\simple_connetion_udp.cpp" />
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_drive\simple_net_drive.cpp" />
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_drive\simple_net_drive_tcp.cpp" />
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_drive\simple_net_drive_udp.cpp" />
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_type.cpp" />
-    <ClCompile Include="simple_library\private\simple_channel\simple_object.cpp" />
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array_string.c" />
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_core\simple_c_string_algorithm\string_algorithm.c" />
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_guid\simple_guid.c" />
@@ -197,20 +189,7 @@
     <ClInclude Include="Engine\Render\DX12\d3dx12.h" />
     <ClInclude Include="Engine\Render\Render.h" />
     <ClInclude Include="Engine\Shader\Shader.h" />
-    <ClInclude Include="simple_library\private\simple_channel\simple_net_connetion\simple_connetion_tcp.h" />
-    <ClInclude Include="simple_library\private\simple_channel\simple_net_connetion\simple_connetion_udp.h" />
-    <ClInclude Include="simple_library\private\simple_channel\simple_net_drive\simple_net_drive_tcp.h" />
-    <ClInclude Include="simple_library\private\simple_channel\simple_net_drive\simple_net_drive_udp.h" />
     <ClInclude Include="simple_library\public\simple_array\simple_hash_array.h" />
-    <ClInclude Include="simple_library\public\simple_channel\simple_core\simple_channel.h" />
-    <ClInclude Include="simple_library\public\simple_channel\simple_core\simple_connetion.h" />
-    <ClInclude Include="simple_library\public\simple_channel\simple_core\simple_io_stream.h" />
-    <ClInclude Include="simple_library\public\simple_channel\simple_core\simple_net_macro.h" />
-    <ClInclude Include="simple_library\public\simple_channel\simple_core\simple_object.h" />
-    <ClInclude Include="simple_library\public\simple_channel\simple_net_drive.h" />
-    <ClInclude Include="simple_library\public\simple_channel\simple_net_protocols.h" />
-    <ClInclude Include="simple_library\public\simple_channel\simple_net_type.h" />
-    <ClInclude Include="simple_library\public\simple_channel\simple_protocols_definition.h" />
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h" />
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\Core\simple_array_c_macro.h" />
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array.h" />

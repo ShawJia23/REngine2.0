@@ -1,21 +1,21 @@
-#pragma once
+ï»¿#pragma once
 //Copyright (C) RenZhai.2019.All Rights Reserved.
-//×÷Õß ÈËÕ¬
-//¸Ãc¿âµÄÏêÏ¸Ô´Âë½²½âÔÚAboutCG ¡¶ÊÖ°ÑÊÖÈëÃÅÓ²ºËcÓïÑÔ¡·ÊÓÆµ¹¤³ÌÀïÃæ£º
+//ä½œè€… äººå®…
+//è¯¥cåº“çš„è¯¦ç»†æºç è®²è§£åœ¨AboutCG ã€Šæ‰‹æŠŠæ‰‹å…¥é—¨ç¡¬æ ¸cè¯­è¨€ã€‹è§†é¢‘å·¥ç¨‹é‡Œé¢ï¼š
 //https://www.aboutcg.org/courseDetails/902/introduce
-//Ï£ÍûÑ§Ï°ÆäËû·½Ãæ¼¼Êõ ±ÈÈç×öUE4ÓÎÏ·, ¿ÉÒÔ·ÃÎÊÏÂÁĞÍøÖ·£º
+//å¸Œæœ›å­¦ä¹ å…¶ä»–æ–¹é¢æŠ€æœ¯ æ¯”å¦‚åšUE4æ¸¸æˆ, å¯ä»¥è®¿é—®ä¸‹åˆ—ç½‘å€ï¼š
 //https://zhuanlan.zhihu.com/p/60117613
 //
-//bibi¿ÉÒÔ¿´µ½¸÷¸öÈËÕ¬ÏµÁĞ½Ì³Ì½éÉÜ£º
+//bibiå¯ä»¥çœ‹åˆ°å„ä¸ªäººå®…ç³»åˆ—æ•™ç¨‹ä»‹ç»ï¼š
 //https://space.bilibili.com/29544409
 //
-//¸öÈË²©¿ÍÍøÕ¾
+//ä¸ªäººåšå®¢ç½‘ç«™
 //http://renzhai.net
 //
-//¹ØÓÚ±¾Ì×°¸ÀıµÄÏêÏ¸²Ù×÷ :
-//ÎÄ×Ö°æ±¾(ÏêÏ¸)£º
+//å…³äºæœ¬å¥—æ¡ˆä¾‹çš„è¯¦ç»†æ“ä½œ :
+//æ–‡å­—ç‰ˆæœ¬(è¯¦ç»†)ï¼š
 //https://zhuanlan.zhihu.com/p/144558934
-//ÊÓÆµ°æ±¾£º
+//è§†é¢‘ç‰ˆæœ¬ï¼š
 //https://www.bilibili.com/video/BV1x5411s7s3
 #include "../simple_core_minimal.h"
 #include "../../../simple_library_macro.h"
@@ -23,28 +23,28 @@
 _CRT_BEGIN_C_HEADER
 void SIMPLE_LIBRARY_API remove_string_start(char *str, char const* sub_str);
 
-//´ÓºóÍùÇ°ÕÒ
+//ä»åå¾€å‰æ‰¾
 int SIMPLE_LIBRARY_API find_string_from_end(const char* str, char const* sub_str, int start_pos);
 
-//´ÓÇ°ÍùºóÕÒ
+//ä»å‰å¾€åæ‰¾
 int SIMPLE_LIBRARY_API find_string(const char *str, char const* sub_str,int start_pos);
 
 void SIMPLE_LIBRARY_API remove_char_start(char *str, char sub_str);
 
 void SIMPLE_LIBRARY_API remove_char_end(char *str, char sub_str);
 
-//ÅĞ¶¨×Ö·û´®ÊÇ·ñ°üº¬
+//åˆ¤å®šå­—ç¬¦ä¸²æ˜¯å¦åŒ…å«
 bool SIMPLE_LIBRARY_API c_str_contain(const char* buff_str,const char *sub_str);
 
-//Ç°ºó¿Õ¸ñ¶¼ĞŞµô
+//å‰åç©ºæ ¼éƒ½ä¿®æ‰
 void SIMPLE_LIBRARY_API trim_start_and_end_inline(char* buff);
 
-//È¥³ıÇ°ÃæµÄ¿Õ¸ñ
+//å»é™¤å‰é¢çš„ç©ºæ ¼
 void SIMPLE_LIBRARY_API trim_start_inline(char *buff);
-//È¥³ıºóÃæµÄ¿Õ¸ñ
+//å»é™¤åé¢çš„ç©ºæ ¼
 void SIMPLE_LIBRARY_API trim_end_inline(char *buff);
 
-//²ğ·Ö
+//æ‹†åˆ†
 bool SIMPLE_LIBRARY_API split(const char *buf,const char* str_split,char *l,char *r, bool bcontain_str_split);
 
 void SIMPLE_LIBRARY_API remove_all_char_end(char *str, char sub_str);
@@ -64,7 +64,7 @@ int SIMPLE_LIBRARY_API char_to_tchar(const char *str, wchar_t *tc);
 
 int SIMPLE_LIBRARY_API tchar_to_char(const wchar_t *tc, char *str);
 
-//×¢Òâ £ºstr ±ØĞëÊÇ×ã¹»´óµÄ¿Õ¼ä ²»Òª´«Ò»¸ö×Ô¶¯Æ¥ÅäÄÚ´æµÄÖ¸Õë
+//æ³¨æ„ ï¼šstr å¿…é¡»æ˜¯è¶³å¤Ÿå¤§çš„ç©ºé—´ ä¸è¦ä¼ ä¸€ä¸ªè‡ªåŠ¨åŒ¹é…å†…å­˜çš„æŒ‡é’ˆ
 void SIMPLE_LIBRARY_API wremove_string_start(wchar_t *str, wchar_t const* sub_str);
 
 int SIMPLE_LIBRARY_API wfind_string(wchar_t *str, wchar_t const* sub_str);

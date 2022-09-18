@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Render/Render.h"
 #include "MeshType.h"
+#include "../../Render/Render.h"
 #include "../../Shader/Shader.h"
 
 struct ObjectTransformation

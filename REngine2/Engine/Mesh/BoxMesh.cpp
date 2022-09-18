@@ -1,5 +1,4 @@
 #include "BoxMesh.h"
-#include "Base/MeshType.h"
 
 void BoxMesh::Init()
 {

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #ifndef SIMPLE_LIBRARY_EXPORTS
 #define SIMPLE_LIBRARY_EXPORTS

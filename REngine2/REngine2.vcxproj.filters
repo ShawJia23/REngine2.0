@@ -33,36 +33,6 @@
     <ClCompile Include="simple_library\private\simple_c_log\simple_c_log.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="simple_library\private\simple_channel\simple_io_stream\simple_io_stream.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_channel\simple_channel.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_connetion\simple_connetion.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_connetion\simple_connetion_tcp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_connetion\simple_connetion_udp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_drive\simple_net_drive.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_drive\simple_net_drive_tcp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_drive\simple_net_drive_udp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_channel\simple_net_type.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_channel\simple_object.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array_string.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -200,33 +170,6 @@
     <ClInclude Include="simple_library\public\simple_c_log\simple_c_log.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="simple_library\public\simple_channel\simple_core\simple_channel.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_channel\simple_core\simple_connetion.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_channel\simple_core\simple_io_stream.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_channel\simple_core\simple_net_macro.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_channel\simple_core\simple_object.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_channel\simple_net_drive.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_channel\simple_net_protocols.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_channel\simple_net_type.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_channel\simple_protocols_definition.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\Core\simple_array_c_macro.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -351,18 +294,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="simple_library\public\simple_library_macro.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\private\simple_channel\simple_net_connetion\simple_connetion_tcp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\private\simple_channel\simple_net_connetion\simple_connetion_udp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\private\simple_channel\simple_net_drive\simple_net_drive_tcp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\private\simple_channel\simple_net_drive\simple_net_drive_udp.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\EngineLog.h">

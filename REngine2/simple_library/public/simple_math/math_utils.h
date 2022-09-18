@@ -1,24 +1,24 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 
 #include "../simple_library_macro.h"
-//ÏòÁ¿
+//å‘é‡
 #include "transformation/vector/vector_2d.h"
 #include "transformation/vector/vector_3d.h"
 #include "transformation/vector/vector_4d.h"
 
-//¾ØÕó
+//çŸ©é˜µ
 #include "transformation/matrix/matrix_2x2.h"
 #include "transformation/matrix/matrix_3x3.h"
 #include "transformation/matrix/matrix_4x4.h"
 
-//ËÄÔªÊý
+//å››å…ƒæ•°
 #include "transformation/quaternion/quat.h"
 
 using namespace std;
 namespace math_utils
 {
-	//¾ØÕó³Ë·¨
+	//çŸ©é˜µä¹˜æ³•
 	fvector_3d SIMPLE_LIBRARY_API mul(const fvector_2d &in_3d, const fmatrix_3x3& in_matrix_3x3);
 	fvector_3d SIMPLE_LIBRARY_API mul(const fvector_3d &in_3d, const fmatrix_3x3& in_matrix_3x3);
 	fvector_4d SIMPLE_LIBRARY_API mul(const fvector_4d &in_3d, const fmatrix_4x4& in_matrix_3x3);
@@ -26,55 +26,55 @@ namespace math_utils
 	float SIMPLE_LIBRARY_API angle_to_radian(float angle);
 	float SIMPLE_LIBRARY_API radian_to_angle(float radian);
 
-	//¾ØÕóÐý×ª
+	//çŸ©é˜µæ—‹è½¬
 	void SIMPLE_LIBRARY_API rot_radian(float in_radian, fmatrix_3x3& in_world_matrix_3x3);
 	void SIMPLE_LIBRARY_API rot_angle(float in_angle, fmatrix_3x3& in_world_matrix_3x3);
 
-	//¾ØÕóËõ·Å
+	//çŸ©é˜µç¼©æ”¾
 	void SIMPLE_LIBRARY_API set_scale(const fvector_2d& in_scale, fmatrix_3x3& in_world_matrix_3x3);
 	fmatrix_3x3 SIMPLE_LIBRARY_API set_scale(const fvector_2d& in_scale);
 
-	//ÅÐ¶¨boolÊÇ²»ÊÇÔÚÒ»¶¨·¶Î§ÄÚ
+	//åˆ¤å®šboolæ˜¯ä¸æ˜¯åœ¨ä¸€å®šèŒƒå›´å†…
 	bool SIMPLE_LIBRARY_API scalar_neare_qual_float(float f1, float f2, float epsilon);
 	bool SIMPLE_LIBRARY_API scalar_neare_qual_int(int i1, int i2, int epsilon);
 
 	fmatrix_4x4 SIMPLE_LIBRARY_API matrix_perspective(float in_fov_radian, float aspect_ratio, float near_z, float far_z);
 
-	//¿´ÏòÄ¿±ê
+	//çœ‹å‘ç›®æ ‡
 	fmatrix_4x4 SIMPLE_LIBRARY_API matrix_look_at_target(const fvector_4d &in_view_pos, const fvector_4d& in_target_pos, const fvector_4d& in_view_up);
 
-	//¹¹½¨Í¸ÊÓ¾ØÕó
+	//æž„å»ºé€è§†çŸ©é˜µ
 	fmatrix_4x4 SIMPLE_LIBRARY_API build_view_matrix(const fvector_4d& in_view_pos, const fmatrix_4x4& in_view_matrix);
 
-	//Ðý×ª
+	//æ—‹è½¬
 	fmatrix_4x4 SIMPLE_LIBRARY_API matrix_rotation_y(const float angle);
 	fmatrix_4x4 SIMPLE_LIBRARY_API matrix_rotation_x(const float angle);
 	fmatrix_4x4 SIMPLE_LIBRARY_API matrix_rotation_z(const float angle);
 
-	//ÈÎÒâÖáÐý×ª
+	//ä»»æ„è½´æ—‹è½¬
 	fmatrix_4x4 SIMPLE_LIBRARY_API matrix_rotation_axis(const fvector_3d &axis,const float angle);
 
-	//ËÄÔªÊý×ª¾ØÕó
-	//¹ßÐÔ->ÎïÌå
+	//å››å…ƒæ•°è½¬çŸ©é˜µ
+	//æƒ¯æ€§->ç‰©ä½“
 	void SIMPLE_LIBRARY_API inertia_to_object(const fquat &in_quat, fmatrix_3x3& out_rotation_matrix);
 
-	//ÎïÌå->¹ßÐÔ
+	//ç‰©ä½“->æƒ¯æ€§
 	void SIMPLE_LIBRARY_API object_to_inertia(const fquat &in_quat, fmatrix_3x3& out_rotation_matrix);
 
-	//ÏòÁ¿
-	//¹ßÐÔ->ÎïÌå 
-	//Ä¬ÈÏµÄ in_rotation_matrix ÊÇ ¹ß->ÎïÌå
+	//å‘é‡
+	//æƒ¯æ€§->ç‰©ä½“ 
+	//é»˜è®¤çš„ in_rotation_matrix æ˜¯ æƒ¯->ç‰©ä½“
 	fvector_3d SIMPLE_LIBRARY_API inertia_to_object(const fvector_3d& in_vector,const fmatrix_3x3& in_rotation_matrix);
 
-	//ÎïÌå->¹ßÐÔ
+	//ç‰©ä½“->æƒ¯æ€§
 	fvector_3d SIMPLE_LIBRARY_API object_to_inertia(const fvector_3d& in_vector, const fmatrix_3x3& in_rotation_matrix);
 
-	//Ðý×ª¾ØÕó->ËÄÔªÊý
+	//æ—‹è½¬çŸ©é˜µ->å››å…ƒæ•°
 	void SIMPLE_LIBRARY_API matrix_to_quat(const fmatrix_3x3& in_rotation_matrix, fquat& out_quat);
 
-	//Ðý×ª¾ØÕó->ËÄÔªÊý
+	//æ—‹è½¬çŸ©é˜µ->å››å…ƒæ•°
 	fquat SIMPLE_LIBRARY_API matrix_to_quat(const fmatrix_3x3& in_rotation_matrix);
 
-	//ËÄÔªÊýÇóÃÝ
+	//å››å…ƒæ•°æ±‚å¹‚
 	fquat SIMPLE_LIBRARY_API pow(const fquat &in_q,float in_exponent);
 }

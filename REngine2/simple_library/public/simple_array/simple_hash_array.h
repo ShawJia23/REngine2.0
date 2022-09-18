@@ -1,4 +1,4 @@
-// Copyright (C) RenZhai.2022.All Rights Reserved.
+Ôªø// Copyright (C) RenZhai.2022.All Rights Reserved.
 #pragma once
 #include "../simple_core_minimal/simple_c_core/simple_core_minimal.h"
 
@@ -8,7 +8,7 @@ class TIndexedContainerIterator
 public:
 	typedef TIndexedContainerIterator<ContainerType, ElementType> TIterator;
 
-	//ππ‘Ï
+	//ÊûÑÈÄ†
 	TIndexedContainerIterator(ContainerType &InContainer,int InIndex = 0)
 		:Container(InContainer)
 		,Index(InIndex)
@@ -67,7 +67,7 @@ public:
 		:Data(nullptr)
 		,Size(0)
 	{
-		//Data = (ElementType**)malloc(sizeof(int) * Allocation);//∑÷≈‰œ¬±Í
+		//Data = (ElementType**)malloc(sizeof(int) * Allocation);//ÂàÜÈÖç‰∏ãÊ†á
 		//memset(Data, 0, sizeof(int) * Allocation);
 		//for (int i = 0;i < Allocation;i++)
 		//{
@@ -112,7 +112,7 @@ public:
 		}
 		else
 		{
-			//ƒ⁄¥Ê≤ªπª¡À ≤ªπªæÕ∑÷≈‰		
+			//ÂÜÖÂ≠ò‰∏çÂ§ü‰∫Ü ‰∏çÂ§üÂ∞±ÂàÜÈÖç		
 			Data = (ElementType*)realloc(Data, sizeof(ElementType) * (Size + 1));
 		}
 		memset(Data[Size], 0, sizeof(ElementType));
@@ -153,6 +153,6 @@ public:
 	}
 
 protected:
-	ElementType* Data;//¡¨–¯ƒ⁄¥Ê
+	ElementType* Data;//ËøûÁª≠ÂÜÖÂ≠ò
 	int Size;
 };

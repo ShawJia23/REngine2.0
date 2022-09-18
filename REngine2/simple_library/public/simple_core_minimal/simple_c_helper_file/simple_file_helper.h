@@ -1,21 +1,21 @@
-#pragma once
+ï»¿#pragma once
 //Copyright (C) RenZhai.2019.All Rights Reserved.
-//×÷Õß ÈËÕ¬
-//¸Ãc¿âµÄÏêÏ¸Ô´Âë½²½âÔÚAboutCG ¡¶ÊÖ°ÑÊÖÈëÃÅÓ²ºËcÓïÑÔ¡·ÊÓÆµ¹¤³ÌÀïÃæ£º
+//ä½œè€… äººå®…
+//è¯¥cåº“çš„è¯¦ç»†æºç è®²è§£åœ¨AboutCG ã€Šæ‰‹æŠŠæ‰‹å…¥é—¨ç¡¬æ ¸cè¯­è¨€ã€‹è§†é¢‘å·¥ç¨‹é‡Œé¢ï¼š
 //https://www.aboutcg.org/courseDetails/902/introduce
-//Ï£ÍûÑ§Ï°ÆäËû·½Ãæ¼¼Êõ ±ÈÈç×öUE4ÓÎÏ·, ¿ÉÒÔ·ÃÎÊÏÂÁĞÍøÖ·£º
+//å¸Œæœ›å­¦ä¹ å…¶ä»–æ–¹é¢æŠ€æœ¯ æ¯”å¦‚åšUE4æ¸¸æˆ, å¯ä»¥è®¿é—®ä¸‹åˆ—ç½‘å€ï¼š
 //https://zhuanlan.zhihu.com/p/60117613
 //
-//bibi¿ÉÒÔ¿´µ½¸÷¸öÈËÕ¬ÏµÁĞ½Ì³Ì½éÉÜ£º
+//bibiå¯ä»¥çœ‹åˆ°å„ä¸ªäººå®…ç³»åˆ—æ•™ç¨‹ä»‹ç»ï¼š
 //https://space.bilibili.com/29544409
 //
-//¸öÈË²©¿ÍÍøÕ¾
+//ä¸ªäººåšå®¢ç½‘ç«™
 //http://renzhai.net
 //
-//¹ØÓÚ±¾Ì×°¸ÀıµÄÏêÏ¸²Ù×÷ :
-//ÎÄ×Ö°æ±¾(ÏêÏ¸)£º
+//å…³äºæœ¬å¥—æ¡ˆä¾‹çš„è¯¦ç»†æ“ä½œ :
+//æ–‡å­—ç‰ˆæœ¬(è¯¦ç»†)ï¼š
 //https://zhuanlan.zhihu.com/p/144558934
-//ÊÓÆµ°æ±¾£º
+//è§†é¢‘ç‰ˆæœ¬ï¼š
 //https://www.bilibili.com/video/BV1x5411s7s3
 #include "../simple_c_core/simple_core_minimal.h"
 
@@ -47,77 +47,77 @@ bool is_file_exists(char const* filename);
 
 bool create_file(char const *filename);
  
-//´´½¨Â·¾¶
+//åˆ›å»ºè·¯å¾„
 bool create_file_directory(char const *in_path);
 
-//´ò¿ªµØÖ·
+//æ‰“å¼€åœ°å€
 bool open_url(const char* url);
 
-//Í¨¹ı²ÎÊı´ò¿ªurl
+//é€šè¿‡å‚æ•°æ‰“å¼€url
 bool open_url_by_param(const char* url, const char* param);
 
-//Í¨¹ı²Ù×÷´ò¿ªÄ³¸ö¶«Î÷
+//é€šè¿‡æ“ä½œæ‰“å¼€æŸä¸ªä¸œè¥¿
 bool open_by_operation(const char* in_operation, const char* url, const char* param);
 
-//´ò¿ªÒ»¸öÎÄ¼ş¼Ğ
+//æ‰“å¼€ä¸€ä¸ªæ–‡ä»¶å¤¹
 bool open_explore(const char* url);
 
-//Ê¹ÓÃ¸Ã½Ó¿Ú Ò»¶¨Òª³õÊ¼»¯buf
+//ä½¿ç”¨è¯¥æ¥å£ ä¸€å®šè¦åˆå§‹åŒ–buf
 bool get_file_buf(const char *path,char *buf);
 
 bool save_file_buff(const char* path, char* buf);
 
 bool add_file_buf(const char *path, char *buf);
 
-//Õâ¸öº¯ÊıÊÇÒÔ×Ö·û´®µÄ·½Ê½´æ´¢£¬Èç¹ûÊı¾İÖĞÓĞ0 ×Ô¶¯½Ø¶Ï£¬½¨ÒéÓÃ¶ş½øÖÆ´æ´¢
+//è¿™ä¸ªå‡½æ•°æ˜¯ä»¥å­—ç¬¦ä¸²çš„æ–¹å¼å­˜å‚¨ï¼Œå¦‚æœæ•°æ®ä¸­æœ‰0 è‡ªåŠ¨æˆªæ–­ï¼Œå»ºè®®ç”¨äºŒè¿›åˆ¶å­˜å‚¨
 bool add_new_file_buf(const char *path, char *buf);
 
-//Õâ¸öÊÇÒÔ¶ş½øÖÆ·½Ê½¶ÁÈ¡
+//è¿™ä¸ªæ˜¯ä»¥äºŒè¿›åˆ¶æ–¹å¼è¯»å–
 bool load_data_from_disk(const char* path, char* buf);
 
 unsigned int get_file_size_by_filename(const char *filename);
 
 unsigned int get_file_size(FILE *file_handle);
 
-//Õâ¸öÊÇÒÔ¶ş½øÖÆ·½Ê½´æ´¢£¬²»»áÓöµ½Ïñ0×Ô¶¯½Ø¶ÏµÄÇé¿ö
+//è¿™ä¸ªæ˜¯ä»¥äºŒè¿›åˆ¶æ–¹å¼å­˜å‚¨ï¼Œä¸ä¼šé‡åˆ°åƒ0è‡ªåŠ¨æˆªæ–­çš„æƒ…å†µ
 bool save_data_to_disk(const char* path, char* buf, int buf_size);
-//¿í×Ö·ûºÍÕ­×Ö·û
+//å®½å­—ç¬¦å’Œçª„å­—ç¬¦
 // 
-//¿í×Ö·û×ªÕ­×Ö·û
+//å®½å­—ç¬¦è½¬çª„å­—ç¬¦
 _number_of_successful_conversions(size_t) wchar_t_to_char(
 	_out_pram(char*) dst_char,
 	size_t char_size,
 	_in_pram(wchar_t const*) _Src);
 
-//Õ­×Ö·û×ª¿í×Ö·û
+//çª„å­—ç¬¦è½¬å®½å­—ç¬¦
 _number_of_successful_conversions(size_t) char_to_wchar_t(
 	_out_pram(wchar_t*) dst_wchar_t,
 	size_t wchar_t_size,
 	_in_pram(char const*) _Src);
 
-//¿í×Ö·û
+//å®½å­—ç¬¦
 //////////////////////////////////////////////
-//Õâ¸öº¯ÊıÊÇÒÔ×Ö·û´®µÄ·½Ê½´æ´¢£¬Èç¹ûÊı¾İÖĞÓĞ0 ×Ô¶¯½Ø¶Ï£¬½¨ÒéÓÃ¶ş½øÖÆ´æ´¢
+//è¿™ä¸ªå‡½æ•°æ˜¯ä»¥å­—ç¬¦ä¸²çš„æ–¹å¼å­˜å‚¨ï¼Œå¦‚æœæ•°æ®ä¸­æœ‰0 è‡ªåŠ¨æˆªæ–­ï¼Œå»ºè®®ç”¨äºŒè¿›åˆ¶å­˜å‚¨
 bool add_new_file_buf_w(const wchar_t* path, char* buf);
 
 bool get_file_buf_w(const wchar_t* path, char* buf);
 
-//Õâ¸öÊÇÒÔ¶ş½øÖÆ·½Ê½´æ´¢£¬²»»áÓöµ½Ïñ0×Ô¶¯½Ø¶ÏµÄÇé¿ö
+//è¿™ä¸ªæ˜¯ä»¥äºŒè¿›åˆ¶æ–¹å¼å­˜å‚¨ï¼Œä¸ä¼šé‡åˆ°åƒ0è‡ªåŠ¨æˆªæ–­çš„æƒ…å†µ
 bool save_data_to_disk_w(const wchar_t* path, char* buf,int buf_size);
 
-//Õâ¸öÊÇÒÔ¶ş½øÖÆ·½Ê½¶ÁÈ¡ bufµÄ´óĞ¡Òª±ÈÊµ¼Ê´óĞ¡+1 ÒòÎª×îºóÒ»Î»Áô¸ø/0
+//è¿™ä¸ªæ˜¯ä»¥äºŒè¿›åˆ¶æ–¹å¼è¯»å– bufçš„å¤§å°è¦æ¯”å®é™…å¤§å°+1 å› ä¸ºæœ€åä¸€ä½ç•™ç»™/0
 bool load_data_from_disk_w(const wchar_t* path, char* buf);
 
 bool is_file_exists_w(const wchar_t *filename);
 
-//´ò¿ªµØÖ·
+//æ‰“å¼€åœ°å€
 bool open_url_w(const wchar_t* url);
 
 bool open_url_by_param_w(const wchar_t* url,const wchar_t *param);
 
 bool open_by_operation_w(const wchar_t *in_operation, const wchar_t* url, const wchar_t* param);
 
-//´ò¿ªÒ»¸öÎÄ¼ş¼Ğ
+//æ‰“å¼€ä¸€ä¸ªæ–‡ä»¶å¤¹
 bool open_explore_w(const wchar_t* url);
 
 unsigned int get_file_size_by_filename_w(const wchar_t* filename);

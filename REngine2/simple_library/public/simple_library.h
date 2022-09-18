@@ -1,36 +1,36 @@
-#pragma once
+ï»¿#pragma once
 // Copyright (C) RenZhai.2022.All Rights Reserved.
-//×÷Õß ÈËÕ¬
-//¸Ãc¿âµÄÏêÏ¸Ô´Âë½²½âÔÚAboutCG ¡¶ÊÖ°ÑÊÖÈëÃÅÓ²ºËcÓïÑÔ¡·ÊÓÆµ¹¤³ÌÀïÃæ£º
+//ä½œè€… äººå®…
+//è¯¥cåº“çš„è¯¦ç»†æºç è®²è§£åœ¨AboutCG ã€Šæ‰‹æŠŠæ‰‹å…¥é—¨ç¡¬æ ¸cè¯­è¨€ã€‹è§†é¢‘å·¥ç¨‹é‡Œé¢ï¼š
 //https://www.aboutcg.org/courseDetails/902/introduce
-//Ï£ÍûÑ§Ï°ÆäËû·½Ãæ¼¼Êõ ±ÈÈç×öUE4ÓÎÏ·, ¿ÉÒÔ·ÃÎÊÏÂÁĞÍøÖ·£º
+//å¸Œæœ›å­¦ä¹ å…¶ä»–æ–¹é¢æŠ€æœ¯ æ¯”å¦‚åšUE4æ¸¸æˆ, å¯ä»¥è®¿é—®ä¸‹åˆ—ç½‘å€ï¼š
 //https://zhuanlan.zhihu.com/p/60117613
 //
-//bibi¿ÉÒÔ¿´µ½¸÷¸öÈËÕ¬ÏµÁĞ½Ì³Ì½éÉÜ£º
+//bibiå¯ä»¥çœ‹åˆ°å„ä¸ªäººå®…ç³»åˆ—æ•™ç¨‹ä»‹ç»ï¼š
 //https://space.bilibili.com/29544409
 //
-//¸öÈË²©¿ÍÍøÕ¾
+//ä¸ªäººåšå®¢ç½‘ç«™
 //http://renzhai.net
 //
-//¹ØÓÚ±¾Ì×°¸ÀıµÄÏêÏ¸²Ù×÷ :
-//ÎÄ×Ö°æ±¾(ÏêÏ¸)£º
+//å…³äºæœ¬å¥—æ¡ˆä¾‹çš„è¯¦ç»†æ“ä½œ :
+//æ–‡å­—ç‰ˆæœ¬(è¯¦ç»†)ï¼š
 //https://zhuanlan.zhihu.com/p/144558934
-//ÊÓÆµ°æ±¾£º
+//è§†é¢‘ç‰ˆæœ¬ï¼š
 //https://www.bilibili.com/video/BV1x5411s7s3
 
 #ifdef CLOSE_DISABLE_DEBUG_INFOR
-#pragma warning(disable:4267)//¡°²ÎÊı¡±£º´Ó¡°xx¡±×ª»»Îª¡°xx¡±£¬¿ÉÄÜ»á¶ªÊ§Êı¾İ
-#pragma warning(disable:4311)// ÀàĞÍ×ª»»£ºÖ¸Õë´Ó¡°ÄúµÄptr*¡±½Ø¶ÏÎª¡°DWORD¡±
-#pragma warning(disable:4244)// ´Ó¡°xx¡±×ª»»Îª¡°xx¡±£¬¿ÉÄÜ»á¶ªÊ§Êı¾İ
-#pragma warning(disable:4309)// ³£ÊıÖµ½Ø¶Ï
-#pragma warning(disable:4305)//¡°²ÎÊı¡±£º´Ó¡°int¡±½Ø¶ÏÎª¡°u\u short¡±
-#pragma warning(disable:4133)// function¡±£º²»¼æÈİµÄÀàĞÍ-´Ó¡°char[260]¡±µ½¡°LPWSTR¡±
-#pragma warning(disable:4090)//¡°ÕıÔÚ³õÊ¼»¯¡±£º²»Í¬µÄ¡°const¡±ÏŞ¶¨·û
-#pragma warning(disable:4013)//¡°XXX¡±Î´¶¨Òå£»¼ÙÉèÍâ²¿·µ»Øint
-#pragma warning(disable:4251)// ÒÔºó¿ªÆôµ±Ç°×´Ì¬¼ì²édllÇé¿ö
-#pragma warning(disable:4717)// ÔÚËùÓĞ¿ØÖÆÂ·¾¶ÉÏµİ¹é£¬º¯Êı½«µ¼ÖÂÔËĞĞÊ±¶ÑÕ»Òç³ö
-#pragma warning(disable:4099)// Ê×ÏÈÊ¹ÓÃ¡°struct¡±¿´µ½µÄÀàĞÍÃû³ÆÏÖÔÚÊ¹ÓÃ¡°class¡±¿´µ½
-#pragma warning(disable:4018)// £º¡°<¡±£ºÓĞ·ûºÅ/ÎŞ·ûºÅ²»Æ¥Åä
+#pragma warning(disable:4267)//â€œå‚æ•°â€ï¼šä»â€œxxâ€è½¬æ¢ä¸ºâ€œxxâ€ï¼Œå¯èƒ½ä¼šä¸¢å¤±æ•°æ®
+#pragma warning(disable:4311)// ç±»å‹è½¬æ¢ï¼šæŒ‡é’ˆä»â€œæ‚¨çš„ptr*â€æˆªæ–­ä¸ºâ€œDWORDâ€
+#pragma warning(disable:4244)// ä»â€œxxâ€è½¬æ¢ä¸ºâ€œxxâ€ï¼Œå¯èƒ½ä¼šä¸¢å¤±æ•°æ®
+#pragma warning(disable:4309)// å¸¸æ•°å€¼æˆªæ–­
+#pragma warning(disable:4305)//â€œå‚æ•°â€ï¼šä»â€œintâ€æˆªæ–­ä¸ºâ€œu\u shortâ€
+#pragma warning(disable:4133)// functionâ€ï¼šä¸å…¼å®¹çš„ç±»å‹-ä»â€œchar[260]â€åˆ°â€œLPWSTRâ€
+#pragma warning(disable:4090)//â€œæ­£åœ¨åˆå§‹åŒ–â€ï¼šä¸åŒçš„â€œconstâ€é™å®šç¬¦
+#pragma warning(disable:4013)//â€œXXXâ€æœªå®šä¹‰ï¼›å‡è®¾å¤–éƒ¨è¿”å›int
+#pragma warning(disable:4251)// ä»¥åå¼€å¯å½“å‰çŠ¶æ€æ£€æŸ¥dllæƒ…å†µ
+#pragma warning(disable:4717)// åœ¨æ‰€æœ‰æ§åˆ¶è·¯å¾„ä¸Šé€’å½’ï¼Œå‡½æ•°å°†å¯¼è‡´è¿è¡Œæ—¶å †æ ˆæº¢å‡º
+#pragma warning(disable:4099)// é¦–å…ˆä½¿ç”¨â€œstructâ€çœ‹åˆ°çš„ç±»å‹åç§°ç°åœ¨ä½¿ç”¨â€œclassâ€çœ‹åˆ°
+#pragma warning(disable:4018)// ï¼šâ€œ<â€ï¼šæœ‰ç¬¦å·/æ— ç¬¦å·ä¸åŒ¹é…
 #endif // DEBUG
 
 //core minimal
@@ -51,9 +51,6 @@
 
 //Delegate
 #include "simple_delegate/simple_delegate.h"
-
-//net
-#include "simple_channel/simple_net_drive.h"
 
 //math
 #include "simple_math/simple_core_math.h"

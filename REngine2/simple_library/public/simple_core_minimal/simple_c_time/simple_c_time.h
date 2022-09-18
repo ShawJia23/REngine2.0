@@ -1,4 +1,4 @@
-// Copyright (C) RenZhai.2022.All Rights Reserved.
+ï»¿// Copyright (C) RenZhai.2022.All Rights Reserved.
 #pragma once
 #include "../simple_c_core/simple_core_minimal.h"
 
@@ -13,7 +13,7 @@ char *get_locale(char *in_buffer, const char *in_locale, const char *in_encoding
 
 struct tm *get_local_time_tm();
 
-//»ñÈ¡µÄÊÇ±¾µØÊ±¼ä
+//è·å–çš„æ˜¯æœ¬åœ°æ—¶é—´
 time_t get_time_t();
 
 void get_local_time_string(char *t_buffer);

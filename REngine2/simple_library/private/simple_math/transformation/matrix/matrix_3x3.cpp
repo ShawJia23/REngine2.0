@@ -1,4 +1,4 @@
-#include "../../../../public/simple_math/transformation/matrix/matrix_3x3.h"
+ï»¿#include "../../../../public/simple_math/transformation/matrix/matrix_3x3.h"
 #include "../../../../public/simple_math/transformation/rotator/rotator.h"
 #include <math.h>
 #include "../../../../public/simple_math/math_utils.h"
@@ -28,7 +28,7 @@ fmatrix_3x3::fmatrix_3x3(
 
 void fmatrix_3x3::inertia_to_object(const frotator& in_rot)
 {
-	//½«½Ç¶È×ªÎª»¡¶È
+	//å°†è§’åº¦è½¬ä¸ºå¼§åº¦
 	float h = math_utils::angle_to_radian(in_rot.pitch);//y
 	float p = math_utils::angle_to_radian(in_rot.roll);//x
 	float b = math_utils::angle_to_radian(in_rot.yaw);//z
@@ -65,7 +65,7 @@ float fmatrix_3x3::Determinant()
 
 void fmatrix_3x3::transpose()
 {
-	//½»»»º¯Êı
+	//äº¤æ¢å‡½æ•°
 	auto swap_float = [](float& a, float& b)
 	{
 		float tmp = a;

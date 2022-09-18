@@ -1,4 +1,4 @@
-#include "..\..\public\simple_math\math_utils.h"
+ï»¿#include "..\..\public\simple_math\math_utils.h"
 
 namespace math_utils
 {
@@ -41,26 +41,26 @@ namespace math_utils
 
     float angle_to_radian(float angle)
     {
-        return angle * 0.0174;//angle * (¦Ğ / 180£©= radian
+        return angle * 0.0174;//angle * (Ï€ / 180ï¼‰= radian
     }
 
     float radian_to_angle(float radian)
     {
-        return radian * 57.3;//radian * (180/¦Ğ£©= angle
+        return radian * 57.3;//radian * (180/Ï€ï¼‰= angle
     }
 
     void rot_radian(float in_radian, fmatrix_3x3& in_world_matrix_3x3)
     {
-        //Ğı×ª¾ØÕó
+        //æ—‹è½¬çŸ©é˜µ
         fmatrix_3x3 rot_matrix_3x3;
 
-        //¹«Ê½
+        //å…¬å¼
         rot_matrix_3x3.m11 = cos(in_radian);
         rot_matrix_3x3.m12 = -sin(in_radian);
         rot_matrix_3x3.m21 = sin(in_radian);
         rot_matrix_3x3.m22 = cos(in_radian);
 
-        //¾ØÕó³Ë·¨
+        //çŸ©é˜µä¹˜æ³•
         in_world_matrix_3x3 = rot_matrix_3x3 * in_world_matrix_3x3;
     }
 
@@ -105,7 +105,7 @@ namespace math_utils
         assert(!scalar_neare_qual_float(aspect_ratio, 0.0f, 0.00001f));
         assert(!scalar_neare_qual_float(near_z, far_z, 0.00001f));
 
-        //¹¹½¨Í¸ÊÓ¾ØÕó
+        //æ„å»ºé€è§†çŸ©é˜µ
         fmatrix_4x4 matrix_4x4;
         {
             float t = tan(in_fov_radian * 0.5f) * near_z;
@@ -129,7 +129,7 @@ namespace math_utils
     fmatrix_4x4 matrix_look_at_target(const fvector_4d& in_view_pos, const fvector_4d& in_target_pos, const fvector_4d& in_view_up)
     {
         fvector_4d n = in_target_pos - in_view_pos;
-        n.normalize();//µ¥Î»»¯
+        n.normalize();//å•ä½åŒ–
 
         fvector_4d u = fvector_4d::cross_product(in_view_up,n);
         u.normalize();

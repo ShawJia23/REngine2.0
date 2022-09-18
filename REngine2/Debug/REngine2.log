@@ -1,611 +1,80 @@
-﻿  RenderConfig.cpp
-  WinMainCommandParameters.cpp
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4828: 文件包含在偏移 0x60c 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(57,28): warning C4251: “FSimpleConnetion::Channels”: class“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(42): message : 参见“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(62,40): warning C4251: “FSimpleConnetion::LastTime”: class“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\chrono(687): message : 参见“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25,35): warning C4251: “FSimpleNetDrive::Connetions”: class“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”需要有 dll 接口由 class“FSimpleNetDrive”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25): message : 参见“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”的声明
+﻿  WinMainCommandParameters.cpp
   EngineFactory.cpp
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4828: 文件包含在偏移 0x60c 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(57,28): warning C4251: “FSimpleConnetion::Channels”: class“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(42): message : 参见“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(62,40): warning C4251: “FSimpleConnetion::LastTime”: class“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\chrono(687): message : 参见“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25,35): warning C4251: “FSimpleNetDrive::Connetions”: class“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”需要有 dll 接口由 class“FSimpleNetDrive”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25): message : 参见“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”的声明
   Mesh.cpp
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4828: 文件包含在偏移 0x60c 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(103,1): warning C4005: “AF_IPX”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(457): message : 参见“AF_IPX”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(147,1): warning C4005: “AF_MAX”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(476): message : 参见“AF_MAX”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(187,1): warning C4005: “SO_DONTLINGER”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(399): message : 参见“SO_DONTLINGER”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(240,25): error C2011: “sockaddr”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(482): message : 参见“sockaddr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(442,5): error C2143: 语法错误: 缺少“}”(在“常数”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(442,5): error C2059: 语法错误:“常数”
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(496,1): error C2143: 语法错误: 缺少“;”(在“}”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(496,10): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(496,20): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(577,1): warning C4005: “IN_CLASSA”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(284): message : 参见“IN_CLASSA”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(583,1): warning C4005: “IN_CLASSB”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(290): message : 参见“IN_CLASSB”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(589,1): warning C4005: “IN_CLASSC”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(296): message : 参见“IN_CLASSC”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(600,1): warning C4005: “INADDR_ANY”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(301): message : 参见“INADDR_ANY”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(602,1): warning C4005: “INADDR_BROADCAST”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(303): message : 参见“INADDR_BROADCAST”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(638,28): error C2011: “sockaddr_in”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(309): message : 参见“sockaddr_in”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(136,23): error C2011: “fd_set”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(65): message : 参见“fd_set”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(171,1): warning C4005: “FD_SET”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(99): message : 参见“FD_SET”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(180,16): error C2011: “timeval”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(108): message : 参见“timeval”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(236,17): error C2011: “hostent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(164): message : 参见“hostent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(249,16): error C2011: “netent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(177): message : 参见“netent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(256,17): error C2011: “servent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(184): message : 参见“servent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(268,18): error C2011: “protoent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(196): message : 参见“protoent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(364,24): error C2011: “WSAData”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(319): message : 参见“WSAData”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(462,18): error C2011: “sockproto”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(491): message : 参见“sockproto”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(504,16): error C2011: “linger”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(528): message : 参见“linger”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(517,1): warning C4005: “SOMAXCONN”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(541): message : 参见“SOMAXCONN”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(551,1): warning C4005: “FD_READ”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(559): message : 参见“FD_READ”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(554,1): warning C4005: “FD_WRITE”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(560): message : 参见“FD_WRITE”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(557,1): warning C4005: “FD_OOB”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(561): message : 参见“FD_OOB”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(560,1): warning C4005: “FD_ACCEPT”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(562): message : 参见“FD_ACCEPT”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(563,1): warning C4005: “FD_CONNECT”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(563): message : 参见“FD_CONNECT”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(566,1): warning C4005: “FD_CLOSE”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(564): message : 参见“FD_CLOSE”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1628,1): error C2375: “accept”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(739): message : 参见“accept”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1650,1): error C2375: “bind”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(744): message : 参见“bind”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1671,1): error C2375: “closesocket”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(749): message : 参见“closesocket”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1688,1): error C2375: “connect”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(751): message : 参见“connect”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1709,1): error C2375: “ioctlsocket”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(756): message : 参见“ioctlsocket”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1732,1): error C2375: “getpeername”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(761): message : 参见“getpeername”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1753,1): error C2375: “getsockname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(766): message : 参见“getsockname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1774,1): error C2375: “getsockopt”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(771): message : 参见“getsockopt”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1799,1): error C2375: “htonl”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(778): message : 参见“htonl”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1816,1): error C2375: “htons”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(780): message : 参见“htons”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1834,1): error C2375: “inet_addr”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(782): message : 参见“inet_addr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1852,1): error C2375: “inet_ntoa”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(784): message : 参见“inet_ntoa”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1952,1): error C2375: “listen”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(786): message : 参见“listen”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1971,1): error C2375: “ntohl”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(790): message : 参见“ntohl”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1988,1): error C2375: “ntohs”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(792): message : 参见“ntohs”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2005,1): error C2375: “recv”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(794): message : 参见“recv”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2028,1): error C2375: “recvfrom”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(800): message : 参见“recvfrom”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2055,1): error C2375: “select”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(808): message : 参见“select”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2080,1): error C2375: “send”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(815): message : 参见“send”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2103,1): error C2375: “sendto”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(821): message : 参见“sendto”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2130,1): error C2375: “setsockopt”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(829): message : 参见“setsockopt”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2155,1): error C2375: “shutdown”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(836): message : 参见“shutdown”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2175,1): error C2375: “socket”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(840): message : 参见“socket”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2200,1): error C2375: “gethostbyaddr”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(847): message : 参见“gethostbyaddr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2222,1): error C2375: “gethostbyname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(852): message : 参见“gethostbyname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2239,1): error C2375: “gethostname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(854): message : 参见“gethostname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2279,1): error C2375: “getservbyport”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(858): message : 参见“getservbyport”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2298,1): error C2375: “getservbyname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(862): message : 参见“getservbyname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2317,1): error C2375: “getprotobynumber”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(866): message : 参见“getprotobynumber”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2334,1): error C2375: “getprotobyname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(868): message : 参见“getprotobyname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2354,1): error C2375: “WSAStartup”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(872): message : 参见“WSAStartup”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2374,1): error C2375: “WSACleanup”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(876): message : 参见“WSACleanup”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2391,1): error C2375: “WSASetLastError”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(878): message : 参见“WSASetLastError”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2408,1): error C2375: “WSAGetLastError”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(880): message : 参见“WSAGetLastError”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2429,1): error C2375: “WSAIsBlocking”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(882): message : 参见“WSAIsBlocking”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2447,1): error C2375: “WSAUnhookBlockingHook”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(884): message : 参见“WSAUnhookBlockingHook”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2465,1): error C2375: “WSASetBlockingHook”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(886): message : 参见“WSASetBlockingHook”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2483,1): error C2375: “WSACancelBlockingCall”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(888): message : 参见“WSACancelBlockingCall”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2501,1): error C2375: “WSAAsyncGetServByName”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(890): message : 参见“WSAAsyncGetServByName”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2529,1): error C2375: “WSAAsyncGetServByPort”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(898): message : 参见“WSAAsyncGetServByPort”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2557,1): error C2375: “WSAAsyncGetProtoByName”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(906): message : 参见“WSAAsyncGetProtoByName”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2583,1): error C2375: “WSAAsyncGetProtoByNumber”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(913): message : 参见“WSAAsyncGetProtoByNumber”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2609,1): error C2375: “WSAAsyncGetHostByName”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(920): message : 参见“WSAAsyncGetHostByName”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2635,1): error C2375: “WSAAsyncGetHostByAddr”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(927): message : 参见“WSAAsyncGetHostByAddr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2665,1): error C2375: “WSACancelAsyncRequest”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(936): message : 参见“WSACancelAsyncRequest”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2683,1): error C2375: “WSAAsyncSelect”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(938): message : 参见“WSAAsyncSelect”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(4315,1): error C2059: 语法错误:“}”
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(4315,1): error C2143: 语法错误: 缺少“;”(在“}”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\ucrt\assert.h(17,1): error C2143: 语法错误: 缺少“;”(在“{”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\ucrt\assert.h(17,1): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(52,14): error C2079: “FSimpleConnetion::ConnetAddr”使用未定义的 struct“sockaddr_in”
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(57,28): warning C4251: “FSimpleConnetion::Channels”: class“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(42): message : 参见“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(62,40): warning C4251: “FSimpleConnetion::LastTime”: class“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\chrono(687): message : 参见“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(45,46): error C2440: “return”: 无法从“int”转换为“SOCKADDR_IN &”
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25,35): warning C4251: “FSimpleNetDrive::Connetions”: class“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”需要有 dll 接口由 class“FSimpleNetDrive”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25): message : 参见“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”的声明
-E:\ademo\REngine2\REngine2\Engine\Mesh\Base\Mesh.cpp(168,43): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
-E:\ademo\REngine2\REngine2\Engine\Mesh\Base\Mesh.cpp(168,37): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
-E:\ademo\REngine2\REngine2\Engine\Mesh\Base\Mesh.cpp(168,31): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
-E:\ademo\REngine2\REngine2\Engine\Mesh\Base\Mesh.cpp(170,61): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
-E:\ademo\REngine2\REngine2\Engine\Mesh\Base\Mesh.cpp(170,50): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
-E:\ademo\REngine2\REngine2\Engine\Mesh\Base\Mesh.cpp(170,39): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(168,43): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(168,37): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(168,31): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(170,61): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(170,50): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(170,39): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
   MeshType.cpp
-E:\ademo\REngine2\REngine2\Engine\EngineMinimal.h(3,10): fatal error C1083: 无法打开包括文件: “../Debug/EngineLog.h”: No such file or directory
   BoxMesh.cpp
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4828: 文件包含在偏移 0x60c 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(103,1): warning C4005: “AF_IPX”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(457): message : 参见“AF_IPX”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(147,1): warning C4005: “AF_MAX”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(476): message : 参见“AF_MAX”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(187,1): warning C4005: “SO_DONTLINGER”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(399): message : 参见“SO_DONTLINGER”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(240,25): error C2011: “sockaddr”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(482): message : 参见“sockaddr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(442,5): error C2143: 语法错误: 缺少“}”(在“常数”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(442,5): error C2059: 语法错误:“常数”
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(496,1): error C2143: 语法错误: 缺少“;”(在“}”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(496,10): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(496,20): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(577,1): warning C4005: “IN_CLASSA”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(284): message : 参见“IN_CLASSA”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(583,1): warning C4005: “IN_CLASSB”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(290): message : 参见“IN_CLASSB”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(589,1): warning C4005: “IN_CLASSC”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(296): message : 参见“IN_CLASSC”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(600,1): warning C4005: “INADDR_ANY”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(301): message : 参见“INADDR_ANY”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(602,1): warning C4005: “INADDR_BROADCAST”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(303): message : 参见“INADDR_BROADCAST”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(638,28): error C2011: “sockaddr_in”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(309): message : 参见“sockaddr_in”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(136,23): error C2011: “fd_set”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(65): message : 参见“fd_set”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(171,1): warning C4005: “FD_SET”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(99): message : 参见“FD_SET”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(180,16): error C2011: “timeval”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(108): message : 参见“timeval”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(236,17): error C2011: “hostent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(164): message : 参见“hostent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(249,16): error C2011: “netent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(177): message : 参见“netent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(256,17): error C2011: “servent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(184): message : 参见“servent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(268,18): error C2011: “protoent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(196): message : 参见“protoent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(364,24): error C2011: “WSAData”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(319): message : 参见“WSAData”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(462,18): error C2011: “sockproto”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(491): message : 参见“sockproto”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(504,16): error C2011: “linger”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(528): message : 参见“linger”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(517,1): warning C4005: “SOMAXCONN”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(541): message : 参见“SOMAXCONN”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(551,1): warning C4005: “FD_READ”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(559): message : 参见“FD_READ”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(554,1): warning C4005: “FD_WRITE”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(560): message : 参见“FD_WRITE”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(557,1): warning C4005: “FD_OOB”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(561): message : 参见“FD_OOB”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(560,1): warning C4005: “FD_ACCEPT”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(562): message : 参见“FD_ACCEPT”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(563,1): warning C4005: “FD_CONNECT”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(563): message : 参见“FD_CONNECT”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(566,1): warning C4005: “FD_CLOSE”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(564): message : 参见“FD_CLOSE”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1628,1): error C2375: “accept”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(739): message : 参见“accept”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1650,1): error C2375: “bind”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(744): message : 参见“bind”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1671,1): error C2375: “closesocket”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(749): message : 参见“closesocket”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1688,1): error C2375: “connect”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(751): message : 参见“connect”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1709,1): error C2375: “ioctlsocket”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(756): message : 参见“ioctlsocket”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1732,1): error C2375: “getpeername”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(761): message : 参见“getpeername”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1753,1): error C2375: “getsockname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(766): message : 参见“getsockname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1774,1): error C2375: “getsockopt”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(771): message : 参见“getsockopt”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1799,1): error C2375: “htonl”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(778): message : 参见“htonl”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1816,1): error C2375: “htons”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(780): message : 参见“htons”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1834,1): error C2375: “inet_addr”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(782): message : 参见“inet_addr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1852,1): error C2375: “inet_ntoa”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(784): message : 参见“inet_ntoa”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1952,1): error C2375: “listen”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(786): message : 参见“listen”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1971,1): error C2375: “ntohl”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(790): message : 参见“ntohl”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1988,1): error C2375: “ntohs”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(792): message : 参见“ntohs”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2005,1): error C2375: “recv”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(794): message : 参见“recv”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2028,1): error C2375: “recvfrom”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(800): message : 参见“recvfrom”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2055,1): error C2375: “select”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(808): message : 参见“select”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2080,1): error C2375: “send”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(815): message : 参见“send”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2103,1): error C2375: “sendto”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(821): message : 参见“sendto”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2130,1): error C2375: “setsockopt”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(829): message : 参见“setsockopt”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2155,1): error C2375: “shutdown”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(836): message : 参见“shutdown”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2175,1): error C2375: “socket”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(840): message : 参见“socket”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2200,1): error C2375: “gethostbyaddr”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(847): message : 参见“gethostbyaddr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2222,1): error C2375: “gethostbyname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(852): message : 参见“gethostbyname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2239,1): error C2375: “gethostname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(854): message : 参见“gethostname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2279,1): error C2375: “getservbyport”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(858): message : 参见“getservbyport”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2298,1): error C2375: “getservbyname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(862): message : 参见“getservbyname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2317,1): error C2375: “getprotobynumber”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(866): message : 参见“getprotobynumber”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2334,1): error C2375: “getprotobyname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(868): message : 参见“getprotobyname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2354,1): error C2375: “WSAStartup”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(872): message : 参见“WSAStartup”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2374,1): error C2375: “WSACleanup”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(876): message : 参见“WSACleanup”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2391,1): error C2375: “WSASetLastError”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(878): message : 参见“WSASetLastError”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2408,1): error C2375: “WSAGetLastError”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(880): message : 参见“WSAGetLastError”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2429,1): error C2375: “WSAIsBlocking”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(882): message : 参见“WSAIsBlocking”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2447,1): error C2375: “WSAUnhookBlockingHook”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(884): message : 参见“WSAUnhookBlockingHook”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2465,1): error C2375: “WSASetBlockingHook”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(886): message : 参见“WSASetBlockingHook”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2483,1): error C2375: “WSACancelBlockingCall”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(888): message : 参见“WSACancelBlockingCall”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2501,1): error C2375: “WSAAsyncGetServByName”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(890): message : 参见“WSAAsyncGetServByName”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2529,1): error C2375: “WSAAsyncGetServByPort”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(898): message : 参见“WSAAsyncGetServByPort”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2557,1): error C2375: “WSAAsyncGetProtoByName”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(906): message : 参见“WSAAsyncGetProtoByName”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2583,1): error C2375: “WSAAsyncGetProtoByNumber”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(913): message : 参见“WSAAsyncGetProtoByNumber”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2609,1): error C2375: “WSAAsyncGetHostByName”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(920): message : 参见“WSAAsyncGetHostByName”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2635,1): error C2375: “WSAAsyncGetHostByAddr”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(927): message : 参见“WSAAsyncGetHostByAddr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2665,1): error C2375: “WSACancelAsyncRequest”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(936): message : 参见“WSACancelAsyncRequest”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2683,1): error C2375: “WSAAsyncSelect”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(938): message : 参见“WSAAsyncSelect”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(4315,1): error C2059: 语法错误:“}”
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(4315,1): error C2143: 语法错误: 缺少“;”(在“}”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\ucrt\assert.h(17,1): error C2143: 语法错误: 缺少“;”(在“{”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\ucrt\assert.h(17,1): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(52,14): error C2079: “FSimpleConnetion::ConnetAddr”使用未定义的 struct“sockaddr_in”
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(57,28): warning C4251: “FSimpleConnetion::Channels”: class“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(42): message : 参见“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(62,40): warning C4251: “FSimpleConnetion::LastTime”: class“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\chrono(687): message : 参见“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(45,46): error C2440: “return”: 无法从“int”转换为“SOCKADDR_IN &”
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25,35): warning C4251: “FSimpleNetDrive::Connetions”: class“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”需要有 dll 接口由 class“FSimpleNetDrive”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25): message : 参见“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”的声明
   WindowsEngine.cpp
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4828: 文件包含在偏移 0x60c 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(57,28): warning C4251: “FSimpleConnetion::Channels”: class“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(42): message : 参见“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(62,40): warning C4251: “FSimpleConnetion::LastTime”: class“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\chrono(687): message : 参见“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25,35): warning C4251: “FSimpleNetDrive::Connetions”: class“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”需要有 dll 接口由 class“FSimpleNetDrive”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25): message : 参见“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”的声明
-E:\ademo\REngine2\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(339,25): warning C4930: “ID3D12CommandAllocator Allocator(void)”: 未调用原型函数(是否是有意用变量定义的?)
-E:\ademo\REngine2\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(450,21): warning C4018: “<”: 有符号/无符号不匹配
-E:\ademo\REngine2\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(505,60): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
-E:\ademo\REngine2\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(506,61): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(339,25): warning C4930: “ID3D12CommandAllocator Allocator(void)”: 未调用原型函数(是否是有意用变量定义的?)
+D:\aProject\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(450,21): warning C4018: “<”: 有符号/无符号不匹配
+D:\aProject\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(505,60): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(506,61): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
   WindowsMessageProcessing.cpp
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4828: 文件包含在偏移 0x60c 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(57,28): warning C4251: “FSimpleConnetion::Channels”: class“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(42): message : 参见“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(62,40): warning C4251: “FSimpleConnetion::LastTime”: class“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\chrono(687): message : 参见“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25,35): warning C4251: “FSimpleNetDrive::Connetions”: class“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”需要有 dll 接口由 class“FSimpleNetDrive”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25): message : 参见“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”的声明
-  main.cpp
-E:\ademo\REngine2\REngine2\Engine\EngineMinimal.h(3,10): fatal error C1083: 无法打开包括文件: “../Debug/EngineLog.h”: No such file or directory
   Render.cpp
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4828: 文件包含在偏移 0x60c 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(103,1): warning C4005: “AF_IPX”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(457): message : 参见“AF_IPX”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(147,1): warning C4005: “AF_MAX”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(476): message : 参见“AF_MAX”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(187,1): warning C4005: “SO_DONTLINGER”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(399): message : 参见“SO_DONTLINGER”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(240,25): error C2011: “sockaddr”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(482): message : 参见“sockaddr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(442,5): error C2143: 语法错误: 缺少“}”(在“常数”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(442,5): error C2059: 语法错误:“常数”
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(496,1): error C2143: 语法错误: 缺少“;”(在“}”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(496,10): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(496,20): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(577,1): warning C4005: “IN_CLASSA”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(284): message : 参见“IN_CLASSA”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(583,1): warning C4005: “IN_CLASSB”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(290): message : 参见“IN_CLASSB”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(589,1): warning C4005: “IN_CLASSC”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(296): message : 参见“IN_CLASSC”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(600,1): warning C4005: “INADDR_ANY”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(301): message : 参见“INADDR_ANY”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(602,1): warning C4005: “INADDR_BROADCAST”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(303): message : 参见“INADDR_BROADCAST”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared\ws2def.h(638,28): error C2011: “sockaddr_in”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(309): message : 参见“sockaddr_in”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(136,23): error C2011: “fd_set”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(65): message : 参见“fd_set”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(171,1): warning C4005: “FD_SET”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(99): message : 参见“FD_SET”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(180,16): error C2011: “timeval”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(108): message : 参见“timeval”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(236,17): error C2011: “hostent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(164): message : 参见“hostent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(249,16): error C2011: “netent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(177): message : 参见“netent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(256,17): error C2011: “servent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(184): message : 参见“servent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(268,18): error C2011: “protoent”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(196): message : 参见“protoent”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(364,24): error C2011: “WSAData”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(319): message : 参见“WSAData”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(462,18): error C2011: “sockproto”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(491): message : 参见“sockproto”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(504,16): error C2011: “linger”:“struct”类型重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(528): message : 参见“linger”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(517,1): warning C4005: “SOMAXCONN”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(541): message : 参见“SOMAXCONN”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(551,1): warning C4005: “FD_READ”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(559): message : 参见“FD_READ”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(554,1): warning C4005: “FD_WRITE”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(560): message : 参见“FD_WRITE”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(557,1): warning C4005: “FD_OOB”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(561): message : 参见“FD_OOB”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(560,1): warning C4005: “FD_ACCEPT”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(562): message : 参见“FD_ACCEPT”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(563,1): warning C4005: “FD_CONNECT”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(563): message : 参见“FD_CONNECT”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(566,1): warning C4005: “FD_CLOSE”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(564): message : 参见“FD_CLOSE”的前一个定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1628,1): error C2375: “accept”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(739): message : 参见“accept”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1650,1): error C2375: “bind”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(744): message : 参见“bind”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1671,1): error C2375: “closesocket”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(749): message : 参见“closesocket”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1688,1): error C2375: “connect”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(751): message : 参见“connect”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1709,1): error C2375: “ioctlsocket”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(756): message : 参见“ioctlsocket”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1732,1): error C2375: “getpeername”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(761): message : 参见“getpeername”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1753,1): error C2375: “getsockname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(766): message : 参见“getsockname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1774,1): error C2375: “getsockopt”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(771): message : 参见“getsockopt”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1799,1): error C2375: “htonl”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(778): message : 参见“htonl”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1816,1): error C2375: “htons”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(780): message : 参见“htons”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1834,1): error C2375: “inet_addr”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(782): message : 参见“inet_addr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1852,1): error C2375: “inet_ntoa”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(784): message : 参见“inet_ntoa”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1952,1): error C2375: “listen”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(786): message : 参见“listen”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1971,1): error C2375: “ntohl”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(790): message : 参见“ntohl”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(1988,1): error C2375: “ntohs”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(792): message : 参见“ntohs”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2005,1): error C2375: “recv”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(794): message : 参见“recv”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2028,1): error C2375: “recvfrom”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(800): message : 参见“recvfrom”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2055,1): error C2375: “select”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(808): message : 参见“select”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2080,1): error C2375: “send”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(815): message : 参见“send”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2103,1): error C2375: “sendto”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(821): message : 参见“sendto”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2130,1): error C2375: “setsockopt”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(829): message : 参见“setsockopt”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2155,1): error C2375: “shutdown”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(836): message : 参见“shutdown”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2175,1): error C2375: “socket”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(840): message : 参见“socket”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2200,1): error C2375: “gethostbyaddr”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(847): message : 参见“gethostbyaddr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2222,1): error C2375: “gethostbyname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(852): message : 参见“gethostbyname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2239,1): error C2375: “gethostname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(854): message : 参见“gethostname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2279,1): error C2375: “getservbyport”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(858): message : 参见“getservbyport”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2298,1): error C2375: “getservbyname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(862): message : 参见“getservbyname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2317,1): error C2375: “getprotobynumber”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(866): message : 参见“getprotobynumber”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2334,1): error C2375: “getprotobyname”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(868): message : 参见“getprotobyname”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2354,1): error C2375: “WSAStartup”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(872): message : 参见“WSAStartup”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2374,1): error C2375: “WSACleanup”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(876): message : 参见“WSACleanup”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2391,1): error C2375: “WSASetLastError”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(878): message : 参见“WSASetLastError”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2408,1): error C2375: “WSAGetLastError”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(880): message : 参见“WSAGetLastError”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2429,1): error C2375: “WSAIsBlocking”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(882): message : 参见“WSAIsBlocking”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2447,1): error C2375: “WSAUnhookBlockingHook”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(884): message : 参见“WSAUnhookBlockingHook”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2465,1): error C2375: “WSASetBlockingHook”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(886): message : 参见“WSASetBlockingHook”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2483,1): error C2375: “WSACancelBlockingCall”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(888): message : 参见“WSACancelBlockingCall”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2501,1): error C2375: “WSAAsyncGetServByName”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(890): message : 参见“WSAAsyncGetServByName”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2529,1): error C2375: “WSAAsyncGetServByPort”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(898): message : 参见“WSAAsyncGetServByPort”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2557,1): error C2375: “WSAAsyncGetProtoByName”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(906): message : 参见“WSAAsyncGetProtoByName”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2583,1): error C2375: “WSAAsyncGetProtoByNumber”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(913): message : 参见“WSAAsyncGetProtoByNumber”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2609,1): error C2375: “WSAAsyncGetHostByName”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(920): message : 参见“WSAAsyncGetHostByName”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2635,1): error C2375: “WSAAsyncGetHostByAddr”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(927): message : 参见“WSAAsyncGetHostByAddr”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2665,1): error C2375: “WSACancelAsyncRequest”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(936): message : 参见“WSACancelAsyncRequest”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(2683,1): error C2375: “WSAAsyncSelect”: 重定义；不同的链接
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\winsock.h(938): message : 参见“WSAAsyncSelect”的声明
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(4315,1): error C2059: 语法错误:“}”
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\WinSock2.h(4315,1): error C2143: 语法错误: 缺少“;”(在“}”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\ucrt\assert.h(17,1): error C2143: 语法错误: 缺少“;”(在“{”的前面)
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\ucrt\assert.h(17,1): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(52,14): error C2079: “FSimpleConnetion::ConnetAddr”使用未定义的 struct“sockaddr_in”
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(57,28): warning C4251: “FSimpleConnetion::Channels”: class“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(42): message : 参见“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(62,40): warning C4251: “FSimpleConnetion::LastTime”: class“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\chrono(687): message : 参见“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(45,46): error C2440: “return”: 无法从“int”转换为“SOCKADDR_IN &”
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25,35): warning C4251: “FSimpleNetDrive::Connetions”: class“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”需要有 dll 接口由 class“FSimpleNetDrive”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25): message : 参见“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”的声明
-E:\ademo\REngine2\REngine2\Engine\Render\Render.cpp(72,29): warning C4244: “=”: 从“UINT64”转换到“LONG_PTR”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\Engine\Render\Render.cpp(71,29): warning C4244: “=”: 从“UINT64”转换到“LONG_PTR”，可能丢失数据
   Shader.cpp
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4828: 文件包含在偏移 0x60c 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(57,28): warning C4251: “FSimpleConnetion::Channels”: class“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(42): message : 参见“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(62,40): warning C4251: “FSimpleConnetion::LastTime”: class“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\chrono(687): message : 参见“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25,35): warning C4251: “FSimpleNetDrive::Connetions”: class“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”需要有 dll 接口由 class“FSimpleNetDrive”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25): message : 参见“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”的声明
+  main.cpp
   soft_rasterization.cpp
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4828: 文件包含在偏移 0x60c 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
-E:\ademo\REngine2\REngine2\simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(57,28): warning C4251: “FSimpleConnetion::Channels”: class“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(42): message : 参见“std::list<FSimpleChannel,std::allocator<FSimpleChannel>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_core\simple_connetion.h(62,40): warning C4251: “FSimpleConnetion::LastTime”: class“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”需要有 dll 接口由 class“FSimpleConnetion”的客户端使用
-D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\chrono(687): message : 参见“std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25,35): warning C4251: “FSimpleNetDrive::Connetions”: class“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”需要有 dll 接口由 class“FSimpleNetDrive”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_channel\simple_net_drive.h(25): message : 参见“std::map<int,FSimpleConnetion *,std::less<int>,std::allocator<std::pair<const int,FSimpleConnetion *>>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(37,32): warning C4251: “soft_rasterization::fobject::gobject_array”: class“std::vector<soft_rasterization::fobject *,std::allocator<soft_rasterization::fobject *>>”需要有 dll 接口由 class“soft_rasterization::fobject”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(37): message : 参见“std::vector<soft_rasterization::fobject *,std::allocator<soft_rasterization::fobject *>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(45,28): warning C4251: “soft_rasterization::fcomponent::children”: class“std::vector<soft_rasterization::fcomponent *,std::allocator<soft_rasterization::fcomponent *>>”需要有 dll 接口由 class“soft_rasterization::fcomponent”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(45): message : 参见“std::vector<soft_rasterization::fcomponent *,std::allocator<soft_rasterization::fcomponent *>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(86,27): warning C4251: “soft_rasterization::fmesh_component::vertex_data”: class“std::vector<fvector_3d,std::allocator<fvector_3d>>”需要有 dll 接口由 class“soft_rasterization::fmesh_component”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(86): message : 参见“std::vector<fvector_3d,std::allocator<fvector_3d>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(146,27): warning C4251: “soft_rasterization::frender_data_3d::vertex_data”: class“std::vector<fvector_3d,std::allocator<fvector_3d>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_3d”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(86): message : 参见“std::vector<fvector_3d,std::allocator<fvector_3d>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(147,25): warning C4251: “soft_rasterization::frender_data_3d::index_data”: class“std::vector<uint16_t,std::allocator<uint16_t>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_3d”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(147): message : 参见“std::vector<uint16_t,std::allocator<uint16_t>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(154,27): warning C4251: “soft_rasterization::frender_data_2d::vertex_data”: class“std::vector<fvector_2d,std::allocator<fvector_2d>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_2d”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(154): message : 参见“std::vector<fvector_2d,std::allocator<fvector_2d>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(155,25): warning C4251: “soft_rasterization::frender_data_2d::index_data”: class“std::vector<uint16_t,std::allocator<uint16_t>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_2d”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(147): message : 参见“std::vector<uint16_t,std::allocator<uint16_t>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(190,29): warning C4251: “soft_rasterization::frender_engine::draw_obj”: class“std::vector<soft_rasterization::fmesh_actor *,std::allocator<soft_rasterization::fmesh_actor *>>”需要有 dll 接口由 class“soft_rasterization::frender_engine”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(178): message : 参见“std::vector<soft_rasterization::fmesh_actor *,std::allocator<soft_rasterization::fmesh_actor *>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(193,32): warning C4251: “soft_rasterization::frender_engine::frame_render_data3”: class“std::vector<soft_rasterization::frender_data_3d,std::allocator<soft_rasterization::frender_data_3d>>”需要有 dll 接口由 class“soft_rasterization::frender_engine”的客户端使用
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(193): message : 参见“std::vector<soft_rasterization::frender_data_3d,std::allocator<soft_rasterization::frender_data_3d>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(194,16): warning C4251: “soft_rasterization::frender_engine::wpath”: class“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>”需要有 dll 接口由 class“soft_rasterization::frender_engine”的客户端使用
-D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(4920): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>”的声明
-E:\ademo\REngine2\REngine2\simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp(300,38): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(37,32): warning C4251: “soft_rasterization::fobject::gobject_array”: class“std::vector<soft_rasterization::fobject *,std::allocator<soft_rasterization::fobject *>>”需要有 dll 接口由 class“soft_rasterization::fobject”的客户端使用
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(37): message : 参见“std::vector<soft_rasterization::fobject *,std::allocator<soft_rasterization::fobject *>>”的声明
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(45,28): warning C4251: “soft_rasterization::fcomponent::children”: class“std::vector<soft_rasterization::fcomponent *,std::allocator<soft_rasterization::fcomponent *>>”需要有 dll 接口由 class“soft_rasterization::fcomponent”的客户端使用
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(45): message : 参见“std::vector<soft_rasterization::fcomponent *,std::allocator<soft_rasterization::fcomponent *>>”的声明
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(86,27): warning C4251: “soft_rasterization::fmesh_component::vertex_data”: class“std::vector<fvector_3d,std::allocator<fvector_3d>>”需要有 dll 接口由 class“soft_rasterization::fmesh_component”的客户端使用
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(86): message : 参见“std::vector<fvector_3d,std::allocator<fvector_3d>>”的声明
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(146,27): warning C4251: “soft_rasterization::frender_data_3d::vertex_data”: class“std::vector<fvector_3d,std::allocator<fvector_3d>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_3d”的客户端使用
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(86): message : 参见“std::vector<fvector_3d,std::allocator<fvector_3d>>”的声明
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(147,25): warning C4251: “soft_rasterization::frender_data_3d::index_data”: class“std::vector<uint16_t,std::allocator<uint16_t>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_3d”的客户端使用
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(147): message : 参见“std::vector<uint16_t,std::allocator<uint16_t>>”的声明
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(154,27): warning C4251: “soft_rasterization::frender_data_2d::vertex_data”: class“std::vector<fvector_2d,std::allocator<fvector_2d>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_2d”的客户端使用
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(154): message : 参见“std::vector<fvector_2d,std::allocator<fvector_2d>>”的声明
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(155,25): warning C4251: “soft_rasterization::frender_data_2d::index_data”: class“std::vector<uint16_t,std::allocator<uint16_t>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_2d”的客户端使用
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(147): message : 参见“std::vector<uint16_t,std::allocator<uint16_t>>”的声明
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(190,29): warning C4251: “soft_rasterization::frender_engine::draw_obj”: class“std::vector<soft_rasterization::fmesh_actor *,std::allocator<soft_rasterization::fmesh_actor *>>”需要有 dll 接口由 class“soft_rasterization::frender_engine”的客户端使用
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(178): message : 参见“std::vector<soft_rasterization::fmesh_actor *,std::allocator<soft_rasterization::fmesh_actor *>>”的声明
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(193,32): warning C4251: “soft_rasterization::frender_engine::frame_render_data3”: class“std::vector<soft_rasterization::frender_data_3d,std::allocator<soft_rasterization::frender_data_3d>>”需要有 dll 接口由 class“soft_rasterization::frender_engine”的客户端使用
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(193): message : 参见“std::vector<soft_rasterization::frender_data_3d,std::allocator<soft_rasterization::frender_data_3d>>”的声明
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(194,16): warning C4251: “soft_rasterization::frender_engine::wpath”: class“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>”需要有 dll 接口由 class“soft_rasterization::frender_engine”的客户端使用
+D:\Microsoft Visual Studio\2022\VC\Tools\MSVC\14.31.31103\include\xstring(4928): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>”的声明
+D:\aProject\REngine2.0\REngine2\simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp(300,38): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
           with
           [
               _Ty=unsigned char
           ]
-E:\ademo\REngine2\REngine2\simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp(301,42): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp(301,42): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
           with
           [
               _Ty=unsigned char
           ]
-E:\ademo\REngine2\REngine2\simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp(302,42): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
+D:\aProject\REngine2.0\REngine2\simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp(302,42): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
           with
           [
               _Ty=unsigned char
           ]
   正在生成代码...
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(270): warning C4715: “WindowsEngine::InitWindows”: 不是所有的控件路径都返回值
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(270): warning C4715: “WindowsEngine::InitWindows”: 不是所有的控件路径都返回值
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+  simple_file_helper.c
+D:\aProject\REngine2.0\REngine2\simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c(438,17): warning C4047: “函数”:“int”与“HINSTANCE”的间接级别不同
+D:\aProject\REngine2.0\REngine2\simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c(433,44): warning C4024: “check_ShellExecute_ret”: 形参和实参 1 的类型不同
+D:\aProject\REngine2.0\REngine2\simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c(519,28): warning C4133: “函数”: 从“unsigned short [3]”到“const char *”的类型不兼容
+  simple_c_path.c
+D:\aProject\REngine2.0\REngine2\simple_library\private\simple_core_minimal\simple_c_path\simple_c_path.c(12,21): warning C4013: “remove_string_start”未定义；假设外部返回 int
+  simple_math.c
+  正在生成代码...
+    正在创建库 D:\aProject\REngine2.0\Debug\REngine2.lib 和对象 D:\aProject\REngine2.0\Debug\REngine2.exp
+  REngine2.vcxproj -> D:\aProject\REngine2.0\Debug\REngine2.exe

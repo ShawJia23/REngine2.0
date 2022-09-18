@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "../Debug/EngineLog.h"
+#include"Debug/EngineLog.h"
 #include "../simple_library/public/simple_library.h"
 #include "Debug/Log/SimpleLog.h"
 

@@ -1,4 +1,4 @@
-#include "../../../public/simple_math/soft_rasterization/soft_rasterization.h"
+ï»¿#include "../../../public/simple_math/soft_rasterization/soft_rasterization.h"
 
 namespace soft_rasterization
 {
@@ -23,7 +23,7 @@ namespace soft_rasterization
 	{
 		mesh_component = create_object<fmesh_component>();
 
-		//×¢²á×Ó¸¸¼¶¹ØÏµ
+		//æ³¨å†Œå­çˆ¶çº§å…³ç³»
 		mesh_component->parent = get_transform();
 		get_transform()->children.push_back(mesh_component);
 	}
@@ -42,13 +42,13 @@ namespace soft_rasterization
 	{
 		super::tick(in_time);
 
-		//I ×¼±¸Ö¡»º´æÊı¾İ
+		//I å‡†å¤‡å¸§ç¼“å­˜æ•°æ®
 		strat_update(in_time);
 
-		//II äÖÈ¾Ö¡»º´æÊı¾İ
+		//II æ¸²æŸ“å¸§ç¼“å­˜æ•°æ®
 		draw(in_time);
 
-		//III Çå³ıÖ¡»º´æÊı¾İ
+		//III æ¸…é™¤å¸§ç¼“å­˜æ•°æ®
 		end_update(in_time);
 	}
 
@@ -72,7 +72,7 @@ namespace soft_rasterization
 		viewport_config = in_config;
 		camera.get_transform()->position = in_position;
 
-		//¹¹½¨view matrix
+		//æ„å»ºview matrix
 		fvector_4d up(0.f, 1.f, 0.f, 1.f);
 		camera.get_transform()->matrix = math_utils::matrix_look_at_target(
 			fvector_4d(
@@ -81,14 +81,14 @@ namespace soft_rasterization
 				camera.get_transform()->position.z,
 				1.f), fvector_4d(0.f), up);
 
-		//¹¹½¨Proj_matrix
+		//æ„å»ºProj_matrix
 		fmatrix_4x4 Proj_matrix = math_utils::matrix_perspective(
 			in_config.fov,//90
 			in_config.aspect_ratio,
 			in_config.near_z,
 			in_config.far_z);
 
-		//¹¹½¨ viewProj_matrix
+		//æ„å»º viewProj_matrix
 		Proj_matrix.transpose();
 		camera.get_transform()->viewProj_matrix =
 			camera.get_transform()->matrix * Proj_matrix;
@@ -96,17 +96,17 @@ namespace soft_rasterization
 
 	void frender_engine::strat_update(float in_time)
 	{
-		//×¢²áÖ¡»º´æÊı¾İ
+		//æ³¨å†Œå¸§ç¼“å­˜æ•°æ®
 		for (auto& tmp : draw_obj)
 		{
 			frame_render_data3.push_back(frender_data_3d());
 			frender_data_3d& data_3d = frame_render_data3[frame_render_data3.size() - 1];
 		
-			//IÄÃµ½Ä£ĞÍÊı¾İ
+			//Iæ‹¿åˆ°æ¨¡å‹æ•°æ®
 			data_3d.vertex_data = tmp->get_mesh()->vertex_data;
 
 			//II world matrix
-			//¹¹½¨Ğı×ª
+			//æ„å»ºæ—‹è½¬
 			fvector_3d forward_vector = tmp->get_mesh()->forward_vector;
 			fvector_3d right_vector = tmp->get_mesh()->right_vector;
 			fvector_3d up_vector = tmp->get_mesh()->up_vector;
@@ -114,8 +114,8 @@ namespace soft_rasterization
 			fvector_3d position = tmp->get_mesh()->position;
 			fvector_3d scale = tmp->get_mesh()->scale;
 
-			//UVN¾ØÕó
-			//½ÃÕı
+			//UVNçŸ©é˜µ
+			//çŸ«æ­£
 			fvector_3d dot_position;
 			dot_position.x = fvector_3d::dot(position, right_vector);
 			dot_position.y = fvector_3d::dot(position, up_vector);
@@ -128,7 +128,7 @@ namespace soft_rasterization
 			dot_position.x,				dot_position.y,			dot_position.z,				1.f
 		};
 
-			//±£´æ
+			//ä¿å­˜
 			tmp->get_transform()->matrix = data_3d.matrix;
 		}
 	}
@@ -150,10 +150,10 @@ namespace soft_rasterization
 		return false;
 	}
 
-	//»æÖÆÖ¡»º´æÊı¾İ
+	//ç»˜åˆ¶å¸§ç¼“å­˜æ•°æ®
 	void frender_engine::draw(float in_time)
 	{
-		//Ïà¶Ô×ø±ê×ªÊÀ½ç
+		//ç›¸å¯¹åæ ‡è½¬ä¸–ç•Œ
 		vector<fvector_4d> world_pos;
 		for (auto& tmp : frame_render_data3)
 		{
@@ -182,7 +182,7 @@ namespace soft_rasterization
 			}
 		}
 
-		//×ªµ½²Ã¼ô¿Õ¼ä
+		//è½¬åˆ°è£å‰ªç©ºé—´
 		vector<fvector_4d> clip_space;
 		for (size_t i = 0; i < world_pos.size(); i += 3)
 		{
@@ -208,7 +208,7 @@ namespace soft_rasterization
 			}
 		}
 
-		//Æë´Î³ı·¨ Ó³Éäµ½NDC¿Õ¼ä
+		//é½æ¬¡é™¤æ³• æ˜ å°„åˆ°NDCç©ºé—´
 		vector<fvector_4d> ndc_space;
 		for (size_t i = 0; i < clip_space.size(); i += 3)
 		{
@@ -241,23 +241,23 @@ namespace soft_rasterization
 		}
 
 		frender_data_2d render_data2;
-		//NDCÓ³Éäµ½Êµ¼ÊÏñËØ
+		//NDCæ˜ å°„åˆ°å®é™…åƒç´ 
 		for (size_t i = 0; i < ndc_space.size(); i += 3)
 		{
 			render_data2.vertex_data.push_back(fvector_2d(
-				(ndc_space[i].x * 0.5f + 0.5f) * viewport_config.viewport_size.x,//Ó³Éäµ½Êµ¼ÊÆÁÄ»¿Õ¼ä
-				(ndc_space[i].y * 0.5f + 0.5f) * viewport_config.viewport_size.y));//Ó³Éäµ½Êµ¼ÊÆÁÄ»¿Õ¼ä
+				(ndc_space[i].x * 0.5f + 0.5f) * viewport_config.viewport_size.x,//æ˜ å°„åˆ°å®é™…å±å¹•ç©ºé—´
+				(ndc_space[i].y * 0.5f + 0.5f) * viewport_config.viewport_size.y));//æ˜ å°„åˆ°å®é™…å±å¹•ç©ºé—´
 
 			render_data2.vertex_data.push_back(fvector_2d(
-				(ndc_space[i + 1].x * 0.5f + 0.5f) * viewport_config.viewport_size.x,//Ó³Éäµ½Êµ¼ÊÆÁÄ»¿Õ¼ä
-				(ndc_space[i + 1].y * 0.5f + 0.5f) * viewport_config.viewport_size.y));//Ó³Éäµ½Êµ¼ÊÆÁÄ»¿Õ¼ä
+				(ndc_space[i + 1].x * 0.5f + 0.5f) * viewport_config.viewport_size.x,//æ˜ å°„åˆ°å®é™…å±å¹•ç©ºé—´
+				(ndc_space[i + 1].y * 0.5f + 0.5f) * viewport_config.viewport_size.y));//æ˜ å°„åˆ°å®é™…å±å¹•ç©ºé—´
 
 			render_data2.vertex_data.push_back(fvector_2d(
-				(ndc_space[i + 2].x * 0.5f + 0.5f) * viewport_config.viewport_size.x,//Ó³Éäµ½Êµ¼ÊÆÁÄ»¿Õ¼ä
-				(ndc_space[i + 2].y * 0.5f + 0.5f) * viewport_config.viewport_size.y));//Ó³Éäµ½Êµ¼ÊÆÁÄ»¿Õ¼ä
+				(ndc_space[i + 2].x * 0.5f + 0.5f) * viewport_config.viewport_size.x,//æ˜ å°„åˆ°å®é™…å±å¹•ç©ºé—´
+				(ndc_space[i + 2].y * 0.5f + 0.5f) * viewport_config.viewport_size.y));//æ˜ å°„åˆ°å®é™…å±å¹•ç©ºé—´
 		}
 
-		//2.ÄÃµ½buff
+		//2.æ‹¿åˆ°buff
 		std::vector<unsigned char> data;
 		SimpleImage::FImageInfo image_info;
 		image_info.Height = (int)viewport_config.viewport_size.y;
@@ -266,7 +266,7 @@ namespace soft_rasterization
 		image_info.ImageType = SimpleImage::EImageType::Bmp;
 		SimpleImage::GetImageDataExcludeHeaderInfor(image_info, data);
 
-		//3.×¼±¸Èı½ÇĞÎ	
+		//3.å‡†å¤‡ä¸‰è§’å½¢	
 		std::vector<primitives::ftriangle> triangles;
 		for (int i = 0; i < (int)render_data2.vertex_data.size(); i += 3)
 		{
@@ -281,15 +281,15 @@ namespace soft_rasterization
 			in_triangle.Color.z = 255;
 		}
 
-		//4.¹âÕ¤»¯ ºÏ²¢½×¶Î
+		//4.å…‰æ …åŒ– åˆå¹¶é˜¶æ®µ
 		for (int i = 0; i < image_info.Height; i++)
 		{
 			for (int j = 0; j < image_info.Width * (int)image_info.Channel; j += 3)
 			{
-				//row ĞĞÊı
+				//row è¡Œæ•°
 				int number_rows = i * image_info.Width * image_info.Channel;
 
-				//ÏñËØµÄÎ»ÖÃ
+				//åƒç´ çš„ä½ç½®
 				int x = j / image_info.Channel;
 				int y = i;
 
@@ -311,7 +311,7 @@ namespace soft_rasterization
 			}
 		}
 
-		//Êä³ö½×¶Î
+		//è¾“å‡ºé˜¶æ®µ
 		wchar_t path[1024] = { 0 };
 		if (!wpath.empty())
 		{
@@ -333,7 +333,7 @@ namespace soft_rasterization
 
 	void frender_engine::end_update(float in_time)
 	{
-		//Çå³ıÖ¡»º´æÊı¾İ
+		//æ¸…é™¤å¸§ç¼“å­˜æ•°æ®
 		frame_render_data3.clear();
 	}
 
@@ -360,20 +360,20 @@ namespace soft_rasterization
 
 	void fobject::gobject_array_clear()
 	{
-		//Í¨ÖªÉÏ²ãÂß¼­ ÎÒÒªÇå³ıÁË
+		//é€šçŸ¥ä¸Šå±‚é€»è¾‘ æˆ‘è¦æ¸…é™¤äº†
 		for (auto& tmp : gobject_array)
 		{
 			tmp->clear();
 		}
 
-		//ÕæÕıÇå³ı
+		//çœŸæ­£æ¸…é™¤
 		for (auto& tmp : gobject_array)
 		{
 			delete tmp;
 			tmp = nullptr;
 		}
 
-		//ÔÙÇå³ıÈİÆ÷
+		//å†æ¸…é™¤å®¹å™¨
 		gobject_array.clear();
 	}
 
@@ -423,11 +423,11 @@ namespace soft_rasterization
 
 	void ftransform_component::set_rot(const frotator& in_rot)
 	{
-		//±£´æÒ»ÏÂ
+		//ä¿å­˜ä¸€ä¸‹
 		rotation = in_rot;
 
-		//ĞÂµÄ·½·¨
-		//½«Ô­ÏÈ±£´æµÄ¾ØÕó×ªÎªÅ·À­½Ç
+		//æ–°çš„æ–¹æ³•
+		//å°†åŸå…ˆä¿å­˜çš„çŸ©é˜µè½¬ä¸ºæ¬§æ‹‰è§’
 		//frotator last_rotator;
 		//fmatrix_3x3 last_matrix_3x3(matrix);
 		//last_rotation.object_to_inertia(quat);
@@ -438,15 +438,15 @@ namespace soft_rasterization
 		printf("last_rotator(yaw=%f.roll=%f.path=%f)\n", last_rotation.yaw, last_rotation.roll, last_rotation.pitch);
 		printf("------------------\n");
 
-		//¹¹½¨ÎªĞı×ª¾ØÕó
+		//æ„å»ºä¸ºæ—‹è½¬çŸ©é˜µ
 		fmatrix_3x3 rot_matrix_3x3;
-		//rot_matrix_3x3.object_to_inertia(in_rot); //Ğı×ªroll»á³öÏÖÎÊÌâ
+		//rot_matrix_3x3.object_to_inertia(in_rot); //æ—‹è½¬rollä¼šå‡ºç°é—®é¢˜
 		fquat q;
 		q.object_to_inertia(new_rotator);
 
 		math_utils::object_to_inertia(q, rot_matrix_3x3);
 
-		//¹¹½¨ĞÂµÄfor right up
+		//æ„å»ºæ–°çš„for right up
 		forward_vector = math_utils::mul(forward_vector, rot_matrix_3x3);
 		right_vector = math_utils::mul(right_vector, rot_matrix_3x3);
 		up_vector = math_utils::mul(up_vector, rot_matrix_3x3);
