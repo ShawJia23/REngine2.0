@@ -54,17 +54,17 @@ int WindowsEngine::PostInit()
 {
 	Engine_Log("Engine post initialization complete.");
 
-	ANALYSIS_HRESULT(GraphicsCommandList->Reset(CommandAllocator.Get(), NULL));
+	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
 		//构建Mesh
 		BoxMesh* Box = BoxMesh::CreateMesh();
 
 	}
 
-	ANALYSIS_HRESULT(GraphicsCommandList->Close());
+	ANALYSIS_HRESULT(m_commandList->Close());
 
-	ID3D12CommandList* CommandList[] = { GraphicsCommandList.Get() };
-	CommandQueue->ExecuteCommandLists(_countof(CommandList), CommandList);
+	ID3D12CommandList* CommandList[] = { m_commandList.Get() };
+	m_commandQueue->ExecuteCommandLists(_countof(CommandList), CommandList);
 
 	WaitGPUCommandQueueComplete();
 
@@ -74,7 +74,7 @@ int WindowsEngine::PostInit()
 void WindowsEngine::Tick(float DeltaTime)
 {
 	//重置录制相关的内存，为下一帧做准备
-	ANALYSIS_HRESULT(CommandAllocator->Reset());
+	ANALYSIS_HRESULT(m_commandAllocator->Reset());
 
 	for (auto& Tmp : IRenderingInterface::RenderingInterface)
 	{
@@ -85,27 +85,27 @@ void WindowsEngine::Tick(float DeltaTime)
 	CD3DX12_RESOURCE_BARRIER ResourceBarrierPresent = CD3DX12_RESOURCE_BARRIER::Transition(GetCurrentSwapBuff(),
 		D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 
-	GraphicsCommandList->ResourceBarrier(1, &ResourceBarrierPresent);
+	m_commandList->ResourceBarrier(1, &ResourceBarrierPresent);
 
 	//需要每帧执行
 	//绑定矩形框
-	GraphicsCommandList->RSSetViewports(1, &ViewprotInfo);
-	GraphicsCommandList->RSSetScissorRects(1, &ViewprotRect);
+	m_commandList->RSSetViewports(1, &ViewprotInfo);
+	m_commandList->RSSetScissorRects(1, &ViewprotRect);
 
 	//清除画布
-	GraphicsCommandList->ClearRenderTargetView(GetCurrentSwapBufferView(),
+	m_commandList->ClearRenderTargetView(GetCurrentSwapBufferView(),
 		DirectX::Colors::Black,
 		0, nullptr);
 
 	//清除深度模板缓冲区
-	GraphicsCommandList->ClearDepthStencilView(GetCurrentDepthStencilView(),
+	m_commandList->ClearDepthStencilView(GetCurrentDepthStencilView(),
 		D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL,
 		1.f, 0, 0, NULL);
 
 	//输出的合并阶段
 	D3D12_CPU_DESCRIPTOR_HANDLE SwapBufferView = GetCurrentSwapBufferView();
 	D3D12_CPU_DESCRIPTOR_HANDLE DepthStencilView = GetCurrentDepthStencilView();
-	GraphicsCommandList->OMSetRenderTargets(1, &SwapBufferView,
+	m_commandList->OMSetRenderTargets(1, &SwapBufferView,
 		true, &DepthStencilView);
 
 	//渲染其他内容
@@ -117,17 +117,17 @@ void WindowsEngine::Tick(float DeltaTime)
 
 	CD3DX12_RESOURCE_BARRIER ResourceBarrierPresentRenderTarget = CD3DX12_RESOURCE_BARRIER::Transition(GetCurrentSwapBuff(),
 		D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
-	GraphicsCommandList->ResourceBarrier(1, &ResourceBarrierPresentRenderTarget);
+	m_commandList->ResourceBarrier(1, &ResourceBarrierPresentRenderTarget);
 
 	//录入完成
-	ANALYSIS_HRESULT(GraphicsCommandList->Close());
+	ANALYSIS_HRESULT(m_commandList->Close());
 
 	//提交命令
-	ID3D12CommandList* CommandList[] = { GraphicsCommandList.Get() };
-	CommandQueue->ExecuteCommandLists(_countof(CommandList), CommandList);
+	ID3D12CommandList* CommandList[] = { m_commandList.Get() };
+	m_commandQueue->ExecuteCommandLists(_countof(CommandList), CommandList);
 
 	//交换两个buff缓冲区
-	ANALYSIS_HRESULT(SwapChain->Present(0, 0));
+	ANALYSIS_HRESULT(m_swapChain->Present(0, 0));
 	CurrentSwapBuffIndex = !(bool)CurrentSwapBuffIndex;
 
 	//CPU等GPU
@@ -153,58 +153,6 @@ int WindowsEngine::PostExit()
 
 	Engine_Log("Engine post exit complete.");
 	return 0;
-}
-
-ID3D12Resource* WindowsEngine::GetCurrentSwapBuff() const
-{
-	return SwapChainBuffer[CurrentSwapBuffIndex].Get();
-}
-
-D3D12_CPU_DESCRIPTOR_HANDLE WindowsEngine::GetCurrentSwapBufferView() const
-{
-	return CD3DX12_CPU_DESCRIPTOR_HANDLE(
-		RTVHeap->GetCPUDescriptorHandleForHeapStart(),
-		CurrentSwapBuffIndex, RTVDescriptorSize);
-}
-
-D3D12_CPU_DESCRIPTOR_HANDLE WindowsEngine::GetCurrentDepthStencilView() const
-{
-	return DSVHeap->GetCPUDescriptorHandleForHeapStart();
-}
-
-UINT WindowsEngine::GetDXGISampleCount() const
-{
-	return bMSAA4XEnabled ? 4 : 1;;
-}
-
-UINT WindowsEngine::GetDXGISampleQuality() const
-{
-	return bMSAA4XEnabled ? (M4XQualityLevels - 1) : 0;
-}
-
-void WindowsEngine::WaitGPUCommandQueueComplete()
-{
-	CurrentFenceIndex++;
-
-	//向GUP设置新的隔离点 等待GPU处理玩信号
-	ANALYSIS_HRESULT(CommandQueue->Signal(Fence.Get(), CurrentFenceIndex));
-
-	if (Fence->GetCompletedValue() < CurrentFenceIndex)
-	{
-		//创建或打开一个事件内核对象,并返回该内核对象的句柄.
-		//SECURITY_ATTRIBUTES
-		//CREATE_EVENT_INITIAL_SET  0x00000002
-		//CREATE_EVENT_MANUAL_RESET 0x00000001
-		//ResetEvents
-		HANDLE EventEX = CreateEventEx(NULL, NULL, 0, EVENT_ALL_ACCESS);
-
-		//GPU完成后会通知我们的Handle
-		ANALYSIS_HRESULT(Fence->SetEventOnCompletion(CurrentFenceIndex, EventEX));
-
-		//等待GPU,阻塞主线程
-		WaitForSingleObject(EventEX, INFINITE);
-		CloseHandle(EventEX);
-	}
 }
 
 bool WindowsEngine::InitWindows(WinMainCommandParameters InParameters)
@@ -247,7 +195,7 @@ bool WindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 		L"RenZhaiEngine", // 窗口名称
 		L"RENZHAI Engine",//会显示在窗口的标题栏上去
 		WS_OVERLAPPEDWINDOW, //窗口风格
-		-1700, 100,//窗口的坐标
+		100, 100,//窗口的坐标
 		WindowWidth, WindowHight,//
 		NULL, //副窗口句柄
 		nullptr, //菜单句柄
@@ -263,7 +211,7 @@ bool WindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 	//显示窗口
 	ShowWindow(MianWindowsHandle, SW_SHOW);
 
-	//窗口是脏的，刷新一下
+	//窗口刷新
 	UpdateWindow(MianWindowsHandle);
 
 	Engine_Log("InitWindows complete.");
@@ -301,7 +249,6 @@ bool WindowsEngine::InitDirect3D()
 	D3D_FEATURE_LEVEL_10_1 目标功能级别支持Direct3D 10.1包含 shader model 4.
 	D3D_FEATURE_LEVEL_11_0 目标功能级别支持Direct3D 11.0包含 shader model 5.
 	*/
-
 	HRESULT D3dDeviceResult = D3D12CreateDevice(NULL, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&D3dDevice));
 	if (FAILED(D3dDeviceResult))
 	{
@@ -334,21 +281,21 @@ bool WindowsEngine::InitDirect3D()
 	D3D12_COMMAND_QUEUE_DESC QueueDesc = {};
 	QueueDesc.Type = D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_DIRECT;//直接
 	QueueDesc.Flags = D3D12_COMMAND_QUEUE_FLAGS::D3D12_COMMAND_QUEUE_FLAG_NONE;
-	ANALYSIS_HRESULT(D3dDevice->CreateCommandQueue(&QueueDesc, IID_PPV_ARGS(&CommandQueue)));
+	ANALYSIS_HRESULT(D3dDevice->CreateCommandQueue(&QueueDesc, IID_PPV_ARGS(&m_commandQueue)));
 
 	ID3D12CommandAllocator Allocator();
 	ANALYSIS_HRESULT(D3dDevice->CreateCommandAllocator(
 		D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_DIRECT,
-		IID_PPV_ARGS(CommandAllocator.GetAddressOf())));
+		IID_PPV_ARGS(m_commandAllocator.GetAddressOf())));
 
 	ANALYSIS_HRESULT(D3dDevice->CreateCommandList(
 		0, //默认单个Gpu 
 		D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_DIRECT,//直接类型
-		CommandAllocator.Get(),//将Commandlist关联到Allocator
-		NULL,//ID3D12PipelineState
-		IID_PPV_ARGS(GraphicsCommandList.GetAddressOf())));
+		m_commandAllocator.Get(),//将Commandlist关联到Allocator
+		nullptr,//ID3D12PipelineState
+		IID_PPV_ARGS(m_commandList.GetAddressOf())));
 
-	ANALYSIS_HRESULT(GraphicsCommandList->Close());
+	ANALYSIS_HRESULT(m_commandList->Close());
 
 	//多重采样
 ////////////////////////////////////////////////////////////////////
@@ -367,7 +314,7 @@ bool WindowsEngine::InitDirect3D()
 
 	//交换链
 ////////////////////////////////////////////////////////////////////
-	SwapChain.Reset();
+	m_swapChain.Reset();
 	DXGI_SWAP_CHAIN_DESC SwapChainDesc;
 	SwapChainDesc.BufferDesc.Width = EngineRenderConfig::GetRenderConfig()->ScrrenWidth;
 	SwapChainDesc.BufferDesc.Height = EngineRenderConfig::GetRenderConfig()->ScrrenHight;
@@ -392,8 +339,8 @@ bool WindowsEngine::InitDirect3D()
 	SwapChainDesc.SampleDesc.Count = GetDXGISampleCount();
 	SwapChainDesc.SampleDesc.Quality = GetDXGISampleQuality();
 	ANALYSIS_HRESULT(DXGIFactory->CreateSwapChain(
-		CommandQueue.Get(),
-		&SwapChainDesc, SwapChain.GetAddressOf()));
+		m_commandQueue.Get(),
+		&SwapChainDesc, m_swapChain.GetAddressOf()));
 
 	//资源描述符
 	////////////////////////////////////////////////////////////////////
@@ -429,7 +376,7 @@ void WindowsEngine::PostInitDirect3D()
 	//同步
 	WaitGPUCommandQueueComplete();
 
-	ANALYSIS_HRESULT(GraphicsCommandList->Reset(CommandAllocator.Get(), NULL));
+	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 
 	for (int i = 0; i < EngineRenderConfig::GetRenderConfig()->SwapChainCount; i++)
 	{
@@ -437,7 +384,7 @@ void WindowsEngine::PostInitDirect3D()
 	}
 	DepthStencilBuffer.Reset();
 
-	SwapChain->ResizeBuffers(
+	m_swapChain->ResizeBuffers(
 		EngineRenderConfig::GetRenderConfig()->SwapChainCount,
 		EngineRenderConfig::GetRenderConfig()->ScrrenWidth,
 		EngineRenderConfig::GetRenderConfig()->ScrrenHight,
@@ -449,7 +396,7 @@ void WindowsEngine::PostInitDirect3D()
 	CD3DX12_CPU_DESCRIPTOR_HANDLE HeapHandle(RTVHeap->GetCPUDescriptorHandleForHeapStart());
 	for (UINT i = 0; i < EngineRenderConfig::GetRenderConfig()->SwapChainCount; i++)
 	{
-		SwapChain->GetBuffer(i, IID_PPV_ARGS(&SwapChainBuffer[i]));
+		m_swapChain->GetBuffer(i, IID_PPV_ARGS(&SwapChainBuffer[i]));
 		D3dDevice->CreateRenderTargetView(SwapChainBuffer[i].Get(), nullptr, HeapHandle);
 		HeapHandle.Offset(1, RTVDescriptorSize);
 	}
@@ -491,12 +438,12 @@ void WindowsEngine::PostInitDirect3D()
 		D3D12_RESOURCE_STATE_COMMON,
 		D3D12_RESOURCE_STATE_DEPTH_WRITE);
 
-	GraphicsCommandList->ResourceBarrier(1, &Barrier);
+	m_commandList->ResourceBarrier(1, &Barrier);
 
-	GraphicsCommandList->Close();
+	m_commandList->Close();
 
-	ID3D12CommandList* CommandList[] = { GraphicsCommandList.Get() };
-	CommandQueue->ExecuteCommandLists(_countof(CommandList), CommandList);
+	ID3D12CommandList* CommandList[] = { m_commandList.Get() };
+	m_commandQueue->ExecuteCommandLists(_countof(CommandList), CommandList);
 
 	//这些会覆盖原先windows画布
 	//描述视口尺寸
@@ -514,6 +461,58 @@ void WindowsEngine::PostInitDirect3D()
 	ViewprotRect.bottom = EngineRenderConfig::GetRenderConfig()->ScrrenHight;
 
 	WaitGPUCommandQueueComplete();
+}
+
+ID3D12Resource* WindowsEngine::GetCurrentSwapBuff() const
+{
+	return SwapChainBuffer[CurrentSwapBuffIndex].Get();
+}
+
+D3D12_CPU_DESCRIPTOR_HANDLE WindowsEngine::GetCurrentSwapBufferView() const
+{
+	return CD3DX12_CPU_DESCRIPTOR_HANDLE(
+		RTVHeap->GetCPUDescriptorHandleForHeapStart(),
+		CurrentSwapBuffIndex, RTVDescriptorSize);
+}
+
+D3D12_CPU_DESCRIPTOR_HANDLE WindowsEngine::GetCurrentDepthStencilView() const
+{
+	return DSVHeap->GetCPUDescriptorHandleForHeapStart();
+}
+
+UINT WindowsEngine::GetDXGISampleCount() const
+{
+	return bMSAA4XEnabled ? 4 : 1;;
+}
+
+UINT WindowsEngine::GetDXGISampleQuality() const
+{
+	return bMSAA4XEnabled ? (M4XQualityLevels - 1) : 0;
+}
+
+void WindowsEngine::WaitGPUCommandQueueComplete()
+{
+	CurrentFenceIndex++;
+
+	//向GUP设置新的隔离点 等待GPU处理玩信号
+	ANALYSIS_HRESULT(m_commandQueue->Signal(Fence.Get(), CurrentFenceIndex));
+
+	if (Fence->GetCompletedValue() < CurrentFenceIndex)
+	{
+		//创建或打开一个事件内核对象,并返回该内核对象的句柄.
+		//SECURITY_ATTRIBUTES
+		//CREATE_EVENT_INITIAL_SET  0x00000002
+		//CREATE_EVENT_MANUAL_RESET 0x00000001
+		//ResetEvents
+		HANDLE EventEX = CreateEventEx(NULL, NULL, 0, EVENT_ALL_ACCESS);
+
+		//GPU完成后会通知我们的Handle
+		ANALYSIS_HRESULT(Fence->SetEventOnCompletion(CurrentFenceIndex, EventEX));
+
+		//等待GPU,阻塞主线程
+		WaitForSingleObject(EventEX, INFINITE);
+		CloseHandle(EventEX);
+	}
 }
 
 #endif

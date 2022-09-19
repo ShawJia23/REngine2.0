@@ -1,6 +1,5 @@
 #include "Mesh.h"
 #include"../../Config/RenderConfig.h"
-
 const float PI = 3.1415926535f;
 
 BMesh::BMesh()
@@ -92,8 +91,8 @@ void BMesh::BuildMesh(const MeshRenderingData* renderingData)
         IID_PPV_ARGS(&m_rootSignature));
 
     //Shader
-    m_vertexShader.BuildShaders(L"../RenZhaiEngine/Shader/Hello.hlsl", "VertexShaderMain", "vs_5_0");
-    m_pixelShader.BuildShaders(L"../RenZhaiEngine/Shader/Hello.hlsl", "PixelShaderMain", "ps_5_0");
+    m_vertexShader.BuildShaders(L"Shader/Hello.hlsl", "VertexShaderMain", "vs_5_0");
+    m_pixelShader.BuildShaders(L"Shader/Hello.hlsl", "PixelShaderMain", "ps_5_0");
 
     m_inputElementDesc =
     {

@@ -1,80 +1,8 @@
-﻿  WinMainCommandParameters.cpp
-  EngineFactory.cpp
-  Mesh.cpp
-D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(168,43): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
-D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(168,37): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
-D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(168,31): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
-D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(170,61): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
-D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(170,50): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
-D:\aProject\REngine2.0\REngine2\Engine\Mesh\Base\Mesh.cpp(170,39): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
-  MeshType.cpp
-  BoxMesh.cpp
-  WindowsEngine.cpp
-D:\aProject\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(339,25): warning C4930: “ID3D12CommandAllocator Allocator(void)”: 未调用原型函数(是否是有意用变量定义的?)
-D:\aProject\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(450,21): warning C4018: “<”: 有符号/无符号不匹配
-D:\aProject\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(505,60): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
-D:\aProject\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(506,61): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
-  WindowsMessageProcessing.cpp
-  Render.cpp
-D:\aProject\REngine2.0\REngine2\Engine\Render\Render.cpp(71,29): warning C4244: “=”: 从“UINT64”转换到“LONG_PTR”，可能丢失数据
-  Shader.cpp
-  main.cpp
-  soft_rasterization.cpp
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(37,32): warning C4251: “soft_rasterization::fobject::gobject_array”: class“std::vector<soft_rasterization::fobject *,std::allocator<soft_rasterization::fobject *>>”需要有 dll 接口由 class“soft_rasterization::fobject”的客户端使用
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(37): message : 参见“std::vector<soft_rasterization::fobject *,std::allocator<soft_rasterization::fobject *>>”的声明
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(45,28): warning C4251: “soft_rasterization::fcomponent::children”: class“std::vector<soft_rasterization::fcomponent *,std::allocator<soft_rasterization::fcomponent *>>”需要有 dll 接口由 class“soft_rasterization::fcomponent”的客户端使用
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(45): message : 参见“std::vector<soft_rasterization::fcomponent *,std::allocator<soft_rasterization::fcomponent *>>”的声明
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(86,27): warning C4251: “soft_rasterization::fmesh_component::vertex_data”: class“std::vector<fvector_3d,std::allocator<fvector_3d>>”需要有 dll 接口由 class“soft_rasterization::fmesh_component”的客户端使用
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(86): message : 参见“std::vector<fvector_3d,std::allocator<fvector_3d>>”的声明
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(146,27): warning C4251: “soft_rasterization::frender_data_3d::vertex_data”: class“std::vector<fvector_3d,std::allocator<fvector_3d>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_3d”的客户端使用
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(86): message : 参见“std::vector<fvector_3d,std::allocator<fvector_3d>>”的声明
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(147,25): warning C4251: “soft_rasterization::frender_data_3d::index_data”: class“std::vector<uint16_t,std::allocator<uint16_t>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_3d”的客户端使用
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(147): message : 参见“std::vector<uint16_t,std::allocator<uint16_t>>”的声明
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(154,27): warning C4251: “soft_rasterization::frender_data_2d::vertex_data”: class“std::vector<fvector_2d,std::allocator<fvector_2d>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_2d”的客户端使用
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(154): message : 参见“std::vector<fvector_2d,std::allocator<fvector_2d>>”的声明
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(155,25): warning C4251: “soft_rasterization::frender_data_2d::index_data”: class“std::vector<uint16_t,std::allocator<uint16_t>>”需要有 dll 接口由 struct“soft_rasterization::frender_data_2d”的客户端使用
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(147): message : 参见“std::vector<uint16_t,std::allocator<uint16_t>>”的声明
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(190,29): warning C4251: “soft_rasterization::frender_engine::draw_obj”: class“std::vector<soft_rasterization::fmesh_actor *,std::allocator<soft_rasterization::fmesh_actor *>>”需要有 dll 接口由 class“soft_rasterization::frender_engine”的客户端使用
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(178): message : 参见“std::vector<soft_rasterization::fmesh_actor *,std::allocator<soft_rasterization::fmesh_actor *>>”的声明
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(193,32): warning C4251: “soft_rasterization::frender_engine::frame_render_data3”: class“std::vector<soft_rasterization::frender_data_3d,std::allocator<soft_rasterization::frender_data_3d>>”需要有 dll 接口由 class“soft_rasterization::frender_engine”的客户端使用
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(193): message : 参见“std::vector<soft_rasterization::frender_data_3d,std::allocator<soft_rasterization::frender_data_3d>>”的声明
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\soft_rasterization\soft_rasterization.h(194,16): warning C4251: “soft_rasterization::frender_engine::wpath”: class“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>”需要有 dll 接口由 class“soft_rasterization::frender_engine”的客户端使用
-D:\Microsoft Visual Studio\2022\VC\Tools\MSVC\14.31.31103\include\xstring(4928): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>”的声明
-D:\aProject\REngine2.0\REngine2\simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp(300,38): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=unsigned char
-          ]
-D:\aProject\REngine2.0\REngine2\simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp(301,42): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=unsigned char
-          ]
-D:\aProject\REngine2.0\REngine2\simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp(302,42): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=unsigned char
-          ]
-  正在生成代码...
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-D:\aProject\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(270): warning C4715: “WindowsEngine::InitWindows”: 不是所有的控件路径都返回值
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-D:\aProject\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-  simple_file_helper.c
-D:\aProject\REngine2.0\REngine2\simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c(438,17): warning C4047: “函数”:“int”与“HINSTANCE”的间接级别不同
-D:\aProject\REngine2.0\REngine2\simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c(433,44): warning C4024: “check_ShellExecute_ret”: 形参和实参 1 的类型不同
-D:\aProject\REngine2.0\REngine2\simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c(519,28): warning C4133: “函数”: 从“unsigned short [3]”到“const char *”的类型不兼容
-  simple_c_path.c
-D:\aProject\REngine2.0\REngine2\simple_library\private\simple_core_minimal\simple_c_path\simple_c_path.c(12,21): warning C4013: “remove_string_start”未定义；假设外部返回 int
-  simple_math.c
-  正在生成代码...
-    正在创建库 D:\aProject\REngine2.0\Debug\REngine2.lib 和对象 D:\aProject\REngine2.0\Debug\REngine2.exp
-  REngine2.vcxproj -> D:\aProject\REngine2.0\Debug\REngine2.exe
+﻿  WindowsEngine.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(286,25): warning C4930: “ID3D12CommandAllocator Allocator(void)”: 未调用原型函数(是否是有意用变量定义的?)
+E:\ademo\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(397,21): warning C4018: “<”: 有符号/无符号不匹配
+E:\ademo\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(452,60): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(453,61): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(218): warning C4715: “WindowsEngine::InitWindows”: 不是所有的控件路径都返回值
+  REngine2.vcxproj -> E:\ademo\REngine2.0\Debug\REngine2.exe

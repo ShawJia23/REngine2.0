@@ -1,7 +1,0 @@
-[LOG] [Sun Sep 18 13:43:04 2022] Log Init. 
-[LOG] [Sun Sep 18 13:43:04 2022] Engine pre initialization complete. 
-[LOG] [Sun Sep 18 13:43:04 2022] InitWindows complete. 
-[SUCCESS] [Sun Sep 18 13:43:05 2022] Success ! 
-[SUCCESS] [Sun Sep 18 13:43:05 2022] Success ! 
-[SUCCESS] [Sun Sep 18 13:43:05 2022] Success ! 
-[SUCCESS] [Sun Sep 18 13:43:05 2022] Success ! 

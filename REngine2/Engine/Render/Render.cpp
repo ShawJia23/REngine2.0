@@ -109,7 +109,7 @@ ComPtr<ID3D12GraphicsCommandList> IRenderingInterface::GetGraphicsCommandList()
 {
 	if (WindowsEngine* engine = GetEngine())
 	{
-		return engine->GraphicsCommandList;
+		return engine->m_commandList;
 	}
 
 	return NULL;
@@ -119,7 +119,7 @@ ComPtr<ID3D12CommandAllocator> IRenderingInterface::GetCommandAllocator()
 {
 	if (WindowsEngine* engine = GetEngine())
 	{
-		return engine->CommandAllocator;
+		return engine->m_commandAllocator;
 	}
 
 	return NULL;

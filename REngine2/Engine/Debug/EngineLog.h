@@ -2,12 +2,13 @@
 
 #define ANALYSIS_HRESULT(InValue) \
 {\
-	if (FAILED(InValue))\
+	HRESULT handle=InValue;\
+	if (FAILED(handle))\
 	{\
-		Engine_Log_Error("Error = %i",(int)InValue);\
+		Engine_Log_Error("Error = %i",(int)handle);\
 		assert(0);\
 	}\
-	else if (SUCCEEDED(InValue))\
+	else if (SUCCEEDED(handle))\
 	{\
 		Engine_Log_Success("Success !");\
 	}\

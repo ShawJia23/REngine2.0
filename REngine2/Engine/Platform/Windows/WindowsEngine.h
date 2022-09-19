@@ -46,11 +46,11 @@ protected:
 	ComPtr<ID3D12Device> D3dDevice;//创建命令分配器、命令列表、命令队列、Fence、资源、管道状态对象、堆、根签名、采样器和许多资源视图
 	ComPtr<ID3D12Fence> Fence;//一个用于同步 CPU 和一个或多个 GPU 的对象。
 
-	ComPtr<ID3D12CommandQueue> CommandQueue;//队列
-	ComPtr<ID3D12CommandAllocator> CommandAllocator; //存储
-	ComPtr<ID3D12GraphicsCommandList> GraphicsCommandList;//命令列表
+	ComPtr<ID3D12CommandQueue> m_commandQueue;//队列
+	ComPtr<ID3D12CommandAllocator> m_commandAllocator; //存储
+	ComPtr<ID3D12GraphicsCommandList> m_commandList;//命令列表
 
-	ComPtr<IDXGISwapChain> SwapChain;
+	ComPtr<IDXGISwapChain> m_swapChain;
 
 	//描述符对象和堆
 	ComPtr<ID3D12DescriptorHeap> RTVHeap;
