@@ -12,5 +12,5 @@ public:
 
 	virtual void Draw(float DeltaTime);
 
-	static BoxMesh* CreateMesh();
+	void CreateMesh(MeshRenderingData& MeshData,float height,float width,float depth);
 };

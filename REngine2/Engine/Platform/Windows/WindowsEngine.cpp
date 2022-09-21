@@ -1,9 +1,11 @@
 ﻿#include "WindowsEngine.h"
+#include"../../Core/RObject/RMinimalObject.h"
 #include "../../Debug/EngineLog.h"
 #include "../../Config/RenderConfig.h"
 #include "../../Render/Render.h"
 #include"../../Mesh/BoxMesh.h"
-
+#include"../../Mesh/SphereMesh.h"
+#include"../../Core/World.h"
 #if defined(_WIN32)
 #include "WindowsMessageProcessing.h"
 
@@ -16,6 +18,7 @@ WindowsEngine::WindowsEngine()
 	, DepthStencilFormat(DXGI_FORMAT::DXGI_FORMAT_D24_UNORM_S8_UINT)
 	, CurrentSwapBuffIndex(0)
 {
+	SetTick(false);
 	for (int i = 0; i < EngineRenderConfig::GetRenderConfig()->SwapChainCount; i++)
 	{
 		SwapChainBuffer.push_back(ComPtr<ID3D12Resource>());
@@ -46,6 +49,8 @@ int WindowsEngine::Init(WinMainCommandParameters InParameters)
 
 	PostInitDirect3D();
 
+	RWorld* pWorld = CreateObject<RWorld>(new RWorld());
+
 	Engine_Log("Engine initialization complete.");
 	return 0;
 }
@@ -57,8 +62,12 @@ int WindowsEngine::PostInit()
 	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
 		//构建Mesh
-		BoxMesh* Box = BoxMesh::CreateMesh();
-
+		BoxMesh* Box = BoxMesh::CreateMesh(2,1,1.5f);
+		//SphereMesh* Sphere = SphereMesh::CreateMesh(2.0f,20,20);
+		for (auto& Temp:GRObjects) 
+		{
+			Temp->Init();
+		}
 	}
 
 	ANALYSIS_HRESULT(m_commandList->Close());
@@ -73,6 +82,12 @@ int WindowsEngine::PostInit()
 
 void WindowsEngine::Tick(float DeltaTime)
 {
+	for (auto& Temp : GRObjects)
+	{
+		if(Temp->IsTick())
+			Temp->Tick(DeltaTime);
+	}
+
 	//重置录制相关的内存，为下一帧做准备
 	ANALYSIS_HRESULT(m_commandAllocator->Reset());
 
@@ -94,7 +109,7 @@ void WindowsEngine::Tick(float DeltaTime)
 
 	//清除画布
 	m_commandList->ClearRenderTargetView(GetCurrentSwapBufferView(),
-		DirectX::Colors::Black,
+		DirectX::Colors::Blue,
 		0, nullptr);
 
 	//清除深度模板缓冲区

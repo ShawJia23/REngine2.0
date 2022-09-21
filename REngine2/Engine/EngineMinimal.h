@@ -8,16 +8,17 @@
 #pragma comment(lib, "D3D12.lib")
 #pragma comment(lib, "dxgi.lib")
 
-#include <wrl.h>//com对象组件 comPtr<> 
-#include <dxgi1_4.h>//dxgi 
-#include <d3d12.h>//
-#include <D3Dcompiler.h>//
+#include"Render/DX12/d3dx12.h"
+#include <wrl.h>
+#include <dxgi1_4.h>
+#include <D3Dcompiler.h>
 #include <DirectXMath.h>
 #include <DirectXPackedVector.h>
 #include <DirectXColors.h>
 #include <DirectXCollision.h>
 
 using namespace Microsoft::WRL;
+using namespace DirectX;
 using namespace std;
 
 extern class REngine* Engine;

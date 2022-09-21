@@ -1,13 +1,15 @@
 ﻿#pragma once
 
+#include"RObject/RMinimalObject.h"
+
 #if defined(_WIN32)
 #include "WinMainCommandParameters.h"
 #endif // 1
 
-class REngine
+class REngine:public RMinimalObject
 {
 public:
-
+	REngine();
 	virtual int PreInit(
 #if defined(_WIN32)
 		WinMainCommandParameters InParameters

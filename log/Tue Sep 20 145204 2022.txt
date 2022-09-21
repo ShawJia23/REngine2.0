@@ -1,0 +1,32 @@
+[LOG] [Tue Sep 20 14:52:04 2022] Log Init. 
+[LOG] [Tue Sep 20 14:52:04 2022] Engine pre initialization complete. 
+[LOG] [Tue Sep 20 14:52:04 2022] InitWindows complete. 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[LOG] [Tue Sep 20 14:52:04 2022] Engine initialization complete. 
+[LOG] [Tue Sep 20 14:52:04 2022] Engine post initialization complete. 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
+[SUCCESS] [Tue Sep 20 14:52:04 2022] Success ! 
