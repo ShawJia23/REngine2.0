@@ -23,8 +23,6 @@ void BoxMesh::Draw(float DeltaTime)
 
 void  BoxMesh::CreateMesh(MeshRenderingData& MeshData,float height, float width, float depth)
 {
-	MeshRenderingData MeshData;
-
 	float pHeight = 0.5f * height;
 	float pWidth = 0.5f * width;
 	float pDepth = 0.5f * depth;

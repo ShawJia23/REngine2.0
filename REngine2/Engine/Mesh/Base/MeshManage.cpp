@@ -7,6 +7,7 @@
 #include"ObjectTransformation.h"
 #include"../../Config/RenderConfig.h"
 #include"../../Render/ResourcesUpdate.h"
+#include"../../Render/Buffer/ConstructBuffer.h"
 RMeshManage::RMeshManage()
     :VertexSizeInBytes(0)
     , VertexStrideInBytes(0)
@@ -122,11 +123,13 @@ void RMeshManage::BuildMesh(const MeshRenderingData* InRenderingData)
     ANALYSIS_HRESULT(D3DCreateBlob(IndexSizeInBytes, &CPUIndexBufferPtr));
     memcpy(CPUIndexBufferPtr->GetBufferPointer(), InRenderingData->IndexData.data(), IndexSizeInBytes);
 
-    GPUVertexBufferPtr = ConstructDefaultBuffer(
+    ConstructBuffer::RConstructBuffer pConstructBuffer;
+
+    GPUVertexBufferPtr = pConstructBuffer.ConstructDefaultBuffer(
         VertexBufferTmpPtr,
         InRenderingData->VertexData.data(), VertexSizeInBytes);
 
-    GPUIndexBufferPtr = ConstructDefaultBuffer(IndexBufferTmpPtr,
+    GPUIndexBufferPtr = pConstructBuffer.ConstructDefaultBuffer(IndexBufferTmpPtr,
         InRenderingData->IndexData.data(), IndexSizeInBytes);
 
     //PSO 流水线绑定
@@ -161,12 +164,12 @@ void RMeshManage::BuildMesh(const MeshRenderingData* InRenderingData)
     GPSDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
     GPSDesc.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
 
-    GPSDesc.SampleDesc.Count = GetEngine()->GetRenderingEngine()->GetDXGISampleCount();
-    GPSDesc.SampleDesc.Quality = GetEngine()->GetRenderingEngine()->GetDXGISampleQuality();
+    GPSDesc.SampleDesc.Count = GetEngine()->GetRenderEngine()->GetDXGISampleCount();
+    GPSDesc.SampleDesc.Quality = GetEngine()->GetRenderEngine()->GetDXGISampleQuality();
 
     //RTV 和 DSV格式
-    GPSDesc.RTVFormats[0] = GetEngine()->GetRenderingEngine()->GetBackBufferFormat();
-    GPSDesc.DSVFormat = GetEngine()->GetRenderingEngine()->GetDepthStencilFormat();
+    GPSDesc.RTVFormats[0] = GetEngine()->GetRenderEngine()->GetBackBufferFormat();
+    GPSDesc.DSVFormat = GetEngine()->GetRenderEngine()->GetDepthStencilFormat();
 
     ANALYSIS_HRESULT(GetD3dDevice()->CreateGraphicsPipelineState(&GPSDesc, IID_PPV_ARGS(&PSO)))
 }
@@ -194,28 +197,28 @@ void RMeshManage::PostDraw(float DeltaTime)
 void RMeshManage::Draw(float DeltaTime)
 {
     ID3D12DescriptorHeap* DescriptorHeap[] = { CBVHeap.Get() };
-    GetGraphicsCommandList()->SetDescriptorHeaps(_countof(DescriptorHeap), DescriptorHeap);
+    GetCommandList()->SetDescriptorHeaps(_countof(DescriptorHeap), DescriptorHeap);
 
-    GetGraphicsCommandList()->SetGraphicsRootSignature(RootSignature.Get());
+    GetCommandList()->SetGraphicsRootSignature(RootSignature.Get());
 
     D3D12_VERTEX_BUFFER_VIEW VBV = GetVertexBufferView();
 
     //绑定渲染流水线上的输入槽，可以在输入装配器阶段传入顶点数据
-    GetGraphicsCommandList()->IASetVertexBuffers(
+    GetCommandList()->IASetVertexBuffers(
         0,//起始输入槽 0-15 
         1,//k k+1 ... k+n-1 
         &VBV);
 
     D3D12_INDEX_BUFFER_VIEW IBV = GetIndexBufferView();
-    GetGraphicsCommandList()->IASetIndexBuffer(&IBV);
+    GetCommandList()->IASetIndexBuffer(&IBV);
 
     //定义我们要绘制的哪种图元 点 线 面
-    GetGraphicsCommandList()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    GetCommandList()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-    GetGraphicsCommandList()->SetGraphicsRootDescriptorTable(0, CBVHeap->GetGPUDescriptorHandleForHeapStart());
+    GetCommandList()->SetGraphicsRootDescriptorTable(0, CBVHeap->GetGPUDescriptorHandleForHeapStart());
 
     //真正的绘制
-    GetGraphicsCommandList()->DrawIndexedInstanced(
+    GetCommandList()->DrawIndexedInstanced(
         IndexSize,//顶点数量
         1,//绘制实例数量
         0,//顶点缓冲区第一个被绘制的索引
@@ -225,7 +228,7 @@ void RMeshManage::Draw(float DeltaTime)
 
 void RMeshManage::PreDraw(float DeltaTime)
 {
-    GetGraphicsCommandList()->Reset(GetCommandAllocator().Get(), PSO.Get());
+    GetCommandList()->Reset(GetCommandAllocator().Get(), PSO.Get());
 }
 
 D3D12_VERTEX_BUFFER_VIEW RMeshManage::GetVertexBufferView()
@@ -279,13 +282,11 @@ T* RMeshManage::CreateMesh(ParamTypes && ...Params)
     T* MyMesh = new T();
 
     //提取模型资源
-    FMeshRenderingData MeshData;
-    MyMesh->CreateMesh(MeshData, forward<ParamTypes>(Params)...);
-
-    MyMesh->BeginInit();
+    MeshRenderingData meshData;
+    MyMesh->CreateMesh(meshData, forward<ParamTypes>(Params)...);
 
     //构建mesh
-    BuildMesh(&MeshData);
+    BuildMesh(&meshData);
 
     MyMesh->Init();
 

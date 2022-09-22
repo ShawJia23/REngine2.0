@@ -147,7 +147,7 @@
     <ClCompile Include="Engine\Core\RObject\RMinimalObject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\Viewport.cpp">
+    <ClCompile Include="Engine\Core\ViewPort\Viewport.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Component\RComponent\RComponent.cpp">
@@ -190,6 +190,24 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Mesh\Base\ObjectTransformation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Engine\RenderEngine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Engine\DXRenderEngine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Input\Input.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Interface\DXDeviceInterface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Buffer\ConstructBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Math\RMath.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -368,7 +386,7 @@
     <ClInclude Include="Engine\Mesh\Base\MeshType.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Math\math.h">
+    <ClInclude Include="Engine\Math\RMath.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Mesh\BoxMesh.h">
@@ -383,7 +401,7 @@
     <ClInclude Include="Engine\Core\Camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\Viewport.h">
+    <ClInclude Include="Engine\Core\ViewPort\Viewport.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Component\RComponent\RComponent.h">
@@ -426,6 +444,24 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Mesh\Base\ObjectTransformation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Engine\RenderEngine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Engine\DXRenderEngine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Input\Input.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Interface\DXDeviceInterface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Buffer\ConstructBuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Core\CameraType.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

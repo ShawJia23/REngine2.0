@@ -1,11 +1,13 @@
 #pragma once
 
-#include"Viewport.h"
+#include"ViewPort/Viewport.h"
 #include"RObject/RMinimalObject.h"
+#include"CameraType.h"
 
 struct RInputKey;
 class RTransformComponent;
 class RInputComponent;
+
 
 class RCamera :public RMinimalObject, public RViewport 
 {
@@ -14,10 +16,23 @@ class RCamera :public RMinimalObject, public RViewport
 
 	RVARIABLE()
 	RInputComponent* m_rInputComponent;
-
+public:
 	virtual void Init();
 	virtual void Tick(float DeltaTime);
 	virtual void ExecuteKeyboard(const RInputKey& inputKey);
+
+	virtual void OnMouseButtonDown(int X, int Y);
+	virtual void OnMouseButtonUp(int X, int Y);
+	virtual void OnMouseMove(int X, int Y);
+	virtual void OnMouseWheel(int X, int Y, float InDelta);
+
+	virtual void MoveForward(float InValue);
+	virtual void MoveRight(float InValue);
+protected:
+	void RotateAroundYAxis(float InRotateDegrees);
+	void RotateAroundZAxis(float InRotateDegrees);
+
+	CameraType m_cameraType;
 public:
 	RCamera();
 

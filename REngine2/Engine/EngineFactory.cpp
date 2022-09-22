@@ -11,7 +11,7 @@ REngineFactory::REngineFactory()
 REngine* REngineFactory::CreateEngine()
 {
 #if defined(_WIN32)
-	return new WindowsEngine();
+	return new RWindowsEngine();
 #elif defined(__linux__)
 
 #endif // DEBUG

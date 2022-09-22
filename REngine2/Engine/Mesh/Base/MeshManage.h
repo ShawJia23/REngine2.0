@@ -1,11 +1,13 @@
 #pragma once
-#include"../../EngineMinimal.h"
+#include"Mesh.h"
+#include"../../Interface/DXDeviceInterface.h"
 #include"../../Core/RObject/RMinimalObject.h"
 #include"../../Render/Render.h"
-#include"Mesh.h"
+#include"../../EngineMinimal.h"
+
 class ResourcesUpdate;
 
-class RMeshManage :public RMinimalObject, public IRenderingInterface
+class RMeshManage :public RMinimalObject, public IRenderingInterface,public IDirectXDeviceInterface
 {
 public:
 	RMeshManage();

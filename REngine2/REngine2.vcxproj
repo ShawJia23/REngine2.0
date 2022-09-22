@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Component\InputComponent.cpp" />
+    <ClCompile Include="Engine\Component\Input\Input.cpp" />
     <ClCompile Include="Engine\Component\Input\RInputType.cpp" />
     <ClCompile Include="Engine\Component\RComponent\RComponent.cpp" />
     <ClCompile Include="Engine\Component\TransformComponent.cpp" />
@@ -138,10 +139,14 @@
     <ClCompile Include="Engine\Core\Engine.cpp" />
     <ClCompile Include="Engine\Core\RObject\GuidInterface.cpp" />
     <ClCompile Include="Engine\Core\RObject\RMinimalObject.cpp" />
-    <ClCompile Include="Engine\Core\Viewport.cpp" />
+    <ClCompile Include="Engine\Core\ViewPort\Viewport.cpp" />
     <ClCompile Include="Engine\Core\WinMainCommandParameters.cpp" />
     <ClCompile Include="Engine\Core\World.cpp" />
     <ClCompile Include="Engine\EngineFactory.cpp" />
+    <ClCompile Include="Engine\Engine\DXRenderEngine.cpp" />
+    <ClCompile Include="Engine\Engine\RenderEngine.cpp" />
+    <ClCompile Include="Engine\Interface\DXDeviceInterface.cpp" />
+    <ClCompile Include="Engine\Math\RMath.cpp" />
     <ClCompile Include="Engine\Mesh\Base\Mesh.cpp" />
     <ClCompile Include="Engine\Mesh\Base\MeshManage.cpp" />
     <ClCompile Include="Engine\Mesh\Base\MeshType.cpp" />
@@ -154,6 +159,7 @@
     <ClCompile Include="Engine\Platform\Windows\WindowsEngine.cpp" />
     <ClCompile Include="Engine\Platform\Windows\WindowsMessageProcessing.cpp" />
     <ClCompile Include="Engine\main.cpp" />
+    <ClCompile Include="Engine\Render\Buffer\ConstructBuffer.cpp" />
     <ClCompile Include="Engine\Render\Render.cpp" />
     <ClCompile Include="Engine\Render\ResourcesUpdate.cpp" />
     <ClCompile Include="Engine\Shader\Shader.cpp" />
@@ -191,22 +197,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Component\InputComponent.h" />
+    <ClInclude Include="Engine\Component\Input\Input.h" />
     <ClInclude Include="Engine\Component\Input\RInputType.h" />
     <ClInclude Include="Engine\Component\RComponent\RComponent.h" />
     <ClInclude Include="Engine\Component\TransformComponent.h" />
     <ClInclude Include="Engine\Config\RenderConfig.h" />
     <ClInclude Include="Engine\Core\Camera.h" />
+    <ClInclude Include="Engine\Core\CameraType.h" />
     <ClInclude Include="Engine\Core\Engine.h" />
     <ClInclude Include="Engine\Core\RObject\GuidInterface.h" />
     <ClInclude Include="Engine\Core\RObject\RMinimalObject.h" />
-    <ClInclude Include="Engine\Core\Viewport.h" />
+    <ClInclude Include="Engine\Core\ViewPort\Viewport.h" />
     <ClInclude Include="Engine\Core\WinMainCommandParameters.h" />
     <ClInclude Include="Engine\Core\World.h" />
     <ClInclude Include="Engine\Debug\EngineLog.h" />
     <ClInclude Include="Engine\Debug\Log\SimpleLog.h" />
     <ClInclude Include="Engine\EngineFactory.h" />
     <ClInclude Include="Engine\EngineMinimal.h" />
-    <ClInclude Include="Engine\Math\math.h" />
+    <ClInclude Include="Engine\Engine\DXRenderEngine.h" />
+    <ClInclude Include="Engine\Engine\RenderEngine.h" />
+    <ClInclude Include="Engine\Interface\DXDeviceInterface.h" />
+    <ClInclude Include="Engine\Math\RMath.h" />
     <ClInclude Include="Engine\Mesh\Base\Mesh.h" />
     <ClInclude Include="Engine\Mesh\Base\MeshManage.h" />
     <ClInclude Include="Engine\Mesh\Base\MeshType.h" />
@@ -220,6 +231,7 @@
     <ClInclude Include="Engine\Platform\Windows\WindowsMessageProcessing.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsPlatform.h" />
     <ClInclude Include="Engine\Reflection\CodeReflectionMacro.h" />
+    <ClInclude Include="Engine\Render\Buffer\ConstructBuffer.h" />
     <ClInclude Include="Engine\Render\DX12\d3dx12.h" />
     <ClInclude Include="Engine\Render\Render.h" />
     <ClInclude Include="Engine\Render\ResourcesUpdate.h" />
