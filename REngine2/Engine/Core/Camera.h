@@ -21,6 +21,8 @@ public:
 	virtual void Tick(float DeltaTime);
 	virtual void ExecuteKeyboard(const RInputKey& inputKey);
 
+	virtual void BuildViewMatrix(float DeltaTime);
+
 	virtual void OnMouseButtonDown(int X, int Y);
 	virtual void OnMouseButtonUp(int X, int Y);
 	virtual void OnMouseMove(int X, int Y);
@@ -33,6 +35,11 @@ protected:
 	void RotateAroundZAxis(float InRotateDegrees);
 
 	CameraType m_cameraType;
+
+	//ÇòÃæ×ø±ê
+	float Radius;
+	float A;//Theta
+	float B;//
 public:
 	RCamera();
 

@@ -8,39 +8,29 @@
 #include"../../Config/RenderConfig.h"
 #include"../../Render/ResourcesUpdate.h"
 #include"../../Render/Buffer/ConstructBuffer.h"
+#include"../../Core/ViewPort/ViewportTransform.h"
+#include"../../EngineMinimal.h"
 RMeshManage::RMeshManage()
     :VertexSizeInBytes(0)
     , VertexStrideInBytes(0)
     , IndexSizeInBytes(0)
     , IndexFormat(DXGI_FORMAT_R16_UINT)
     , IndexSize(0)
-    , WorldMatrix(RObjectTransformation::IdentityMatrix4x4())
-    , ViewMatrix(RObjectTransformation::IdentityMatrix4x4())
-    , ProjectMatrix(RObjectTransformation::IdentityMatrix4x4())
+    , WorldMatrix(RMath::IdentityMatrix4x4())
 {
 
 }
 
 void RMeshManage::Init()
 {
-    float AspectRatio = (float)EngineRenderConfig::GetRenderConfig()->ScrrenWidth / (float)EngineRenderConfig::GetRenderConfig()->ScrrenHight;
-    //(1,1,0) (-1,1,0) (-1,-1,0) (1,-1,0) (1,1,1) (-1,1,1) (-1,-1,1) (1,-1,1)
-    //基于视野构建左手透视投影矩阵
-    XMMATRIX Project = XMMatrixPerspectiveFovLH(
-        0.25f * XM_PI, //以弧度为单位的自上而下的视场角。
-        AspectRatio,//视图空间 X:Y 的纵横比。
-        1.0f,//到近剪裁平面的距离。必须大于零。
-        1000.f//到远剪裁平面的距离。必须大于零。
-    );
-
-    XMStoreFloat4x4(&ProjectMatrix, Project);
+    DescriptorOffset = GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 }
 
 void RMeshManage::BuildMesh(const MeshRenderingData* InRenderingData)
 {
     //构建CBV栈描述
     D3D12_DESCRIPTOR_HEAP_DESC HeapDesc;
-    HeapDesc.NumDescriptors = 1;
+    HeapDesc.NumDescriptors = 2;
     HeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
     HeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
     HeapDesc.NodeMask = 0;
@@ -48,6 +38,7 @@ void RMeshManage::BuildMesh(const MeshRenderingData* InRenderingData)
 
     //常量缓冲区的构建
     //////////////////////////////
+
     ObjectConstants = make_shared<ResourcesUpdate>();
     ObjectConstants->Init(GetD3dDevice().Get(), sizeof(RObjectTransformation), 1);
 
@@ -57,21 +48,45 @@ void RMeshManage::BuildMesh(const MeshRenderingData* InRenderingData)
     CBVDesc.BufferLocation = Addr;
     CBVDesc.SizeInBytes = ObjectConstants->GetConstantBufferByteSize();
 
+    CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(CBVHeap->GetCPUDescriptorHandleForHeapStart());
+    DesHandle.Offset(0, DescriptorOffset);
+
     GetD3dDevice()->CreateConstantBufferView(
         &CBVDesc,
-        CBVHeap->GetCPUDescriptorHandleForHeapStart());
+        DesHandle);
+
+    //视口常量缓冲区
+    ViewportConstants = make_shared<ResourcesUpdate>();
+    ViewportConstants->Init(GetD3dDevice().Get(), sizeof(ViewportTransformation), 1);
+
+    D3D12_GPU_VIRTUAL_ADDRESS ViewPortAddr = ViewportConstants->GetBuffer()->GetGPUVirtualAddress();
+
+    D3D12_CONSTANT_BUFFER_VIEW_DESC ViewportCBVDesc;
+    ViewportCBVDesc.BufferLocation = ViewPortAddr;
+    ViewportCBVDesc.SizeInBytes = ViewportConstants->GetConstantBufferByteSize();
+
+    DesHandle.Offset(1, DescriptorOffset);
+
+    GetD3dDevice()->CreateConstantBufferView(
+        &ViewportCBVDesc,
+        DesHandle);
 
     //构建根签名
-    CD3DX12_ROOT_PARAMETER RootParam[1];
+    CD3DX12_ROOT_PARAMETER RootParam[2];
 
-    //CBV描述表
-    CD3DX12_DESCRIPTOR_RANGE DescriptorRangeCBV;
-    DescriptorRangeCBV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
+    //ObjectCBV描述表
+    CD3DX12_DESCRIPTOR_RANGE DescriptorRangeObjectCBV;
+    DescriptorRangeObjectCBV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
 
-    RootParam[0].InitAsDescriptorTable(1, &DescriptorRangeCBV);
+    //ViewportCBV描述表
+    CD3DX12_DESCRIPTOR_RANGE DescriptorRangeViewportCBV;
+    DescriptorRangeViewportCBV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
+
+    RootParam[0].InitAsDescriptorTable(1, &DescriptorRangeObjectCBV);
+    RootParam[1].InitAsDescriptorTable(1, &DescriptorRangeViewportCBV);
 
     CD3DX12_ROOT_SIGNATURE_DESC RootSignatureDesc(
-        1,
+        2,
         RootParam,
         0,
         nullptr,
@@ -174,7 +189,7 @@ void RMeshManage::BuildMesh(const MeshRenderingData* InRenderingData)
     ANALYSIS_HRESULT(GetD3dDevice()->CreateGraphicsPipelineState(&GPSDesc, IID_PPV_ARGS(&PSO)))
 }
 
-void RMeshManage::PostDraw(float DeltaTime)
+void RMeshManage::UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo)
 {
     XMUINT3 MeshPos = XMUINT3(5.0f, 5.0f, 5.0f);
 
@@ -183,15 +198,30 @@ void RMeshManage::PostDraw(float DeltaTime)
     XMVECTOR ViewUp = XMVectorSet(0.f, 1.0f, 0.f, 0.f);
 
     XMMATRIX ViewLookAt = XMMatrixLookAtLH(Pos, ViewTarget, ViewUp);
-    XMStoreFloat4x4(&ViewMatrix, ViewLookAt);
+    XMStoreFloat4x4(const_cast<XMFLOAT4X4*>(&viewportInfo.ViewMatrix), ViewLookAt);
 
+    XMMATRIX ViewMatrix = XMLoadFloat4x4(&viewportInfo.ViewMatrix);
+    XMMATRIX ProjectMatrix = XMLoadFloat4x4(&viewportInfo.ProjectMatrix);
     XMMATRIX ATRIXWorld = XMLoadFloat4x4(&WorldMatrix);
-    XMMATRIX ATRIXProject = XMLoadFloat4x4(&ProjectMatrix);
-    XMMATRIX WVP = ATRIXWorld * ViewLookAt * ATRIXProject;
+    XMMATRIX WVP = ATRIXWorld * ViewLookAt * ProjectMatrix;
+
 
     RObjectTransformation ObjectTransformation;
     XMStoreFloat4x4(&ObjectTransformation.World, XMMatrixTranspose(WVP));
+   // XMStoreFloat4x4(&ObjectTransformation.World, XMMatrixTranspose(ATRIXWorld));
     ObjectConstants->Update(0, &ObjectTransformation);
+
+    //更新视口
+    XMMATRIX ViewProject = XMMatrixMultiply(ViewMatrix, ProjectMatrix);
+    ViewportTransformation ViewportTransformation;
+    XMStoreFloat4x4(&ViewportTransformation.ViewProjectionMatrix, XMMatrixTranspose(ViewProject));
+
+    ViewportConstants->Update(0, &ViewportTransformation);
+}
+
+void RMeshManage::PostDraw(float DeltaTime)
+{
+   
 }
 
 void RMeshManage::Draw(float DeltaTime)
@@ -215,8 +245,13 @@ void RMeshManage::Draw(float DeltaTime)
     //定义我们要绘制的哪种图元 点 线 面
     GetCommandList()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-    GetCommandList()->SetGraphicsRootDescriptorTable(0, CBVHeap->GetGPUDescriptorHandleForHeapStart());
-
+   auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(CBVHeap->GetGPUDescriptorHandleForHeapStart());
+   
+    DesHandle.Offset(0, DescriptorOffset);
+    GetCommandList()->SetGraphicsRootDescriptorTable(0, DesHandle);
+    
+    DesHandle.Offset(1, DescriptorOffset);
+    GetCommandList()->SetGraphicsRootDescriptorTable(1, DesHandle);
     //真正的绘制
     GetCommandList()->DrawIndexedInstanced(
         IndexSize,//顶点数量

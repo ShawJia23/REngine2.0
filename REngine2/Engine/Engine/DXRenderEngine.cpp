@@ -73,6 +73,11 @@ int DXRenderEngine::PostInit()
 	return 0;
 }
 
+void DXRenderEngine::UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo)
+{
+	m_meshManage->UpdateCalculations(DeltaTime,viewportInfo);
+}
+
 void DXRenderEngine::Tick(float DeltaTime)
 {
 	//重置录制相关的内存，为下一帧做准备
@@ -304,8 +309,8 @@ bool DXRenderEngine::InitDirect3D()
 ////////////////////////////////////////////////////////////////////
 	m_swapChain.Reset();
 	DXGI_SWAP_CHAIN_DESC SwapChainDesc;
-	SwapChainDesc.BufferDesc.Width = EngineRenderConfig::GetRenderConfig()->ScrrenWidth;
-	SwapChainDesc.BufferDesc.Height = EngineRenderConfig::GetRenderConfig()->ScrrenHight;
+	SwapChainDesc.BufferDesc.Width = EngineRenderConfig::GetRenderConfig()->ScreenWidth;
+	SwapChainDesc.BufferDesc.Height = EngineRenderConfig::GetRenderConfig()->ScreenHeight;
 	SwapChainDesc.BufferDesc.RefreshRate.Numerator = EngineRenderConfig::GetRenderConfig()->RefreshRate;
 	SwapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
 	SwapChainDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER::DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
@@ -374,8 +379,8 @@ void DXRenderEngine::PostInitDirect3D()
 
 	m_swapChain->ResizeBuffers(
 		EngineRenderConfig::GetRenderConfig()->SwapChainCount,
-		EngineRenderConfig::GetRenderConfig()->ScrrenWidth,
-		EngineRenderConfig::GetRenderConfig()->ScrrenHight,
+		EngineRenderConfig::GetRenderConfig()->ScreenWidth,
+		EngineRenderConfig::GetRenderConfig()->ScreenHeight,
 		BackBufferFormat, DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH);
 
 	//拿到描述size
@@ -390,8 +395,8 @@ void DXRenderEngine::PostInitDirect3D()
 	}
 
 	D3D12_RESOURCE_DESC ResourceDesc;
-	ResourceDesc.Width = EngineRenderConfig::GetRenderConfig()->ScrrenWidth;
-	ResourceDesc.Height = EngineRenderConfig::GetRenderConfig()->ScrrenHight;
+	ResourceDesc.Width = EngineRenderConfig::GetRenderConfig()->ScreenWidth;
+	ResourceDesc.Height = EngineRenderConfig::GetRenderConfig()->ScreenHeight;
 	ResourceDesc.Alignment = 0;
 	ResourceDesc.MipLevels = 1;
 	ResourceDesc.DepthOrArraySize = 1;
@@ -437,16 +442,16 @@ void DXRenderEngine::PostInitDirect3D()
 	//描述视口尺寸
 	m_viewprotInfo.TopLeftX = 0;
 	m_viewprotInfo.TopLeftY = 0;
-	m_viewprotInfo.Width = EngineRenderConfig::GetRenderConfig()->ScrrenWidth;
-	m_viewprotInfo.Height = EngineRenderConfig::GetRenderConfig()->ScrrenHight;
+	m_viewprotInfo.Width = EngineRenderConfig::GetRenderConfig()->ScreenWidth;
+	m_viewprotInfo.Height = EngineRenderConfig::GetRenderConfig()->ScreenHeight;
 	m_viewprotInfo.MinDepth = 0.f;
 	m_viewprotInfo.MaxDepth = 1.f;
 
 	//矩形
 	m_viewprotRect.left = 0;
 	m_viewprotRect.top = 0;
-	m_viewprotRect.right = EngineRenderConfig::GetRenderConfig()->ScrrenWidth;
-	m_viewprotRect.bottom = EngineRenderConfig::GetRenderConfig()->ScrrenHight;
+	m_viewprotRect.right = EngineRenderConfig::GetRenderConfig()->ScreenWidth;
+	m_viewprotRect.bottom = EngineRenderConfig::GetRenderConfig()->ScreenHeight;
 
 	WaitGPUCommandQueueComplete();
 }

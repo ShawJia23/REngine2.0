@@ -1,7 +1,12 @@
 
-cbuffer ConstBuffer :register(b0)//b0->b14
+cbuffer ObjectConstBuffer :register(b0)
 {
-	float4x4 World;
+	float4x4 WorldMatrix;
+}
+
+cbuffer ViewportConstBuffer : register(b1)
+{
+	float4x4 ViewProjectionMatrix;
 }
 
 struct MeshVertexIn
@@ -20,7 +25,10 @@ MeshVertexOut VertexShaderMain(MeshVertexIn MV)
 {
 	MeshVertexOut Out;
 
-	Out.Position = mul(float4(MV.Position, 1.f), World);
+	float4 Position = mul(float4(MV.Position, 1.f), WorldMatrix);
+	Out.Position = Position;
+	//Out.Position = mul(Position, ViewProjectionMatrix);
+
 	Out.Color = MV.Color;
 
 	return Out;

@@ -3,8 +3,8 @@
 EngineRenderConfig* EngineRenderConfig::RenderConfig = nullptr;
 
 EngineRenderConfig::EngineRenderConfig()
-	:ScrrenWidth(1280)
-	, ScrrenHight(720)
+	:ScreenWidth(1280)
+	, ScreenHeight(720)
 	, RefreshRate(60)
 	, SwapChainCount(2)
 {

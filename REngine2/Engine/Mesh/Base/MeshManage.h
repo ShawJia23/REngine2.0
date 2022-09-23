@@ -1,5 +1,6 @@
 #pragma once
 #include"Mesh.h"
+#include"../../Core/ViewPort/ViewportInfo.h"
 #include"../../Interface/DXDeviceInterface.h"
 #include"../../Core/RObject/RMinimalObject.h"
 #include"../../Render/Render.h"
@@ -15,6 +16,8 @@ public:
 	virtual void Init();
 
 	virtual void BuildMesh(const MeshRenderingData* InRenderingData);
+
+	virtual void UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo);
 
 	virtual void PreDraw(float DeltaTime);
 	virtual void Draw(float DeltaTime);
@@ -70,7 +73,7 @@ protected:
 	ComPtr<ID3D12RootSignature>  RootSignature;
 	ComPtr<ID3D12DescriptorHeap> CBVHeap;
 	shared_ptr<ResourcesUpdate> ObjectConstants;
-
+	shared_ptr<ResourcesUpdate> ViewportConstants;
 	ComPtr<ID3D12PipelineState> PSO;
 
 	RShader VertexShader;
@@ -81,11 +84,11 @@ protected:
 	UINT VertexSizeInBytes;
 	UINT VertexStrideInBytes;
 
+	UINT DescriptorOffset;
+
 	UINT IndexSizeInBytes;
 	DXGI_FORMAT IndexFormat;
 	UINT IndexSize;
 
 	XMFLOAT4X4 WorldMatrix;
-	XMFLOAT4X4 ViewMatrix;
-	XMFLOAT4X4 ProjectMatrix;
 };

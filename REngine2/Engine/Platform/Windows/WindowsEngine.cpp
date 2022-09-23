@@ -5,6 +5,7 @@
 #include "../../Render/Render.h"
 #include"../../Core/World.h"
 #include"../../Engine/DXRenderEngine.h"
+#include"../../Core/Camera.h"
 #if defined(_WIN32)
 #include "WindowsMessageProcessing.h"
 
@@ -42,7 +43,7 @@ int RWindowsEngine::Init(WinMainCommandParameters InParameters)
 
 	m_renderEngine->Init(InParameters);
 
-	RWorld* World = CreateObject<RWorld>(new RWorld());
+	m_world = CreateObject<RWorld>(new RWorld());
 
 	Engine_Log("引擎 初始化 完成.");
 	return 0;
@@ -69,6 +70,15 @@ void RWindowsEngine::Tick(float DeltaTime)
 		if(Temp->IsTick())
 			Temp->Tick(DeltaTime);
 	}
+
+	if (m_world) 
+	{
+		ViewportInfo pViewportInfo;
+		pViewportInfo.ProjectMatrix= m_world->GetCamera()->GetProjectMatrix();
+		pViewportInfo.ViewMatrix = m_world->GetCamera()->GetViewMatrix();
+		m_renderEngine->UpdateCalculations(DeltaTime, pViewportInfo);
+	}
+
 
 	m_renderEngine->Tick(DeltaTime);
 }
@@ -122,7 +132,7 @@ bool RWindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 		MessageBox(NULL, L"注册windows窗口失败.", L"Error", MB_OK);
 	}
 
-	RECT Rect = { 0,0,EngineRenderConfig::GetRenderConfig()->ScrrenWidth,EngineRenderConfig::GetRenderConfig()->ScrrenHight };
+	RECT Rect = { 0,0,EngineRenderConfig::GetRenderConfig()->ScreenWidth,EngineRenderConfig::GetRenderConfig()->ScreenHeight };
 
 	//@rect 适口
 	//WS_OVERLAPPEDWINDOW 适口风格

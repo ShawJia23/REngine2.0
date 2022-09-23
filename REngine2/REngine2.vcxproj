@@ -140,6 +140,8 @@
     <ClCompile Include="Engine\Core\RObject\GuidInterface.cpp" />
     <ClCompile Include="Engine\Core\RObject\RMinimalObject.cpp" />
     <ClCompile Include="Engine\Core\ViewPort\Viewport.cpp" />
+    <ClCompile Include="Engine\Core\ViewPort\ViewportInfo.cpp" />
+    <ClCompile Include="Engine\Core\ViewPort\ViewportTransform.cpp" />
     <ClCompile Include="Engine\Core\WinMainCommandParameters.cpp" />
     <ClCompile Include="Engine\Core\World.cpp" />
     <ClCompile Include="Engine\EngineFactory.cpp" />
@@ -208,6 +210,8 @@
     <ClInclude Include="Engine\Core\RObject\GuidInterface.h" />
     <ClInclude Include="Engine\Core\RObject\RMinimalObject.h" />
     <ClInclude Include="Engine\Core\ViewPort\Viewport.h" />
+    <ClInclude Include="Engine\Core\ViewPort\ViewportInfo.h" />
+    <ClInclude Include="Engine\Core\ViewPort\ViewportTransform.h" />
     <ClInclude Include="Engine\Core\WinMainCommandParameters.h" />
     <ClInclude Include="Engine\Core\World.h" />
     <ClInclude Include="Engine\Debug\EngineLog.h" />

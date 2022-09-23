@@ -1,12 +1,9 @@
-﻿  Camera.cpp
-  Viewport.cpp
-  World.cpp
-  WindowsEngine.cpp
-  正在生成代码...
+﻿  MeshManage.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Base\MeshManage.cpp(194,43): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Base\MeshManage.cpp(194,37): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Base\MeshManage.cpp(194,31): warning C4244: “参数”: 从“float”转换到“uint32_t”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Base\MeshManage.cpp(196,61): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Base\MeshManage.cpp(196,50): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Base\MeshManage.cpp(196,39): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(160): warning C4715: “RWindowsEngine::InitWindows”: 不是所有的控件路径都返回值
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-    正在创建库 E:\ademo\REngine2.0\Debug\REngine2.lib 和对象 E:\ademo\REngine2.0\Debug\REngine2.exp
   REngine2.vcxproj -> E:\ademo\REngine2.0\Debug\REngine2.exe

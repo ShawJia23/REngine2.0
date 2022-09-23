@@ -10,7 +10,7 @@ RViewport::RViewport()
 
 void RViewport::ViewportInit()
 {
-    float AspectRatio = (float)EngineRenderConfig::GetRenderConfig()->ScrrenWidth / (float)EngineRenderConfig::GetRenderConfig()->ScrrenHight;
+    float AspectRatio = (float)EngineRenderConfig::GetRenderConfig()->ScreenWidth / (float)EngineRenderConfig::GetRenderConfig()->ScreenHeight;
     //(1,1,0) (-1,1,0) (-1,-1,0) (1,-1,0) (1,1,1) (-1,1,1) (-1,-1,1) (1,-1,1)
     //基于视野构建左手透视投影矩阵
     XMMATRIX Project = XMMatrixPerspectiveFovLH(

@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderEngine.h"
-
+#include"../Core/ViewPort/ViewportInfo.h"
 class RMeshManage;
 class DXRenderEngine :public RenderingEngine
 {
@@ -14,6 +14,7 @@ public:
 	virtual int Init(WinMainCommandParameters InParameters);
 	virtual int PostInit();
 
+	virtual void UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo);
 	virtual void Tick(float DeltaTime);
 
 	virtual int PreExit();

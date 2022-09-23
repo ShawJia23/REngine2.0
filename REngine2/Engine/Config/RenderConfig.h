@@ -4,8 +4,8 @@ struct EngineRenderConfig
 {
 	EngineRenderConfig();
 
-	int ScrrenWidth;
-	int ScrrenHight;
+	int ScreenWidth;
+	int ScreenHeight;
 	int RefreshRate;
 	int SwapChainCount;
 

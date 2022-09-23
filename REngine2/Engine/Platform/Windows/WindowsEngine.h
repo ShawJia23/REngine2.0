@@ -5,7 +5,7 @@
 #include "../../Core/Engine.h"
 
 class DXRenderEngine;
-
+class RWorld;
 class RWindowsEngine :public REngine
 {
 	friend class IRenderingInterface;
@@ -33,5 +33,6 @@ protected:
 
 	HWND MianWindowsHandle;//主windows句柄
 	DXRenderEngine* m_renderEngine;
+	RWorld* m_world;
 };
 #endif
