@@ -3,13 +3,14 @@
 #include"ViewPort/Viewport.h"
 #include"RObject/RMinimalObject.h"
 #include"CameraType.h"
+#include"../Interface/DXDeviceInterface.h"
 
 struct RInputKey;
 class RTransformComponent;
 class RInputComponent;
 
 
-class RCamera :public RMinimalObject, public RViewport 
+class RCamera :public RMinimalObject, public RViewport ,public IDirectXDeviceInterface
 {
 	RVARIABLE()
 	RTransformComponent* m_rTransformComponent;
@@ -34,6 +35,10 @@ protected:
 	void RotateAroundYAxis(float InRotateDegrees);
 	void RotateAroundZAxis(float InRotateDegrees);
 
+	POINT LastMousePosition;
+	bool bLeftMouseDown;
+
+	float m_mouseSensitivity;
 	CameraType m_cameraType;
 
 	//ÇòÃæ×ø±ê

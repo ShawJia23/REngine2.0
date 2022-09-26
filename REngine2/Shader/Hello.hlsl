@@ -26,8 +26,7 @@ MeshVertexOut VertexShaderMain(MeshVertexIn MV)
 	MeshVertexOut Out;
 
 	float4 Position = mul(float4(MV.Position, 1.f), WorldMatrix);
-	Out.Position = Position;
-	//Out.Position = mul(Position, ViewProjectionMatrix);
+	Out.Position = mul(Position, ViewProjectionMatrix);
 
 	Out.Color = MV.Color;
 

@@ -191,24 +191,12 @@ void RMeshManage::BuildMesh(const MeshRenderingData* InRenderingData)
 
 void RMeshManage::UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo)
 {
-    XMUINT3 MeshPos = XMUINT3(5.0f, 5.0f, 5.0f);
-
-    XMVECTOR Pos = XMVectorSet(MeshPos.x, MeshPos.y, MeshPos.z, 1.0f);
-    XMVECTOR ViewTarget = XMVectorZero();
-    XMVECTOR ViewUp = XMVectorSet(0.f, 1.0f, 0.f, 0.f);
-
-    XMMATRIX ViewLookAt = XMMatrixLookAtLH(Pos, ViewTarget, ViewUp);
-    XMStoreFloat4x4(const_cast<XMFLOAT4X4*>(&viewportInfo.ViewMatrix), ViewLookAt);
-
     XMMATRIX ViewMatrix = XMLoadFloat4x4(&viewportInfo.ViewMatrix);
     XMMATRIX ProjectMatrix = XMLoadFloat4x4(&viewportInfo.ProjectMatrix);
     XMMATRIX ATRIXWorld = XMLoadFloat4x4(&WorldMatrix);
-    XMMATRIX WVP = ATRIXWorld * ViewLookAt * ProjectMatrix;
-
 
     RObjectTransformation ObjectTransformation;
-    XMStoreFloat4x4(&ObjectTransformation.World, XMMatrixTranspose(WVP));
-   // XMStoreFloat4x4(&ObjectTransformation.World, XMMatrixTranspose(ATRIXWorld));
+    XMStoreFloat4x4(&ObjectTransformation.World, XMMatrixTranspose(ATRIXWorld));
     ObjectConstants->Update(0, &ObjectTransformation);
 
     //更新视口

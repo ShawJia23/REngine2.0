@@ -54,8 +54,8 @@ int DXRenderEngine::PostInit()
 	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
 		//¹¹½¨Mesh
-		//m_meshManage->CreateBoxMesh(4.f, 3.f, 1.5f);
-		m_meshManage->CreatePlaneMesh(4.f, 3.f, 20, 20);
+		m_meshManage->CreateBoxMesh(40.f, 30.f, 1.5f);
+		//m_meshManage->CreatePlaneMesh(40.f, 30.f, 20, 20);
 		//	string MeshObjPath = "../RenZhaiEngine/Mesh.obj";
 		//	MeshManage->CreateMesh(MeshObjPath);
 		//	CSphereMesh* SphereMesh = CSphereMesh::CreateMesh(2.f, 20, 20);
