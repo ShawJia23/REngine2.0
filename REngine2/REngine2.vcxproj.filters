@@ -192,10 +192,10 @@
     <ClCompile Include="Engine\Mesh\Base\ObjectTransformation.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Engine\RenderEngine.cpp">
+    <ClCompile Include="Engine\Render\Engine\RenderEngine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Engine\DXRenderEngine.cpp">
+    <ClCompile Include="Engine\Render\Engine\DXRenderEngine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Component\Input\Input.cpp">
@@ -214,6 +214,30 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Core\ViewPort\ViewportTransform.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\DX12Pipeline.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\PipelineState\DXPipelineState.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\RootSignature\DXRootSignature.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\DescriptorHeap\DXDescriptorHeap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\Geometry\GeometryMap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\BufferView\ConstantBufferView.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\Geometry\RenderMeshData.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Actor\ActorObject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -452,10 +476,10 @@
     <ClInclude Include="Engine\Mesh\Base\ObjectTransformation.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Engine\RenderEngine.h">
+    <ClInclude Include="Engine\Render\Engine\RenderEngine.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Engine\DXRenderEngine.h">
+    <ClInclude Include="Engine\Render\Engine\DXRenderEngine.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Component\Input\Input.h">
@@ -474,6 +498,30 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Core\ViewPort\ViewportTransform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\DX12Pipeline.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\PipelineState\DXPipelineState.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\RootSignature\DXRootSignature.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\DescriptorHeap\DXDescriptorHeap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\Geometry\GeometryMap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\BufferView\ConstantBufferView.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\Geometry\RenderMeshData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Actor\ActorObject.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

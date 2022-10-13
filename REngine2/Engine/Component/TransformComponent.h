@@ -11,11 +11,15 @@ public:
 	void SetForwardVector(const XMFLOAT3& forwardVector);
 	void SetRightVector(const XMFLOAT3& rightVector);
 	void SetUPVector(const XMFLOAT3& upVector);
+	void SetRotation(const fvector_3d& InNewRotation);
+	void SetScale(const fvector_3d& InNewScale);
 
 	XMFLOAT3& GetPosition() { return Position; }
 	XMFLOAT3& GetForwardVector() { return ForwardVector; }
 	XMFLOAT3& GetRightVector() { return RightVector; }
 	XMFLOAT3& GetUPVector() { return UpVector; }
+	fvector_3d GetRotation() const { return fvector_3d(Rotation.x, Rotation.y, Rotation.z); }
+	fvector_3d GetScale() const { return fvector_3d(Scale.x, Scale.y, Scale.z); }
 
 	//½ÃÕýUp right look(fd) ·µ»Ø pos
 	void CorrectionVector();
@@ -24,7 +28,8 @@ public:
 	void GetCorrectionPosition(fvector_3d& pos3);
 private:
 	XMFLOAT3 Position;
-
+	XMFLOAT3 Rotation;
+	XMFLOAT3 Scale;
 	XMFLOAT3 ForwardVector;
 	XMFLOAT3 RightVector;
 	XMFLOAT3 UpVector;

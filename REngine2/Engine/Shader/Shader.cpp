@@ -1,11 +1,11 @@
 #include "Shader.h"
 
-LPVOID RShader::GetBufferPointer()
+LPVOID RShader::GetBufferPointer() const
 {
 	return ShaderCode->GetBufferPointer();
 }
 
-SIZE_T RShader::GetBufferSize()
+SIZE_T RShader::GetBufferSize() const
 {
 	return ShaderCode->GetBufferSize();
 }

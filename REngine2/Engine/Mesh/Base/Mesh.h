@@ -3,15 +3,16 @@
 #include"../../Core/RObject/RMinimalObject.h"
 #include "../../Render/Render.h"
 #include "../../Shader/Shader.h"
+#include"../../Actor/ActorObject.h"
 
-class BMesh : public RMinimalObject, public IRenderingInterface
+class BMesh : public GActorObject, public IRenderingInterface
 {
 public:
 	BMesh();
 
 	virtual void Init();
 
-	virtual void BuildMesh(const MeshRenderingData* InRenderingData);
+	virtual void BuildMesh(const MeshRenderData* InRenderingData);
 
 	virtual void PreDraw(float DeltaTime);
 	virtual void Draw(float DeltaTime);

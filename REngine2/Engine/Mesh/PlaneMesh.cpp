@@ -5,7 +5,7 @@ void PlaneMesh::Init()
 	Super::Init();
 }
 
-void PlaneMesh::BuildMesh(const MeshRenderingData* InRenderingData)
+void PlaneMesh::BuildMesh(const MeshRenderData* InRenderingData)
 {
 	Super::BuildMesh(InRenderingData);
 
@@ -19,7 +19,7 @@ void PlaneMesh::Draw(float DeltaTime)
 
 }
 
-void PlaneMesh::CreateMesh(MeshRenderingData& MeshData, float height, float width, uint32_t heightSub, uint32_t widthSub)
+void PlaneMesh::CreateMesh(MeshRenderData& MeshData, float height, float width, uint32_t heightSub, uint32_t widthSub)
 {
 	auto SubdivideValue = [&](float InValue, uint32_t InSubdivideValue)->float
 	{

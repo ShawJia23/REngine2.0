@@ -4,17 +4,12 @@
 #include"RObject/RMinimalObject.h"
 #include"CameraType.h"
 #include"../Interface/DXDeviceInterface.h"
-
+#include"../Actor/ActorObject.h"
 struct RInputKey;
-class RTransformComponent;
 class RInputComponent;
 
-
-class RCamera :public RMinimalObject, public RViewport ,public IDirectXDeviceInterface
+class RCamera :public GActorObject, public RViewport ,public IDirectXDeviceInterface
 {
-	RVARIABLE()
-	RTransformComponent* m_rTransformComponent;
-
 	RVARIABLE()
 	RInputComponent* m_rInputComponent;
 public:
@@ -47,7 +42,5 @@ protected:
 	float B;//
 public:
 	RCamera();
-
-	FORCEINLINE RTransformComponent* GetTransformComponent() { return m_rTransformComponent; }
 	FORCEINLINE RInputComponent* GetInputComponent() { return m_rInputComponent; }
 };

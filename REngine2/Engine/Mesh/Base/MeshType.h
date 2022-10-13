@@ -11,9 +11,13 @@ struct RVertex
 	XMFLOAT3 Normal;
 };
 
-struct MeshRenderingData
+struct MeshRenderData
 {
 	vector<RVertex> VertexData;
 	vector<uint16_t> IndexData;
+
+public:
+	UINT GetVertexSizeInBytes() { return VertexData.size() * sizeof(RVertex); }
+	UINT GetIndexSizeInBytes() { return IndexData.size() * sizeof(uint16_t); }
 };
 

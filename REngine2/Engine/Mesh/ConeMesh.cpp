@@ -7,7 +7,7 @@ void ConeMesh::Init()
 
 }
 
-void ConeMesh::BuildMesh(const MeshRenderingData* InRenderingData)
+void ConeMesh::BuildMesh(const MeshRenderData* InRenderingData)
 {
 	Super::BuildMesh(InRenderingData);
 
@@ -21,7 +21,7 @@ void ConeMesh::Draw(float DeltaTime)
 
 }
 
-void ConeMesh::CreateMesh(MeshRenderingData& MeshData,float radius, float height, uint32_t axialSub, uint32_t heightSub)
+void ConeMesh::CreateMesh(MeshRenderData& MeshData,float radius, float height, uint32_t axialSub, uint32_t heightSub)
 {
 	//半径间隔
 	float RadiusInterval = -radius / (float)heightSub;

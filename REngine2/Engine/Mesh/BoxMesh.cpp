@@ -7,7 +7,7 @@ void BoxMesh::Init()
 
 }
 
-void BoxMesh::BuildMesh(const MeshRenderingData* InRenderingData)
+void BoxMesh::BuildMesh(const MeshRenderData* InRenderingData)
 {
 	Super::BuildMesh(InRenderingData);
 
@@ -21,7 +21,7 @@ void BoxMesh::Draw(float DeltaTime)
 
 }
 
-void  BoxMesh::CreateMesh(MeshRenderingData& MeshData,float height, float width, float depth)
+void  BoxMesh::CreateMesh(MeshRenderData& MeshData,float height, float width, float depth)
 {
 	float pHeight = 0.5f * height;
 	float pWidth = 0.5f * width;

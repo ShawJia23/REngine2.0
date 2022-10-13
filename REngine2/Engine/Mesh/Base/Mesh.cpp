@@ -2,7 +2,7 @@
 #include"../../Config/RenderConfig.h"
 #include"../../Render/ResourcesUpdate.h"
 
-BMesh::BMesh()
+BMesh::BMesh():GActorObject()
 {
 }
 
@@ -10,7 +10,7 @@ void BMesh::Init()
 {
 }
 
-void BMesh::BuildMesh(const MeshRenderingData* InRenderingData)
+void BMesh::BuildMesh(const MeshRenderData* InRenderingData)
 {
 }
 

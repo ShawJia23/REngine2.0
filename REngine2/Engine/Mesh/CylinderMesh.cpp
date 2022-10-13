@@ -7,7 +7,7 @@ void CylinderMesh::Init()
 
 }
 
-void CylinderMesh::BuildMesh(const MeshRenderingData* InRenderingData)
+void CylinderMesh::BuildMesh(const MeshRenderData* InRenderingData)
 {
 	Super::BuildMesh(InRenderingData);
 
@@ -21,7 +21,7 @@ void CylinderMesh::Draw(float DeltaTime)
 
 }
 
-void CylinderMesh::CreateMesh(MeshRenderingData& MeshData, float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub)
+void CylinderMesh::CreateMesh(MeshRenderData& MeshData, float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub)
 {
 	//半径间隔
 	float RadiusInterval = (topRadius - bottomRadius) / heightSub;

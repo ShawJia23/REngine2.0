@@ -4,8 +4,8 @@
 class RShader
 {
 public:
-	LPVOID GetBufferPointer();
-	SIZE_T GetBufferSize();
+	LPVOID GetBufferPointer() const;
+	SIZE_T GetBufferSize() const;
 
 	void BuildShaders(const wstring& InFileName, const string& InEntryFunName, const string& InShadersVersion);
 private:

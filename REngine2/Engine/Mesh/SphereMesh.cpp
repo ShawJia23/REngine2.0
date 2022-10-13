@@ -7,7 +7,7 @@ void SphereMesh::Init()
 
 }
 
-void SphereMesh::BuildMesh(const MeshRenderingData* InRenderingData)
+void SphereMesh::BuildMesh(const MeshRenderData* InRenderingData)
 {
 	Super::BuildMesh(InRenderingData);
 
@@ -21,7 +21,7 @@ void SphereMesh::Draw(float DeltaTime)
 
 }
 
-void SphereMesh::CreateMesh(MeshRenderingData& MeshData, float radius, uint32_t axialSub, uint32_t heightSub)
+void SphereMesh::CreateMesh(MeshRenderData& MeshData, float radius, uint32_t axialSub, uint32_t heightSub)
 {
 	float thetaVal = XM_2PI / heightSub;
 	float betaVal = XM_2PI / axialSub;

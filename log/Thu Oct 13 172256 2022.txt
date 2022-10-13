@@ -1,0 +1,38 @@
+[LOG] [Thu Oct 13 17:22:56 2022] 日志初始化. 
+[LOG] [Thu Oct 13 17:22:56 2022] DX渲染 预先初始化 完成 
+[LOG] [Thu Oct 13 17:22:56 2022] 引擎 预初始化 完成. 
+[LOG] [Thu Oct 13 17:22:57 2022] 初始化窗口完成. 
+[SUCCESS] [Thu Oct 13 17:22:57 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[LOG] [Thu Oct 13 17:22:58 2022] DX渲染 初始化 完成 
+[LOG] [Thu Oct 13 17:22:58 2022] 引擎 初始化 完成. 
+[LOG] [Thu Oct 13 17:22:58 2022] 引擎 拖后初始化 完成. 
+[LOG] [Thu Oct 13 17:22:58 2022] DX渲染 拖后初始化 完成 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 
+[SUCCESS] [Thu Oct 13 17:22:58 2022] Success ! 

@@ -1,0 +1,233 @@
+#include"GeometryMap.h"
+#include"../../../Mesh/Base/ObjectTransformation.h"
+#include"../../../Core/ViewPort/ViewportTransform.h"
+#include"../../Buffer/ConstructBuffer.h"
+#include"../../../Mesh/Base/Mesh.h"
+RGeometryMap::RGeometryMap()
+:m_WorldMatrix(RMath::IdentityMatrix4x4())
+, IndexSize(0)
+{
+	
+}
+
+void RGeometryMap::Init() 
+{
+	m_DescriptorOffset = GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+}
+
+void RGeometryMap::BuildDescriptorHeap()
+{
+	m_DescriptorHeap.Build(GetDrawObjectNumber()+1);
+}
+
+void RGeometryMap::BuildConstantBuffer()
+{
+	m_ObjectConstantBufferView.CreateConstant(sizeof(RObjectTransformation), GetDrawObjectNumber());
+
+	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
+
+	m_ObjectConstantBufferView.BuildConstantBuffer(DesHandle, GetDrawObjectNumber());
+}
+
+void RGeometryMap::BuildViewportConstantBufferView()
+{
+	m_ViewportConstantBufferView.CreateConstant(sizeof(ViewportTransformation), 1);
+
+	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
+
+	m_ViewportConstantBufferView.BuildConstantBuffer(DesHandle, 1, GetDrawObjectNumber());
+}
+
+UINT RGeometryMap::GetDrawObjectNumber()
+{
+	return m_Geometrys[0].GetDrawObjectNumber();
+}
+
+void RGeometryMap::DrawViewport()
+{
+	m_DescriptorHeap.SetDescriptorHeap();
+
+	auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
+	DesHandle.Offset(GetDrawObjectNumber(), m_DescriptorOffset);
+
+	GetCommandList()->SetGraphicsRootDescriptorTable(1, DesHandle);
+}
+
+void RGeometryMap::DrawMesh()
+{
+	for (auto& Tmp : m_Geometrys)
+	{
+		D3D12_VERTEX_BUFFER_VIEW VBV = Tmp.second.GetVertexBufferView();
+		D3D12_INDEX_BUFFER_VIEW IBV = Tmp.second.GetIndexBufferView();
+
+		for (int i = 0; i < Tmp.second.m_RenderDatas.size(); i++)
+		{
+			GetCommandList()->IASetIndexBuffer(&IBV);
+
+			//绑定渲染流水线上的输入槽，可以在输入装配器阶段传入顶点数据
+			GetCommandList()->IASetVertexBuffers(
+				0,//起始输入槽 0-15 
+				1,//k k+1 ... k+n-1 
+				&VBV);
+
+			//定义我们要绘制的哪种图元 点 线 面
+			GetCommandList()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+			auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
+			DesHandle.Offset(i, m_DescriptorOffset);
+
+			GetCommandList()->SetGraphicsRootDescriptorTable(0, DesHandle);
+			
+			RRenderData& pRenderData = Tmp.second.m_RenderDatas[i];
+
+			GetCommandList()->DrawIndexedInstanced(
+				pRenderData.IndexSize,//顶点数量
+				1,//绘制实例数量
+				pRenderData.IndexOffsetPosition,//顶点缓冲区第一个被绘制的索引
+				pRenderData.VertexOffsetPosition,//GPU 从索引缓冲区读取的第一个索引的位置。
+				0);//在从顶点缓冲区读取每个实例数据之前添加到每个索引的值。
+		}
+	}
+
+
+}
+
+void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
+{
+	XMMATRIX ViewMatrix = XMLoadFloat4x4(&viewportInfo.ViewMatrix);
+	XMMATRIX ProjectMatrix = XMLoadFloat4x4(&viewportInfo.ProjectMatrix);
+
+	for (auto& Tmp : m_Geometrys)//暂时先这么写
+	{
+		for (size_t i = 0; i < Tmp.second.GetDrawObjectNumber(); i++)
+		{
+			RRenderData& pRenderData = Tmp.second.m_RenderDatas[i];
+
+			//构造模型的world
+			{
+				XMFLOAT3& Position = pRenderData.Mesh->GetPosition();
+				fvector_3d Scale = pRenderData.Mesh->GetScale();
+
+				XMFLOAT3 RightVector = pRenderData.Mesh->GetRightVector();
+				XMFLOAT3 UPVector = pRenderData.Mesh->GetUPVector();
+				XMFLOAT3 ForwardVector = pRenderData.Mesh->GetForwardVector();
+
+				pRenderData.WorldMatrix = {
+					RightVector.x * Scale.x,	UPVector.x,				ForwardVector.x ,			0.f,
+					RightVector.y,				UPVector.y * Scale.y,	ForwardVector.y,			0.f,
+					RightVector.z,				UPVector.z ,			ForwardVector.z * Scale.z,	0.f,
+					Position.x,					Position.y,				Position.z,					1.f };
+			}
+
+			//更新模型位置
+			XMMATRIX ATRIXWorld = XMLoadFloat4x4(&pRenderData.WorldMatrix);
+
+			RObjectTransformation ObjectTransformation;
+			XMStoreFloat4x4(&ObjectTransformation.World, XMMatrixTranspose(ATRIXWorld));
+			m_ObjectConstantBufferView.Update(i, &ObjectTransformation);
+		}
+	}
+
+	//更新视口
+	XMMATRIX ViewProject = XMMatrixMultiply(ViewMatrix, ProjectMatrix);
+	ViewportTransformation ViewportTransformation;
+	XMStoreFloat4x4(&ViewportTransformation.ViewProjectionMatrix, XMMatrixTranspose(ViewProject));
+
+	m_ViewportConstantBufferView.Update(0, &ViewportTransformation);
+}
+
+void RGeometryMap::BuildMesh(BMesh* mesh, const MeshRenderData& meshData)
+{
+	RGeometry& Geometry = m_Geometrys[0];
+
+	Geometry.BuildMesh(mesh, meshData);
+}
+
+void RGeometryMap::BuildGeometry() 
+{
+	for (auto& Tmp : m_Geometrys)
+	{
+		Tmp.second.Build();
+	}
+}
+
+
+bool RGeometry::RenderDataExistence(BMesh* key)
+{
+	for (auto& Tmp : m_RenderDatas)
+	{
+		if (Tmp.Mesh == key)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void RGeometry::BuildMesh(BMesh* mesh, const MeshRenderData& meshData) 
+{
+	if (!RenderDataExistence(mesh))
+	{
+		m_RenderDatas.push_back(RRenderData());
+		RRenderData& pRenderingData = m_RenderDatas.back();
+
+		pRenderingData.Mesh = mesh;
+
+		pRenderingData.IndexSize = meshData.IndexData.size();
+		pRenderingData.VertexSize = meshData.VertexData.size();
+
+		pRenderingData.IndexOffsetPosition = m_MeshRenderData.IndexData.size();
+		pRenderingData.VertexOffsetPosition = m_MeshRenderData.VertexData.size();
+
+		m_MeshRenderData.IndexData.insert(
+			m_MeshRenderData.IndexData.end(),
+			meshData.IndexData.begin(),
+			meshData.IndexData.end()); 
+
+		m_MeshRenderData.VertexData.insert(
+			m_MeshRenderData.VertexData.end(),
+			meshData.VertexData.begin(),
+			meshData.VertexData.end());
+	}
+}
+
+void RGeometry::Build()
+{
+	UINT VertexSizeInBytes = m_MeshRenderData.GetVertexSizeInBytes();
+	UINT IndexSizeInBytes = m_MeshRenderData.GetIndexSizeInBytes();
+
+	ANALYSIS_HRESULT(D3DCreateBlob(VertexSizeInBytes, &CPUVertexBufferPtr));
+	memcpy(CPUVertexBufferPtr->GetBufferPointer(), m_MeshRenderData.VertexData.data(), VertexSizeInBytes);
+
+	ANALYSIS_HRESULT(D3DCreateBlob(IndexSizeInBytes, &CPUIndexBufferPtr));
+	memcpy(CPUIndexBufferPtr->GetBufferPointer(), m_MeshRenderData.IndexData.data(), IndexSizeInBytes);
+
+	ConstructBuffer::RConstructBuffer pConstructBuffer;
+
+	GPUVertexBufferPtr = pConstructBuffer.ConstructDefaultBuffer(VertexBufferTmpPtr,
+		m_MeshRenderData.VertexData.data(), VertexSizeInBytes);
+
+	GPUIndexBufferPtr = pConstructBuffer.ConstructDefaultBuffer(IndexBufferTmpPtr,
+		m_MeshRenderData.IndexData.data(), IndexSizeInBytes);
+}
+
+D3D12_VERTEX_BUFFER_VIEW RGeometry::GetVertexBufferView()
+{
+	D3D12_VERTEX_BUFFER_VIEW VBV;
+	VBV.BufferLocation = GPUVertexBufferPtr->GetGPUVirtualAddress();
+	VBV.SizeInBytes =m_MeshRenderData.GetVertexSizeInBytes();
+	VBV.StrideInBytes = sizeof(RVertex);
+
+	return VBV;
+}
+
+D3D12_INDEX_BUFFER_VIEW RGeometry::GetIndexBufferView()
+{
+	D3D12_INDEX_BUFFER_VIEW IBV;
+	IBV.BufferLocation = GPUIndexBufferPtr->GetGPUVirtualAddress();
+	IBV.SizeInBytes = m_MeshRenderData.GetIndexSizeInBytes();
+	IBV.Format = DXGI_FORMAT_R16_UINT;
+
+	return IBV;
+}
