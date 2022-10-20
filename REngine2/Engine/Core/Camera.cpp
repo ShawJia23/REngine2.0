@@ -136,8 +136,8 @@ void RCamera::OnMouseMove(int X, int Y)
 		{
 		case CameraRoaming:
 		{
-			RotateAroundYAxis(YRadians);
-			RotateAroundZAxis(XRadians);
+			RotateAroundXAxis(YRadians);
+			RotateAroundYAxis(XRadians);
 			break;
 		}
 		case ObservationObject:
@@ -198,7 +198,7 @@ void RCamera::MoveRight(float InValue)
 	}
 }
 
-void RCamera::RotateAroundYAxis(float InRotateDegrees)
+void RCamera::RotateAroundXAxis(float InRotateDegrees)
 {
 	//拿到相机的方向
 	XMFLOAT3 RightVector = GetTransformationComponent()->GetRightVector();
@@ -214,7 +214,7 @@ void RCamera::RotateAroundYAxis(float InRotateDegrees)
 	XMStoreFloat3(&GetTransformationComponent()->GetForwardVector(), XMVector3TransformNormal(XMLoadFloat3(&ForwardVector), RotationY));
 }
 
-void RCamera::RotateAroundZAxis(float InRotateDegrees)
+void RCamera::RotateAroundYAxis(float InRotateDegrees)
 {
 	//拿到相机的方向
 	XMFLOAT3 RightVector = GetTransformationComponent()->GetRightVector();
@@ -222,7 +222,7 @@ void RCamera::RotateAroundZAxis(float InRotateDegrees)
 	XMFLOAT3 ForwardVector = GetTransformationComponent()->GetForwardVector();
 
 	//拿到关于Z的旋转矩阵
-	XMMATRIX RotationZ = XMMatrixRotationZ(InRotateDegrees);
+	XMMATRIX RotationZ = XMMatrixRotationY(InRotateDegrees);
 
 	//计算各个方向和按照Z轴旋转后的最终效果
 	XMStoreFloat3(&GetTransformationComponent()->GetRightVector(), XMVector3TransformNormal(XMLoadFloat3(&RightVector), RotationZ));

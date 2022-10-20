@@ -27,8 +27,8 @@ public:
 	virtual void MoveForward(float InValue);
 	virtual void MoveRight(float InValue);
 protected:
+	void RotateAroundXAxis(float InRotateDegrees);
 	void RotateAroundYAxis(float InRotateDegrees);
-	void RotateAroundZAxis(float InRotateDegrees);
 
 	POINT LastMousePosition;
 	bool bLeftMouseDown;

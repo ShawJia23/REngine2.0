@@ -24,8 +24,8 @@ void DX12Pipeline::BuildPipeline()
 
     m_GeometryMap.BuildDescriptorHeap();
 
-    m_GeometryMap.BuildConstantBuffer();
-
+    m_GeometryMap.BuildMeshConstantBuffer();
+    m_GeometryMap.BuildMaterialsConstantBuffer();
     m_GeometryMap.BuildViewportConstantBufferView();
 
     m_PipelineState.ResetGPSDesc();
@@ -37,7 +37,8 @@ void DX12Pipeline::BuildPipeline()
     m_InputElementDesc =
     {
         {"POSITION",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA,0},
-        {"COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0}
+        {"COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0},
+        {"NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 24, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0}
     };
     m_PipelineState.BindInputLayout(m_InputElementDesc.data(), m_InputElementDesc.size());
 
@@ -59,6 +60,8 @@ void DX12Pipeline::Draw()
     m_GeometryMap.DrawViewport();
 
     m_GeometryMap.DrawMesh();
+
+    m_PipelineState.CaptureKeyboardKeys();
 }
 
 void DX12Pipeline::ResetCommandList() 

@@ -1,6 +1,7 @@
 #pragma once
 #include"../../../Shader/Shader.h"
 #include"../../../Interface/DXDeviceInterface.h"
+#include"../DX12PipelineType.h"
 //提供渲染内容的接口
 struct RDXPipelineState :public IDirectXDeviceInterface_Struct
 {
@@ -13,8 +14,10 @@ public:
 	void BindRootSignature(ID3D12RootSignature* rootSignature);
 	void BindShader(const RShader& vertexShader, const RShader& pixelShader);
 	void Build();
-
+	void CaptureKeyboardKeys();
 private:
-	ComPtr<ID3D12PipelineState> m_PSO;
+	unordered_map<int, ComPtr<ID3D12PipelineState>>  m_PSO;
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC m_GPSDesc;
+
+	RPipeLineType m_PipelineType;
 };

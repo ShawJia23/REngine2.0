@@ -1,9 +1,13 @@
 #include"DXPipelineState.h"
 #include"../../../Platform/Windows/WindowsEngine.h"
 #include"../../Engine/RenderEngine.h"
+#include"../DX12PipelineType.h"
 RDXPipelineState::RDXPipelineState()
 {
-    
+    m_PSO.insert(pair<int, ComPtr<ID3D12PipelineState>>(1, ComPtr<ID3D12PipelineState>()));
+    m_PSO.insert(pair<int, ComPtr<ID3D12PipelineState>>(2, ComPtr<ID3D12PipelineState>()));
+
+    m_PipelineType = RPipeLineType::Wireframe;
 }
 
 void RDXPipelineState::ResetGPSDesc()
@@ -13,7 +17,7 @@ void RDXPipelineState::ResetGPSDesc()
 
 void RDXPipelineState::ResetCommandList()
 {
-    GetCommandList()->Reset(GetCommandAllocator().Get(), m_PSO.Get());
+    GetCommandList()->Reset(GetCommandAllocator().Get(), m_PSO[(int)m_PipelineType].Get());
 }
 
 void RDXPipelineState::BindInputLayout(const D3D12_INPUT_ELEMENT_DESC* inputElementDescs, UINT size)
@@ -56,6 +60,22 @@ void RDXPipelineState::Build()
     m_GPSDesc.RTVFormats[0] = GetEngine()->GetRenderEngine()->GetBackBufferFormat();
     m_GPSDesc.DSVFormat = GetEngine()->GetRenderEngine()->GetDepthStencilFormat();
 
-    ANALYSIS_HRESULT(GetD3dDevice()->CreateGraphicsPipelineState(&m_GPSDesc, IID_PPV_ARGS(&m_PSO)))
+    //线框模型注册
+    ANALYSIS_HRESULT(GetD3dDevice()->CreateGraphicsPipelineState(&m_GPSDesc, IID_PPV_ARGS(&m_PSO[(int)Wireframe])));
+        //实体模型注册
+    m_GPSDesc.RasterizerState.FillMode = D3D12_FILL_MODE_SOLID;//以实体方式显示
+    ANALYSIS_HRESULT(GetD3dDevice()->CreateGraphicsPipelineState(&m_GPSDesc, IID_PPV_ARGS(&m_PSO[(int)GrayModel])));
+}
 
+
+void RDXPipelineState::CaptureKeyboardKeys()
+{
+    if (GetAsyncKeyState('1') & 0x8000)
+    {
+        m_PipelineType = RPipeLineType::Wireframe;
+    }
+    else if (GetAsyncKeyState('2') & 0x8000)
+    {
+        m_PipelineType = RPipeLineType::GrayModel;
+    }
 }

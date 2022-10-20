@@ -4,6 +4,7 @@
 
 BMesh::BMesh():GActorObject()
 {
+	m_Materials.push_back(CreateObject<RMaterial>(new RMaterial()));
 }
 
 void BMesh::Init()

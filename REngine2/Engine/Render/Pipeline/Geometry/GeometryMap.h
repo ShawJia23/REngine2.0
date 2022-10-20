@@ -44,9 +44,12 @@ public:
 	void DrawViewport();
 	void DrawMesh();
 
-	void BuildDescriptorHeap();
-	void BuildConstantBuffer();
+	void BuildMeshConstantBuffer();
 	void BuildViewportConstantBufferView();
+	void BuildMaterialsConstantBuffer();
+
+	void BuildDescriptorHeap();
+
 	void BuildMesh(const MeshRenderData* renderingData);
 	void BuildGeometry();
 
@@ -59,6 +62,7 @@ public:
 
 	void BuildMesh(BMesh* mesh, const MeshRenderData& meshData);
 
+	UINT GetMaterialsNumber();
 	UINT GetDrawObjectNumber();
 private:
 	map<int, RGeometry> m_Geometrys;
@@ -66,6 +70,7 @@ private:
 	RDXDescriptorHeap m_DescriptorHeap;
 	RConstantBufferView m_ObjectConstantBufferView;
 	RConstantBufferView m_ViewportConstantBufferView;
+	RConstantBufferView m_MaterialsBufferView;
 
 	XMFLOAT4X4 m_WorldMatrix;
 
