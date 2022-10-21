@@ -34,22 +34,22 @@ void PlaneMesh::CreateMesh(MeshRenderData& MeshData, float height, float width, 
 	float CHeight = 0.5f * height;
 	float CWidth = 0.5f * width;
 
-	float heightSubValue = SubdivideValue(height, heightSub);
-	float widthSubValue = SubdivideValue(width, widthSub);
+	float HeightSubdivideValue = SubdivideValue(height, heightSub);
+	float WidthSubdivideValue = SubdivideValue(width, widthSub);
 
 	//绘制点的位置
 	for (uint32_t i = 0; i < heightSub; ++i)
 	{
-		float Z = CHeight - i * heightSubValue;
+		float Z = CHeight - i * HeightSubdivideValue;
 		for (uint32_t j = 0; j < widthSub; ++j)
 		{
-			float X = CWidth - j * widthSubValue;
+			float X = CWidth - j * WidthSubdivideValue;
 			MeshData.VertexData.push_back(RVertex(
 				XMFLOAT3(
 					X,//x
 					0.f,//y
 					Z), //z
-				XMFLOAT4(Colors::White)));
+				XMFLOAT4(Colors::Gray), XMFLOAT3(0.f, 1.f, 0.f)));
 		}
 	}
 
@@ -60,14 +60,14 @@ void PlaneMesh::CreateMesh(MeshRenderData& MeshData, float height, float width, 
 		{
 			////我们绘制的是四边形
 			////三角形1
-			//MeshData.IndexData.push_back( i * widthSub + j);
-			//MeshData.IndexData.push_back( i * widthSub + j + 1);
-			//MeshData.IndexData.push_back( (i + 1) * widthSub + j);
+			//MeshData.IndexData.push_back( i * InWidthSubdivide + j);
+			//MeshData.IndexData.push_back( i * InWidthSubdivide + j + 1);
+			//MeshData.IndexData.push_back( (i + 1) * InWidthSubdivide + j);
 
 			////三角形2
-			//MeshData.IndexData.push_back( (i + 1) * widthSub + j);
-			//MeshData.IndexData.push_back( i * widthSub + j + 1);
-			//MeshData.IndexData.push_back( (i + 1) * widthSub + j + 1);
+			//MeshData.IndexData.push_back( (i + 1) * InWidthSubdivide + j);
+			//MeshData.IndexData.push_back( i * InWidthSubdivide + j + 1);
+			//MeshData.IndexData.push_back( (i + 1) * InWidthSubdivide + j + 1);
 
 			//我们绘制的是四边形
 			//三角形1

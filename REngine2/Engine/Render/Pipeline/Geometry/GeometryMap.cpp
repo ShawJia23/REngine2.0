@@ -4,6 +4,7 @@
 #include"../../Buffer/ConstructBuffer.h"
 #include"../../../Mesh/Base/Mesh.h"
 #include"../../../Mesh/Materials/MaterialConstantBuffer.h"
+#include"../../../Component/Light/LightConstantBuffer.h"
 RGeometryMap::RGeometryMap()
 :m_WorldMatrix(RMath::IdentityMatrix4x4())
 , IndexSize(0)
@@ -18,25 +19,42 @@ void RGeometryMap::Init()
 
 void RGeometryMap::BuildDescriptorHeap()
 {
-	m_DescriptorHeap.Build(GetDrawObjectNumber()+ GetMaterialsNumber() + 1);
+	m_DescriptorHeap.Build(GetMeshNumber() + GetMaterialsNumber() + GetLightsNumber() + 1);
 }
 
-void RGeometryMap::BuildMeshConstantBuffer()
+void RGeometryMap::BuildConstantBufferView()
 {
-	m_ObjectConstantBufferView.CreateConstant(sizeof(RObjectTransformation), GetDrawObjectNumber());
+	BuildMeshConstantBufferView();
+	BuildMaterialsConstantBufferView();
+	BuildLightsConstantBufferView();
+	BuildViewportConstantBufferView();
+}
+
+void RGeometryMap::BuildMeshConstantBufferView()
+{
+	m_ObjectConstantBufferView.CreateConstant(sizeof(RObjectTransformation), GetMeshNumber());
 
 	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
 
-	m_ObjectConstantBufferView.BuildConstantBuffer(DesHandle, GetDrawObjectNumber());
+	m_ObjectConstantBufferView.BuildConstantBuffer(DesHandle, GetMeshNumber());
 }
 
-void RGeometryMap::BuildMaterialsConstantBuffer() 
+void RGeometryMap::BuildMaterialsConstantBufferView()
 {
 	m_MaterialsBufferView.CreateConstant(sizeof(RMaterialConstantBuffer), GetMaterialsNumber());
 
 	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
 
-	m_MaterialsBufferView.BuildConstantBuffer(DesHandle, GetMaterialsNumber(), GetDrawObjectNumber());
+	m_MaterialsBufferView.BuildConstantBuffer(DesHandle, GetMaterialsNumber(), GetMeshNumber());
+}
+
+void RGeometryMap::BuildLightsConstantBufferView()
+{
+	m_LightsBufferView.CreateConstant(sizeof(RLightConstantBuffer), 1);
+
+	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
+
+	m_LightsBufferView.BuildConstantBuffer(DesHandle, GetLightsNumber(), GetMeshNumber() + GetMaterialsNumber());
 }
 
 void RGeometryMap::BuildViewportConstantBufferView()
@@ -45,10 +63,11 @@ void RGeometryMap::BuildViewportConstantBufferView()
 
 	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
 
-	m_ViewportConstantBufferView.BuildConstantBuffer(DesHandle, 1, GetDrawObjectNumber()+ GetMaterialsNumber());
+	m_ViewportConstantBufferView.BuildConstantBuffer(DesHandle, 1, GetMeshNumber()+ GetMaterialsNumber()+GetLightsNumber());
 }
 
-UINT RGeometryMap::GetDrawObjectNumber()
+
+UINT RGeometryMap::GetMeshNumber()
 {
 	return m_Geometrys[0].GetDrawObjectNumber();
 }
@@ -66,12 +85,36 @@ UINT RGeometryMap::GetMaterialsNumber()
 	return pMatereials;
 }
 
+UINT RGeometryMap::GetLightsNumber()
+{
+	return 1;
+}
+
+
+
+void RGeometryMap::Draw() 
+{
+	DrawViewport();
+	DrawLights();
+	DrawMesh();
+}
+
+void RGeometryMap::DrawLights()
+{
+	m_DescriptorHeap.SetDescriptorHeap();
+
+	auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
+	DesHandle.Offset(GetMeshNumber() + GetMaterialsNumber() , m_DescriptorOffset);
+
+	GetCommandList()->SetGraphicsRootDescriptorTable(3, DesHandle);
+}
+
 void RGeometryMap::DrawViewport()
 {
 	m_DescriptorHeap.SetDescriptorHeap();
 
 	auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
-	DesHandle.Offset(GetDrawObjectNumber()+GetMaterialsNumber(), m_DescriptorOffset);
+	DesHandle.Offset(GetMeshNumber()+GetMaterialsNumber()+GetLightsNumber(), m_DescriptorOffset);
 
 	GetCommandList()->SetGraphicsRootDescriptorTable(1, DesHandle);
 }
@@ -101,7 +144,7 @@ void RGeometryMap::DrawMesh()
 			GetCommandList()->SetGraphicsRootDescriptorTable(0, DesMeshHandle);
 			
 			auto DesMaterialHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
-			DesMaterialHandle.Offset(i+GetDrawObjectNumber(), m_DescriptorOffset);
+			DesMaterialHandle.Offset(i+GetMeshNumber(), m_DescriptorOffset);
 			GetCommandList()->SetGraphicsRootDescriptorTable(2, DesMaterialHandle);
 
 
@@ -114,9 +157,7 @@ void RGeometryMap::DrawMesh()
 				pRenderData.VertexOffsetPosition,//GPU 从索引缓冲区读取的第一个索引的位置。
 				0);//在从顶点缓冲区读取每个实例数据之前添加到每个索引的值。
 		}
-	}
-
-
+	} 
 }
 
 void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
@@ -152,8 +193,22 @@ void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 			RObjectTransformation ObjectTransformation;
 			XMStoreFloat4x4(&ObjectTransformation.World, XMMatrixTranspose(ATRIXWorld));
 			m_ObjectConstantBufferView.Update(i, &ObjectTransformation);
+
+			RMaterialConstantBuffer MaterialConstantBuffer;
+			{
+
+			}
+			m_MaterialsBufferView.Update(i, &MaterialConstantBuffer);
+
 		}
 	}
+
+	RLightConstantBuffer LightConstantBuffer;
+	{
+
+	}
+	m_LightsBufferView.Update(0, &LightConstantBuffer);
+
 
 	//更新视口
 	XMMATRIX ViewProject = XMMatrixMultiply(ViewMatrix, ProjectMatrix);

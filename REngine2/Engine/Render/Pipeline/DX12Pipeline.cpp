@@ -24,9 +24,7 @@ void DX12Pipeline::BuildPipeline()
 
     m_GeometryMap.BuildDescriptorHeap();
 
-    m_GeometryMap.BuildMeshConstantBuffer();
-    m_GeometryMap.BuildMaterialsConstantBuffer();
-    m_GeometryMap.BuildViewportConstantBufferView();
+    m_GeometryMap.BuildConstantBufferView();
 
     m_PipelineState.ResetGPSDesc();
 
@@ -57,9 +55,7 @@ void DX12Pipeline::Draw()
 {
     SetRootSignature();
 
-    m_GeometryMap.DrawViewport();
-
-    m_GeometryMap.DrawMesh();
+    m_GeometryMap.Draw();
 
     m_PipelineState.CaptureKeyboardKeys();
 }

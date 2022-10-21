@@ -3,6 +3,4 @@
 
 class RMaterial :public RMinimalObject
 {
-public:
-	RMaterial();
 };

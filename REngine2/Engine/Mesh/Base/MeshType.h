@@ -4,7 +4,8 @@
 
 struct RVertex
 {
-	RVertex(const XMFLOAT3& InPos, const XMFLOAT4& InColor);
+	RVertex(const XMFLOAT3& pos, const XMFLOAT4& color);
+	RVertex(const XMFLOAT3& pos, const XMFLOAT4& color,const XMFLOAT3& normal);
 
 	XMFLOAT3 Position;
 	XMFLOAT4 Color;

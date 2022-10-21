@@ -41,13 +41,16 @@ public:
 	
 	void Init();
 
+	void Draw();
+	void DrawLights();
 	void DrawViewport();
 	void DrawMesh();
 
-	void BuildMeshConstantBuffer();
+	void BuildConstantBufferView();
+	void BuildMeshConstantBufferView();
 	void BuildViewportConstantBufferView();
-	void BuildMaterialsConstantBuffer();
-
+	void BuildMaterialsConstantBufferView();
+	void BuildLightsConstantBufferView();
 	void BuildDescriptorHeap();
 
 	void BuildMesh(const MeshRenderData* renderingData);
@@ -63,7 +66,8 @@ public:
 	void BuildMesh(BMesh* mesh, const MeshRenderData& meshData);
 
 	UINT GetMaterialsNumber();
-	UINT GetDrawObjectNumber();
+	UINT GetMeshNumber();
+	UINT GetLightsNumber();
 private:
 	map<int, RGeometry> m_Geometrys;
 
@@ -71,6 +75,7 @@ private:
 	RConstantBufferView m_ObjectConstantBufferView;
 	RConstantBufferView m_ViewportConstantBufferView;
 	RConstantBufferView m_MaterialsBufferView;
+	RConstantBufferView m_LightsBufferView;
 
 	XMFLOAT4X4 m_WorldMatrix;
 

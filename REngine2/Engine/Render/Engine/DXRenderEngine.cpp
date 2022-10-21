@@ -54,24 +54,17 @@ int DXRenderEngine::PostInit()
 	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
 		//¹¹½¨Mesh
-		BMesh* pMesh=m_meshManage->CreateBoxMesh(4.f, 4.f, 1.5f);
-		if (pMesh) 
-		{
-			pMesh->SetPosition(XMFLOAT3(4, 2, 0));
-		}
-		pMesh=m_meshManage->CreateSphereMesh(2.f, 50, 50);
+		BMesh* pMesh=m_meshManage->CreatePlaneMesh(4.f, 3.f, 20, 20);
 		if(pMesh)
 		{
-			pMesh->SetPosition(XMFLOAT3(-3.f, 2, 0.f));
-			pMesh->SetScale(fvector_3d(3.f, 3.f, 3.f));
+			pMesh->SetPosition(XMFLOAT3(0.f, -2.f, 0.f));
+			pMesh->SetScale(fvector_3d(6.f, 6.f, 6.f));
 		}
-		pMesh = m_meshManage->CreatePlaneMesh(4.f, 3.f, 20, 20);
+		pMesh = m_meshManage->CreateSphereMesh(2.f, 20, 20);
 		if (pMesh)
 		{
-			pMesh->SetPosition(XMFLOAT3(0.f, -2.f, 0.f));
-			pMesh->SetScale(fvector_3d(10.f, 10.f, 10.f));
+			pMesh->SetPosition(XMFLOAT3(0.f, 2, 0.f));
 		}
-
 	}
 	m_meshManage->BuildPipeline();
 
