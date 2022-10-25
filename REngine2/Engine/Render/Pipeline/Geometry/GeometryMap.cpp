@@ -196,6 +196,16 @@ void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 
 			RMaterialConstantBuffer MaterialConstantBuffer;
 			{
+				if (RMaterial* material = (*pRenderData.Mesh->GetMaterials())[0]) 
+				{
+					//BaseColor
+					fvector_4d pBaseColor = material->GetBaseColor();
+					MaterialConstantBuffer.BaseColor = XMFLOAT4(pBaseColor.x, pBaseColor.y, pBaseColor.z, pBaseColor.w);
+
+					//ÀàÐÍÊäÈë
+					MaterialConstantBuffer.MaterialType = material->GetMaterialType();
+					MaterialConstantBuffer.Roughness = material->GetRoughness();
+				}
 
 			}
 			m_MaterialsBufferView.Update(i, &MaterialConstantBuffer);
@@ -214,6 +224,7 @@ void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 	XMMATRIX ViewProject = XMMatrixMultiply(ViewMatrix, ProjectMatrix);
 	ViewportTransformation ViewportTransformation;
 	XMStoreFloat4x4(&ViewportTransformation.ViewProjectionMatrix, XMMatrixTranspose(ViewProject));
+	ViewportTransformation.ViewportPosition = viewportInfo.ViewportPosition;
 
 	m_ViewportConstantBufferView.Update(0, &ViewportTransformation);
 }

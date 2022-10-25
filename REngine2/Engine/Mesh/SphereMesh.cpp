@@ -27,7 +27,7 @@ void SphereMesh::CreateMesh(MeshRenderData& MeshData, float radius, uint32_t axi
 	float BetaValue = XM_PI / axialSub;
 
 	MeshData.VertexData.push_back(RVertex(
-		XMFLOAT3(0.f, radius, 0.f), XMFLOAT4(Colors::Red)));
+		XMFLOAT3(0.f, radius, 0.f), XMFLOAT4(Colors::Red),XMFLOAT3(0.f, 1.0f, 0.f)));
 
 	for (uint32_t i = 1; i < axialSub; ++i)
 	{
@@ -53,7 +53,8 @@ void SphereMesh::CreateMesh(MeshRenderData& MeshData, float radius, uint32_t axi
 	}
 
 	MeshData.VertexData.push_back(RVertex(
-		XMFLOAT3(0.f, -radius, 0.f), XMFLOAT4(Colors::Red)));
+		XMFLOAT3(0.f, -radius, 0.f), XMFLOAT4(Colors::Red), 
+		XMFLOAT3(0.f, -1.0f, 0.f)));
 
 	//»æÖÆ±±¼«
 	for (uint32_t Index = 0; Index <=axialSub; ++Index)

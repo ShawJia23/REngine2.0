@@ -563,5 +563,8 @@
     <ClInclude Include="Engine\Render\Pipeline\DX12PipelineType.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Mesh\Materials\MaterialType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

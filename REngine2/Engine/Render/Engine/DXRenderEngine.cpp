@@ -64,6 +64,33 @@ int DXRenderEngine::PostInit()
 		if (pMesh)
 		{
 			pMesh->SetPosition(XMFLOAT3(0.f, 2, 0.f));
+			if (RMaterial* pMaterial = (*pMesh->GetMaterials())[0]) 
+			{
+				pMaterial->SetBaseColor(fvector_4d(0.5f, 0.6f, 0.f, 1.f));
+				pMaterial->SetMaterialType(EMaterialType::Lambert);
+			}
+		}
+		pMesh = m_meshManage->CreateSphereMesh(2.f, 20, 20);
+		if (pMesh)
+		{
+			pMesh->SetPosition(XMFLOAT3(4.f, 2, 0.f));
+			if (RMaterial* pMaterial = (*pMesh->GetMaterials())[0])
+			{
+				pMaterial->SetBaseColor(fvector_4d(0.5f, 0.2f, 0.6f, 1.f));
+				pMaterial->SetMaterialType(EMaterialType::HalfLambert);
+			}
+		}
+		pMesh = m_meshManage->CreateSphereMesh(2.f, 20, 20);
+		if (pMesh)
+		{
+			pMesh->SetPosition(XMFLOAT3(8.f, 2, 0.f));
+			if (RMaterial* pMaterial = (*pMesh->GetMaterials())[0])
+			{
+				pMaterial->SetBaseColor(fvector_4d(0.5f, 0.2f, 0.6f, 1.f));
+				pMaterial->SetMaterialType(EMaterialType::Phong);
+
+				pMaterial->SetRoughness(0.8f);
+			}
 		}
 	}
 	m_meshManage->BuildPipeline();

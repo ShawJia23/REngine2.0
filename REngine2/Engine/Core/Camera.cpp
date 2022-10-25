@@ -12,6 +12,7 @@ RCamera::RCamera():GActorObject()
 	m_cameraType = CameraType::CameraRoaming;
 
 	m_mouseSensitivity = 0.05f;
+	m_KeyBoardSensitivity = 0.05f;
 }
 
 void RCamera::Init()
@@ -173,7 +174,7 @@ void RCamera::MoveForward(float InValue)
 		XMFLOAT3 AT3Position = GetTransformationComponent()->GetPosition();
 		XMFLOAT3 AT3ForwardVector = GetTransformationComponent()->GetForwardVector();
 
-		XMVECTOR AmountMovement = XMVectorReplicate(InValue * 1.f);
+		XMVECTOR AmountMovement = XMVectorReplicate(InValue * m_KeyBoardSensitivity);
 		XMVECTOR Forward = XMLoadFloat3(&AT3ForwardVector);
 		XMVECTOR Position = XMLoadFloat3(&AT3Position);
 		
@@ -189,7 +190,7 @@ void RCamera::MoveRight(float InValue)
 		XMFLOAT3 AT3Position = GetTransformationComponent()->GetPosition();
 		XMFLOAT3 AT3RightVector = GetTransformationComponent()->GetRightVector();
 
-		XMVECTOR AmountMovement = XMVectorReplicate(InValue * 1.f);
+		XMVECTOR AmountMovement = XMVectorReplicate(InValue * m_KeyBoardSensitivity);
 		XMVECTOR Right = XMLoadFloat3(&AT3RightVector);
 		XMVECTOR Position = XMLoadFloat3(&AT3Position);
 

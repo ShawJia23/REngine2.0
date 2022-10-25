@@ -71,9 +71,11 @@ void RWindowsEngine::Tick(float DeltaTime)
 			Temp->Tick(DeltaTime);
 	}
 
-	if (m_world) 
+	if (m_world && m_world->GetCamera())
 	{
 		ViewportInfo pViewportInfo;
+		XMFLOAT3 pViewPosition = m_world->GetCamera()->GetPosition();
+		pViewportInfo.ViewportPosition = XMFLOAT4(pViewPosition.x, pViewPosition.y, pViewPosition.z, 1.f);
 		pViewportInfo.ProjectMatrix= m_world->GetCamera()->GetProjectMatrix();
 		pViewportInfo.ViewMatrix = m_world->GetCamera()->GetViewMatrix();
 		m_renderEngine->UpdateCalculations(DeltaTime, pViewportInfo);

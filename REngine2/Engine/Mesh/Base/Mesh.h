@@ -22,4 +22,6 @@ public:
 	virtual void PostDraw(float DeltaTime);
 
 	UINT GetMaterialsNum() { return m_Materials.size(); }
+
+	vector<RMaterial*>* GetMaterials() { return &m_Materials; }
 };

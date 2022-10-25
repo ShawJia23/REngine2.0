@@ -239,6 +239,7 @@
     <ClInclude Include="Engine\EngineMinimal.h" />
     <ClInclude Include="Engine\Mesh\Materials\Material.h" />
     <ClInclude Include="Engine\Mesh\Materials\MaterialConstantBuffer.h" />
+    <ClInclude Include="Engine\Mesh\Materials\MaterialType.h" />
     <ClInclude Include="Engine\Render\Engine\DXRenderEngine.h" />
     <ClInclude Include="Engine\Render\Engine\RenderEngine.h" />
     <ClInclude Include="Engine\Interface\DXDeviceInterface.h" />

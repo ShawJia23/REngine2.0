@@ -2,6 +2,7 @@
 #include"../Engine.h"
 struct ViewportInfo
 {
+	XMFLOAT4 ViewportPosition;
 	//定义摄像机位置,UP，Right,Look
 	XMFLOAT4X4 ViewMatrix;
 
