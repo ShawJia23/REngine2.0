@@ -1,44 +1,5 @@
-﻿  SphereMesh.cpp
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(68,24): warning C4244: “初始化”: 从“uint32_t”转换到“float”，可能丢失数据
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(76,65): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(77,69): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(78,71): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(80,71): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(81,69): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(82,75): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(92,42): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(93,50): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
+﻿  DXRenderEngine.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(570,62): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(571,63): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
   REngine2.vcxproj -> E:\ademo\REngine2.0\Debug\REngine2.exe

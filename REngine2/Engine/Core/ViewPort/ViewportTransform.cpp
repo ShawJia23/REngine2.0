@@ -1,7 +1,8 @@
 #include"ViewportTransform.h"
 #include"../../Math/RMath.h"
 ViewportTransformation::ViewportTransformation()
-    :ViewProjectionMatrix(RMath::IdentityMatrix4x4())
+    :ViewportPosition(0.f, 0.f, 0.f, 1.f)
+    ,ViewProjectionMatrix(RMath::IdentityMatrix4x4())
 {
 
 }

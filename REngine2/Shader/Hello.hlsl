@@ -15,10 +15,11 @@ cbuffer MaterialConstBuffer : register(b2)
 {
 	int MaterialType;
 
-	float MaterialRoughness;
 	float4 BaseColor;
+	float MaterialRoughness;
 	float4x4 TransformInformation;
 }
+
 
 cbuffer LightConstBuffer : register(b3)
 {
@@ -56,55 +57,100 @@ MeshVertexOut VertexShaderMain(MeshVertexIn MV)
 	return Out;
 }
 
-// 石里克近似来逼近菲涅尔的效果 (see pg. 233 "Real-Time Rendering 3rd Ed.").
-// R0 = ( (n-1)/(n+1) )^2, where n is the index of refraction.
-float3 SchlickFresnel(float3 R0, float3 normal, float3 lightVec)
-{
-	float cosIncidentAngle = saturate(dot(normal, lightVec));
-
-	float f0 = 1.0f - cosIncidentAngle;
-	float3 reflectPercent = R0 + (1.0f - R0) * (f0 * f0 * f0 * f0 * f0);
-
-	return reflectPercent;
-}
-
 float4 PixelShaderMain(MeshVertexOut MVOut) :SV_TARGET
 {
-	float3  LightDir = normalize(-LightDirection);
+	float3 LightDir = normalize(-LightDirection);
 	float3 Normal = normalize(MVOut.Normal);
 
 	float4 AmbientLight = { 0.15f, 0.15f, 0.25f,1.0f };
 	float4 Specular = { 0.0f, 0.0f, 0.0f,1.0f};
+	float3 ViewDir = normalize(ViewportPosition.rgb - MVOut.WorldPosition.rgb);
 
 	RMaterial Material;
 	Material.BaseColor = BaseColor;
 
-	float Diffuse = dot(Normal, LightDir);
+	//Lambert
+	float Diffuse = saturate(dot(Normal, LightDir));
 	
 	if (MaterialType == 0) 
 	{
 		//Lambert
-		Diffuse = max(Diffuse, 0.f);
 	}
 	else if (MaterialType == 1) 
 	{
 		//HalfLambert
-		Diffuse = max(Diffuse *0.5+0.5, 0.f);
+		Diffuse = saturate(Diffuse *0.5+0.5);
 	}
 	else if (MaterialType == 2)
 	{
 		//Phong
-		Diffuse = max(Diffuse * 0.5 + 0.5, 0.f);
-
-		float3 ViewDirection = normalize(ViewportPosition.rgb-MVOut.WorldPosition.rgb);
-		float3 halfVec = normalize(ViewDirection + LightDir);
-
+		Diffuse = saturate(Diffuse * 0.5 + 0.5);
 		float MaterialShininess = 1.f - saturate(MaterialRoughness);
-		float M = MaterialShininess * 256.f;
+		float M = MaterialShininess * 100.f;
 
-		Specular.rgb = pow(max(dot(halfVec, Normal), 0.0f), M);
+		float3 ReflectDir = normalize(-reflect(LightDir, Normal));
 
-		Specular = Specular / (Specular + 1.0f);
+		Specular.rgb= (M+2.0)*pow(max(dot(ReflectDir, ViewDir), 0.0f), M)/3.1415926;
+	}
+	else if (MaterialType == 3)
+	{
+		//BlinnPhong
+		Diffuse = saturate(Diffuse * 0.5 + 0.5);
+		float MaterialShininess = 1.f - saturate(MaterialRoughness);
+		float M = MaterialShininess * 100.f;
+
+		float3 HalfDir = normalize(ViewDir + LightDir);
+
+		Specular.rgb = (M + 2.0) * pow(max(dot(HalfDir, Normal), 0.0f), M) / 3.1415926;
+	}
+	else if (MaterialType == 4)
+	{
+		//Wrap Light
+		float Wrap = 1.5;
+		Diffuse = saturate((Diffuse * Wrap) /(1+ Wrap));
+	}
+	else if (MaterialType == 5)
+	{
+		//Minnaert
+		float DotView = saturate(dot(Normal, ViewDir));
+		float R = 2;
+		Diffuse = saturate(Diffuse * pow(Diffuse * DotView, R));
+	}
+	else if (MaterialType == 6)
+	{
+		//Banded
+		Diffuse = (1.0f + dot(Normal, LightDir)) * 0.5f;
+		float Layer = 4;
+		Diffuse = floor(Diffuse* Layer)/ Layer;
+	}
+	else if (MaterialType == 7)
+	{
+		//GradualBanded
+		float4 Color2 = { 0.3f, 0.3f, 0.6f,1.0f };
+		float LightDotValue = dot(Normal, LightDir);
+		//halflambert
+		Diffuse = (1.0f + LightDotValue) * 0.5f;
+		float Layer = 4;
+		Diffuse = floor(Diffuse * Layer) / Layer;
+		lerp(Material.BaseColor, Color2, LightDotValue);
+	}
+	else if (MaterialType == 8)
+	{
+		//FinalBanded
+		float3 HalfDir = normalize(ViewDir + LightDir);
+		float MaterialShininess = 1.f - saturate(MaterialRoughness);
+		float M = MaterialShininess * 100.f;
+
+		float3 fresnel0= { 0.05f, 0.05f,0.05f};
+		Specular.rgb = SchlickFresnel(fresnel0, Normal, ViewDir, 3) + pow(max(dot(HalfDir, Normal), 0.0f), M)/0.032f ;
+
+		float4 Color2 = { 0.3f, 0.3f, 0.6f,1.0f };
+		float LightDotValue = dot(Normal, LightDir);
+		//halflambert
+		Diffuse = (1.0f + LightDotValue) * 0.5f;
+		float Layer = 4;
+		Diffuse = floor(Diffuse * Layer) / Layer;
+		lerp(Material.BaseColor, Color2, LightDotValue);
 	}
 
 

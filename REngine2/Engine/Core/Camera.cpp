@@ -11,7 +11,7 @@ RCamera::RCamera():GActorObject()
 
 	m_cameraType = CameraType::CameraRoaming;
 
-	m_mouseSensitivity = 0.05f;
+	m_mouseSensitivity = 0.25f;
 	m_KeyBoardSensitivity = 0.05f;
 }
 
@@ -207,12 +207,12 @@ void RCamera::RotateAroundXAxis(float InRotateDegrees)
 	XMFLOAT3 ForwardVector = GetTransformationComponent()->GetForwardVector();
 
 	//拿到关于Y的旋转矩阵
-	XMMATRIX RotationY = XMMatrixRotationAxis(XMLoadFloat3(&GetTransformationComponent()->GetRightVector()), InRotateDegrees);
+	XMMATRIX RotationX = XMMatrixRotationAxis(XMLoadFloat3(&GetTransformationComponent()->GetRightVector()), InRotateDegrees);
 
 	//计算各个方向和按照Z轴旋转后的最终效果
 	//XMStoreFloat3(&TransformationComponent->GetRightVector(), XMVector3TransformNormal(XMLoadFloat3(&RightVector), RotationY));
-	XMStoreFloat3(&GetTransformationComponent()->GetUPVector(), XMVector3TransformNormal(XMLoadFloat3(&UPVector), RotationY));
-	XMStoreFloat3(&GetTransformationComponent()->GetForwardVector(), XMVector3TransformNormal(XMLoadFloat3(&ForwardVector), RotationY));
+	XMStoreFloat3(&GetTransformationComponent()->GetUPVector(), XMVector3TransformNormal(XMLoadFloat3(&UPVector), RotationX));
+	XMStoreFloat3(&GetTransformationComponent()->GetForwardVector(), XMVector3TransformNormal(XMLoadFloat3(&ForwardVector), RotationX));
 }
 
 void RCamera::RotateAroundYAxis(float InRotateDegrees)
@@ -223,10 +223,10 @@ void RCamera::RotateAroundYAxis(float InRotateDegrees)
 	XMFLOAT3 ForwardVector = GetTransformationComponent()->GetForwardVector();
 
 	//拿到关于Z的旋转矩阵
-	XMMATRIX RotationZ = XMMatrixRotationY(InRotateDegrees);
+	XMMATRIX RotationY = XMMatrixRotationY(InRotateDegrees);
 
 	//计算各个方向和按照Z轴旋转后的最终效果
-	XMStoreFloat3(&GetTransformationComponent()->GetRightVector(), XMVector3TransformNormal(XMLoadFloat3(&RightVector), RotationZ));
-	XMStoreFloat3(&GetTransformationComponent()->GetUPVector(), XMVector3TransformNormal(XMLoadFloat3(&UPVector), RotationZ));
-	XMStoreFloat3(&GetTransformationComponent()->GetForwardVector(), XMVector3TransformNormal(XMLoadFloat3(&ForwardVector), RotationZ));
+	XMStoreFloat3(&GetTransformationComponent()->GetRightVector(), XMVector3TransformNormal(XMLoadFloat3(&RightVector), RotationY));
+	XMStoreFloat3(&GetTransformationComponent()->GetUPVector(), XMVector3TransformNormal(XMLoadFloat3(&UPVector), RotationY));
+	XMStoreFloat3(&GetTransformationComponent()->GetForwardVector(), XMVector3TransformNormal(XMLoadFloat3(&ForwardVector), RotationY));
 }

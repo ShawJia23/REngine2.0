@@ -7,4 +7,3 @@ struct RLightConstantBuffer
 	XMFLOAT3 LightIntensity;
 	XMFLOAT3 LightDirection;
 };
-

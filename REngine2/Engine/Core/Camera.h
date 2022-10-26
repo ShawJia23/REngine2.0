@@ -13,6 +13,9 @@ class RCamera :public GActorObject, public RViewport ,public IDirectXDeviceInter
 	RVARIABLE()
 	RInputComponent* m_rInputComponent;
 public:
+	RCamera();
+	FORCEINLINE RInputComponent* GetInputComponent() { return m_rInputComponent; }
+public:
 	virtual void Init();
 	virtual void Tick(float DeltaTime);
 	virtual void ExecuteKeyboard(const RInputKey& inputKey);
@@ -41,7 +44,5 @@ protected:
 	float Radius;
 	float A;//Theta
 	float B;//
-public:
-	RCamera();
-	FORCEINLINE RInputComponent* GetInputComponent() { return m_rInputComponent; }
+
 };
