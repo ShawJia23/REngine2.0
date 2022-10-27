@@ -161,18 +161,8 @@ int DXRenderEngine::PostInit()
 			pMesh->SetPosition(XMFLOAT3(0.f, 10, 0.f));
 			if (RMaterial* pMaterial = (*pMesh->GetMaterials())[0])
 			{
-				pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-				pMaterial->SetMaterialType(EMaterialType::GradualBanded);
-			}
-		}
-		pMesh = m_meshManage->CreateSphereMesh(2.f, 50, 50);
-		if (pMesh)
-		{
-			pMesh->SetPosition(XMFLOAT3(-4.f, 10, 0.f));
-			if (RMaterial* pMaterial = (*pMesh->GetMaterials())[0])
-			{
-				pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-				pMaterial->SetMaterialType(EMaterialType::GradualBanded);
+				pMaterial->SetBaseColor(fvector_4d(0.2f, 0.8f, 0.3f, 1.f));
+				pMaterial->SetMaterialType(EMaterialType::Back);
 			}
 		}
 		pMesh = m_meshManage->CreateSphereMesh(2.f, 50, 50);
@@ -182,7 +172,17 @@ int DXRenderEngine::PostInit()
 			if (RMaterial* pMaterial = (*pMesh->GetMaterials())[0])
 			{
 				pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-				pMaterial->SetMaterialType(EMaterialType::GradualBanded);
+				pMaterial->SetMaterialType(EMaterialType::OrenNayar);
+			}
+		}
+		pMesh = m_meshManage->CreateSphereMesh(2.f, 100, 100);
+		if (pMesh)
+		{
+			pMesh->SetPosition(XMFLOAT3(-4.f, 10, 0.f));
+			if (RMaterial* pMaterial = (*pMesh->GetMaterials())[0])
+			{
+				pMaterial->SetBaseColor(fvector_4d(1.f));
+				pMaterial->SetMaterialType(EMaterialType::PBR);
 			}
 		}
 	}

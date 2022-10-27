@@ -10,5 +10,9 @@ enum EMaterialType
 	Banded = 6,
 	GradualBanded = 7,
 	FinalBanded = 8,
+	Back = 9,
+	AnisotropKajiya=10,
+	OrenNayar=11,
+	PBR =12,
 	Max,
 };

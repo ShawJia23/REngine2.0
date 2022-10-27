@@ -46,9 +46,17 @@ void SphereMesh::CreateMesh(MeshRenderData& MeshData, float radius, uint32_t axi
 				XMFLOAT4(Colors::White)));
 
 			int TopIndex = MeshData.VertexData.size() - 1;
+			auto& pVertex = MeshData.VertexData[TopIndex];
+			XMVECTOR Pos = XMLoadFloat3(&pVertex.Position);
+			XMStoreFloat3(&pVertex.Normal, XMVector3Normalize(Pos));
 
-			XMVECTOR Pos = XMLoadFloat3(&MeshData.VertexData[TopIndex].Position);
-			XMStoreFloat3(&MeshData.VertexData[TopIndex].Normal, XMVector3Normalize(Pos));
+
+			pVertex.UTangent.x = -radius * sinf(Beta) * sinf(Theta);
+			pVertex.UTangent.y = 0;
+			pVertex.UTangent.z = -radius * sinf(Beta) * cosf(Theta);
+
+			XMVECTOR UTangent = XMLoadFloat3(&pVertex.UTangent);
+			XMStoreFloat3(&pVertex.UTangent, XMVector3Normalize(UTangent));
 		}
 	}
 
