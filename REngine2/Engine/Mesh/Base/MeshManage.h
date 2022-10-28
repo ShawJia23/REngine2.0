@@ -7,6 +7,7 @@
 #include"../../EngineMinimal.h"
 #include"../../Render/Pipeline/DX12Pipeline.h"
 
+class RMeshComponent;
 class RMeshManage :public RMinimalObject, public IRenderingInterface,public IDirectXDeviceInterface
 {
 public:
@@ -23,31 +24,31 @@ public:
 	virtual void PostDraw(float DeltaTime);
 
 public:
-	BMesh* CreateBoxMesh(
+	RMeshComponent* CreateBoxMeshComponent(
 		float InHeight,
 		float InWidth,
 		float InDepth);
 
-	BMesh* CreateConeMesh(
+	RMeshComponent* CreateConeMeshComponent(
 		float InRadius,
 		float InHeight,
 		uint32_t InAxialSubdivision,
 		uint32_t InHeightSubdivision);
 
-	BMesh* CreateCylinderMesh(
+	RMeshComponent* CreateCylinderMeshComponent(
 		float InTopRadius,
 		float InBottomRadius,
 		float InHeight,
 		uint32_t InAxialSubdivision,
 		uint32_t InHeightSubdivision);
 
-	BMesh* CreatePlaneMesh(
+	RMeshComponent* CreatePlaneMeshComponent(
 		float InHeight,
 		float InWidth,
 		uint32_t InHeightSubdivide,
 		uint32_t InWidthSubdivide);
 
-	BMesh* CreateSphereMesh(
+	RMeshComponent* CreateSphereMeshComponent(
 		float InRadius,
 		uint32_t InAxialSubdivision,
 		uint32_t InHeightSubdivision);
@@ -55,7 +56,7 @@ public:
 
 protected:
 	template<class T, typename ...ParamTypes>
-	T* CreateMesh(ParamTypes &&...Params);
+	T* CreateMeshComponent(ParamTypes &&...Params);
 
 protected:
 

@@ -1,7 +1,7 @@
 #pragma once
 #include"../../../Interface/DXDeviceInterface.h"
 
-class BMesh;
+class RMeshComponent;
 
 struct RRenderData :public IDirectXDeviceInterface_Struct
 {
@@ -25,5 +25,5 @@ public:
 
 	XMFLOAT4X4 WorldMatrix;
 
-	BMesh* Mesh;//key
+	RMeshComponent* Mesh;//key
 };

@@ -1,5 +1,7 @@
 #include "DXDeviceInterface.h"
 #include "../Platform/Windows/WindowsEngine.h"
+#include"../Mesh/Base/MeshManage.h"
+#include"../Core/World.h"
 
 ComPtr<ID3D12Fence> IDirectXDeviceInterface::GetFence()
 {
@@ -92,6 +94,21 @@ HWND IDirectXDeviceInterface::GetMianWindowsHandle()
 	return HWND();
 }
 
+RMeshManage* IDirectXDeviceInterface::GetMeshManage()
+{
+	return GetEngine()->GetMeshManage();
+}
+
+RWorld* IDirectXDeviceInterface::GetWorld()
+{
+	if (RWindowsEngine* InEngine = GetEngine())
+	{
+		return InEngine->GetWorld();
+	}
+
+	return NULL;
+}
+
 
 #if defined(_WIN32)
 RWindowsEngine* IDirectXDeviceInterface::GetEngine()
@@ -114,6 +131,16 @@ ComPtr<ID3D12Fence> IDirectXDeviceInterface_Struct::GetFence()
 ComPtr<ID3D12Device> IDirectXDeviceInterface_Struct::GetD3dDevice()
 {
 	return Interfece.GetD3dDevice();
+}
+
+RMeshManage* IDirectXDeviceInterface_Struct::GetMeshManage()
+{
+	return Interfece.GetMeshManage();
+}
+
+RWorld* IDirectXDeviceInterface_Struct::GetWorld()
+{
+	return Interfece.GetWorld();
 }
 
 ComPtr<ID3D12GraphicsCommandList> IDirectXDeviceInterface_Struct::GetCommandList()

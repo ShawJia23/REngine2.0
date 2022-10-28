@@ -5,6 +5,7 @@
 #include"../../Mesh/Base/MeshType.h"
 #include"../../Core/ViewPort/ViewportInfo.h"
 #include"Geometry/GeometryMap.h"
+class RMeshComponent;
 class  DX12Pipeline:IDirectXDeviceInterface
 {
 public:
@@ -17,7 +18,7 @@ public:
 
 	void SetRootSignature();
 
-	void BuildMesh(BMesh* mesh, const MeshRenderData& meshData);
+	void BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData);
 
 	void BuildPipeline();
 

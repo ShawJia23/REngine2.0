@@ -7,7 +7,7 @@ RDXPipelineState::RDXPipelineState()
     m_PSO.insert(pair<int, ComPtr<ID3D12PipelineState>>(1, ComPtr<ID3D12PipelineState>()));
     m_PSO.insert(pair<int, ComPtr<ID3D12PipelineState>>(2, ComPtr<ID3D12PipelineState>()));
 
-    m_PipelineType = RPipeLineType::Wireframe;
+    m_PipelineType = RPipeLineType::Solid;
 }
 
 void RDXPipelineState::ResetGPSDesc()
@@ -64,7 +64,7 @@ void RDXPipelineState::Build()
     ANALYSIS_HRESULT(GetD3dDevice()->CreateGraphicsPipelineState(&m_GPSDesc, IID_PPV_ARGS(&m_PSO[(int)Wireframe])));
         //实体模型注册
     m_GPSDesc.RasterizerState.FillMode = D3D12_FILL_MODE_SOLID;//以实体方式显示
-    ANALYSIS_HRESULT(GetD3dDevice()->CreateGraphicsPipelineState(&m_GPSDesc, IID_PPV_ARGS(&m_PSO[(int)GrayModel])));
+    ANALYSIS_HRESULT(GetD3dDevice()->CreateGraphicsPipelineState(&m_GPSDesc, IID_PPV_ARGS(&m_PSO[(int)Solid])));
 }
 
 
@@ -76,6 +76,6 @@ void RDXPipelineState::CaptureKeyboardKeys()
     }
     else if (GetAsyncKeyState('2') & 0x8000)
     {
-        m_PipelineType = RPipeLineType::GrayModel;
+        m_PipelineType = RPipeLineType::Solid;
     }
 }

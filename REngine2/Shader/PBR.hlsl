@@ -18,17 +18,17 @@ float3 SchlickFresnel(float3 FresnelR0, float3 Normal, float3 ViewVec, int PowM)
 	return FresnelR0 + (1.0f - FresnelR0) * f0;
 }
 
-float3 SchlickGGX(float3 NoV, float Roughness)
-{
-	float K_Dir = pow(Roughness, 2) / 8.0f;
-	
-	return NoV / max(K_Dir + (1 - K_Dir) * NoV, 0.001);
-}
-
-float GSmith(float3 Normal, float3 ViewDir, float3 LightDir, float Roughness) 
-{
-	float NoV = saturate(dot(Normal, ViewDir));
-	float NoL = saturate(dot(Normal, LightDir));
-
-	return SchlickGGX(NoV, Roughness) * SchlickGGX(NoL, Roughness);
-}
+//float SchlickGGX(float3 NoV, float Roughness)
+//{
+//	float K_Dir = pow(Roughness, 2) / 8.0f;
+//	
+//	return NoV / max(K_Dir + (1 - K_Dir) * NoV, 0.001);
+//}
+//
+//float GSmith(float3 Normal, float3 ViewDir, float3 LightDir, float Roughness) 
+//{
+//	float NoV = saturate(dot(Normal, ViewDir));
+//	float NoL = saturate(dot(Normal, LightDir));
+//
+//	return SchlickGGX(NoV, Roughness) * SchlickGGX(NoL, Roughness);
+//}

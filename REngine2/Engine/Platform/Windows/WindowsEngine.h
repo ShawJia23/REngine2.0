@@ -6,6 +6,7 @@
 
 class DXRenderEngine;
 class RWorld;
+class RMeshManage;
 class RWindowsEngine :public REngine
 {
 	friend class IRenderingInterface;
@@ -27,6 +28,10 @@ public:
 	DXRenderEngine* GetRenderEngine() { return m_renderEngine; }
 	HWND GetMainWindowsHandle() { return MianWindowsHandle; }
 	bool InitWindows(WinMainCommandParameters InParameters);
+
+public:
+	RMeshManage* GetMeshManage();
+	RWorld* GetWorld() { return m_world; }
 
 protected:
 	void WaitGPUCommandQueueComplete();

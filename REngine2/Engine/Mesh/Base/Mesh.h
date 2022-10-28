@@ -4,24 +4,35 @@
 #include "../../Render/Render.h"
 #include "../../Shader/Shader.h"
 #include"../../Actor/ActorObject.h"
-#include"../Materials/Material.h"
+#include"../../Interface/DXDeviceInterface.h"
 
-class BMesh : public GActorObject, public IRenderingInterface
+class RMaterial;
+class RMeshComponent;
+class BMesh : public GActorObject, public IRenderingInterface, public IDirectXDeviceInterface
 {
+	typedef GActorObject Super;
+
 	RVARIABLE()
-	vector<RMaterial*>	m_Materials;
+	RMeshComponent* MeshComponent;
 public:
 	BMesh();
 
 	virtual void Init();
 
-	virtual void BuildMesh(const MeshRenderData* InRenderingData);
-
 	virtual void PreDraw(float DeltaTime);
 	virtual void Draw(float DeltaTime);
 	virtual void PostDraw(float DeltaTime);
 
-	UINT GetMaterialsNum() { return m_Materials.size(); }
+	virtual void SetMeshComponent(RMeshComponent* InMeshComponent) { MeshComponent = InMeshComponent; }
 
-	vector<RMaterial*>* GetMaterials() { return &m_Materials; }
+	virtual RMeshComponent* GetMeshComponent() { return MeshComponent; }
+
+	UINT GetMaterialsNum();
+
+	vector<RMaterial*>* GetMaterials();
+
+public:
+	virtual void SetPosition(const XMFLOAT3& InNewPosition);
+	virtual void SetRotation(const fvector_3d& InRotation);
+	virtual void SetScale(const fvector_3d& InNewScale);
 };

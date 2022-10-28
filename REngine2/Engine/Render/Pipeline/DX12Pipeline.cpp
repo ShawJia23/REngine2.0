@@ -1,5 +1,5 @@
 #include"DX12Pipeline.h"
-
+#include"../../Component/Mesh/Core/MeshComponent.h"
 DX12Pipeline::DX12Pipeline()
 {
 }
@@ -13,7 +13,7 @@ void DX12Pipeline::Init()
     m_GeometryMap.Init();
 }
 
-void DX12Pipeline::BuildMesh(BMesh* mesh, const MeshRenderData& meshData)
+void DX12Pipeline::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData)
 {
     m_GeometryMap.BuildMesh(mesh, meshData);
 }

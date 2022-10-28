@@ -1,158 +1,25 @@
-﻿  Mesh.cpp
+﻿  DXRenderEngine.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(542,62): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(543,63): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+  DXDeviceInterface.cpp
   MeshManage.cpp
-  MeshType.cpp
-  ObjectTransformation.cpp
-  BoxMesh.cpp
-  ConeMesh.cpp
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\ConeMesh.cpp(65,24): warning C4244: “初始化”: 从“uint32_t”转换到“float”，可能丢失数据
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\ConeMesh.cpp(73,65): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\ConeMesh.cpp(74,69): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\ConeMesh.cpp(75,71): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\ConeMesh.cpp(77,71): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\ConeMesh.cpp(78,69): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\ConeMesh.cpp(79,75): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\ConeMesh.cpp(89,42): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\ConeMesh.cpp(90,50): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-  CylinderMesh.cpp
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(48,24): warning C4244: “初始化”: 从“uint32_t”转换到“float”，可能丢失数据
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(70,63): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(71,59): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(72,53): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(75,57): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(76,63): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(77,53): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(101,21): warning C4244: “初始化”: 从“unsigned int”转换到“float”，可能丢失数据
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(104,33): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(130,21): warning C4244: “初始化”: 从“unsigned int”转换到“float”，可能丢失数据
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\CylinderMesh.cpp(133,33): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-  Material.cpp
-  PlaneMesh.cpp
-  SphereMesh.cpp
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(76,24): warning C4244: “初始化”: 从“uint32_t”转换到“float”，可能丢失数据
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(84,65): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(85,69): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(86,71): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(88,71): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(89,69): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(90,75): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(100,42): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-E:\ademo\REngine2.0\REngine2\Engine\Mesh\SphereMesh.cpp(101,50): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
-          with
-          [
-              _Ty=uint16_t
-          ]
-  DXRenderEngine.cpp
-E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(570,62): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
-E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(571,63): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+  BaseMesh.cpp
+  WindowsEngine.cpp
   DX12Pipeline.cpp
   GeometryMap.cpp
-E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\Geometry\GeometryMap.cpp(129,21): warning C4018: “<”: 有符号/无符号不匹配
+E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\Geometry\GeometryMap.cpp(131,21): warning C4018: “<”: 有符号/无符号不匹配
   RenderMeshData.cpp
+  Render.cpp
   正在生成代码...
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(173): warning C4715: “RWindowsEngine::InitWindows”: 不是所有的控件路径都返回值
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+    正在创建库 E:\ademo\REngine2.0\Debug\REngine2.lib 和对象 E:\ademo\REngine2.0\Debug\REngine2.exp
   REngine2.vcxproj -> E:\ademo\REngine2.0\Debug\REngine2.exe

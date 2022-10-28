@@ -137,6 +137,9 @@
     <ClCompile Include="Engine\Component\Light\LightComponent.cpp" />
     <ClCompile Include="Engine\Component\Light\LightConstantBuffer.cpp" />
     <ClCompile Include="Engine\Component\Light\ParallelLightComponent.cpp" />
+    <ClCompile Include="Engine\Component\Mesh\BaseMeshComponent.cpp" />
+    <ClCompile Include="Engine\Component\Mesh\Core\MeshComponent.cpp" />
+    <ClCompile Include="Engine\Component\Mesh\Core\StaticMeshComponent.cpp" />
     <ClCompile Include="Engine\Component\RComponent\RComponent.cpp" />
     <ClCompile Include="Engine\Component\TransformComponent.cpp" />
     <ClCompile Include="Engine\Config\RenderConfig.cpp" />
@@ -161,11 +164,7 @@
     <ClCompile Include="Engine\Mesh\Base\MeshManage.cpp" />
     <ClCompile Include="Engine\Mesh\Base\MeshType.cpp" />
     <ClCompile Include="Engine\Mesh\Base\ObjectTransformation.cpp" />
-    <ClCompile Include="Engine\Mesh\BoxMesh.cpp" />
-    <ClCompile Include="Engine\Mesh\ConeMesh.cpp" />
-    <ClCompile Include="Engine\Mesh\CylinderMesh.cpp" />
-    <ClCompile Include="Engine\Mesh\PlaneMesh.cpp" />
-    <ClCompile Include="Engine\Mesh\SphereMesh.cpp" />
+    <ClCompile Include="Engine\Mesh\BaseMesh.cpp" />
     <ClCompile Include="Engine\Platform\Windows\WindowsEngine.cpp" />
     <ClCompile Include="Engine\Platform\Windows\WindowsMessageProcessing.cpp" />
     <ClCompile Include="Engine\main.cpp" />
@@ -220,6 +219,9 @@
     <ClInclude Include="Engine\Component\Light\LightComponent.h" />
     <ClInclude Include="Engine\Component\Light\LightConstantBuffer.h" />
     <ClInclude Include="Engine\Component\Light\ParallelLightComponent.h" />
+    <ClInclude Include="Engine\Component\Mesh\BaseMeshComponent.h" />
+    <ClInclude Include="Engine\Component\Mesh\Core\MeshComponent.h" />
+    <ClInclude Include="Engine\Component\Mesh\Core\StaticMeshComponent.h" />
     <ClInclude Include="Engine\Component\RComponent\RComponent.h" />
     <ClInclude Include="Engine\Component\TransformComponent.h" />
     <ClInclude Include="Engine\Config\RenderConfig.h" />
@@ -248,11 +250,7 @@
     <ClInclude Include="Engine\Mesh\Base\MeshManage.h" />
     <ClInclude Include="Engine\Mesh\Base\MeshType.h" />
     <ClInclude Include="Engine\Mesh\Base\ObjectTransformation.h" />
-    <ClInclude Include="Engine\Mesh\BoxMesh.h" />
-    <ClInclude Include="Engine\Mesh\ConeMesh.h" />
-    <ClInclude Include="Engine\Mesh\CylinderMesh.h" />
-    <ClInclude Include="Engine\Mesh\PlaneMesh.h" />
-    <ClInclude Include="Engine\Mesh\SphereMesh.h" />
+    <ClInclude Include="Engine\Mesh\BaseMesh.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsEngine.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsMessageProcessing.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsPlatform.h" />

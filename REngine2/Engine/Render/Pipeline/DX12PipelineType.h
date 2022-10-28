@@ -2,5 +2,5 @@
 enum  RPipeLineType
 {
 	Wireframe=1,
-	GrayModel=2,
+	Solid =2,
 };

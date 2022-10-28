@@ -2,6 +2,7 @@
 #include "RenderEngine.h"
 #include"../../Core/ViewPort/ViewportInfo.h"
 class RMeshManage;
+class RWorld;
 class DXRenderEngine :public RenderingEngine
 {
 	friend class IRenderingInterface;
@@ -38,14 +39,21 @@ public:
 	ComPtr<ID3D12CommandQueue> GetCommandQueue() { return m_commandQueue; }
 
 	UINT64 GetCurrentFenceIndex() { return m_currentFenceIndex; }
+
+	RMeshManage* GetMeshManage() { return m_meshManage; }
+
 protected:
 	void WaitGPUCommandQueueComplete();
 
 	bool InitDirect3D();
 	void PostInitDirect3D();
 
+public:
+	RWorld* m_World;
+
 protected:
 	RMeshManage* m_meshManage;
+
 protected:
 	UINT64 m_currentFenceIndex;
 	int m_currentSwapBuffIndex;

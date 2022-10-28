@@ -138,7 +138,7 @@
     <ClCompile Include="Engine\Mesh\Base\MeshType.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\BoxMesh.cpp">
+    <ClCompile Include="Engine\Mesh\BaseMesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Render\ResourcesUpdate.cpp">
@@ -172,18 +172,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Core\Engine.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Mesh\SphereMesh.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Mesh\ConeMesh.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Mesh\CylinderMesh.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Mesh\PlaneMesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Mesh\Base\MeshManage.cpp">
@@ -256,6 +244,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Mesh\Materials\MaterialConstantBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Mesh\Core\MeshComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Mesh\Core\StaticMeshComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Mesh\BaseMeshComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -437,7 +434,7 @@
     <ClInclude Include="Engine\Math\RMath.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\BoxMesh.h">
+    <ClInclude Include="Engine\Mesh\BaseMesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\ResourcesUpdate.h">
@@ -474,18 +471,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Core\World.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Mesh\SphereMesh.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Mesh\ConeMesh.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Mesh\CylinderMesh.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Mesh\PlaneMesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Mesh\Base\MeshManage.h">
@@ -564,6 +549,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Mesh\Materials\MaterialType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Mesh\Core\MeshComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Mesh\Core\StaticMeshComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Mesh\BaseMeshComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

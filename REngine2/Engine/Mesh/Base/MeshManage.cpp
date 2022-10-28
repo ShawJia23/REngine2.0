@@ -1,11 +1,7 @@
 #include "MeshManage.h"
-#include "../BoxMesh.h"
-#include "../ConeMesh.h"
-#include "../CylinderMesh.h"
-#include "../SphereMesh.h"
-#include "../PlaneMesh.h"
 #include"../../Config/RenderConfig.h"
 #include"../../EngineMinimal.h"
+#include"../../Component/Mesh/BaseMeshComponent.h"
 RMeshManage::RMeshManage()
 {
 }
@@ -40,33 +36,33 @@ void RMeshManage::PreDraw(float DeltaTime)
     m_pipeline.ResetCommandList();
 }
 
-BMesh* RMeshManage::CreateSphereMesh(float InRadius, uint32_t InAxialSubdivision, uint32_t InHeightSubdivision)
+RMeshComponent* RMeshManage::CreateSphereMeshComponent(float InRadius, uint32_t InAxialSubdivision, uint32_t InHeightSubdivision)
 {
-    return CreateMesh<SphereMesh>(InRadius, InAxialSubdivision, InHeightSubdivision);
+    return CreateMeshComponent<SphereMeshComponent>(InRadius, InAxialSubdivision, InHeightSubdivision);
 }
 
-BMesh* RMeshManage::CreateBoxMesh(float InHeight, float InWidth, float InDepth)
+RMeshComponent* RMeshManage::CreateBoxMeshComponent(float InHeight, float InWidth, float InDepth)
 {
-    return CreateMesh<BoxMesh>(InHeight, InWidth, InDepth);
+    return CreateMeshComponent<BoxMeshComponent>(InHeight, InWidth, InDepth);
 }
 
-BMesh* RMeshManage::CreateConeMesh(float InRadius, float InHeight, uint32_t InAxialSubdivision, uint32_t InHeightSubdivision)
+RMeshComponent* RMeshManage::CreateConeMeshComponent(float InRadius, float InHeight, uint32_t InAxialSubdivision, uint32_t InHeightSubdivision)
 {
-    return CreateMesh<ConeMesh>(InRadius, InHeight, InAxialSubdivision, InHeightSubdivision);
+    return CreateMeshComponent<ConeMeshComponent>(InRadius, InHeight, InAxialSubdivision, InHeightSubdivision);
 }
 
-BMesh* RMeshManage::CreateCylinderMesh(float InTopRadius, float InBottomRadius, float InHeight, uint32_t InAxialSubdivision, uint32_t InHeightSubdivision)
+RMeshComponent* RMeshManage::CreateCylinderMeshComponent(float InTopRadius, float InBottomRadius, float InHeight, uint32_t InAxialSubdivision, uint32_t InHeightSubdivision)
 {
-    return CreateMesh<CylinderMesh>(InTopRadius, InBottomRadius, InHeight, InAxialSubdivision, InHeightSubdivision);
+    return CreateMeshComponent<CylinderMeshComponent>(InTopRadius, InBottomRadius, InHeight, InAxialSubdivision, InHeightSubdivision);
 }
 
-BMesh* RMeshManage::CreatePlaneMesh(float InHeight, float InWidth, uint32_t InHeightSubdivide, uint32_t InWidthSubdivide)
+RMeshComponent* RMeshManage::CreatePlaneMeshComponent(float InHeight, float InWidth, uint32_t InHeightSubdivide, uint32_t InWidthSubdivide)
 {
-    return CreateMesh<PlaneMesh>(InHeight, InWidth, InHeightSubdivide, InWidthSubdivide);
+    return CreateMeshComponent<PlaneMeshComponent>(InHeight, InWidth, InHeightSubdivide, InWidthSubdivide);
 }
 
 template<class T, typename ...ParamTypes>
-T* RMeshManage::CreateMesh(ParamTypes && ...Params)
+T* RMeshManage::CreateMeshComponent(ParamTypes && ...Params)
 {
     T* MyMesh = new T();
 

@@ -5,12 +5,13 @@
 #include"../../../Core/ViewPort/ViewportInfo.h"
 #include"../../../Mesh/Base/MeshType.h"
 #include"RenderMeshData.h"
+class RMeshComponent;
 struct RGeometry :public IDirectXDeviceInterface_Struct
 {
 	friend struct RGeometryMap;
 
-	bool RenderDataExistence(BMesh* InKey);
-	void BuildMesh(BMesh* InMesh, const MeshRenderData& MeshData);
+	bool RenderDataExistence(RMeshComponent* InKey);
+	void BuildMesh(RMeshComponent* mesh, const MeshRenderData& MeshData);
 
 	void Build();
 
@@ -63,7 +64,7 @@ public:
 
 	ID3D12DescriptorHeap* GetHeap()const { return m_DescriptorHeap.GetHeap(); }
 
-	void BuildMesh(BMesh* mesh, const MeshRenderData& meshData);
+	void BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData);
 
 	UINT GetMaterialsNumber();
 	UINT GetMeshNumber();

@@ -6,6 +6,7 @@
 #include"../../Core/World.h"
 #include"../../Render/Engine/DXRenderEngine.h"
 #include"../../Core/Camera.h"
+#include"../../Mesh/Base/MeshManage.h"
 #if defined(_WIN32)
 #include "WindowsMessageProcessing.h"
 
@@ -44,7 +45,7 @@ int RWindowsEngine::Init(WinMainCommandParameters InParameters)
 	m_renderEngine->Init(InParameters);
 
 	m_world = CreateObject<RWorld>(new RWorld());
-
+	m_renderEngine->m_World = m_world;
 	Engine_Log("引擎 初始化 完成.");
 	return 0;
 }
@@ -169,6 +170,11 @@ bool RWindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 	UpdateWindow(MianWindowsHandle);
 
 	Engine_Log("初始化窗口完成.");
+}
+
+RMeshManage* RWindowsEngine::GetMeshManage()
+{
+	return m_renderEngine->GetMeshManage();
 }
 
 #endif

@@ -5,6 +5,8 @@
 #include"../../../Mesh/Base/Mesh.h"
 #include"../../../Mesh/Materials/MaterialConstantBuffer.h"
 #include"../../../Component/Light/LightConstantBuffer.h"
+#include"../../../Mesh/Materials/Material.h"
+#include"../../../Component/Mesh/Core/MeshComponent.h"
 RGeometryMap::RGeometryMap()
 :m_WorldMatrix(RMath::IdentityMatrix4x4())
 , IndexSize(0)
@@ -136,8 +138,11 @@ void RGeometryMap::DrawMesh()
 				1,//k k+1 ... k+n-1 
 				&VBV);
 
+			RRenderData& pRenderData = Tmp.second.m_RenderDatas[i];
+
 			//定义我们要绘制的哪种图元 点 线 面
-			GetCommandList()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+			EMaterialDisplayStatue pDisplayState = (*pRenderData.Mesh->GetMaterials())[0]->GetMaterialDisplayState();
+			GetCommandList()->IASetPrimitiveTopology((D3D_PRIMITIVE_TOPOLOGY)pDisplayState);
 
 			auto DesMeshHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
 			DesMeshHandle.Offset(i, m_DescriptorOffset);
@@ -147,8 +152,6 @@ void RGeometryMap::DrawMesh()
 			DesMaterialHandle.Offset(i+GetMeshNumber(), m_DescriptorOffset);
 			GetCommandList()->SetGraphicsRootDescriptorTable(2, DesMaterialHandle);
 
-
-			RRenderData& pRenderData = Tmp.second.m_RenderDatas[i];
 
 			GetCommandList()->DrawIndexedInstanced(
 				pRenderData.IndexSize,//顶点数量
@@ -229,7 +232,7 @@ void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 	m_ViewportConstantBufferView.Update(0, &ViewportTransformation);
 }
 
-void RGeometryMap::BuildMesh(BMesh* mesh, const MeshRenderData& meshData)
+void RGeometryMap::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData)
 {
 	RGeometry& Geometry = m_Geometrys[0];
 
@@ -245,7 +248,7 @@ void RGeometryMap::BuildGeometry()
 }
 
 
-bool RGeometry::RenderDataExistence(BMesh* key)
+bool RGeometry::RenderDataExistence(RMeshComponent* key)
 {
 	for (auto& Tmp : m_RenderDatas)
 	{
@@ -258,7 +261,7 @@ bool RGeometry::RenderDataExistence(BMesh* key)
 	return false;
 }
 
-void RGeometry::BuildMesh(BMesh* mesh, const MeshRenderData& meshData) 
+void RGeometry::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData)
 {
 	if (!RenderDataExistence(mesh))
 	{

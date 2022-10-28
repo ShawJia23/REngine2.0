@@ -7,12 +7,16 @@ class RWindowsEngine;
 class REngine;
 #endif
 
+class RMeshManage;
+class RWorld;
 //提供渲染内容的接口
 class IDirectXDeviceInterface
 {
 public:
 	ComPtr<ID3D12Fence> GetFence();
 	ComPtr<ID3D12Device> GetD3dDevice();
+	RMeshManage* GetMeshManage();
+	RWorld* GetWorld();
 
 	ComPtr<ID3D12GraphicsCommandList> GetCommandList();
 	ComPtr<ID3D12CommandAllocator> GetCommandAllocator();
@@ -34,6 +38,8 @@ struct IDirectXDeviceInterface_Struct
 public:
 	ComPtr<ID3D12Fence> GetFence();
 	ComPtr<ID3D12Device> GetD3dDevice();
+	RMeshManage* GetMeshManage();
+	RWorld* GetWorld();
 
 	ComPtr<ID3D12GraphicsCommandList> GetCommandList();
 	ComPtr<ID3D12CommandAllocator> GetCommandAllocator();
