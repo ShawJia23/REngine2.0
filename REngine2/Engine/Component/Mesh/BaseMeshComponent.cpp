@@ -390,7 +390,7 @@ void PlaneMeshComponent::CreateMesh(MeshRenderData& MeshData, float InHeight, fl
 					X,//x
 					0.f,//y
 					Z), //z
-				XMFLOAT4(Colors::Gray), XMFLOAT3(0.f, 0.f, 1.f)));
+				XMFLOAT4(Colors::Gray), XMFLOAT3(0.f, 1.f, 0.f)));
 		}
 	}
 

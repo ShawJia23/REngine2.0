@@ -7,6 +7,7 @@
 class DXRenderEngine;
 class RWorld;
 class RMeshManage;
+class RLightManage;
 class RWindowsEngine :public REngine
 {
 	friend class IRenderingInterface;
@@ -31,6 +32,7 @@ public:
 
 public:
 	RMeshManage* GetMeshManage();
+	RLightManage* GetLightManage();
 	RWorld* GetWorld() { return m_world; }
 
 protected:

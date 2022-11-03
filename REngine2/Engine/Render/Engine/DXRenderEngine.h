@@ -2,6 +2,7 @@
 #include "RenderEngine.h"
 #include"../../Core/ViewPort/ViewportInfo.h"
 class RMeshManage;
+class RLightManage;
 class RWorld;
 class DXRenderEngine :public RenderingEngine
 {
@@ -41,7 +42,7 @@ public:
 	UINT64 GetCurrentFenceIndex() { return m_currentFenceIndex; }
 
 	RMeshManage* GetMeshManage() { return m_meshManage; }
-
+	RLightManage* GetLightManage() { return m_lightManage; }
 protected:
 	void WaitGPUCommandQueueComplete();
 
@@ -53,6 +54,7 @@ public:
 
 protected:
 	RMeshManage* m_meshManage;
+	RLightManage* m_lightManage;
 
 protected:
 	UINT64 m_currentFenceIndex;

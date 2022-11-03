@@ -7,6 +7,7 @@
 #include"../../Render/Engine/DXRenderEngine.h"
 #include"../../Core/Camera.h"
 #include"../../Mesh/Base/MeshManage.h"
+#include"../../Manage/LightManage.h"
 #if defined(_WIN32)
 #include "WindowsMessageProcessing.h"
 
@@ -175,6 +176,11 @@ bool RWindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 RMeshManage* RWindowsEngine::GetMeshManage()
 {
 	return m_renderEngine->GetMeshManage();
+}
+
+RLightManage* RWindowsEngine::GetLightManage()
+{
+	return m_renderEngine->GetLightManage();
 }
 
 #endif

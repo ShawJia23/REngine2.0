@@ -1,25 +1,6 @@
 ﻿  DXRenderEngine.cpp
-E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(542,62): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
-E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(543,63): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
-  DXDeviceInterface.cpp
-  MeshManage.cpp
-  BaseMesh.cpp
-  WindowsEngine.cpp
-  DX12Pipeline.cpp
-  GeometryMap.cpp
-E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\Geometry\GeometryMap.cpp(131,21): warning C4018: “<”: 有符号/无符号不匹配
-  RenderMeshData.cpp
-  Render.cpp
-  正在生成代码...
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(173): warning C4715: “RWindowsEngine::InitWindows”: 不是所有的控件路径都返回值
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(587,62): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(588,63): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
     正在创建库 E:\ademo\REngine2.0\Debug\REngine2.lib 和对象 E:\ademo\REngine2.0\Debug\REngine2.exp
   REngine2.vcxproj -> E:\ademo\REngine2.0\Debug\REngine2.exe

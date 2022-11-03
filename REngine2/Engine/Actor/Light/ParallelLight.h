@@ -1,10 +1,12 @@
 #pragma once
 #include"../ActorObject.h"
-#include"../../Component/Light/ParallelLightComponent.h"
+#include"Light.h"
 
-class GParallelLight :public GActorObject
+class GParallelLight :public GLight
 {
-	RVARIABLE()
-		RParallelLightComponent* m_ParallelLightComponent;
+	typedef GLight Super;
 public:
+	GParallelLight();
+
+	virtual void Tick(float DeltaTime);
 };

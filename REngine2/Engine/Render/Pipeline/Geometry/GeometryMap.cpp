@@ -7,6 +7,11 @@
 #include"../../../Component/Light/LightConstantBuffer.h"
 #include"../../../Mesh/Materials/Material.h"
 #include"../../../Component/Mesh/Core/MeshComponent.h"
+#include"../../../Manage/LightManage.h"
+#include"../../../Component/TransformComponent.h"
+#include"../../../Component/Light/LightComponent.h"
+#include"../../../Component/Light/PointLightComponent.h"
+#include"../../../Component/Light/SpotLightComponent.h"
 RGeometryMap::RGeometryMap()
 :m_WorldMatrix(RMath::IdentityMatrix4x4())
 , IndexSize(0)
@@ -217,8 +222,41 @@ void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 	}
 
 	RLightConstantBuffer LightConstantBuffer;
+	for (size_t i = 0; i < GetLightManage()->Lights.size(); i++)
 	{
-
+		if (RLightComponent* pLight = GetLightManage()->Lights[i])
+		{
+			fvector_3d LightIntensity = pLight->GetLightIntensity();
+			LightConstantBuffer.SceneLights[i].LightIntensity = XMFLOAT3(LightIntensity.x, LightIntensity.y, LightIntensity.z);
+			LightConstantBuffer.SceneLights[i].LightDirection = pLight->GetForwardVector();
+			LightConstantBuffer.SceneLights[i].Position = pLight->GetPosition();
+			LightConstantBuffer.SceneLights[i].LightType = pLight->GetLightType();
+			switch (pLight->GetLightType())
+			{
+			case ELightType::PointLight: 
+			{
+				if (RPointLightComponent* pPointLight = dynamic_cast<RPointLightComponent*>(pLight))
+				{
+					LightConstantBuffer.SceneLights[i].StartAttenuation = pPointLight->GetStartAttenuation();
+					LightConstantBuffer.SceneLights[i].EndAttenuation = pPointLight->GetEndAttenuation();
+				}
+			}
+			break;
+			case ELightType::SpotLight:
+			{
+				if (RSpotLightComponent* pSpotLight = dynamic_cast<RSpotLightComponent*>(pLight))
+				{
+					LightConstantBuffer.SceneLights[i].StartAttenuation = pSpotLight->GetStartAttenuation();
+					LightConstantBuffer.SceneLights[i].EndAttenuation = pSpotLight->GetEndAttenuation();
+					LightConstantBuffer.SceneLights[i].InnerCorner = pSpotLight->GetInnerCorner();
+					LightConstantBuffer.SceneLights[i].OuterCorner = pSpotLight->GetOuterCorner();
+				}
+			}
+			break;
+			default:
+				break;
+			}
+		}
 	}
 	m_LightsBufferView.Update(0, &LightConstantBuffer);
 

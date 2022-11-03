@@ -98,6 +98,10 @@ RMeshManage* IDirectXDeviceInterface::GetMeshManage()
 {
 	return GetEngine()->GetMeshManage();
 }
+RLightManage* IDirectXDeviceInterface::GetLightManage()
+{
+	return GetEngine()->GetLightManage();
+}
 
 RWorld* IDirectXDeviceInterface::GetWorld()
 {
@@ -136,6 +140,18 @@ ComPtr<ID3D12Device> IDirectXDeviceInterface_Struct::GetD3dDevice()
 RMeshManage* IDirectXDeviceInterface_Struct::GetMeshManage()
 {
 	return Interfece.GetMeshManage();
+}
+
+RLightManage* IDirectXDeviceInterface_Struct::GetLightManage()
+{
+	if (RWindowsEngine* engine = GetEngine())
+	{
+		if (engine->GetRenderEngine())
+		{
+			return engine->GetRenderEngine()->GetLightManage();
+		}
+	}
+	return NULL;
 }
 
 RWorld* IDirectXDeviceInterface_Struct::GetWorld()

@@ -130,13 +130,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Actor\ActorObject.cpp" />
+    <ClCompile Include="Engine\Actor\Light\Light.cpp" />
     <ClCompile Include="Engine\Actor\Light\ParallelLight.cpp" />
+    <ClCompile Include="Engine\Actor\Light\PointLight.cpp" />
+    <ClCompile Include="Engine\Actor\Light\SpotLight.cpp" />
     <ClCompile Include="Engine\Component\InputComponent.cpp" />
     <ClCompile Include="Engine\Component\Input\Input.cpp" />
     <ClCompile Include="Engine\Component\Input\RInputType.cpp" />
     <ClCompile Include="Engine\Component\Light\LightComponent.cpp" />
     <ClCompile Include="Engine\Component\Light\LightConstantBuffer.cpp" />
     <ClCompile Include="Engine\Component\Light\ParallelLightComponent.cpp" />
+    <ClCompile Include="Engine\Component\Light\PointLightComponent.cpp" />
+    <ClCompile Include="Engine\Component\Light\SpotLightComponent.cpp" />
     <ClCompile Include="Engine\Component\Mesh\BaseMeshComponent.cpp" />
     <ClCompile Include="Engine\Component\Mesh\Core\MeshComponent.cpp" />
     <ClCompile Include="Engine\Component\Mesh\Core\StaticMeshComponent.cpp" />
@@ -153,6 +158,7 @@
     <ClCompile Include="Engine\Core\WinMainCommandParameters.cpp" />
     <ClCompile Include="Engine\Core\World.cpp" />
     <ClCompile Include="Engine\EngineFactory.cpp" />
+    <ClCompile Include="Engine\Manage\LightManage.cpp" />
     <ClCompile Include="Engine\Mesh\Materials\Material.cpp" />
     <ClCompile Include="Engine\Mesh\Materials\MaterialConstantBuffer.cpp" />
     <ClCompile Include="Engine\Render\Pipeline\BufferView\ConstantBufferView.cpp" />
@@ -212,13 +218,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Actor\ActorObject.h" />
+    <ClInclude Include="Engine\Actor\Light\Light.h" />
     <ClInclude Include="Engine\Actor\Light\ParallelLight.h" />
+    <ClInclude Include="Engine\Actor\Light\PointLight.h" />
+    <ClInclude Include="Engine\Actor\Light\SpotLight.h" />
     <ClInclude Include="Engine\Component\InputComponent.h" />
     <ClInclude Include="Engine\Component\Input\Input.h" />
     <ClInclude Include="Engine\Component\Input\RInputType.h" />
     <ClInclude Include="Engine\Component\Light\LightComponent.h" />
     <ClInclude Include="Engine\Component\Light\LightConstantBuffer.h" />
     <ClInclude Include="Engine\Component\Light\ParallelLightComponent.h" />
+    <ClInclude Include="Engine\Component\Light\PointLightComponent.h" />
+    <ClInclude Include="Engine\Component\Light\SpotLightComponent.h" />
     <ClInclude Include="Engine\Component\Mesh\BaseMeshComponent.h" />
     <ClInclude Include="Engine\Component\Mesh\Core\MeshComponent.h" />
     <ClInclude Include="Engine\Component\Mesh\Core\StaticMeshComponent.h" />
@@ -239,6 +250,7 @@
     <ClInclude Include="Engine\Debug\Log\SimpleLog.h" />
     <ClInclude Include="Engine\EngineFactory.h" />
     <ClInclude Include="Engine\EngineMinimal.h" />
+    <ClInclude Include="Engine\Manage\LightManage.h" />
     <ClInclude Include="Engine\Mesh\Materials\Material.h" />
     <ClInclude Include="Engine\Mesh\Materials\MaterialConstantBuffer.h" />
     <ClInclude Include="Engine\Mesh\Materials\MaterialType.h" />

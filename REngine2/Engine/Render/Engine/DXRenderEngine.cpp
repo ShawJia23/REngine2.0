@@ -2,9 +2,13 @@
 
 #include"../../Config/RenderConfig.h"
 #include"../../Mesh/Base/MeshManage.h"
+#include"../../Manage/LightManage.h"
 #include"../../Mesh/Materials/Material.h"
 #include"../../Core/World.h"
 #include".././../Mesh/BaseMesh.h"
+#include"../../Actor/Light/ParallelLight.h"
+#include"../../Actor/Light/PointLight.h"
+#include"../../Actor/Light/SpotLight.h"
 #if defined(_WIN32)
 
 
@@ -24,11 +28,13 @@ DXRenderEngine::DXRenderEngine()
 	bTick = false;
 
 	m_meshManage = new RMeshManage();
+	m_lightManage = new RLightManage();
 }
 
 DXRenderEngine::~DXRenderEngine()
 {
 	delete m_meshManage;
+	delete m_lightManage;
 }
 
 int DXRenderEngine::PreInit(WinMainCommandParameters InParameters)
@@ -56,6 +62,45 @@ int DXRenderEngine::PostInit()
 
 	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
+
+		//点灯光生成
+		if (GSpotLight* pSpotLight = m_World->CreateActorObject<GSpotLight>())
+		{
+			pSpotLight->SetPosition(XMFLOAT3(0.f, 10.f, 10.f));
+			pSpotLight->SetRotation(fvector_3d(0.f, 0.f, 0.f));
+
+			pSpotLight->SetLightIntensity(fvector_3d(1.3f, 1.3f, 1.3f));
+			//SpotLight->SetStartAttenuation(1.f);
+			pSpotLight->SetEndAttenuation(130.f);
+
+			pSpotLight->SetInnerCorner(40.f);
+			pSpotLight->SetOuterCorner(60.f);
+		}
+
+		//点光源
+		//if (GPointLight* pPointLight = m_World->CreateActorObject<GPointLight>())
+		//{
+		//	pPointLight->SetPosition(XMFLOAT3(0.f, 3.f, 4.f));
+		//	pPointLight->SetRotation(fvector_3d(0.f, 0.f, 0.f));
+
+		//	pPointLight->SetLightIntensity(fvector_3d(10.f, 10.f, 10.f));
+		//	pPointLight->SetEndAttenuation(150.f);
+		//}
+
+		//GParallelLight* pLight = m_World->CreateActorObject<GParallelLight>();
+		//if (pLight)
+		//{
+		//	pLight->SetPosition(XMFLOAT3(0.f, -10.f, 0.f));
+		//	pLight->SetRotation(fvector_3d(0, 0, 0));
+		//}
+
+		//pLight = m_World->CreateActorObject<GParallelLight>();
+		//if (pLight)
+		//{
+		//	pLight->SetPosition(XMFLOAT3(0.f, -10.f, 0.f));
+		//	pLight->SetRotation(fvector_3d(-90.f, 0.f, 0.f));
+		//}
+
 		//构建Mesh
 		PlaneMesh* pMesh = m_World->CreateActorObject<PlaneMesh>();
 		if(pMesh)
