@@ -1,6 +1,5 @@
 #include"Camera.h"
-#include"../Component/TransformComponent.h"
-#include"../Component/InputComponent.h"
+#include"../Component/RComponentMinimal.h"
 RCamera::RCamera():GActorObject()
 {
 	m_rInputComponent = CreateObject<RInputComponent>(new RInputComponent());

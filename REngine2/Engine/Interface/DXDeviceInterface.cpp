@@ -1,6 +1,6 @@
 #include "DXDeviceInterface.h"
 #include "../Platform/Windows/WindowsEngine.h"
-#include"../Mesh/Base/MeshManage.h"
+#include"../Mesh/Core/MeshManage.h"
 #include"../Core/World.h"
 
 ComPtr<ID3D12Fence> IDirectXDeviceInterface::GetFence()

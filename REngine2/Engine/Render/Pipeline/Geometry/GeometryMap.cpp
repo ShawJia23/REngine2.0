@@ -1,17 +1,10 @@
 #include"GeometryMap.h"
-#include"../../../Mesh/Base/ObjectTransformation.h"
-#include"../../../Core/ViewPort/ViewportTransform.h"
 #include"../../Buffer/ConstructBuffer.h"
-#include"../../../Mesh/Base/Mesh.h"
-#include"../../../Mesh/Materials/MaterialConstantBuffer.h"
-#include"../../../Component/Light/LightConstantBuffer.h"
-#include"../../../Mesh/Materials/Material.h"
-#include"../../../Component/Mesh/Core/MeshComponent.h"
+#include"../../../Mesh/Core/Mesh.h"
+#include"../../../Materials/Material.h"
 #include"../../../Manage/LightManage.h"
-#include"../../../Component/TransformComponent.h"
-#include"../../../Component/Light/LightComponent.h"
-#include"../../../Component/Light/PointLightComponent.h"
-#include"../../../Component/Light/SpotLightComponent.h"
+#include"../../../Component/RComponentMinimal.h"
+#include"../../ConstontBuffer/ConstontBufferMinimal.h"
 RGeometryMap::RGeometryMap()
 :m_WorldMatrix(RMath::IdentityMatrix4x4())
 , IndexSize(0)

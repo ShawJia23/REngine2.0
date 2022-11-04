@@ -1,6 +1,6 @@
 #pragma once
-#include"../../TransformComponent.h"
-#include"../../../Mesh/Materials/Material.h"
+#include"../../TransformComponent/TransformComponent.h"
+#include"../../../Materials/Material.h"
 
 struct MeshRenderData;
 class RMeshComponent :public RTransformComponent

@@ -26,9 +26,7 @@ class CustomMeshComponent :public RStaticMeshComponent
 public:
 	CustomMeshComponent();
 
-	void CreateMesh(MeshRenderData& MeshData, string& InPath);
-
-	static bool LoadObjFromBuff(char* InBuff, uint32_t InBuffSize, MeshRenderData& MeshData);
+	void CreateMesh(MeshRenderData& MeshData, string path);
 };
 
 class CylinderMeshComponent :public RStaticMeshComponent

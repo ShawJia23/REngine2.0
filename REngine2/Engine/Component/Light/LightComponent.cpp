@@ -1,6 +1,11 @@
 #include"LightComponent.h"
 #include"../../Manage/LightManage.h"
 #include"../Mesh/Core/MeshComponent.h"
+#include"../../Mesh/Core/MeshManage.h"
+#include"../../Materials/Material.h"
+
+#pragma region RLightComponent
+
 RLightComponent::RLightComponent()
 	:LightIntensity(1.f, 1.f, 1.f)
 {
@@ -61,3 +66,78 @@ void RLightComponent::SetScale(const fvector_3d& InNewScale)
 
 	LightMesh->SetScale(InNewScale);
 }
+
+#pragma endregion
+
+#pragma region Parallel
+
+RParallelLightComponent::RParallelLightComponent()
+{
+	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(2.f, 50, 50));
+	if (GetLightMesh())
+	{
+		if (RMaterial* pMaterial = (*GetLightMesh()->GetMaterials())[0])
+		{
+			pMaterial->SetMaterialType(EMaterialType::BaseColor);
+			pMaterial->SetMaterialDisplayState(EMaterialDisplayStatue::RTOPOLOGY_LINELIST);
+			pMaterial->SetBaseColor(fvector_4d(1.0f, 0.7f, 1.0f, 1.0f));
+		}
+	}
+}
+
+#pragma endregion
+
+#pragma region Point
+
+RPointLightComponent::RPointLightComponent() :
+	StartAttenuation(1.0f),
+	EndAttenuation(1.0f)
+{
+	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(2.f, 50, 50));
+	if (GetLightMesh())
+	{
+		if (RMaterial* pMaterial = (*GetLightMesh()->GetMaterials())[0])
+		{
+			pMaterial->SetMaterialType(EMaterialType::BaseColor);
+			pMaterial->SetMaterialDisplayState(EMaterialDisplayStatue::RTOPOLOGY_LINELIST);
+			pMaterial->SetBaseColor(fvector_4d(1.0f, 0.7f, 1.0f, 1.0f));
+		}
+	}
+	LightType = ELightType::PointLight;
+}
+
+#pragma endregion
+
+#pragma region Spot
+
+RSpotLightComponent::RSpotLightComponent()
+{
+	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(2.f, 50, 50));
+	if (GetLightMesh())
+	{
+		if (RMaterial* pMaterial = (*GetLightMesh()->GetMaterials())[0])
+		{
+			pMaterial->SetMaterialType(EMaterialType::BaseColor);
+			pMaterial->SetMaterialDisplayState(EMaterialDisplayStatue::RTOPOLOGY_LINELIST);
+			pMaterial->SetBaseColor(fvector_4d(1.0f, 0.7f, 1.0f, 1.0f));
+		}
+	}
+	LightType = ELightType::SpotLight;
+}
+
+
+void RSpotLightComponent::SetOuterCorner(float outerCorner)
+{
+	m_OuterCorner = outerCorner;
+	m_InnerCorner = m_OuterCorner > m_InnerCorner ? m_InnerCorner : m_OuterCorner;
+}
+
+
+void RSpotLightComponent::SetInnerCorner(float innerCorner)
+{
+	m_InnerCorner = innerCorner;
+	m_OuterCorner = m_OuterCorner < m_InnerCorner ? m_InnerCorner : m_OuterCorner;
+}
+
+#pragma endregion
+

@@ -6,7 +6,7 @@
 #include"../../Core/World.h"
 #include"../../Render/Engine/DXRenderEngine.h"
 #include"../../Core/Camera.h"
-#include"../../Mesh/Base/MeshManage.h"
+#include"../../Mesh/Core/MeshManage.h"
 #include"../../Manage/LightManage.h"
 #if defined(_WIN32)
 #include "WindowsMessageProcessing.h"

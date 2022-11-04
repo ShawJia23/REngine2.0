@@ -2,7 +2,7 @@
 #include"../../Interface/DXDeviceInterface.h"
 #include"PipelineState/DXPipelineState.h"
 #include"RootSignature/DXRootSignature.h"
-#include"../../Mesh/Base/MeshType.h"
+#include"../../Mesh/Core/MeshType.h"
 #include"../../Core/ViewPort/ViewportInfo.h"
 #include"Geometry/GeometryMap.h"
 class RMeshComponent;

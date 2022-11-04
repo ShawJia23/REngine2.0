@@ -1,5 +1,5 @@
 #include "BaseMesh.h"
-#include"Base/MeshManage.h"
+#include"Core/MeshManage.h"
 void BoxMesh::Init()
 {
 	Super::Init();
@@ -73,4 +73,19 @@ void SphereMesh::Draw(float DeltaTime)
 void SphereMesh::CreateMesh( float radius, uint32_t axialSub, uint32_t heightSub) 
 {
 	SetMeshComponent(GetMeshManage()->CreateSphereMeshComponent(radius, axialSub, heightSub));
+}
+
+void CustomMesh::Init()
+{
+	Super::Init();
+}
+
+void CustomMesh::Draw(float DeltaTime)
+{
+	Super::Draw(DeltaTime);
+}
+
+void CustomMesh::CreateMesh(string path)
+{
+	SetMeshComponent(GetMeshManage()->CreateCustomMeshComponent(path));
 }

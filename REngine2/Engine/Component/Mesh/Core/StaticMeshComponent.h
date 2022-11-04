@@ -1,6 +1,6 @@
 #pragma once
 #include"MeshComponent.h"
-#include"../../TransformComponent.h"
+#include"../../TransformComponent/TransformComponent.h"
 
 class RStaticMeshComponent :public RMeshComponent
 {

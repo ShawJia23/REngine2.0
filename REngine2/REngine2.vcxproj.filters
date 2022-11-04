@@ -132,10 +132,10 @@
     <ClCompile Include="Engine\Config\RenderConfig.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Base\Mesh.cpp">
+    <ClCompile Include="Engine\Mesh\Core\Mesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Base\MeshType.cpp">
+    <ClCompile Include="Engine\Mesh\Core\MeshType.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Mesh\BaseMesh.cpp">
@@ -150,13 +150,13 @@
     <ClCompile Include="Engine\Core\ViewPort\Viewport.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\RComponent\RComponent.cpp">
+    <ClCompile Include="Engine\Component\RComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\InputComponent.cpp">
+    <ClCompile Include="Engine\Component\Input\InputComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\TransformComponent.cpp">
+    <ClCompile Include="Engine\Component\TransformComponent\TransformComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Core\Camera.cpp">
@@ -174,10 +174,10 @@
     <ClCompile Include="Engine\Core\Engine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Base\MeshManage.cpp">
+    <ClCompile Include="Engine\Mesh\Core\MeshManage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Base\ObjectTransformation.cpp">
+    <ClCompile Include="Engine\Render\ConstontBuffer\ObjectTransformation.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Render\Engine\RenderEngine.cpp">
@@ -201,7 +201,7 @@
     <ClCompile Include="Engine\Core\ViewPort\ViewportInfo.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\ViewPort\ViewportTransform.cpp">
+    <ClCompile Include="Engine\Render\ConstontBuffer\ViewportTransform.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Render\Pipeline\DX12Pipeline.cpp">
@@ -231,19 +231,13 @@
     <ClCompile Include="Engine\Component\Light\LightComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\Light\ParallelLightComponent.cpp">
+    <ClCompile Include="Engine\Materials\Material.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Actor\Light\ParallelLight.cpp">
+    <ClCompile Include="Engine\Render\ConstontBuffer\LightConstantBuffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Materials\Material.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Component\Light\LightConstantBuffer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Mesh\Materials\MaterialConstantBuffer.cpp">
+    <ClCompile Include="Engine\Render\ConstontBuffer\MaterialConstantBuffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Component\Mesh\Core\MeshComponent.cpp">
@@ -258,19 +252,10 @@
     <ClCompile Include="Engine\Manage\LightManage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Actor\Light\SpotLight.cpp">
+    <ClCompile Include="Engine\Actor\Light.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\Light\SpotLightComponent.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Actor\Light\PointLight.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Component\Light\PointLightComponent.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Actor\Light\Light.cpp">
+    <ClCompile Include="Engine\LoadAsset\ObjectAnalysis.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -443,10 +428,10 @@
     <ClInclude Include="Engine\Config\RenderConfig.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Base\Mesh.h">
+    <ClInclude Include="Engine\Mesh\Core\Mesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Base\MeshType.h">
+    <ClInclude Include="Engine\Mesh\Core\MeshType.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Math\RMath.h">
@@ -467,13 +452,13 @@
     <ClInclude Include="Engine\Core\ViewPort\Viewport.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\RComponent\RComponent.h">
+    <ClInclude Include="Engine\Component\RComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\InputComponent.h">
+    <ClInclude Include="Engine\Component\Input\InputComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\TransformComponent.h">
+    <ClInclude Include="Engine\Component\TransformComponent\TransformComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Reflection\CodeReflectionMacro.h">
@@ -491,10 +476,10 @@
     <ClInclude Include="Engine\Core\World.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Base\MeshManage.h">
+    <ClInclude Include="Engine\Mesh\Core\MeshManage.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Base\ObjectTransformation.h">
+    <ClInclude Include="Engine\Render\ConstontBuffer\ObjectTransformation.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\Engine\RenderEngine.h">
@@ -518,7 +503,7 @@
     <ClInclude Include="Engine\Core\ViewPort\ViewportInfo.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\ViewPort\ViewportTransform.h">
+    <ClInclude Include="Engine\Render\ConstontBuffer\ViewportTransform.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\Pipeline\DX12Pipeline.h">
@@ -548,25 +533,19 @@
     <ClInclude Include="Engine\Component\Light\LightComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\Light\ParallelLightComponent.h">
+    <ClInclude Include="Engine\Materials\Material.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Actor\Light\ParallelLight.h">
+    <ClInclude Include="Engine\Render\ConstontBuffer\LightConstantBuffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Materials\Material.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Component\Light\LightConstantBuffer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Mesh\Materials\MaterialConstantBuffer.h">
+    <ClInclude Include="Engine\Render\ConstontBuffer\MaterialConstantBuffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\Pipeline\DX12PipelineType.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Materials\MaterialType.h">
+    <ClInclude Include="Engine\Materials\MaterialType.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Component\Mesh\Core\MeshComponent.h">
@@ -581,20 +560,23 @@
     <ClInclude Include="Engine\Manage\LightManage.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Actor\Light\SpotLight.h">
+    <ClInclude Include="Engine\Actor\Light.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\Light\SpotLightComponent.h">
+    <ClInclude Include="Engine\Component\RComponentMinimal.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Actor\Light\PointLight.h">
+    <ClInclude Include="Engine\Render\ConstontBuffer\ConstontBufferMinimal.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\Light\PointLightComponent.h">
+    <ClInclude Include="Engine\Component\Light\LightType.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Actor\Light\Light.h">
+    <ClInclude Include="Engine\LoadAsset\ObjectAnalysis.h">
       <Filter>头文件</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

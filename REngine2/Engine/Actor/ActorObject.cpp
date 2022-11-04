@@ -1,5 +1,5 @@
 #include"ActorObject.h"
-#include"../Component/TransformComponent.h"
+#include"../Component/TransformComponent/TransformComponent.h"
 
 GActorObject::GActorObject()
 {

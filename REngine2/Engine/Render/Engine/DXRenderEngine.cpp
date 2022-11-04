@@ -1,14 +1,12 @@
 #include "DXRenderEngine.h"
 
 #include"../../Config/RenderConfig.h"
-#include"../../Mesh/Base/MeshManage.h"
+#include"../../Mesh/Core/MeshManage.h"
 #include"../../Manage/LightManage.h"
-#include"../../Mesh/Materials/Material.h"
+#include"../../Materials/Material.h"
 #include"../../Core/World.h"
 #include".././../Mesh/BaseMesh.h"
-#include"../../Actor/Light/ParallelLight.h"
-#include"../../Actor/Light/PointLight.h"
-#include"../../Actor/Light/SpotLight.h"
+#include"../../Actor/Light.h"
 #if defined(_WIN32)
 
 
@@ -75,6 +73,13 @@ int DXRenderEngine::PostInit()
 
 			pSpotLight->SetInnerCorner(40.f);
 			pSpotLight->SetOuterCorner(60.f);
+		}
+
+		CustomMesh* pCustomMesh = m_World->CreateActorObject<CustomMesh>();
+		if (pCustomMesh)
+		{
+			pCustomMesh->CreateMesh("ganyu.pmx");
+			pCustomMesh->SetPosition(XMFLOAT3(0.f, -2.f, 0.f));
 		}
 
 		//ตในโิด

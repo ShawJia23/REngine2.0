@@ -1,5 +1,6 @@
 #include"BaseMeshComponent.h"
-#include"../../Mesh/Base/MeshType.h"
+#include"../../Mesh/Core/MeshType.h"
+#include"../../LoadAsset/ObjectAnalysis.h"
 BoxMeshComponent::BoxMeshComponent()
 {
 
@@ -11,7 +12,7 @@ void BoxMeshComponent::CreateMesh(MeshRenderData& MeshData, float InHeight, floa
 	float CWidth = 0.5f * InWidth;
 	float CDepth = 0.5f * InDepth;
 
-	//构建我们的顶点
+	//构建顶点
 	MeshData.VertexData.push_back(RVertex(XMFLOAT3(-CWidth, -CHeight, -CDepth), XMFLOAT4(Colors::White)));
 	MeshData.VertexData.push_back(RVertex(XMFLOAT3(-CWidth, CHeight, -CDepth), XMFLOAT4(Colors::White)));
 	MeshData.VertexData.push_back(RVertex(XMFLOAT3(CWidth, CHeight, -CDepth), XMFLOAT4(Colors::White)));
@@ -21,7 +22,7 @@ void BoxMeshComponent::CreateMesh(MeshRenderData& MeshData, float InHeight, floa
 	MeshData.VertexData.push_back(RVertex(XMFLOAT3(CWidth, CHeight, CDepth), XMFLOAT4(Colors::White)));
 	MeshData.VertexData.push_back(RVertex(XMFLOAT3(CWidth, -CHeight, CDepth), XMFLOAT4(Colors::White)));
 
-	//构建我们的索引
+	//构建索引
 	//前
 	MeshData.IndexData.push_back(0); MeshData.IndexData.push_back(1); MeshData.IndexData.push_back(2);
 	MeshData.IndexData.push_back(0); MeshData.IndexData.push_back(2); MeshData.IndexData.push_back(3);
@@ -127,111 +128,10 @@ CustomMeshComponent::CustomMeshComponent()
 
 }
 
-void CustomMeshComponent::CreateMesh(MeshRenderData& MeshData, string& InPath)
+void CustomMeshComponent::CreateMesh(MeshRenderData& MeshData, string path)
 {
-	//拿到文件大小
-	unsigned int FileSize = get_file_size_by_filename(InPath.c_str());
-
-	//根据文件大小创建buff
-	char* Buff = new char[FileSize + 1];
-	//必须要初始化
-	memset(Buff, 0, FileSize + 1);
-
-	//提取buff
-	get_file_buf(InPath.c_str(), Buff);
-
-	if (!LoadObjFromBuff(Buff, FileSize, MeshData))
-	{
-
-	}
-
-	delete Buff;
-}
-
-bool CustomMeshComponent::LoadObjFromBuff(char* InBuff, uint32_t InBuffSize, MeshRenderData& MeshData)
-{
-	if (InBuffSize > 0)
-	{
-		stringstream BuffStream(InBuff);
-		char TmpLine[256] = { 0 };
-		string MidTmpTag;
-
-		for (; !BuffStream.eof();)
-		{
-			memset(TmpLine, 0, 256);
-
-			//读取一行数据
-			BuffStream.getline(TmpLine, 256);
-			if (strlen(TmpLine) > 0)
-			{
-				if (TmpLine[0] == 'v')
-				{
-					stringstream LineStream(TmpLine);
-					LineStream >> MidTmpTag;
-
-					if (TmpLine[1] == 'n')
-					{
-						//以后再写
-					}
-					else if (TmpLine[1] == 't')
-					{
-						//以后再写
-					}
-					else
-					{
-						//先添加一个
-						MeshData.VertexData.push_back(RVertex(
-							XMFLOAT3(), XMFLOAT4(Colors::White)));
-
-						//拿到添加后的位置
-						int TopIndex = MeshData.VertexData.size() - 1;
-						XMFLOAT3& Float3InPos = MeshData.VertexData[TopIndex].Position;
-
-						//解析了位置
-						LineStream >> Float3InPos.x;
-						LineStream >> Float3InPos.y;
-						LineStream >> Float3InPos.z;
-					}
-				}
-				else if (TmpLine[0] == 'f')
-				{
-					stringstream LineStream(TmpLine);
-					LineStream >> MidTmpTag;
-
-					char SaveLineString[256] = { 0 };
-					char TmpBuff[256] = { 0 };
-					for (size_t i = 0; i < 3; i++)
-					{
-						memset(SaveLineString, 0, 256);
-
-						//输入一行数据
-						LineStream >> SaveLineString;
-
-						//找到索引的位置
-						int StringPosA = find_string(SaveLineString, "/", 0);
-						memset(TmpBuff, 0, 256);
-						char* VPosIndex = string_mid(SaveLineString, TmpBuff, 0, StringPosA);
-
-						//放到索引容器里面
-						MeshData.IndexData.push_back(atoi(VPosIndex) - 1);
-
-						//纹理Index
-						int StringPosB = find_string(SaveLineString, "/", StringPosA + 1);
-						memset(TmpBuff, 0, 256);
-						char* TexcoordIndex = string_mid(SaveLineString, TmpBuff, StringPosA + 1, StringPosB - (StringPosA + 1));
-
-						//法线index
-						memset(TmpBuff, 0, 256);
-						char* NormalIndex = string_mid(SaveLineString, TmpBuff, StringPosB + 1, strlen(SaveLineString) - (StringPosB + 1));
-					}
-				}
-			}
-		}
-
-		return true;
-	}
-
-	return false;
+	ObjectAnalysisByAssimp lod;
+	lod.LoadMesh(MeshData, path);
 }
 
 CylinderMeshComponent::CylinderMeshComponent()
@@ -463,13 +363,13 @@ void SphereMeshComponent::CreateMesh(MeshRenderData& MeshData, float InRadius, u
 			XMStoreFloat3(&InVertex.Normal, XMVector3Normalize(Pos));
 
 			//U方向的切线
-			InVertex.UTangent.x = -InRadius * sinf(Beta) * sinf(Theta);
-			InVertex.UTangent.y = 0.f;
-			InVertex.UTangent.z = InRadius * sinf(Beta) * cosf(Theta);
+			InVertex.TangentU.x = -InRadius * sinf(Beta) * sinf(Theta);
+			InVertex.TangentU.y = 0.f;
+			InVertex.TangentU.z = InRadius * sinf(Beta) * cosf(Theta);
 
 			//存储切线
-			XMVECTOR Tangent = XMLoadFloat3(&InVertex.UTangent);
-			XMStoreFloat3(&InVertex.UTangent, XMVector3Normalize(Tangent));
+			XMVECTOR Tangent = XMLoadFloat3(&InVertex.TangentU);
+			XMStoreFloat3(&InVertex.TangentU, XMVector3Normalize(Tangent));
 		}
 	}
 

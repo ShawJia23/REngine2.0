@@ -1,6 +1,5 @@
 #pragma once
-
-#include "Base/Mesh.h"
+#include "Core/Mesh.h"
 
 class BoxMesh :public BMesh
 {
@@ -55,4 +54,15 @@ public:
 	virtual void Draw(float DeltaTime);
 
 	void CreateMesh(float radius, uint32_t axialSub, uint32_t heightSub);
+};
+
+class CustomMesh :public BMesh
+{
+	typedef BMesh Super;
+public:
+	virtual void Init();
+
+	virtual void Draw(float DeltaTime);
+
+	void CreateMesh(string path);
 };

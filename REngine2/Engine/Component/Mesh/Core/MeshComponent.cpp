@@ -1,5 +1,5 @@
 #include"MeshComponent.h"
-#include"../../../Mesh/Base/MeshType.h"
+#include"../../../Mesh/Core/MeshType.h"
 
 RMeshComponent::RMeshComponent()
 {
