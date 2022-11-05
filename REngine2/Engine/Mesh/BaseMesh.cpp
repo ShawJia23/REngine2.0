@@ -1,5 +1,6 @@
 #include "BaseMesh.h"
 #include"Core/MeshManage.h"
+#include"../Core/World.h"
 void BoxMesh::Init()
 {
 	Super::Init();
@@ -85,7 +86,45 @@ void CustomMesh::Draw(float DeltaTime)
 	Super::Draw(DeltaTime);
 }
 
-void CustomMesh::CreateMesh(string path)
+void CustomMesh::CreateMesh()
 {
-	SetMeshComponent(GetMeshManage()->CreateCustomMeshComponent(path));
+	SetMeshComponent(GetMeshManage()->CreateCustomMeshComponent());
+}
+
+MeshGroup::MeshGroup()
+{
+	m_RenderDatas.clear();
+}
+
+void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderData MeshData)
+{
+	CustomMesh* pCustomMesh=GetWorld()->CreateActorObject<CustomMesh>();
+	if (pCustomMesh)
+	{
+		pCustomMesh->SetMeshComponent(mesh);
+		pCustomMesh->SetPosition(XMFLOAT3(0.f, -2.f, 15.f));
+	}
+
+	SubMesh pSubMesh;
+	pSubMesh.Mesh = mesh;
+	pSubMesh.MeshData.IndexData = MeshData.IndexData;
+	pSubMesh.MeshData.VertexData = MeshData.VertexData;
+	if (m_RenderDatas.find(name) != m_RenderDatas.end()) 
+	{
+		name = name + "1";
+	}
+	m_RenderDatas[name] = pSubMesh;
+}
+
+void MeshGroup::CreateMesh()
+{
+	for (auto Tmp :m_RenderDatas) 
+	{
+		GetMeshManage()->CreateMeshGroup(Tmp.second.Mesh, Tmp.second.MeshData);
+	}
+}
+
+MeshGroup::SubMesh::SubMesh():
+	Mesh(NULL)
+{
 }

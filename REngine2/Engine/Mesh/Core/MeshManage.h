@@ -53,8 +53,9 @@ public:
 		uint32_t InAxialSubdivision,
 		uint32_t InHeightSubdivision);
 
-	RMeshComponent* CreateCustomMeshComponent(
-		string path);
+	RMeshComponent* CreateCustomMeshComponent();
+
+	void CreateMeshGroup(RMeshComponent* mesh, const MeshRenderData& meshData);
 	
 protected:
 	template<class T, typename ...ParamTypes>

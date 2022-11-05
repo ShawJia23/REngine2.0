@@ -128,10 +128,9 @@ CustomMeshComponent::CustomMeshComponent()
 
 }
 
-void CustomMeshComponent::CreateMesh(MeshRenderData& MeshData, string path)
+void CustomMeshComponent::CreateMesh(MeshRenderData& MeshData, int i)
 {
-	ObjectAnalysisByAssimp lod;
-	lod.LoadMesh(MeshData, path);
+
 }
 
 CylinderMeshComponent::CylinderMeshComponent()

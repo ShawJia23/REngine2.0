@@ -26,7 +26,7 @@ class CustomMeshComponent :public RStaticMeshComponent
 public:
 	CustomMeshComponent();
 
-	void CreateMesh(MeshRenderData& MeshData, string path);
+	void CreateMesh(MeshRenderData& MeshData, int i);
 };
 
 class CylinderMeshComponent :public RStaticMeshComponent

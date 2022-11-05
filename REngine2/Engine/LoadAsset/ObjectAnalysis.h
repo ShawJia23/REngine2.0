@@ -8,6 +8,6 @@ class ObjectAnalysisByAssimp
 public:
 	ObjectAnalysisByAssimp();
 	~ObjectAnalysisByAssimp();
-	void LoadMesh(MeshRenderData& meshData, std::string fileName);
+	void LoadMesh(std::string fileName);
 private:
 };

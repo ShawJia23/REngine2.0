@@ -61,9 +61,14 @@ RMeshComponent* RMeshManage::CreatePlaneMeshComponent(float InHeight, float InWi
     return CreateMeshComponent<PlaneMeshComponent>(InHeight, InWidth, InHeightSubdivide, InWidthSubdivide);
 }
 
-RMeshComponent* RMeshManage::CreateCustomMeshComponent(string path)
+RMeshComponent* RMeshManage::CreateCustomMeshComponent()
 {
-    return CreateMeshComponent<CustomMeshComponent>(path);
+    return CreateMeshComponent<CustomMeshComponent>(0);
+}
+
+void RMeshManage::CreateMeshGroup(RMeshComponent* mesh, const MeshRenderData& meshData)
+{
+    m_pipeline.BuildMesh(mesh, meshData);
 }
 
 

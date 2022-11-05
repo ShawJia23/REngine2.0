@@ -64,5 +64,24 @@ public:
 
 	virtual void Draw(float DeltaTime);
 
-	void CreateMesh(string path);
+	void CreateMesh();
+};
+
+
+class MeshGroup: public IDirectXDeviceInterface
+{
+public:
+	MeshGroup();
+
+	struct SubMesh
+	{
+		SubMesh();
+		RMeshComponent* Mesh;
+		MeshRenderData MeshData;
+	};
+
+	void AddSubmesh(std::string name,RMeshComponent* mesh, MeshRenderData MeshData);
+	void CreateMesh();
+private:
+	std::unordered_map<std::string, SubMesh> m_RenderDatas;
 };
