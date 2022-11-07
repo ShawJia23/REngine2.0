@@ -14,11 +14,18 @@ ResourcesUpdate::~ResourcesUpdate()
 	}
 }
 
-void ResourcesUpdate::Init(ID3D12Device* device, UINT elementSize, UINT elemetCount)
+void ResourcesUpdate::Init(ID3D12Device* device, UINT elementSize, UINT elemetCount, bool bConstBuffer)
 {
 	assert(device);
 
-	m_elementSize = GetConstantBufferByteSize(elementSize);
+	if (bConstBuffer)
+	{
+		m_elementSize = GetConstantBufferByteSize(elementSize);
+	}
+	else
+	{
+		m_elementSize = elementSize;
+	}
 
 	CD3DX12_HEAP_PROPERTIES HeapPropertie = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
 	CD3DX12_RESOURCE_DESC ResourceDesc = CD3DX12_RESOURCE_DESC::Buffer(m_elementSize * elemetCount);

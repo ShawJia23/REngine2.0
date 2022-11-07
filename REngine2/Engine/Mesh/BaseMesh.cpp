@@ -1,6 +1,8 @@
 #include "BaseMesh.h"
 #include"Core/MeshManage.h"
+#include"../LoadAsset/Texture.h"
 #include"../Core/World.h"
+#include"../Materials/Material.h"
 void BoxMesh::Init()
 {
 	Super::Init();
@@ -106,7 +108,7 @@ void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderDat
 	}
 
 	SubMesh pSubMesh;
-	pSubMesh.Mesh = mesh;
+	pSubMesh.Mesh = pCustomMesh;
 	pSubMesh.MeshData.IndexData = MeshData.IndexData;
 	pSubMesh.MeshData.VertexData = MeshData.VertexData;
 	if (m_RenderDatas.find(name) != m_RenderDatas.end()) 
@@ -120,8 +122,29 @@ void MeshGroup::CreateMesh()
 {
 	for (auto Tmp :m_RenderDatas) 
 	{
-		GetMeshManage()->CreateMeshGroup(Tmp.second.Mesh, Tmp.second.MeshData);
+		GetMeshManage()->CreateMeshGroup(Tmp.second.Mesh->GetMeshComponent(), Tmp.second.MeshData);
 	}
+}
+
+void MeshGroup::AddTexture(std::string objName,std::string texName, std::string fileName)
+{
+	GetTextureManage()->LoadTextureFormPath(texName, fileName);
+
+	if (m_RenderDatas.find(objName) != m_RenderDatas.end())
+	{
+		auto Tmp = m_RenderDatas[objName].Mesh;
+		if (RMaterial* pMaterial = (*Tmp->GetMaterials())[0])
+		{
+			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
+			pMaterial->SetBaseColorIndexKey(texName);
+			pMaterial->SetMaterialType(EMaterialType::GradualBanded);
+		}
+	}
+}
+
+void MeshGroup::CreateTexture()
+{
+	GetTextureManage()->CreateTexture();
 }
 
 MeshGroup::SubMesh::SubMesh():

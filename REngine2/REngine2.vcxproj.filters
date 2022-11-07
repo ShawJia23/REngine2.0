@@ -258,6 +258,12 @@
     <ClCompile Include="Engine\LoadAsset\ObjectAnalysis.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\LoadAsset\Texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\stb\stb_image.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\EngineFactory.h">
@@ -573,6 +579,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\LoadAsset\ObjectAnalysis.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\LoadAsset\Texture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\stb\stb_image.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

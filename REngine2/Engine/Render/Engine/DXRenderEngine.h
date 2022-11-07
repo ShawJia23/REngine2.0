@@ -3,6 +3,7 @@
 #include"../../Core/ViewPort/ViewportInfo.h"
 class RMeshManage;
 class RLightManage;
+class RTextureManage;
 class RWorld;
 class DXRenderEngine :public RenderingEngine
 {
@@ -43,6 +44,7 @@ public:
 
 	RMeshManage* GetMeshManage() { return m_meshManage; }
 	RLightManage* GetLightManage() { return m_lightManage; }
+	RTextureManage* GetTextureManage() { return m_textureManage; }
 protected:
 	void WaitGPUCommandQueueComplete();
 
@@ -55,7 +57,7 @@ public:
 protected:
 	RMeshManage* m_meshManage;
 	RLightManage* m_lightManage;
-
+	RTextureManage* m_textureManage;
 protected:
 	UINT64 m_currentFenceIndex;
 	int m_currentSwapBuffIndex;

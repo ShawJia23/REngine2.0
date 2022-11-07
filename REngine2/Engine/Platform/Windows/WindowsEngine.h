@@ -33,6 +33,7 @@ public:
 public:
 	RMeshManage* GetMeshManage();
 	RLightManage* GetLightManage();
+	RTextureManage* GetTextureManage();
 	RWorld* GetWorld() { return m_world; }
 
 protected:

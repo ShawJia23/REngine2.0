@@ -5,7 +5,7 @@ struct RDXRootSignature :public IDirectXDeviceInterface_Struct
 {
 	RDXRootSignature();
 
-	void BuildRootSignature();
+	void BuildRootSignature(UINT textureNum);
 	void SetRootSignature();
 	ID3D12RootSignature* GetRootSignature() { return m_RootSignature.Get(); }
 private:

@@ -183,4 +183,9 @@ RLightManage* RWindowsEngine::GetLightManage()
 	return m_renderEngine->GetLightManage();
 }
 
+RTextureManage* RWindowsEngine::GetTextureManage()
+{
+	return m_renderEngine->GetTextureManage();
+}
+
 #endif

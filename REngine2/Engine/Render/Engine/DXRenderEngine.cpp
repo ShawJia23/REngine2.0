@@ -2,6 +2,7 @@
 #include"../../Config/RenderConfig.h"
 #include"../../Mesh/Core/MeshManage.h"
 #include"../../Manage/LightManage.h"
+#include"../../LoadAsset/Texture.h"
 #include"../../Materials/Material.h"
 #include"../../Core/World.h"
 #include".././../Mesh/BaseMesh.h"
@@ -26,12 +27,14 @@ DXRenderEngine::DXRenderEngine()
 
 	m_meshManage = new RMeshManage();
 	m_lightManage = new RLightManage();
+	m_textureManage = new RTextureManage();
 }
 
 DXRenderEngine::~DXRenderEngine()
 {
 	delete m_meshManage;
 	delete m_lightManage;
+	delete m_textureManage;
 }
 
 int DXRenderEngine::PreInit(WinMainCommandParameters InParameters)
@@ -59,23 +62,8 @@ int DXRenderEngine::PostInit()
 
 	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
-
-		//点灯光生成
-		if (GSpotLight* pSpotLight = m_World->CreateActorObject<GSpotLight>())
-		{
-			pSpotLight->SetPosition(XMFLOAT3(0.f, 10.f, 10.f));
-			pSpotLight->SetRotation(fvector_3d(0.f, 0.f, 0.f));
-
-			pSpotLight->SetLightIntensity(fvector_3d(1.3f, 1.3f, 1.3f));
-			//SpotLight->SetStartAttenuation(1.f);
-			pSpotLight->SetEndAttenuation(130.f);
-
-			pSpotLight->SetInnerCorner(40.f);
-			pSpotLight->SetOuterCorner(60.f);
-		}
-
 		ObjectAnalysisByAssimp lo;
-		lo.LoadMesh("Asset/Model/ganyu/ganyu.pmx");
+		lo.LoadMesh("Asset/Model/ganyu/ganyu.pmx","ganyu");
 
 
 		//点光源
@@ -94,13 +82,13 @@ int DXRenderEngine::PostInit()
 		//	pLight->SetPosition(XMFLOAT3(0.f, -10.f, 0.f));
 		//	pLight->SetRotation(fvector_3d(0, 0, 0));
 		//}
-
-		//pLight = m_World->CreateActorObject<GParallelLight>();
-		//if (pLight)
-		//{
-		//	pLight->SetPosition(XMFLOAT3(0.f, -10.f, 0.f));
-		//	pLight->SetRotation(fvector_3d(-90.f, 0.f, 0.f));
-		//}
+		GParallelLight* pLight = m_World->CreateActorObject<GParallelLight>();
+		pLight = m_World->CreateActorObject<GParallelLight>();
+		if (pLight)
+		{
+			pLight->SetPosition(XMFLOAT3(0.f, -10.f, 0.f));
+			pLight->SetRotation(fvector_3d(-180.f, 0.f, 0.f));
+		}
 
 		//构建Mesh
 		PlaneMesh* pMesh = m_World->CreateActorObject<PlaneMesh>();

@@ -1,50 +1,10 @@
 #include "Material.hlsl"
 #include "Light.hlsl"
 
-cbuffer ObjectConstBuffer :register(b0)//b0->b14
-{
-	float4x4 WorldMatrix;
-}
-
-cbuffer ViewportConstBuffer : register(b1)//b0->b14
-{
-	float4 ViewportPosition;
-	float4x4 ViewProjectionMatrix;
-}
-
-cbuffer MaterialConstBuffer : register(b2)//b0->b14
-{	
-	int MaterialType;
-
-	float4 BaseColor; 
-	float MaterialRoughness;
-	float4x4 TransformInformation;
-}
-
-cbuffer LightConstBuffer : register(b3)//b0->b14
-{
-	Light SceneLights[16];
-}
-
-struct MeshVertexIn
-{
-	float3 Position : POSITION;
-	float4 Color : COLOR;
-	float3 Normal : NORMAL;
-	float3 UTangent: TANGENT;
-};
-
-struct MeshVertexOut
-{
-	float4 WorldPosition : POSITION;
-	float4 Position : SV_POSITION;
-	float4 Color : COLOR;
-	float3 Normal : NORMAL;
-	float3 UTangent : TANGENT;
-};
-
 MeshVertexOut VertexShaderMain(MeshVertexIn MV)
 {
+	MaterialConstBuffer MatConstBuffer = Materials[MaterialIndex];
+
 	MeshVertexOut Out;
 
 	//世界坐标
@@ -52,9 +12,8 @@ MeshVertexOut VertexShaderMain(MeshVertexIn MV)
 
 	//变换到齐次剪辑空间
 	Out.Position = mul(Out.WorldPosition, ViewProjectionMatrix);
-	Out.Color.rgb = MV.Normal.rgb;
 
-	if (MaterialType == 13)
+	if (MatConstBuffer.MaterialType == 13)
 	{
 		Out.Normal = MV.Normal;
 	}
@@ -63,9 +22,13 @@ MeshVertexOut VertexShaderMain(MeshVertexIn MV)
 		//转法线
 		Out.Normal = mul(MV.Normal, (float3x3)WorldMatrix);
 	}
-	
+
 	//切线
-	Out.UTangent = MV.UTangent;
+	Out.UTangent = mul(MV.UTangent, (float3x3)WorldMatrix);
+
+	//ui坐标
+	float4 MyTexCoord = mul(float4(MV.TexCoord, 0.0f, 1.f), ObjectTextureTransform);
+	Out.TexCoord = mul(MyTexCoord, MatConstBuffer.TransformInformation).xy;
 
 	return Out;
 }
@@ -73,21 +36,8 @@ MeshVertexOut VertexShaderMain(MeshVertexIn MV)
 float4 PixelShaderMain(MeshVertexOut MVOut) :SV_TARGET
 {	
 	RMaterial Material;
-	Material.BaseColor = BaseColor;
-
-	//BaseColor
-	if (MaterialType == 12)
-	{
-		return Material.BaseColor;
-	}
-	else if (MaterialType == 13)
-	{
-		return float4(MVOut.Normal, 1.f);
-	}
-	else if (MaterialType == 14)
-	{
-		return float4(MVOut.Normal,1.f);
-	}
+	//获取BaseColor
+	Material.BaseColor = GetMaterialBaseColor(MatConstBuffer, MVOut.TexCoord);
 
 	float4 AmbientLight = { 0.15f, 0.15f, 0.25f, 1.0f };
 	float3 ModelNormal = normalize(MVOut.Normal);

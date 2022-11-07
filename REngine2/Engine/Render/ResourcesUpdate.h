@@ -7,7 +7,7 @@ public:
 	ResourcesUpdate();
 	~ResourcesUpdate();
 
-	void Init(ID3D12Device* device, UINT elemetSize, UINT elemetCount);
+	void Init(ID3D12Device* device, UINT elemetSize, UINT elemetCount, bool bConstBuffer);
 
 	void Update(int index, const void* data);
 

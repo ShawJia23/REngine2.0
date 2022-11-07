@@ -6,6 +6,7 @@
 #include"../../../Mesh/Core/MeshType.h"
 #include"RenderMeshData.h"
 class RMeshComponent;
+class RMaterial;
 struct RGeometry :public IDirectXDeviceInterface_Struct
 {
 	friend struct RGeometryMap;
@@ -46,12 +47,15 @@ public:
 	void DrawLights();
 	void DrawViewport();
 	void DrawMesh();
+	void DrawTexture();
+	void DrawMaterial();
 
 	void BuildConstantBufferView();
 	void BuildMeshConstantBufferView();
 	void BuildViewportConstantBufferView();
 	void BuildMaterialsConstantBufferView();
 	void BuildLightsConstantBufferView();
+	void BuildTextureConstantBuffer();
 	void BuildDescriptorHeap();
 
 	void BuildMesh(const MeshRenderData* renderingData);
@@ -61,6 +65,7 @@ public:
 	D3D12_INDEX_BUFFER_VIEW GetIndexBufferView();
 
 	void UpdateCalculations(const ViewportInfo viewportInfo);
+	void UpdateMaterialShaderResourceView();
 
 	ID3D12DescriptorHeap* GetHeap()const { return m_DescriptorHeap.GetHeap(); }
 
@@ -69,6 +74,7 @@ public:
 	UINT GetMaterialsNumber();
 	UINT GetMeshNumber();
 	UINT GetLightsNumber();
+	UINT GetTextureNumber();
 private:
 	map<int, RGeometry> m_Geometrys;
 
@@ -83,4 +89,6 @@ private:
 	UINT m_DescriptorOffset;
 
 	UINT IndexSize;
+
+	std::vector<RMaterial*> Materials;
 };

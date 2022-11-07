@@ -76,12 +76,14 @@ public:
 	struct SubMesh
 	{
 		SubMesh();
-		RMeshComponent* Mesh;
+		CustomMesh* Mesh;
 		MeshRenderData MeshData;
 	};
 
 	void AddSubmesh(std::string name,RMeshComponent* mesh, MeshRenderData MeshData);
 	void CreateMesh();
+	void AddTexture(std::string objName, std::string texName, std::string fileName);
+	void CreateTexture();
 private:
 	std::unordered_map<std::string, SubMesh> m_RenderDatas;
 };

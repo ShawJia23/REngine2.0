@@ -14,7 +14,7 @@ ObjectAnalysisByAssimp ::~ObjectAnalysisByAssimp()
 {
 }
 
-void ObjectAnalysisByAssimp::LoadMesh(std::string fileName)
+void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name)
 {
 	Assimp::Importer aiImporter;
 	const aiScene* pModel = aiImporter.ReadFile(fileName, aiProcess_MakeLeftHanded);
@@ -27,8 +27,10 @@ void ObjectAnalysisByAssimp::LoadMesh(std::string fileName)
 		MeshGroup* pMeshGroup = new MeshGroup();
 		for (int num = 0; num < pModel->mNumMeshes; num++)
 		{
-			MeshRenderData pMeshData;
 			aiMesh* pMesh = pModel->mMeshes[num];
+
+			MeshRenderData pMeshData;
+			CustomMeshComponent* pMeshComponent = new CustomMeshComponent();
 			if (pMesh->HasFaces())
 			{
 				for (int i = 0; i < pMesh->mNumVertices; i++)
@@ -44,11 +46,26 @@ void ObjectAnalysisByAssimp::LoadMesh(std::string fileName)
 					for (int j = 0; j < face.mNumIndices; j++)
 						pMeshData.IndexData.push_back(face.mIndices[j]);
 				}
+				pMeshGroup->AddSubmesh(pMesh->mName.C_Str(), pMeshComponent, pMeshData);
 			}
-			CustomMeshComponent* pMeshComponent = new CustomMeshComponent();
 
-			pMeshGroup->AddSubmesh(pMesh->mName.C_Str(), pMeshComponent, pMeshData);
+			if (pModel->HasMaterials())
+			{
+				aiMaterial* pMaterial = pModel->mMaterials[pMesh->mMaterialIndex];
+				aiString aistr;
+				std::string pTexName = "Asset/Model/";
+				pTexName += name;
+				pTexName += "/";
+				pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &aistr);
+				std::string pTexPath = aistr.C_Str();
+				if (pTexPath.size() > 0)
+				{
+					pTexName += pTexPath;
+					pMeshGroup->AddTexture(pMesh->mName.C_Str(), aistr.C_Str(), pTexName);
+				}
+			}
 		}
 		pMeshGroup->CreateMesh();
+		pMeshGroup->CreateTexture();
 	}
 }

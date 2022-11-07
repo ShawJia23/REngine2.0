@@ -3,6 +3,7 @@
 #include"../../../Mesh/Core/Mesh.h"
 #include"../../../Materials/Material.h"
 #include"../../../Manage/LightManage.h"
+#include"../../../LoadAsset/Texture.h"
 #include"../../../Component/RComponentMinimal.h"
 #include"../../ConstontBuffer/ConstontBufferMinimal.h"
 RGeometryMap::RGeometryMap()
@@ -28,6 +29,7 @@ void RGeometryMap::BuildConstantBufferView()
 	BuildMaterialsConstantBufferView();
 	BuildLightsConstantBufferView();
 	BuildViewportConstantBufferView();
+	BuildTextureConstantBuffer();
 }
 
 void RGeometryMap::BuildMeshConstantBufferView()
@@ -41,11 +43,31 @@ void RGeometryMap::BuildMeshConstantBufferView()
 
 void RGeometryMap::BuildMaterialsConstantBufferView()
 {
-	m_MaterialsBufferView.CreateConstant(sizeof(RMaterialConstantBuffer), GetMaterialsNumber());
+	//创建常量缓冲区
+	m_MaterialsBufferView.CreateConstant(
+		sizeof(RMaterialConstantBuffer),
+		GetMaterialsNumber(),
+		false);
 
-	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
+	//收集材质
+	//正真更新Shader-Index
+	for (auto& Tmp : m_Geometrys)
+	{
+		for (size_t i = 0; i < Tmp.second.m_RenderDatas.size(); i++)
+		{
+			auto& InData = Tmp.second.m_RenderDatas[i];
+			if (auto InMaterials = InData.Mesh->GetMaterials())
+			{
+				for (size_t j = 0; j < InMaterials->size(); j++)
+				{
+					//做ShaderIndex所有
+					(*InMaterials)[j]->SetMaterialIndex(Materials.size());
 
-	m_MaterialsBufferView.BuildConstantBuffer(DesHandle, GetMaterialsNumber(), GetMeshNumber());
+					Materials.push_back((*InMaterials)[j]);
+				}
+			}
+		}
+	}
 }
 
 void RGeometryMap::BuildLightsConstantBufferView()
@@ -54,7 +76,7 @@ void RGeometryMap::BuildLightsConstantBufferView()
 
 	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
 
-	m_LightsBufferView.BuildConstantBuffer(DesHandle, GetLightsNumber(), GetMeshNumber() + GetMaterialsNumber());
+	m_LightsBufferView.BuildConstantBuffer(DesHandle, GetLightsNumber(), GetMeshNumber());
 }
 
 void RGeometryMap::BuildViewportConstantBufferView()
@@ -63,7 +85,14 @@ void RGeometryMap::BuildViewportConstantBufferView()
 
 	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
 
-	m_ViewportConstantBufferView.BuildConstantBuffer(DesHandle, 1, GetMeshNumber()+ GetMaterialsNumber()+GetLightsNumber());
+	m_ViewportConstantBufferView.BuildConstantBuffer(DesHandle, 1, GetMeshNumber()+GetLightsNumber());
+}
+
+void RGeometryMap::BuildTextureConstantBuffer() 
+{
+	GetTextureManage()->BuildTextureConstantBuffer(
+		m_DescriptorHeap.GetHeap(),
+		GetMeshNumber()  + GetLightsNumber()+1);//视口
 }
 
 
@@ -90,23 +119,34 @@ UINT RGeometryMap::GetLightsNumber()
 	return 1;
 }
 
+UINT RGeometryMap::GetTextureNumber()
+{
+	return GetTextureManage()->GetTextureSize();
+}
 
 
 void RGeometryMap::Draw() 
 {
 	DrawViewport();
 	DrawLights();
+	DrawTexture();
+	DrawMaterial();
 	DrawMesh();
+}
+
+void RGeometryMap::DrawMaterial()
+{
+	GetCommandList()->SetGraphicsRootShaderResourceView(
+		4,
+		m_MaterialsBufferView.GetBuffer()->GetGPUVirtualAddress());
 }
 
 void RGeometryMap::DrawLights()
 {
-	m_DescriptorHeap.SetDescriptorHeap();
-
 	auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
-	DesHandle.Offset(GetMeshNumber() + GetMaterialsNumber() , m_DescriptorOffset);
+	DesHandle.Offset(GetMeshNumber(), m_DescriptorOffset);
 
-	GetCommandList()->SetGraphicsRootDescriptorTable(3, DesHandle);
+	GetCommandList()->SetGraphicsRootDescriptorTable(2, DesHandle);
 }
 
 void RGeometryMap::DrawViewport()
@@ -114,10 +154,19 @@ void RGeometryMap::DrawViewport()
 	m_DescriptorHeap.SetDescriptorHeap();
 
 	auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
-	DesHandle.Offset(GetMeshNumber()+GetMaterialsNumber()+GetLightsNumber(), m_DescriptorOffset);
+	DesHandle.Offset(GetMeshNumber()+GetLightsNumber(), m_DescriptorOffset);
 
 	GetCommandList()->SetGraphicsRootDescriptorTable(1, DesHandle);
 }
+
+void RGeometryMap::DrawTexture()
+{
+	auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
+	DesHandle.Offset(GetMeshNumber() + GetLightsNumber() + 1, m_DescriptorOffset);
+
+	GetCommandList()->SetGraphicsRootDescriptorTable(3, DesHandle);
+}
+
 
 void RGeometryMap::DrawMesh()
 {
@@ -146,11 +195,6 @@ void RGeometryMap::DrawMesh()
 			DesMeshHandle.Offset(i, m_DescriptorOffset);
 			GetCommandList()->SetGraphicsRootDescriptorTable(0, DesMeshHandle);
 			
-			auto DesMaterialHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
-			DesMaterialHandle.Offset(i+GetMeshNumber(), m_DescriptorOffset);
-			GetCommandList()->SetGraphicsRootDescriptorTable(2, DesMaterialHandle);
-
-
 			GetCommandList()->DrawIndexedInstanced(
 				pRenderData.IndexSize,//顶点数量
 				1,//绘制实例数量
@@ -160,6 +204,8 @@ void RGeometryMap::DrawMesh()
 		}
 	} 
 }
+
+
 
 void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 {
@@ -190,30 +236,24 @@ void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 
 			//更新模型位置
 			XMMATRIX ATRIXWorld = XMLoadFloat4x4(&pRenderData.WorldMatrix);
+			XMMATRIX ATRIXTextureTransform = XMLoadFloat4x4(&pRenderData.TextureTransform);
 
 			RObjectTransformation ObjectTransformation;
 			XMStoreFloat4x4(&ObjectTransformation.World, XMMatrixTranspose(ATRIXWorld));
-			m_ObjectConstantBufferView.Update(i, &ObjectTransformation);
-
-			RMaterialConstantBuffer MaterialConstantBuffer;
+			XMStoreFloat4x4(&ObjectTransformation.TextureTransformation, XMMatrixTranspose(ATRIXTextureTransform));
+			//收集材质Index
+			if (auto& InMater = (*pRenderData.Mesh->GetMaterials())[0])
 			{
-				if (RMaterial* material = (*pRenderData.Mesh->GetMaterials())[0]) 
-				{
-					//BaseColor
-					fvector_4d pBaseColor = material->GetBaseColor();
-					MaterialConstantBuffer.BaseColor = XMFLOAT4(pBaseColor.x, pBaseColor.y, pBaseColor.z, pBaseColor.w);
-
-					//类型输入
-					MaterialConstantBuffer.MaterialType = material->GetMaterialType();
-					MaterialConstantBuffer.Roughness = material->GetRoughness();
-				}
-
+				ObjectTransformation.MaterialIndex = InMater->GetMaterialIndex();
 			}
-			m_MaterialsBufferView.Update(i, &MaterialConstantBuffer);
+
+			m_ObjectConstantBufferView.Update(i, &ObjectTransformation);
 
 		}
 	}
 
+	UpdateMaterialShaderResourceView();
+	
 	RLightConstantBuffer LightConstantBuffer;
 	for (size_t i = 0; i < GetLightManage()->Lights.size(); i++)
 	{
@@ -261,6 +301,52 @@ void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 	ViewportTransformation.ViewportPosition = viewportInfo.ViewportPosition;
 
 	m_ViewportConstantBufferView.Update(0, &ViewportTransformation);
+}
+
+void RGeometryMap::UpdateMaterialShaderResourceView()
+{
+	RMaterialConstantBuffer MaterialConstantBuffer;
+	for (size_t i = 0; i < Materials.size(); i++)
+	{
+		//变换材质
+		if (RMaterial* InMaterial = Materials[i])
+		{
+			if (InMaterial->IsDirty())
+			{
+				//BaseColor
+				fvector_4d InBaseColor = InMaterial->GetBaseColor();
+				MaterialConstantBuffer.BaseColor = XMFLOAT4(InBaseColor.x, InBaseColor.y, InBaseColor.z, InBaseColor.w);
+
+				//粗糙度
+				MaterialConstantBuffer.Roughness = InMaterial->GetRoughness();
+
+				//类型输入
+				MaterialConstantBuffer.MaterialType = InMaterial->GetMaterialType();
+
+				//外部资源导入
+				{
+					//这个是BaseColor
+					if (auto BaseColorTextureResourcesPtr = GetTextureManage()->FindRenderingTexture(InMaterial->GetBaseColorIndexKey()))
+					{
+						MaterialConstantBuffer.BaseColorIndex = BaseColorTextureResourcesPtr->HeapIndex;
+					}
+					else
+					{
+						MaterialConstantBuffer.BaseColorIndex = -1;
+					}
+				}
+
+				//材质矩阵
+				XMMATRIX MaterialTransform = XMLoadFloat4x4(&InMaterial->GetMaterialTransform());
+				XMStoreFloat4x4(&MaterialConstantBuffer.TransformInformation,
+					XMMatrixTranspose(MaterialTransform));
+
+				InMaterial->SetDirty(false);
+
+				m_MaterialsBufferView.Update(InMaterial->GetMaterialIndex(), &MaterialConstantBuffer);
+			}
+		}
+	}
 }
 
 void RGeometryMap::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData)

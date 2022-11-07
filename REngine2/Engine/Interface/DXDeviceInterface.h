@@ -9,6 +9,7 @@ class REngine;
 
 class RLightManage;
 class RMeshManage;
+class RTextureManage;
 class RWorld;
 //提供渲染内容的接口
 class IDirectXDeviceInterface
@@ -17,6 +18,7 @@ public:
 	ComPtr<ID3D12Fence> GetFence();
 	ComPtr<ID3D12Device> GetD3dDevice();
 	RMeshManage* GetMeshManage();
+	RTextureManage* GetTextureManage();
 	RLightManage* GetLightManage();
 	RWorld* GetWorld();
 
@@ -42,6 +44,7 @@ public:
 	ComPtr<ID3D12Device> GetD3dDevice();
 	RMeshManage* GetMeshManage();
 	RLightManage* GetLightManage();
+	RTextureManage* GetTextureManage();
 	RWorld* GetWorld();
 
 	ComPtr<ID3D12GraphicsCommandList> GetCommandList();

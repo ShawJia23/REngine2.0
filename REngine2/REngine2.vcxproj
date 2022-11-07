@@ -138,6 +138,7 @@
     <ClCompile Include="Engine\Component\Input\RInputType.cpp" />
     <ClCompile Include="Engine\Component\Light\LightComponent.cpp" />
     <ClCompile Include="Engine\LoadAsset\ObjectAnalysis.cpp" />
+    <ClCompile Include="Engine\LoadAsset\Texture.cpp" />
     <ClCompile Include="Engine\Render\ConstontBuffer\LightConstantBuffer.cpp" />
     <ClCompile Include="Engine\Component\Mesh\BaseMeshComponent.cpp" />
     <ClCompile Include="Engine\Component\Mesh\Core\MeshComponent.cpp" />
@@ -212,6 +213,7 @@
     <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_4d.cpp" />
     <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_4id.cpp" />
     <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_color.cpp" />
+    <ClCompile Include="ThirdParty\stb\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Actor\ActorObject.h" />
@@ -222,6 +224,7 @@
     <ClInclude Include="Engine\Component\Light\LightComponent.h" />
     <ClInclude Include="Engine\Component\Light\LightType.h" />
     <ClInclude Include="Engine\LoadAsset\ObjectAnalysis.h" />
+    <ClInclude Include="Engine\LoadAsset\Texture.h" />
     <ClInclude Include="Engine\Render\ConstontBuffer\ConstontBufferMinimal.h" />
     <ClInclude Include="Engine\Render\ConstontBuffer\LightConstantBuffer.h" />
     <ClInclude Include="Engine\Component\Mesh\BaseMeshComponent.h" />
@@ -319,6 +322,7 @@
     <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_4d.h" />
     <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_4id.h" />
     <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_color.h" />
+    <ClInclude Include="ThirdParty\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

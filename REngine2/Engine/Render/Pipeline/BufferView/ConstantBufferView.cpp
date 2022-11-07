@@ -1,9 +1,9 @@
 #include"ConstantBufferView.h"
 
-void RConstantBufferView::CreateConstant(UINT objectSize, UINT objectCount)
+void RConstantBufferView::CreateConstant(UINT objectSize, UINT objectCount,bool bConstBuffer)
 {
     m_Constant = make_shared<ResourcesUpdate>();
-    m_Constant->Init(GetD3dDevice().Get(), objectSize, objectCount);
+    m_Constant->Init(GetD3dDevice().Get(), objectSize, objectCount, bConstBuffer);
 }
 
 void RConstantBufferView::Update(int index, const void* data)

@@ -1,6 +1,7 @@
 #include "DXDeviceInterface.h"
 #include "../Platform/Windows/WindowsEngine.h"
 #include"../Mesh/Core/MeshManage.h"
+#include"../LoadAsset/Texture.h"
 #include"../Core/World.h"
 
 ComPtr<ID3D12Fence> IDirectXDeviceInterface::GetFence()
@@ -98,6 +99,10 @@ RMeshManage* IDirectXDeviceInterface::GetMeshManage()
 {
 	return GetEngine()->GetMeshManage();
 }
+RTextureManage* IDirectXDeviceInterface::GetTextureManage()
+{
+	return GetEngine()->GetTextureManage();
+}
 RLightManage* IDirectXDeviceInterface::GetLightManage()
 {
 	return GetEngine()->GetLightManage();
@@ -139,7 +144,14 @@ ComPtr<ID3D12Device> IDirectXDeviceInterface_Struct::GetD3dDevice()
 
 RMeshManage* IDirectXDeviceInterface_Struct::GetMeshManage()
 {
-	return Interfece.GetMeshManage();
+	if (RWindowsEngine* engine = GetEngine())
+	{
+		if (engine->GetRenderEngine())
+		{
+			return engine->GetRenderEngine()->GetMeshManage();
+		}
+	}
+	return nullptr;
 }
 
 RLightManage* IDirectXDeviceInterface_Struct::GetLightManage()
@@ -151,7 +163,19 @@ RLightManage* IDirectXDeviceInterface_Struct::GetLightManage()
 			return engine->GetRenderEngine()->GetLightManage();
 		}
 	}
-	return NULL;
+	return nullptr;
+}
+
+RTextureManage* IDirectXDeviceInterface_Struct::GetTextureManage()
+{
+	if (RWindowsEngine* engine = GetEngine())
+	{
+		if (engine->GetRenderEngine())
+		{
+			return engine->GetRenderEngine()->GetTextureManage();
+		}
+	}
+	return nullptr;
 }
 
 RWorld* IDirectXDeviceInterface_Struct::GetWorld()
