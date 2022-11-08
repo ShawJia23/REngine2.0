@@ -167,7 +167,6 @@ void RGeometryMap::DrawTexture()
 	GetCommandList()->SetGraphicsRootDescriptorTable(3, DesHandle);
 }
 
-
 void RGeometryMap::DrawMesh()
 {
 	for (auto& Tmp : m_Geometrys)
@@ -204,8 +203,6 @@ void RGeometryMap::DrawMesh()
 		}
 	} 
 }
-
-
 
 void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 {
@@ -331,7 +328,7 @@ void RGeometryMap::UpdateMaterialShaderResourceView()
 						MaterialConstantBuffer.BaseColorIndex = BaseColorTextureResourcesPtr->HeapIndex;
 					}
 					else
-					{
+					{ 
 						MaterialConstantBuffer.BaseColorIndex = -1;
 					}
 				}
@@ -363,7 +360,6 @@ void RGeometryMap::BuildGeometry()
 		Tmp.second.Build();
 	}
 }
-
 
 bool RGeometry::RenderDataExistence(RMeshComponent* key)
 {

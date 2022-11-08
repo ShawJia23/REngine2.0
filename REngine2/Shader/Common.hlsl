@@ -1,9 +1,11 @@
-#include "Material.hlsl"
 #include "Light.hlsl"
-#include"PBR.hlsl"
 
-SamplerState TextureSampler: register(s0);
-SamplerState AnisotropicSampler : register(s1);
+SamplerState gsamPointWrap        : register(s0);
+SamplerState gsamPointClamp       : register(s1);
+SamplerState gsamLinearWrap       : register(s2);
+SamplerState gsamLinearClamp      : register(s3);
+SamplerState gsamAnisotropicWrap  : register(s4);
+SamplerState gsamAnisotropicClamp : register(s5);
 
 Texture2D    SimpleTexture2DMap[TEXTURE2D_MAP_NUM] : register(t3);
 
@@ -28,23 +30,15 @@ cbuffer LightConstBuffer : register(b2)
 	Light SceneLights[16];
 }
 
+struct MaterialConstBuffer
+{
+	int MaterialType;
+	float MaterialRoughness;
+	int BaseColorIndex;
+	int NormalIndex;
+
+	float4 BaseColor;
+	float4x4 TransformInformation;
+};
+
 StructuredBuffer<MaterialConstBuffer> Materials : register(t4, Space1);
-
-struct MeshVertexIn
-{
-	float3 Position : POSITION;
-	float4 Color : COLOR;
-	float3 Normal : NORMAL;
-	float3 UTangent : TANGENT;
-	float2 TexCoord: TEXCOORD;
-};
-
-struct MeshVertexOut
-{
-	float4 WorldPosition : POSITION;
-	float4 Position : SV_POSITION;
-	float4 Color : COLOR;
-	float3 Normal : NORMAL;
-	float3 UTangent : TANGENT;
-	float2 TexCoord: TEXCOORD;
-};

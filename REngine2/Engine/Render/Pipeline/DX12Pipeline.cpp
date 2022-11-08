@@ -1,6 +1,8 @@
 #include"DX12Pipeline.h"
 #include"../../Component/Mesh/Core/MeshComponent.h"
 #include"../../LoadAsset/Texture.h"
+#include"../DX12/d3dx12.h"
+
 DX12Pipeline::DX12Pipeline()
 {
 }
@@ -29,8 +31,15 @@ void DX12Pipeline::BuildPipeline()
 
     m_PipelineState.ResetGPSDesc();
 
-    m_VertexShader.BuildShaders(L"Shader/Hello.hlsl", "VertexShaderMain", "vs_5_0");
-    m_PixelShader.BuildShaders(L"Shader/Hello.hlsl", "PixelShaderMain", "ps_5_0");
+    char TextureNumBuff[10] = { 0 };
+    D3D_SHADER_MACRO ShaderMacro[] =
+    {
+        "TEXTURE2D_MAP_NUM",_itoa(GetTextureManage()->GetTextureSize(),TextureNumBuff,10),
+        NULL,NULL,
+    };
+
+    m_VertexShader.BuildShaders(L"Shader/Default.hlsl", "VertexShaderMain", "vs_5_1", ShaderMacro);
+    m_PixelShader.BuildShaders(L"Shader/Default.hlsl", "PixelShaderMain", "ps_5_1", ShaderMacro);
     m_PipelineState.BindShader(m_VertexShader, m_PixelShader);
 
     m_InputElementDesc =

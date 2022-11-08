@@ -9,6 +9,7 @@ RRenderData::RRenderData()
 	, IndexTypeSize(sizeof(uint16_t))
 	, IndexFormat(DXGI_FORMAT_R16_UINT)
 	, WorldMatrix(RMath::IdentityMatrix4x4())
+	,TextureTransform(RMath::IdentityMatrix4x4())
 	, Mesh(NULL)
 {
 

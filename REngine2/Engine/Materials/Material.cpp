@@ -5,7 +5,8 @@ RMaterial::RMaterial()
 	m_MaterialType(EMaterialType::Lambert),
 	m_MaterialState(EMaterialDisplayStatue::RTOPOLOGY_TRIANGLELIST),
 	m_Roughness(0),
-	m_MaterialIndex(0)
+	m_MaterialIndex(-1),
+	m_MaterialTransform(RMath::IdentityMatrix4x4())
 {
 }
 

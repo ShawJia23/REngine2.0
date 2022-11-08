@@ -2,129 +2,93 @@
 struct Light
 {
 	float3 LightIntensity;
-	float  StartAttenuation;//spot point
-
+	float  StartAttenuation;
 	float3 LightDirection;
-	float  EndAttenuation;//spot point
-
+	float  EndAttenuation;
 	float3 Position;
-	int	   LightType;
+	int LightType;
 
-	float  ConicalInnerCorner;//spot
-	float  ConicalOuterCorner;//spot
-	float xx1;
-	float xx2;
+	float InnerCorner;
+	float OuterCorner;
+	float x1;
+	float x2;
 };
 
-float3 GetLightDirection(Light L, float3 InObjectWorldLocation)
+struct RMaterial
 {
-	if (L.LightType == 0)
-	{
-		return L.LightDirection;
-	}
-	else if (L.LightType == 1)
-	{
-		return L.Position - InObjectWorldLocation;
-	}
-	else if (L.LightType == 2)
-	{
-		return L.Position - InObjectWorldLocation;
-	}
+	float4 DiffuseAlbedo;
+	float3 FresnelR0;
+	float Shininess;
+};
 
-	return L.LightDirection;
+// 石里克近似来逼近菲涅尔的效果 (see pg. 233 "Real-Time Rendering 3rd Ed.").
+// R0 = ( (n-1)/(n+1) )^2, where n is the index of refraction.
+float3 SchlickFresnel(float3 FresnelR0, float3 Normal, float3 ViewVec, int PowM)
+{
+	float f0 = pow(1.0f - saturate(dot(Normal, ViewVec)), PowM);
+	return FresnelR0 + (1.0f - FresnelR0) * f0;
 }
 
-float4 AttenuationPointLights1(Light L,float Distance)
+float3 BlinnPhong(float3 lightStrength, float3 lightVec, float3 normal, float3 toEye, RMaterial mat)
 {
-	float4 LightStrength = float4(1.f, 1.f, 1.f, 1.f);
+	const float m = mat.Shininess * 256.0f;
+	float3 halfVec = normalize(toEye + lightVec);
 
-	float AttenuationRange = L.EndAttenuation - L.StartAttenuation;
+	float roughnessFactor = (m + 8.0f) * pow(max(dot(halfVec, normal), 0.0f), m) / 8.0f;
+	float3 fresnelFactor = SchlickFresnel(mat.FresnelR0, halfVec, lightVec,5);
 
-	return LightStrength * (Distance / AttenuationRange);
+	float3 specAlbedo = fresnelFactor * roughnessFactor;
+
+	// Our spec formula goes outside [0,1] range, but we are 
+	// doing LDR rendering.  So scale it down a bit.
+	specAlbedo = specAlbedo / (specAlbedo + 1.0f);
+
+	return (mat.DiffuseAlbedo.rgb + specAlbedo) * lightStrength;
 }
 
-float4 AttenuationPointLights2(Light L,float Distance,float C,float I,float Q)
+float3 ComputeDirectionalLight(Light L, RMaterial mat, float3 normal, float3 toEye)
 {
-	float4 LightStrength = float4(1.f, 1.f, 1.f, 1.f);
-	return (1.f / (C + I * Distance + pow(Q, 2.f) * Distance)) * LightStrength;
+	// The light vector aims opposite the direction the light rays travel.
+	float3 lightVec = -L.LightDirection;
+
+	// Scale light down by Lambert's cosine law.
+	float ndotl = max(dot(lightVec, normal), 0.0f);
+
+	float3 lightStrength = L.LightIntensity * ndotl;
+
+	//return CartoonLight(lightStrength, lightVec, normal, toEye, mat);
+	return BlinnPhong(lightStrength, lightVec, normal, toEye, mat);
 }
 
-float4 ComputeLightStrength(Light L,float3 InObjectPointNormal,float3 InObjectWorldLocation, float3 NormalizeLightDirection)
-{
-	if (L.LightType == 0)
-	{
-		return float4(1.f, 1.f, 1.f, 1.f);
-	}
-	else if (L.LightType == 2) //spot
-	{
-		float4 LightStrength = float4(1.f, 1.f, 1.f, 1.f);
-		float3 LightVector = L.Position - InObjectWorldLocation;;
-		float Distance = length(LightVector);
-
-		if (Distance < L.EndAttenuation)
-		{
-			return AttenuationPointLights1(L, Distance) * LightStrength;
-			//return AttenuationPointLights2(
-			//	L,
-			//	Distance,
-			//	0.f,//c
-			//	0.5f,//i
-			//	0.9f);//q
-		}
-	}
-	else if (L.LightType == 1) //spot
-	//{
-	//	float3 LightVector = L.Position - InObjectWorldLocation;;
-	//	float Distance = length(LightVector);
-	//	if (Distance < L.EndAttenuation)
-	//	{	
-	//		float4 LightStrength = float4(1.f, 1.f, 1.f, 1.f) * pow(max(dot(NormalizeLightDirection, L.LightDirection), 0.f),1.f);
-	//		//return AttenuationPointLights1(L, Distance) * LightStrength;
-	//		return AttenuationPointLights2(
-	//			L,
-	//			Distance,
-	//			0.f,//c
-	//			0.4f,//i
-	//			0.3f)* LightStrength;//q
-	//	}
-	//}
-	{
-		float3 LightVector = L.Position - InObjectWorldLocation;;
-		float Distance = length(LightVector);
-
-		if (Distance < L.EndAttenuation)
-		{	
-			float LightDir = normalize(L.LightDirection);
-			float DotValue = max(dot(NormalizeLightDirection, LightDir), 0.f);
-			//float4 LightStrength = float4(1.f, 1.f, 1.f, 1.f) * pow(DotValue,1.f);
-			
-			float4 LightStrength = float4(1.f, 1.f, 1.f, 1.f) * float4(L.LightIntensity, 1.f);
-			
-			float Theta1 = acos(DotValue);
-			if (Theta1 == 0.f)
-			{
-				return LightStrength;
-			}
-			else if (Theta1 <= L.ConicalInnerCorner)
-			{
-				return LightStrength;
-			}
-			else if (Theta1 <= L.ConicalOuterCorner)
-			{
-				float OuterInnerDistance = L.ConicalOuterCorner - L.ConicalInnerCorner;
-				float CurrentDistance = OuterInnerDistance - (Theta1 - L.ConicalInnerCorner);
-
-				return (CurrentDistance / OuterInnerDistance) * LightStrength;
-				////return AttenuationPointLights1(L, Distance) * LightStrength;
-				//return AttenuationPointLights2(
-				//	L,
-				//	Distance,
-				//	0.f,//c
-				//	0.4f,//i
-				//	0.3f) * LightStrength;//q
-			}
-		}
-	}
-
-	return float4( 0.f,0.f,0.f,1.f );
-}
+////计算光纤
+//float4 ComputeLighting(Light gLights, RMaterial mat,
+//	float3 pos, float3 normal, float3 View2Eye,
+//	float3 shadowFactor)
+//{
+//	float3 result = 0.0f;
+//
+//	int i = 0;
+////
+////#if (NUM_DIR_LIGHTS > 0)
+////	for (i = 0; i < NUM_DIR_LIGHTS; ++i)
+////	{
+////		result += shadowFactor[i] * ComputeDirectionalLight(gLights[i], mat, normal, toEye);
+////	}
+////#endif
+////
+////#if (NUM_POINT_LIGHTS > 0)
+////	for (i = NUM_DIR_LIGHTS; i < NUM_DIR_LIGHTS + NUM_POINT_LIGHTS; ++i)
+////	{
+////		result += ComputePointLight(gLights[i], mat, pos, normal, toEye);
+////	}
+////#endif
+////
+////#if (NUM_SPOT_LIGHTS > 0)
+//	//for (i = NUM_DIR_LIGHTS + NUM_POINT_LIGHTS; i < NUM_DIR_LIGHTS + NUM_POINT_LIGHTS + NUM_SPOT_LIGHTS; ++i)
+//	//{
+//	//	result += ComputeSpotLight(gLights[i], mat, pos, normal, toEye);
+//	//}
+////#endif 
+//	//return float4(result, 0.0f);
+//	return ComputeDirectionalLight(gLights, mat, normal, View2Eye);
+//}

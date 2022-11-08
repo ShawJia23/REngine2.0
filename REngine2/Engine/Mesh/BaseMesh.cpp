@@ -137,7 +137,7 @@ void MeshGroup::AddTexture(std::string objName,std::string texName, std::string 
 		{
 			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
 			pMaterial->SetBaseColorIndexKey(texName);
-			pMaterial->SetMaterialType(EMaterialType::GradualBanded);
+			pMaterial->SetMaterialType(EMaterialType::Lambert);
 		}
 	}
 }

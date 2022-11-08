@@ -63,18 +63,18 @@ int DXRenderEngine::PostInit()
 	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
 		ObjectAnalysisByAssimp lo;
-		lo.LoadMesh("Asset/Model/ganyu/ganyu.pmx","ganyu");
+		lo.LoadMesh("Asset/Model/Eula/Eula_xiong.pmx","Eula");
 
 
 		//点光源
-		//if (GPointLight* pPointLight = m_World->CreateActorObject<GPointLight>())
-		//{
-		//	pPointLight->SetPosition(XMFLOAT3(0.f, 3.f, 4.f));
-		//	pPointLight->SetRotation(fvector_3d(0.f, 0.f, 0.f));
+		if (GPointLight* pPointLight = m_World->CreateActorObject<GPointLight>())
+		{
+			pPointLight->SetPosition(XMFLOAT3(0.f, 3.f, 4.f));
+			pPointLight->SetRotation(fvector_3d(0.f, 0.f, 0.f));
 
-		//	pPointLight->SetLightIntensity(fvector_3d(10.f, 10.f, 10.f));
-		//	pPointLight->SetEndAttenuation(150.f);
-		//}
+			pPointLight->SetLightIntensity(fvector_3d(10.f, 10.f, 10.f));
+			pPointLight->SetEndAttenuation(150.f);
+		}
 
 		//GParallelLight* pLight = m_World->CreateActorObject<GParallelLight>();
 		//if (pLight)
@@ -82,13 +82,14 @@ int DXRenderEngine::PostInit()
 		//	pLight->SetPosition(XMFLOAT3(0.f, -10.f, 0.f));
 		//	pLight->SetRotation(fvector_3d(0, 0, 0));
 		//}
-		GParallelLight* pLight = m_World->CreateActorObject<GParallelLight>();
-		pLight = m_World->CreateActorObject<GParallelLight>();
-		if (pLight)
-		{
-			pLight->SetPosition(XMFLOAT3(0.f, -10.f, 0.f));
-			pLight->SetRotation(fvector_3d(-180.f, 0.f, 0.f));
-		}
+		//GPointLight* pLight = m_World->CreateActorObject<GPointLight>();
+		//if (pLight)
+		//{
+		//	pLight->SetPosition(XMFLOAT3(0.f, -10.f, 0.f));
+		//	pLight->SetRotation(fvector_3d(0.f, 0.f, 0.f));
+		//	pLight->SetLightIntensity(fvector_3d(10.f, 10.f, 10.f));
+		//	pLight->SetEndAttenuation(150.f);
+		//}
 
 		//构建Mesh
 		PlaneMesh* pMesh = m_World->CreateActorObject<PlaneMesh>();
