@@ -26,6 +26,8 @@ void RShader::BuildShaders(const wstring& fileName, const string& entryFunName, 
 	if (ErrorShaderMsg)
 	{
 		Engine_Log_Error("%s", (char*)ErrorShaderMsg->GetBufferPointer());
+
+		open_url(get_log_filename());
 	}
 
 	//й╖╟э╬м╠╪юёак
