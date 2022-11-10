@@ -3,7 +3,7 @@
 #include"../DescriptorHeap/DXDescriptorHeap.h"
 #include"../BufferView/ConstantBufferView.h"
 #include"../../../Core/ViewPort/ViewportInfo.h"
-#include"../../../Mesh/Core/MeshType.h"
+#include"../../../Mesh/MeshType.h"
 #include"RenderMeshData.h"
 class RMeshComponent;
 class RMaterial;

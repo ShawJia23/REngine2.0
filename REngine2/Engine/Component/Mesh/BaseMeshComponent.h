@@ -1,4 +1,4 @@
-#include"Core/StaticMeshComponent.h"
+#include"StaticMeshComponent.h"
 
 class BoxMeshComponent :public RStaticMeshComponent
 {

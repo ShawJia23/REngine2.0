@@ -1,7 +1,7 @@
 #include"LightComponent.h"
 #include"../../Manage/LightManage.h"
-#include"../Mesh/Core/MeshComponent.h"
-#include"../../Mesh/Core/MeshManage.h"
+#include"../Mesh/MeshComponent.h"
+#include"../../Manage/MeshManage.h"
 #include"../../Materials/Material.h"
 
 #pragma region RLightComponent

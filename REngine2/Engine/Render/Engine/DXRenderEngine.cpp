@@ -1,6 +1,6 @@
 #include "DXRenderEngine.h"
 #include"../../Config/RenderConfig.h"
-#include"../../Mesh/Core/MeshManage.h"
+#include"../../Manage/MeshManage.h"
 #include"../../Manage/LightManage.h"
 #include"../../LoadAsset/Texture.h"
 #include"../../Materials/Material.h"
@@ -8,6 +8,7 @@
 #include".././../Mesh/BaseMesh.h"
 #include"../../Actor/Light.h"
 #include"../../LoadAsset/ObjectAnalysis.h"
+#include"../../Component/RComponentMinimal.h"
 #if defined(_WIN32)
 
 DXRenderEngine::DXRenderEngine()
@@ -62,26 +63,18 @@ int DXRenderEngine::PostInit()
 
 	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
-		ObjectAnalysisByAssimp lo;
-		lo.LoadMesh("Asset/Model/Eula/Eula_xiong.pmx","Eula");
 
-
-		//点光源
-		if (GPointLight* pPointLight = m_World->CreateActorObject<GPointLight>())
-		{
-			pPointLight->SetPosition(XMFLOAT3(0.f, 3.f, 4.f));
-			pPointLight->SetRotation(fvector_3d(0.f, 0.f, 0.f));
-
-			pPointLight->SetLightIntensity(fvector_3d(10.f, 10.f, 10.f));
-			pPointLight->SetEndAttenuation(150.f);
-		}
-
-		//GParallelLight* pLight = m_World->CreateActorObject<GParallelLight>();
-		//if (pLight)
+		////点光源
+		//if (GPointLight* pPointLight = m_World->CreateActorObject<GPointLight>())
 		//{
-		//	pLight->SetPosition(XMFLOAT3(0.f, -10.f, 0.f));
-		//	pLight->SetRotation(fvector_3d(0, 0, 0));
+		//	pPointLight->SetPosition(XMFLOAT3(0.f, 3.f, 4.f));
+		//	pPointLight->SetRotation(fvector_3d(0.f, 0.f, 0.f));
+
+		//	pPointLight->SetLightIntensity(fvector_3d(10.f, 10.f, 10.f));
+		//	pPointLight->SetEndAttenuation(150.f);
 		//}
+
+
 		//GPointLight* pLight = m_World->CreateActorObject<GPointLight>();
 		//if (pLight)
 		//{
@@ -97,7 +90,13 @@ int DXRenderEngine::PostInit()
 		{
 			pMesh->CreateMesh(4.f, 3.f, 20, 20);
 			pMesh->SetPosition(XMFLOAT3(0.f, -2.f, 0.f));
-			pMesh->SetScale(fvector_3d(10.f, 10.f, 10.f));
+			pMesh->SetScale(fvector_3d(20.f, 20.f, 10.f));
+		}
+		GParallelLight* pLight = m_World->CreateActorObject<GParallelLight>();
+		if (pLight)
+		{
+			pLight->SetPosition(XMFLOAT3(0.f, 3.f, 4.f));
+			pLight->SetRotation(fvector_3d(0, 0, 0));
 		}
 
 		SphereMesh* pSMesh = m_World->CreateActorObject<SphereMesh>();
@@ -113,12 +112,12 @@ int DXRenderEngine::PostInit()
 				pMaterial->SetRoughness(0.8f);
 			}
 		}
-		pSMesh = m_World->CreateActorObject<SphereMesh>();
-		if (pSMesh)
+		SphereMesh* pSMesh1= m_World->CreateActorObject<SphereMesh>();
+		if (pSMesh1)
 		{
-			pSMesh->CreateMesh(2.f, 50, 50);
-			pSMesh->SetPosition(XMFLOAT3(0.f, 6, 0.f));
-			if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
+			pSMesh1->CreateMesh(2.f, 50, 50);
+			pSMesh1->SetPosition(XMFLOAT3(0.f, 6, 0.f));
+			if (RMaterial* pMaterial = (*pSMesh1->GetMaterials())[0])
 			{
 				pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
 				pMaterial->SetMaterialType(EMaterialType::WrapLight);
@@ -192,6 +191,9 @@ int DXRenderEngine::PostInit()
 				pMaterial->SetMaterialType(EMaterialType::Normal);
 			}
 		}
+
+		ObjectAnalysisByAssimp lo;
+		lo.LoadMesh("Asset/Model/Eula/Eula_xiong.pmx", "Eula");
 	}
 	m_meshManage->BuildPipeline();
 

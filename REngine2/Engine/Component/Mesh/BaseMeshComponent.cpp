@@ -1,5 +1,5 @@
 #include"BaseMeshComponent.h"
-#include"../../Mesh/Core/MeshType.h"
+#include"../../Mesh/MeshType.h"
 #include"../../LoadAsset/ObjectAnalysis.h"
 BoxMeshComponent::BoxMeshComponent()
 {

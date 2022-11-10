@@ -1,6 +1,7 @@
 #include"ActorObject.h"
 #include"../Component/TransformComponent/TransformComponent.h"
 
+
 GActorObject::GActorObject()
 {
 	TransformationComponent = CreateObject<RTransformComponent>(new RTransformComponent());

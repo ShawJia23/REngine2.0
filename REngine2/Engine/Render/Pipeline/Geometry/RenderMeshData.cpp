@@ -1,5 +1,5 @@
 #include"RenderMeshData.h"
-#include"../../../Mesh/Core/MeshType.h"
+#include"../../../Mesh/MeshType.h"
 RRenderData::RRenderData()
 	: IndexSize(0)
 	, VertexSize(0)

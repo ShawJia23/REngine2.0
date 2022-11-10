@@ -42,7 +42,10 @@ public:
 
 	UINT64 GetCurrentFenceIndex() { return m_currentFenceIndex; }
 
-	RMeshManage* GetMeshManage() { return m_meshManage; }
+	RMeshManage* GetMeshManage() 
+	{ 
+		return m_meshManage; 
+	}
 	RLightManage* GetLightManage() { return m_lightManage; }
 	RTextureManage* GetTextureManage() { return m_textureManage; }
 protected:

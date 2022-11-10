@@ -1,6 +1,6 @@
 #include"GeometryMap.h"
 #include"../../Buffer/ConstructBuffer.h"
-#include"../../../Mesh/Core/Mesh.h"
+#include"../../../Mesh/Mesh.h"
 #include"../../../Materials/Material.h"
 #include"../../../Manage/LightManage.h"
 #include"../../../LoadAsset/Texture.h"

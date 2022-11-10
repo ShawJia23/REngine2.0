@@ -5,9 +5,10 @@
 #include "../../Render/Render.h"
 #include"../../Core/World.h"
 #include"../../Render/Engine/DXRenderEngine.h"
-#include"../../Core/Camera.h"
-#include"../../Mesh/Core/MeshManage.h"
+#include"../../Camera/Camera.h"
+#include"../../Manage/MeshManage.h"
 #include"../../Manage/LightManage.h"
+#include"../../Core/Construction/MacroConstruction.h"
 #if defined(_WIN32)
 #include "WindowsMessageProcessing.h"
 

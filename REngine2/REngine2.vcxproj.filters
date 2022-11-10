@@ -132,10 +132,10 @@
     <ClCompile Include="Engine\Config\RenderConfig.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Core\Mesh.cpp">
+    <ClCompile Include="Engine\Mesh\Mesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Core\MeshType.cpp">
+    <ClCompile Include="Engine\Mesh\MeshType.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Mesh\BaseMesh.cpp">
@@ -159,7 +159,7 @@
     <ClCompile Include="Engine\Component\TransformComponent\TransformComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\Camera.cpp">
+    <ClCompile Include="Engine\Camera\Camera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Component\Input\RInputType.cpp">
@@ -174,7 +174,7 @@
     <ClCompile Include="Engine\Core\Engine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Core\MeshManage.cpp">
+    <ClCompile Include="Engine\Manage\MeshManage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Render\ConstontBuffer\ObjectTransformation.cpp">
@@ -240,10 +240,10 @@
     <ClCompile Include="Engine\Render\ConstontBuffer\MaterialConstantBuffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\Mesh\Core\MeshComponent.cpp">
+    <ClCompile Include="Engine\Component\Mesh\MeshComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\Mesh\Core\StaticMeshComponent.cpp">
+    <ClCompile Include="Engine\Component\Mesh\StaticMeshComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Component\Mesh\BaseMeshComponent.cpp">
@@ -434,10 +434,10 @@
     <ClInclude Include="Engine\Config\RenderConfig.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Core\Mesh.h">
+    <ClInclude Include="Engine\Mesh\Mesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Core\MeshType.h">
+    <ClInclude Include="Engine\Mesh\MeshType.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Math\RMath.h">
@@ -452,7 +452,7 @@
     <ClInclude Include="Engine\Core\RObject\RMinimalObject.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\Camera.h">
+    <ClInclude Include="Engine\Camera\Camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Core\ViewPort\Viewport.h">
@@ -482,7 +482,7 @@
     <ClInclude Include="Engine\Core\World.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Core\MeshManage.h">
+    <ClInclude Include="Engine\Manage\MeshManage.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\ConstontBuffer\ObjectTransformation.h">
@@ -503,7 +503,7 @@
     <ClInclude Include="Engine\Render\Buffer\ConstructBuffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\CameraType.h">
+    <ClInclude Include="Engine\Camera\CameraType.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Core\ViewPort\ViewportInfo.h">
@@ -554,10 +554,10 @@
     <ClInclude Include="Engine\Materials\MaterialType.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\Mesh\Core\MeshComponent.h">
+    <ClInclude Include="Engine\Component\Mesh\MeshComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\Mesh\Core\StaticMeshComponent.h">
+    <ClInclude Include="Engine\Component\Mesh\StaticMeshComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Component\Mesh\BaseMeshComponent.h">
@@ -585,6 +585,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\stb\stb_image.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Core\Construction\ObjectConstruction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Core\Construction\MeshConstruction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Core\Construction\ActorMeshConstruction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Core\Construction\MacroConstruction.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

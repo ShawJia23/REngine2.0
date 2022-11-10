@@ -1,10 +1,10 @@
 #pragma once
-#include "Core/Mesh.h"
-
+#include "Mesh.h"
 class BoxMesh :public BMesh
 {
 	typedef BMesh Super;
 public:
+	BoxMesh();
 	virtual void Init();
 
 	virtual void Draw(float DeltaTime);
@@ -16,6 +16,8 @@ class ConeMesh :public BMesh
 {
 	typedef BMesh Super;
 public:
+	ConeMesh();
+
 	virtual void Init();
 
 	virtual void Draw(float DeltaTime);
@@ -27,6 +29,8 @@ class CylinderMesh :public BMesh
 {
 	typedef BMesh Super;
 public:
+	CylinderMesh();
+
 	virtual void Init();
 
 	virtual void Draw(float DeltaTime);
@@ -38,6 +42,8 @@ class PlaneMesh :public BMesh
 {
 	typedef BMesh Super;
 public:
+	PlaneMesh();
+
 	virtual void Init();
 
 	virtual void Draw(float DeltaTime);
@@ -49,6 +55,8 @@ class SphereMesh :public BMesh
 {
 	typedef BMesh Super;
 public:
+	SphereMesh();
+
 	virtual void Init();
 
 	virtual void Draw(float DeltaTime);
@@ -60,6 +68,8 @@ class CustomMesh :public BMesh
 {
 	typedef BMesh Super;
 public:
+	CustomMesh();
+
 	virtual void Init();
 
 	virtual void Draw(float DeltaTime);

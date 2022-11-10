@@ -1,21 +1,28 @@
 #include "BaseMesh.h"
-#include"Core/MeshManage.h"
 #include"../LoadAsset/Texture.h"
 #include"../Core/World.h"
 #include"../Materials/Material.h"
+#include"../Component/Mesh/BaseMeshComponent.h"
+
+BoxMesh::BoxMesh() 
+{
+}
 void BoxMesh::Init()
 {
 	Super::Init();
 }
-
 void BoxMesh::Draw(float DeltaTime)
 {
 	Super::Draw(DeltaTime);
 }
-
 void  BoxMesh::CreateMesh(float height, float width, float depth)
 {
-	SetMeshComponent(GetMeshManage()->CreateBoxMeshComponent(height, width, depth));
+	auto Tmp = CREATE_RENDER_DATA(BoxMeshComponent, height, width, depth);
+	SetMeshComponent(Tmp);
+}
+
+ConeMesh::ConeMesh()
+{
 }
 
 void ConeMesh::Init()
@@ -30,7 +37,12 @@ void ConeMesh::Draw(float DeltaTime)
 
 void ConeMesh::CreateMesh(float radius, float height, uint32_t axialSub, uint32_t heightSub)
 {
-	SetMeshComponent(GetMeshManage()->CreateConeMeshComponent(radius, height, axialSub, heightSub));
+	auto Tmp = CREATE_RENDER_DATA(ConeMeshComponent, radius, height, axialSub, heightSub);
+	SetMeshComponent(Tmp);
+}
+
+CylinderMesh::CylinderMesh()
+{
 }
 
 void CylinderMesh::Init()
@@ -45,7 +57,12 @@ void CylinderMesh::Draw(float DeltaTime)
 
 void CylinderMesh::CreateMesh(float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub)
 {
-	SetMeshComponent(GetMeshManage()->CreateCylinderMeshComponent(topRadius, bottomRadius,height,axialSub, heightSub));
+	auto Tmp = CREATE_RENDER_DATA(CylinderMeshComponent, topRadius, bottomRadius, height, axialSub, heightSub);
+	SetMeshComponent(Tmp);
+}
+
+PlaneMesh::PlaneMesh()
+{
 }
 
 void PlaneMesh::Init()
@@ -58,9 +75,14 @@ void PlaneMesh::Draw(float DeltaTime)
 	Super::Draw(DeltaTime);
 }
 
-void PlaneMesh::CreateMesh(float height, float width, uint32_t heightSub, uint32_t widthSub) 
+void PlaneMesh::CreateMesh(float height, float width, uint32_t heightSub, uint32_t widthSub)
 {
-	SetMeshComponent(GetMeshManage()->CreatePlaneMeshComponent(height, width, heightSub, widthSub));
+	auto Tmp = CREATE_RENDER_DATA(PlaneMeshComponent, height, width, heightSub, widthSub);
+	SetMeshComponent(Tmp);
+}
+
+SphereMesh::SphereMesh()
+{
 }
 
 void SphereMesh::Init()
@@ -75,7 +97,13 @@ void SphereMesh::Draw(float DeltaTime)
 
 void SphereMesh::CreateMesh( float radius, uint32_t axialSub, uint32_t heightSub) 
 {
-	SetMeshComponent(GetMeshManage()->CreateSphereMeshComponent(radius, axialSub, heightSub));
+	auto Tmp = CREATE_RENDER_DATA(SphereMeshComponent, radius, axialSub, heightSub);
+	SetMeshComponent(Tmp);
+	
+}
+
+CustomMesh::CustomMesh()
+{
 }
 
 void CustomMesh::Init()
@@ -90,7 +118,8 @@ void CustomMesh::Draw(float DeltaTime)
 
 void CustomMesh::CreateMesh()
 {
-	SetMeshComponent(GetMeshManage()->CreateCustomMeshComponent());
+	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent, 0);
+	SetMeshComponent(Tmp);
 }
 
 MeshGroup::MeshGroup()

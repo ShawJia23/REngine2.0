@@ -1,6 +1,6 @@
 #include "DXDeviceInterface.h"
 #include "../Platform/Windows/WindowsEngine.h"
-#include"../Mesh/Core/MeshManage.h"
+#include"../Manage/MeshManage.h"
 #include"../LoadAsset/Texture.h"
 #include"../Core/World.h"
 
