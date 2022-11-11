@@ -2,6 +2,7 @@
 
 RMaterial::RMaterial()
 	:m_BaseColor(0.5f, 0.5f, 0.5f, 1.f),
+	m_SpecularColor(1.f, 1.f, 1.f),
 	m_MaterialType(EMaterialType::Lambert),
 	m_MaterialState(EMaterialDisplayStatue::RTOPOLOGY_TRIANGLELIST),
 	m_Roughness(0),
@@ -37,6 +38,23 @@ void RMaterial::SetBaseColorIndexKey(const std::string& value)
 	m_BaseColorIndexKey = value;
 	SetDirty(true);
 }
+void RMaterial::SetNormalIndexKey(const std::string& value)
+{
+	m_NormalIndexKey = value;
+	SetDirty(true);
+}
+void RMaterial::SetSpecularIndexKey(const std::string& value)
+{
+	m_SpecularIndexKey = value;
+	SetDirty(true);
+}
+void RMaterial::SetSpecular(const fvector_3d& vector)
+{
+	m_SpecularColor = vector;
+	SetDirty(true);
+}
+
+
 void RMaterial::SetMaterialTransform(const XMFLOAT4X4& value)
 { 
 	m_MaterialTransform = value;

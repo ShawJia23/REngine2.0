@@ -127,15 +127,21 @@ MeshGroup::MeshGroup()
 	m_RenderDatas.clear();
 }
 
+void MeshGroup::SetPosition(const XMFLOAT3& newPosition) 
+{
+	for (auto& Tmp : m_RenderDatas)
+	{
+		Tmp.second.Mesh->SetPosition(newPosition);
+	}
+}
+
 void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderData MeshData)
 {
 	CustomMesh* pCustomMesh=GetWorld()->CreateActorObject<CustomMesh>();
 	if (pCustomMesh)
 	{
 		pCustomMesh->SetMeshComponent(mesh);
-		pCustomMesh->SetPosition(XMFLOAT3(0.f, -2.f, 15.f));
 	}
-
 	SubMesh pSubMesh;
 	pSubMesh.Mesh = pCustomMesh;
 	pSubMesh.MeshData.IndexData = MeshData.IndexData;
@@ -155,8 +161,10 @@ void MeshGroup::CreateMesh()
 	}
 }
 
-void MeshGroup::AddTexture(std::string objName,std::string texName, std::string fileName)
+void MeshGroup::AddTexture(std::string objName, std::string texName, std::string fileName, int type) 
 {
+	if (texName.empty() || fileName.empty())
+		return;
 	GetTextureManage()->LoadTextureFormPath(texName, fileName);
 
 	if (m_RenderDatas.find(objName) != m_RenderDatas.end())
@@ -164,13 +172,23 @@ void MeshGroup::AddTexture(std::string objName,std::string texName, std::string 
 		auto Tmp = m_RenderDatas[objName].Mesh;
 		if (RMaterial* pMaterial = (*Tmp->GetMaterials())[0])
 		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetBaseColorIndexKey(texName);
-			pMaterial->SetMaterialType(EMaterialType::Lambert);
+			switch (type)
+			{
+			case 1:
+				pMaterial->SetBaseColorIndexKey(texName);
+				break;
+			case 2:
+				pMaterial->SetSpecularIndexKey(texName);
+				break;
+			case 6:
+				pMaterial->SetNormalIndexKey(texName);
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }
-
 void MeshGroup::CreateTexture()
 {
 	GetTextureManage()->CreateTexture();

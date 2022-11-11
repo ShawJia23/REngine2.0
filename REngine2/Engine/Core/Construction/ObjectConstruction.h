@@ -5,7 +5,7 @@ class RMinimalObject;
 template<class T>
 T* CreateObject(RMinimalObject* NewObject)
 {
-	return dynamic_cast<T*>(NewObject);
+	return dynamic_cast <T*>(NewObject);
 }
 
 template<class T, typename ...ParamTypes>

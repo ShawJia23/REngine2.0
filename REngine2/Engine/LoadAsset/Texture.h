@@ -21,6 +21,7 @@ public:
 	RTextureManage();
 public:
 	RTexture* FindRenderingTexture(const std::string& key);
+	int  FindRenderingTextureIndex(const std::string& key);
 	void LoadTextureFormPath(const std::string& name, const std::string& path);
 
 	void BuildTextureConstantBuffer(ID3D12DescriptorHeap* InHeap, int Offset);

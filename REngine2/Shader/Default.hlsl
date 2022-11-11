@@ -1,4 +1,4 @@
-#include"Common.hlsl"
+#include"Material.hlsl"
 
 struct MeshVertexIn
 {
@@ -50,31 +50,26 @@ float4 PixelShaderMain(MeshVertexOut MVOut) :SV_TARGET
 	MaterialConstBuffer MatConstBuffer = Materials[MaterialIndex];
 
 	RMaterial Material;
-	if (MatConstBuffer.BaseColorIndex != -1)
-	{
-		Material.DiffuseAlbedo =SimpleTexture2DMap[MatConstBuffer.BaseColorIndex].Sample(gsamLinearWrap, MVOut.TexCoord);
-	}
-	else 
-	{
-		Material.DiffuseAlbedo = MatConstBuffer.BaseColor;
-	}
+	Material.DiffuseAlbedo = GetMaterialDiffuse(MatConstBuffer, MVOut.TexCoord);
+	Material.SpecularAlbedo = GetMaterialSpecular(MatConstBuffer, MVOut.TexCoord);
 	Material.Shininess = 1.0f - MatConstBuffer.MaterialRoughness;
 	Material.FresnelR0 = 0.3f;
 
-	float3 AmbientLight = { 0.15f, 0.15f, 0.25f };
-
 	MVOut.Normal = normalize(MVOut.Normal);
+
+	float3 ModelNormal = GetMaterialNormal(MatConstBuffer, MVOut.TexCoord, MVOut.Normal, MVOut.UTangent);
 
 	float3 View2Eye = ViewportPosition.rgb - MVOut.WorldPosition.rgb;
 	float Dist2Eye = length(View2Eye);
 	View2Eye /= Dist2Eye;
 
+	float3 AmbientLight = { 0.15f, 0.15f, 0.25f };
 
-	float3 directLight = ComputeDirectionalLight(SceneLights[0], Material, MVOut.Normal, View2Eye);
+	float3 directLight = ComputeDirectionalLight(SceneLights[0], Material, ModelNormal, View2Eye);
 
-	float3 r = reflect(-View2Eye, MVOut.Normal);
+	float3 r = reflect(-View2Eye, ModelNormal);
 	//float4 reflectionColor = gCubeMap.Sample(gsamLinearWrap, r);
-	float3 fresnelFactor = SchlickFresnel(Material.FresnelR0, MVOut.Normal, r,5);
+	float3 fresnelFactor = SchlickFresnel(Material.FresnelR0, ModelNormal, r,5);
 
 	MVOut.Color.xyz = AmbientLight + directLight+ Material.Shininess * fresnelFactor;
 	MVOut.Color.w = 1;

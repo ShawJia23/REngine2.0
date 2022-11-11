@@ -6,6 +6,18 @@
 #include<assimp/scene.h>
 #include<assimp/postprocess.h>
 
+std::vector<std::string> StringSplit(const std::string& str, char delim) {
+	std::stringstream ss(str);
+	std::string item;
+	std::vector<std::string> elems;
+	while (std::getline(ss, item, delim)) {
+		if (!item.empty()) {
+			elems.push_back(item);
+		}
+	}
+	return elems;
+}
+
 ObjectAnalysisByAssimp::ObjectAnalysisByAssimp()
 {
 
@@ -14,7 +26,7 @@ ObjectAnalysisByAssimp ::~ObjectAnalysisByAssimp()
 {
 }
 
-void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name)
+void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name, const XMFLOAT3& newPosition,bool IsRight)
 {
 	Assimp::Importer aiImporter;
 	const aiScene* pModel = aiImporter.ReadFile(fileName, aiProcess_ConvertToLeftHanded);
@@ -52,23 +64,62 @@ void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name)
 			if (pModel->HasMaterials())
 			{
 				aiMaterial* pMaterial = pModel->mMaterials[pMesh->mMaterialIndex];
-				aiString aistr;
-				std::string pTexNamePath = "Asset/Model/";
-				pTexNamePath += name;
-				pTexNamePath += "/";
-				pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &aistr);
-				std::string pTexPath = aistr.C_Str();
-				if (pTexPath.size() > 0)
-				{
-					pTexNamePath += pTexPath;
-					std::string pTexName = name;
-					pTexName+= "/";
-					pTexName += pTexPath;
-					pMeshGroup->AddTexture(pMesh->mName.C_Str(), pTexName, pTexNamePath);
-				}
+				SetMaterialTex(pMaterial, pMeshGroup, pMesh->mName.C_Str(), name, IsRight);
 			}
 		}
+		pMeshGroup->SetPosition(newPosition);
 		pMeshGroup->CreateMesh();
 		pMeshGroup->CreateTexture();
 	}
+}
+
+void ObjectAnalysisByAssimp::SetMaterialTex(aiMaterial* pMaterial, MeshGroup* pMeshGroup,std::string meshName, std::string ObjName, bool  IsRight)
+{
+	for (int i = 1; i <= 6; i++) 
+	{
+		aiString aistr;
+
+		pMaterial->GetTexture((aiTextureType)i, 0, &aistr);
+		std::string pPath = aistr.C_Str();
+
+		pMeshGroup->AddTexture(meshName,
+			GetTexName(ObjName, pPath),
+			GetFilePath(IsRight, ObjName, pPath),
+			i);
+	}
+}
+
+std::string ObjectAnalysisByAssimp::GetFilePath(bool IsRight, std::string ObjName, std::string TexName)
+{
+	std::string pTexNamePath = "Asset/Model/";
+	pTexNamePath += ObjName;
+	pTexNamePath += "/";
+	//路径是正确的
+	if (IsRight) 
+	{
+		if (TexName.size() > 0)
+		{
+			pTexNamePath += TexName;
+			return pTexNamePath;
+		}
+	}
+	else
+	{
+		auto str1 = StringSplit(TexName, '\\');
+		if (str1.size() > 0) 
+		{
+			TexName = str1.back();
+			pTexNamePath += TexName;
+			return pTexNamePath;
+		}
+	}
+	return "";
+}
+
+std::string ObjectAnalysisByAssimp::GetTexName(std::string ObjName, std::string TexName)
+{
+	std::string pTexName = ObjName;
+	pTexName += "/";
+	pTexName += TexName;
+	return pTexName;
 }

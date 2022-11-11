@@ -35,6 +35,19 @@ RTextureManage::RTextureManage():NowTextureIndex(0)
 {
 }
 
+int  RTextureManage::FindRenderingTextureIndex(const std::string& key)
+{
+	if (!key.empty())
+	{
+		if (m_TextureMap.find(key) != m_TextureMap.end())//key
+		{
+			return m_TextureMap[key]->HeapIndex;
+		}
+	}
+
+	return -1;
+}
+
 RTexture* RTextureManage::FindRenderingTexture(const std::string& key)
 {
 	if (!key.empty())

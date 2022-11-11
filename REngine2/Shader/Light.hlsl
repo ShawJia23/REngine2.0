@@ -17,6 +17,7 @@ struct Light
 struct RMaterial
 {
 	float4 DiffuseAlbedo;
+	float4 SpecularAlbedo;
 	float3 FresnelR0;
 	float Shininess;
 };
@@ -37,7 +38,8 @@ float3 BlinnPhong(float3 lightStrength, float3 lightVec, float3 normal, float3 t
 	float roughnessFactor = (m + 8.0f) * pow(max(dot(halfVec, normal), 0.0f), m) / 8.0f;
 	float3 fresnelFactor = SchlickFresnel(mat.FresnelR0, halfVec, lightVec,5);
 
-	float3 specAlbedo = fresnelFactor * roughnessFactor;
+	float3 specAlbedo = mat.SpecularAlbedo.rgb;
+	specAlbedo *= fresnelFactor * roughnessFactor;
 
 	// Our spec formula goes outside [0,1] range, but we are 
 	// doing LDR rendering.  So scale it down a bit.

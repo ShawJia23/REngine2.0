@@ -314,24 +314,18 @@ void RGeometryMap::UpdateMaterialShaderResourceView()
 				fvector_4d InBaseColor = InMaterial->GetBaseColor();
 				MaterialConstantBuffer.BaseColor = XMFLOAT4(InBaseColor.x, InBaseColor.y, InBaseColor.z, InBaseColor.w);
 
+				fvector_3d InSpecularColor = InMaterial->GetSpecularColor();
+				MaterialConstantBuffer.SpecularColor = XMFLOAT3(InSpecularColor.x, InSpecularColor.y, InSpecularColor.z);
+
 				//粗糙度
 				MaterialConstantBuffer.Roughness = InMaterial->GetRoughness();
 
 				//类型输入
 				MaterialConstantBuffer.MaterialType = InMaterial->GetMaterialType();
 
-				//外部资源导入
-				{
-					//这个是BaseColor
-					if (auto BaseColorTextureResourcesPtr = GetTextureManage()->FindRenderingTexture(InMaterial->GetBaseColorIndexKey()))
-					{
-						MaterialConstantBuffer.BaseColorIndex = BaseColorTextureResourcesPtr->HeapIndex;
-					}
-					else
-					{ 
-						MaterialConstantBuffer.BaseColorIndex = -1;
-					}
-				}
+				MaterialConstantBuffer.BaseColorIndex = GetTextureManage()->FindRenderingTextureIndex(InMaterial->GetBaseColorIndexKey());
+				MaterialConstantBuffer.NormalIndex = GetTextureManage()->FindRenderingTextureIndex(InMaterial->GetNormalIndexKey());
+				MaterialConstantBuffer.SpecularIndex = GetTextureManage()->FindRenderingTextureIndex(InMaterial->GetSpecularIndexKey());
 
 				//材质矩阵
 				XMMATRIX MaterialTransform = XMLoadFloat4x4(&InMaterial->GetMaterialTransform());

@@ -1,4 +1,4 @@
-#include "Light.hlsl"
+#include"Light.hlsl"
 
 SamplerState gsamPointWrap        : register(s0);
 SamplerState gsamPointClamp       : register(s1);
@@ -36,6 +36,9 @@ struct MaterialConstBuffer
 	float MaterialRoughness;
 	int BaseColorIndex;
 	int NormalIndex;
+
+	int SpecularIndex;
+	float3 SpecularColor;
 
 	float4 BaseColor;
 	float4x4 TransformInformation;

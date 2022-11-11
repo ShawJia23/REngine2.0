@@ -193,7 +193,7 @@ int DXRenderEngine::PostInit()
 		}
 
 		ObjectAnalysisByAssimp lo;
-		lo.LoadMesh("Asset/Model/Eula/Eula_xiong.pmx", "Eula");
+		lo.LoadMesh("Asset/Model/Brolyviewer001out/Brolyviewer001out.fbx", "Brolyviewer001out", XMFLOAT3(0.f, 10.f, 10.f),false);
 	}
 	m_meshManage->BuildPipeline();
 
