@@ -178,6 +178,9 @@
     <ClCompile Include="Engine\Render\Pipeline\Geometry\GeometryMap.cpp" />
     <ClCompile Include="Engine\Render\Pipeline\Geometry\RenderMeshData.cpp" />
     <ClCompile Include="Engine\Render\Pipeline\PipelineState\DXPipelineState.cpp" />
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\BaseRenderLayer.cpp" />
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayer.cpp" />
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerManage.cpp" />
     <ClCompile Include="Engine\Render\Pipeline\RootSignature\DXRootSignature.cpp" />
     <ClCompile Include="Engine\Render\Render.cpp" />
     <ClCompile Include="Engine\Render\ResourcesUpdate.cpp" />
@@ -278,6 +281,9 @@
     <ClInclude Include="Engine\Render\Pipeline\Geometry\RenderMeshData.h" />
     <ClInclude Include="Engine\Render\Pipeline\PipelineState\DXPipelineState.h" />
     <ClInclude Include="Engine\Render\Pipeline\DX12PipelineType.h" />
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\BaseRenderLayer.h" />
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayer.h" />
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerManage.h" />
     <ClInclude Include="Engine\Render\Pipeline\RootSignature\DXRootSignature.h" />
     <ClInclude Include="Engine\Render\Render.h" />
     <ClInclude Include="Engine\Render\ResourcesUpdate.h" />

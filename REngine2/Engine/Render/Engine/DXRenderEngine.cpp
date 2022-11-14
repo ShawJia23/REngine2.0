@@ -126,6 +126,19 @@ int DXRenderEngine::PostInit()
 		pSMesh = m_World->CreateActorObject<SphereMesh>();
 		if (pSMesh)
 		{
+			pSMesh->CreateMesh(2.f, 100, 100);
+			pSMesh->SetPosition(XMFLOAT3(0.f, 0.f, 0.f));
+			pSMesh->SetScale(fvector_3d(40.f));
+			if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
+			{
+				pMaterial->SetBaseColor(fvector_4d(0.2f, 0.2f, 0.2f, 1.f));
+				pMaterial->SetSpecular(fvector_3d(0.2f));
+				pMaterial->SetMaterialType(EMaterialType::BaseColor);
+			}
+		}
+		pSMesh = m_World->CreateActorObject<SphereMesh>();
+		if (pSMesh)
+		{
 			pSMesh->CreateMesh(2.f, 50, 50);
 			pSMesh->SetPosition(XMFLOAT3(-4.f, 6, 0.f));
 			if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
@@ -193,7 +206,8 @@ int DXRenderEngine::PostInit()
 		}
 
 		ObjectAnalysisByAssimp lo;
-		lo.LoadMesh("Asset/Model/Brolyviewer001out/Brolyviewer001out.fbx", "Brolyviewer001out", XMFLOAT3(0.f, 10.f, 10.f),false);
+		lo.LoadMesh("Asset/Model/Brolyviewer001out/Brolyviewer001out.fbx", "Brolyviewer001out", 
+			XMFLOAT3(0.f, 10.f, 10.f),false);
 	}
 	m_meshManage->BuildPipeline();
 

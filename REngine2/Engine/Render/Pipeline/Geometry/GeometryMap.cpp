@@ -204,6 +204,7 @@ void RGeometryMap::DrawMesh()
 	} 
 }
 
+
 void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 {
 	XMMATRIX ViewMatrix = XMLoadFloat4x4(&viewportInfo.ViewMatrix);
@@ -340,6 +341,7 @@ void RGeometryMap::UpdateMaterialShaderResourceView()
 	}
 }
 
+
 void RGeometryMap::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData)
 {
 	RGeometry& Geometry = m_Geometrys[0];
@@ -354,6 +356,7 @@ void RGeometryMap::BuildGeometry()
 		Tmp.second.Build();
 	}
 }
+
 
 bool RGeometry::RenderDataExistence(RMeshComponent* key)
 {

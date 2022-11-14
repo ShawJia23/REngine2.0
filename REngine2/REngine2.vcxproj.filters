@@ -264,6 +264,15 @@
     <ClCompile Include="ThirdParty\stb\stb_image.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerManage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\BaseRenderLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\EngineFactory.h">
@@ -597,6 +606,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Core\Construction\MacroConstruction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerManage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\BaseRenderLayer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,10 +1,11 @@
 #pragma once
 #include"../../Interface/DXDeviceInterface.h"
-#include"PipelineState/DXPipelineState.h"
 #include"RootSignature/DXRootSignature.h"
 #include"../../Mesh/MeshType.h"
 #include"../../Core/ViewPort/ViewportInfo.h"
 #include"Geometry/GeometryMap.h"
+#include"RenderLayer/RenderLayerManage.h"
+
 class RMeshComponent;
 class  DX12Pipeline:IDirectXDeviceInterface
 {
@@ -26,12 +27,8 @@ public:
 
 	void Draw();
 private:
-	RShader m_VertexShader;
-	RShader m_PixelShader;
-	vector<D3D12_INPUT_ELEMENT_DESC> m_InputElementDesc;
-
+	RenderLayerManage m_RenderLayers;
 	RGeometryMap m_GeometryMap;
 	RDXRootSignature m_RootSignature;
-	RDXPipelineState m_PipelineState;
 };
 
