@@ -1,21 +1,11 @@
 #pragma once
-#include"../../../Shader/Shader.h"
-#include"../PipelineState/DXPipelineState.h"
-class RenderLayer 
+#include"BaseRenderLayer.h"
+
+class OpaqueRenderLayer :public RenderLayer
 {
+	typedef RenderLayer Super ;
 public:
-	RenderLayer();
-	void ResetCommandList();
-	void BuildPipelineState(UINT TextureSize, ID3D12RootSignature* rootSignature);
-	void CaptureKeyboardKeys();
+	OpaqueRenderLayer();
 
 	virtual void BuildShader(UINT TextureSize);
-	virtual int GetRenderLayerType() const { return RenderLayerType; }
-private:
-	RShader m_VertexShader;
-	RShader m_PixelShader;
-	vector<D3D12_INPUT_ELEMENT_DESC> m_InputElementDesc;
-	RDXPipelineState m_PipelineState;
-
-	int RenderLayerType;
 };

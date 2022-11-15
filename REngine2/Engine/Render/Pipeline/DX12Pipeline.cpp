@@ -31,7 +31,7 @@ void DX12Pipeline::BuildPipeline()
 
     m_RootSignature.BuildRootSignature(GetTextureManage()->GetTextureSize());
 
-    m_RenderLayers.BuildPipelineState(GetTextureManage()->GetTextureSize(), m_RootSignature.GetRootSignature());
+    m_GeometryMap.BuildPipelineState(m_RootSignature.GetRootSignature());
 }
 
 void DX12Pipeline::UpdateCalculations(const ViewportInfo viewportInfo)
@@ -44,13 +44,11 @@ void DX12Pipeline::Draw()
     SetRootSignature();
 
     m_GeometryMap.Draw();
-
-    m_RenderLayers.CaptureKeyboardKeys();
 }
 
 void DX12Pipeline::ResetCommandList() 
 {
-    m_RenderLayers.ResetCommandList();
+    m_GeometryMap.ResetCommandList();
 }
 
 void DX12Pipeline::SetRootSignature()

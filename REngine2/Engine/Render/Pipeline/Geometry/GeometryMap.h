@@ -2,21 +2,23 @@
 #include"../../../Interface/DXDeviceInterface.h"
 #include"../DescriptorHeap/DXDescriptorHeap.h"
 #include"../BufferView/ConstantBufferView.h"
-#include"../../../Core/ViewPort/ViewportInfo.h"
 #include"../../../Mesh/MeshType.h"
 #include"RenderMeshData.h"
+
 class RMeshComponent;
 class RMaterial;
+class RenderLayerManage;
+class RenderLayer;
+struct ViewportInfo;
+
 struct RGeometry :public IDirectXDeviceInterface_Struct
 {
 	friend struct RGeometryMap;
 
-	bool RenderDataExistence(RMeshComponent* InKey);
-	void BuildMesh(RMeshComponent* mesh, const MeshRenderData& MeshData);
+	bool RenderDataExistence(RMeshComponent* InKey, std::shared_ptr<RenderLayer> renderLayer);
+	void BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer);
 
 	void Build();
-
-	UINT GetDrawObjectNumber() const { return m_RenderDatas.size(); }
 
 	D3D12_VERTEX_BUFFER_VIEW GetVertexBufferView();
 	D3D12_INDEX_BUFFER_VIEW GetIndexBufferView();
@@ -31,8 +33,6 @@ protected:
 	ComPtr<ID3D12Resource> IndexBufferTmpPtr;
 
 	MeshRenderData m_MeshRenderData;
-
-	vector<RRenderData> m_RenderDatas;
 };
 
 
@@ -75,8 +75,11 @@ public:
 	UINT GetMeshNumber();
 	UINT GetLightsNumber();
 	UINT GetTextureNumber();
+
+	void ResetCommandList();
+	void BuildPipelineState(ID3D12RootSignature* rootSignature);
 private:
-	map<int, RGeometry> m_Geometrys;
+	map<int, RGeometry*> m_Geometrys;
 
 	RDXDescriptorHeap m_DescriptorHeap;
 	RConstantBufferView m_ObjectConstantBufferView;
@@ -91,4 +94,6 @@ private:
 	UINT IndexSize;
 
 	std::vector<RMaterial*> Materials;
+
+	std::unique_ptr<RenderLayerManage> m_RenderLayerManage;
 };

@@ -1,7 +1,7 @@
 #include"MeshComponent.h"
 #include"../../Mesh/MeshType.h"
 
-RMeshComponent::RMeshComponent()
+RMeshComponent::RMeshComponent():MeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPAQUE)
 {
 	m_Materials.push_back(CreateObject<RMaterial>(new RMaterial()));
 }

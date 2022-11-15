@@ -3,6 +3,8 @@
 RRenderData::RRenderData()
 	: IndexSize(0)
 	, VertexSize(0)
+	, ObjectIndex(0)
+	, GeometryIndex(0)
 	, IndexOffsetPosition(0)
 	, VertexOffsetPosition(0)
 	, VertexTypeSize(sizeof(RVertex))

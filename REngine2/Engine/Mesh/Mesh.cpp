@@ -50,3 +50,13 @@ void BMesh::SetScale(const fvector_3d& InNewScale)
 {
 	GetMeshComponent()->SetScale(InNewScale);
 }
+
+
+void BMesh::SetMeshComponent(RMeshComponent* InMeshComponent)
+{ 
+	MeshComponent = InMeshComponent; 
+}
+void BMesh::SetRenderLayer(EMeshRenderLayerType type)
+{
+	MeshComponent->SetMeshRenderLayerType(type); 
+}

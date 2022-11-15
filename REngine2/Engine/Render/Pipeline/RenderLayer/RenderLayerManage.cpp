@@ -1,21 +1,53 @@
 #include"RenderLayerManage.h"
-
+#include"RenderLayer.h"
+#include"../BufferView/ConstantBufferView.h"
+#include"../../ConstontBuffer/ObjectTransformation.h"
+#include"../../../Core/ViewPort/ViewportInfo.h"
 RenderLayerManage::RenderLayerManage() 
 {
-
+	CreateRenderLayer<OpaqueRenderLayer>();
 }
 void RenderLayerManage::ResetCommandList() 
 {
 	for (auto& Tmp : m_RenderLayers)
-		Tmp.ResetCommandList();
+		Tmp.second->ResetCommandList();
 }
 void RenderLayerManage::BuildPipelineState(UINT TextureSize, ID3D12RootSignature* rootSignature) 
 {
 	for (auto& Tmp : m_RenderLayers)
-		Tmp.BuildPipelineState(TextureSize, rootSignature);
+		Tmp.second->BuildPipelineState(TextureSize, rootSignature);
 }
 void RenderLayerManage::CaptureKeyboardKeys() 
 {
 	for (auto& Tmp : m_RenderLayers)
-		Tmp.CaptureKeyboardKeys();
+		Tmp.second->CaptureKeyboardKeys();
+}
+
+void RenderLayerManage::RegisterRenderLayer(EMeshRenderLayerType type,std::shared_ptr<RenderLayer> renderLayer)
+{
+	m_RenderLayers[type]=renderLayer;
+}
+
+std::shared_ptr<RenderLayer> RenderLayerManage::GetRenderLayerByType(EMeshRenderLayerType type)
+{
+	if (m_RenderLayers.find(type) != m_RenderLayers.end())
+		return m_RenderLayers[type];
+	return nullptr;
+}
+
+void RenderLayerManage::UpdateCalculations(const ViewportInfo viewportInfo, RConstantBufferView objectConstantBufferView)
+{
+	for (auto& Tmp : m_RenderLayers)
+		Tmp.second->UpdateCalculations(viewportInfo, objectConstantBufferView);
+}
+
+void RenderLayerManage::DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap)
+{
+	for (auto& Tmp : m_RenderLayers)
+		Tmp.second->DrawMesh(geometrys, heap);
+}
+
+std::map<EMeshRenderLayerType, std::shared_ptr<RenderLayer>> RenderLayerManage::GetAllRenderLayers() 
+{ 
+	return m_RenderLayers; 
 }

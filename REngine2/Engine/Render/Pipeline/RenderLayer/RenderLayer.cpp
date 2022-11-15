@@ -1,11 +1,11 @@
 #include"RenderLayer.h"
 
-RenderLayer::RenderLayer():RenderLayerType(0)
+OpaqueRenderLayer::OpaqueRenderLayer():RenderLayer()
 {
-
+	SetRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 }
 
-void RenderLayer::BuildShader(UINT TextureSize)
+void OpaqueRenderLayer::BuildShader(UINT TextureSize) 
 {
     char TextureNumBuff[10] = { 0 };
     D3D_SHADER_MACRO ShaderMacro[] =
@@ -27,22 +27,4 @@ void RenderLayer::BuildShader(UINT TextureSize)
         {"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 52, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
     };
     m_PipelineState.BindInputLayout(m_InputElementDesc.data(), m_InputElementDesc.size());
-}
-
-void RenderLayer::BuildPipelineState(UINT TextureSize,ID3D12RootSignature* rootSignature)
-{
-    m_PipelineState.ResetGPSDesc();
-    BuildShader(TextureSize);
-    m_PipelineState.BindRootSignature(rootSignature);
-    m_PipelineState.Build();
-}
-
-void RenderLayer::CaptureKeyboardKeys()
-{
-    m_PipelineState.CaptureKeyboardKeys();
-}
-
-void RenderLayer::ResetCommandList()
-{
-    m_PipelineState.ResetCommandList();
 }

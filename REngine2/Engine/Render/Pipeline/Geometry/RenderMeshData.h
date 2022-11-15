@@ -23,6 +23,8 @@ public:
 public:
 	DXGI_FORMAT IndexFormat;
 
+	UINT ObjectIndex;
+	UINT GeometryIndex;
 	XMFLOAT4X4 WorldMatrix;
 	XMFLOAT4X4 TextureTransform;
 

@@ -5,6 +5,7 @@
 #include "../Shader/Shader.h"
 #include"../Actor/ActorObject.h"
 #include"../Interface/DXDeviceInterface.h"
+#include"../Render/Pipeline/RenderLayer/RenderLayerType.h"
 
 class RMaterial;
 class RMeshComponent;
@@ -21,9 +22,10 @@ public:
 	virtual void Draw(float DeltaTime);
 	virtual void PostDraw(float DeltaTime);
 
-	virtual void SetMeshComponent(RMeshComponent* InMeshComponent) { MeshComponent = InMeshComponent; }
-
 	virtual RMeshComponent* GetMeshComponent() { return MeshComponent; }
+
+	virtual void SetMeshComponent(RMeshComponent* InMeshComponent);
+	virtual void SetRenderLayer(EMeshRenderLayerType type);
 
 	template<class T>
 	T* GetMeshComponent()
