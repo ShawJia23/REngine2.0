@@ -15,12 +15,13 @@ RGeometryMap::RGeometryMap()
 , IndexSize(0)
 {
 	m_Geometrys.insert(pair<int, RGeometry*>(0, new RGeometry()));
+	m_RenderLayerManage = std::make_unique<RenderLayerManage>();
 }
 
 void RGeometryMap::Init() 
 {
 	m_DescriptorOffset = GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-	m_RenderLayerManage = std::make_unique<RenderLayerManage>();
+	
 }
 
 void RGeometryMap::BuildDescriptorHeap()
@@ -336,8 +337,7 @@ void RGeometry::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData, 
 {
 	if (!RenderDataExistence(mesh, renderLayer))
 	{
-		renderLayer->AddRenderData(new RRenderData());
-		RRenderData* pRenderingData = renderLayer->GetRenderDatas().back();
+		RRenderData* pRenderingData = new RRenderData();
 
 		pRenderingData->Mesh = mesh;
 		pRenderingData->ObjectIndex = MeshObjectCount++;
@@ -346,6 +346,8 @@ void RGeometry::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData, 
 
 		pRenderingData->IndexOffsetPosition = m_MeshRenderData.IndexData.size();
 		pRenderingData->VertexOffsetPosition = m_MeshRenderData.VertexData.size();
+
+		renderLayer->AddRenderData(pRenderingData);
 
 		m_MeshRenderData.IndexData.insert(
 			m_MeshRenderData.IndexData.end(),

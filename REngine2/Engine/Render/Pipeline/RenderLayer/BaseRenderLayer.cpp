@@ -111,7 +111,7 @@ void RenderLayer::SetRenderLayerType(EMeshRenderLayerType type)
 }
 void RenderLayer::AddRenderData(RRenderData* data) 
 {
-	m_RenderDatas.push_back(data); 
+	m_RenderDatas.push_back(data);
 }
 
 

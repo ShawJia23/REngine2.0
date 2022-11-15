@@ -27,7 +27,6 @@ public:
 
 	void Draw();
 private:
-	RenderLayerManage m_RenderLayers;
 	RGeometryMap m_GeometryMap;
 	RDXRootSignature m_RootSignature;
 };

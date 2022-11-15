@@ -25,7 +25,7 @@ void RenderLayerManage::CaptureKeyboardKeys()
 
 void RenderLayerManage::RegisterRenderLayer(EMeshRenderLayerType type,std::shared_ptr<RenderLayer> renderLayer)
 {
-	m_RenderLayers[type]=renderLayer;
+	m_RenderLayers.insert(make_pair(type, renderLayer));
 }
 
 std::shared_ptr<RenderLayer> RenderLayerManage::GetRenderLayerByType(EMeshRenderLayerType type)
