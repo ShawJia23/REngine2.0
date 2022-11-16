@@ -26,8 +26,11 @@ public:
 	void UpdateCalculations(const ViewportInfo viewportInfo);
 
 	void Draw();
+
+	void BuildPSO();
 private:
 	RGeometryMap m_GeometryMap;
+	RDXPipelineState m_PipelineState;
 	RDXRootSignature m_RootSignature;
 };
 

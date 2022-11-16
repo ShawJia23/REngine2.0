@@ -10,26 +10,15 @@ RenderLayer::RenderLayer():RenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPA
 
 }
 
-void RenderLayer::BuildPipelineState(UINT TextureSize,ID3D12RootSignature* rootSignature)
+void RenderLayer::SetPipelineState(RDXPipelineState* pipelineState)
 {
-    m_PipelineState.ResetGPSDesc();
-    BuildShader(TextureSize);
-    m_PipelineState.BindRootSignature(rootSignature);
-    m_PipelineState.Build();
-}
-
-void RenderLayer::CaptureKeyboardKeys()
-{
-    m_PipelineState.CaptureKeyboardKeys();
-}
-
-void RenderLayer::ResetCommandList()
-{
-    m_PipelineState.ResetCommandList();
+	m_PipelineState = pipelineState;
 }
 
 void RenderLayer::DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap)
 {
+	m_PipelineState->ResetPSO((int)RenderLayerType);
+
 	UINT m_DescriptorOffset = GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 
 	for (auto& Tmp : m_RenderDatas) 
@@ -105,6 +94,13 @@ void RenderLayer::UpdateCalculations(const ViewportInfo viewportInfo, RConstantB
 	}
 }
 
+void RenderLayer::BuildPSO(UINT size)
+{
+	BuildShader(size);
+
+	m_PipelineState->Build();
+}
+
 void RenderLayer::SetRenderLayerType(EMeshRenderLayerType type) 
 { 
 	RenderLayerType = type; 
@@ -113,7 +109,6 @@ void RenderLayer::AddRenderData(RRenderData* data)
 {
 	m_RenderDatas.push_back(data);
 }
-
 
 EMeshRenderLayerType RenderLayer::GetRenderLayerType() const 
 { 

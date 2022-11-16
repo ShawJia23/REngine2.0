@@ -1,6 +1,6 @@
 #include"DXDescriptorHeap.h"
 
-void RDXDescriptorHeap::Build(UINT numDescriptor)
+void RDXDescriptorHeap::CreatePSO(UINT numDescriptor)
 {
     D3D12_DESCRIPTOR_HEAP_DESC HeapDesc;
     HeapDesc.NumDescriptors = numDescriptor;

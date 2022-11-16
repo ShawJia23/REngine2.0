@@ -5,9 +5,8 @@ class RenderLayerManage
 {
 public:
 	RenderLayerManage();
-	void ResetCommandList();
-	void BuildPipelineState(UINT TextureSize, ID3D12RootSignature* rootSignature);
-	void CaptureKeyboardKeys();
+	void SetPipelineState(RDXPipelineState* pipelineState);
+	void BuildPSO(UINT size);
 	void RegisterRenderLayer(EMeshRenderLayerType type, std::shared_ptr<RenderLayer> renderLayer);
 public:
 	std::shared_ptr<RenderLayer> GetRenderLayerByType(EMeshRenderLayerType type);

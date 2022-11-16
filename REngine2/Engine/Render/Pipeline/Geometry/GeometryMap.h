@@ -9,6 +9,7 @@ class RMeshComponent;
 class RMaterial;
 class RenderLayerManage;
 class RenderLayer;
+struct RDXPipelineState;
 struct ViewportInfo;
 
 struct RGeometry :public IDirectXDeviceInterface_Struct
@@ -18,7 +19,7 @@ struct RGeometry :public IDirectXDeviceInterface_Struct
 	bool RenderDataExistence(RMeshComponent* InKey, std::shared_ptr<RenderLayer> renderLayer);
 	void BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer);
 
-	void Build();
+	void CreatePSO();
 
 	D3D12_VERTEX_BUFFER_VIEW GetVertexBufferView();
 	D3D12_INDEX_BUFFER_VIEW GetIndexBufferView();
@@ -76,8 +77,8 @@ public:
 	UINT GetLightsNumber();
 	UINT GetTextureNumber();
 
-	void ResetCommandList();
-	void BuildPipelineState(ID3D12RootSignature* rootSignature);
+	void SetPipelineState(RDXPipelineState* pipelineState);
+	void BuildPSO();
 private:
 	map<int, RGeometry*> m_Geometrys;
 

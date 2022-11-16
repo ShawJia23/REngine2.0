@@ -26,7 +26,7 @@ void RGeometryMap::Init()
 
 void RGeometryMap::BuildDescriptorHeap()
 {
-	m_DescriptorHeap.Build(GetMeshNumber() + GetMaterialsNumber() + GetLightsNumber() + 1);
+	m_DescriptorHeap.CreatePSO(GetMeshNumber() + GetMaterialsNumber() + GetLightsNumber() + 1);
 }
 
 void RGeometryMap::BuildConstantBufferView()
@@ -143,14 +143,14 @@ UINT RGeometryMap::GetTextureNumber()
 }
 
 
-void RGeometryMap::ResetCommandList()
+void RGeometryMap::SetPipelineState(RDXPipelineState* pipelineState)
 {
-	m_RenderLayerManage->ResetCommandList();
+	m_RenderLayerManage->SetPipelineState(pipelineState);
 }
 
-void RGeometryMap::BuildPipelineState(ID3D12RootSignature* rootSignature)
+void RGeometryMap::BuildPSO()
 {
-	m_RenderLayerManage->BuildPipelineState(GetTextureManage()->GetTextureSize(), rootSignature);
+	m_RenderLayerManage->BuildPSO(GetTextureManage()->GetTextureSize());
 }
 
 void RGeometryMap::Draw() 
@@ -160,8 +160,6 @@ void RGeometryMap::Draw()
 	DrawTexture();
 	DrawMaterial();
 	DrawMesh();
-
-	m_RenderLayerManage->CaptureKeyboardKeys();
 }
 
 void RGeometryMap::DrawMaterial()
@@ -315,7 +313,7 @@ void RGeometryMap::BuildGeometry()
 {
 	for (auto& Tmp : m_Geometrys)
 	{
-		Tmp.second->Build();
+		Tmp.second->CreatePSO();
 	}
 }
 
@@ -361,7 +359,7 @@ void RGeometry::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData, 
 	}
 }
 
-void RGeometry::Build()
+void RGeometry::CreatePSO()
 {
 	UINT VertexSizeInBytes = m_MeshRenderData.GetVertexSizeInBytes();
 	UINT IndexSizeInBytes = m_MeshRenderData.GetIndexSizeInBytes();

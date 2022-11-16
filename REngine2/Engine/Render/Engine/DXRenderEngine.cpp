@@ -89,7 +89,6 @@ int DXRenderEngine::PostInit()
 		if(pMesh)
 		{
 			pMesh->CreateMesh(4.f, 3.f, 20, 20);
-			pMesh->SetRenderLayer(EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 			pMesh->SetPosition(XMFLOAT3(0.f, -2.f, 0.f));
 			pMesh->SetScale(fvector_3d(20.f, 20.f, 10.f));
 		}
@@ -127,7 +126,7 @@ int DXRenderEngine::PostInit()
 		pSMesh = m_World->CreateActorObject<SphereMesh>();
 		if (pSMesh)
 		{
-			pSMesh->CreateMesh(2.f, 100, 100);
+			pSMesh->CreateMesh(2.f, 100, 100, EMeshRenderLayerType::RENDERLAYER_CUBEMAP);
 			pSMesh->SetPosition(XMFLOAT3(0.f, 0.f, 0.f));
 			pSMesh->SetScale(fvector_3d(40.f));
 			if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])

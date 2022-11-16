@@ -10,7 +10,6 @@ DX12Pipeline::DX12Pipeline()
 DX12Pipeline::~DX12Pipeline()
 {
 }
-
 void DX12Pipeline::Init() 
 {
     m_GeometryMap.Init();
@@ -23,6 +22,10 @@ void DX12Pipeline::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshDat
 
 void DX12Pipeline::BuildPipeline()
 {
+    m_PipelineState.ResetGPSDesc();
+
+    m_GeometryMap.SetPipelineState(&m_PipelineState);
+
     m_GeometryMap.BuildGeometry();
 
     m_GeometryMap.BuildDescriptorHeap();
@@ -31,7 +34,9 @@ void DX12Pipeline::BuildPipeline()
 
     m_RootSignature.BuildRootSignature(GetTextureManage()->GetTextureSize());
 
-    m_GeometryMap.BuildPipelineState(m_RootSignature.GetRootSignature());
+    m_PipelineState.BindRootSignature(m_RootSignature.GetRootSignature());
+
+    m_GeometryMap.BuildPSO();
 }
 
 void DX12Pipeline::UpdateCalculations(const ViewportInfo viewportInfo)
@@ -43,12 +48,14 @@ void DX12Pipeline::Draw()
 {
     SetRootSignature();
 
+    m_PipelineState.CaptureKeyboardKeys();
+
     m_GeometryMap.Draw();
 }
 
 void DX12Pipeline::ResetCommandList() 
 {
-    m_GeometryMap.ResetCommandList();
+    m_PipelineState.ResetCommandList();
 }
 
 void DX12Pipeline::SetRootSignature()

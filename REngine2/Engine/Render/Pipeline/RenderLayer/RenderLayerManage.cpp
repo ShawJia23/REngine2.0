@@ -5,24 +5,9 @@
 #include"../../../Core/ViewPort/ViewportInfo.h"
 RenderLayerManage::RenderLayerManage() 
 {
-	CreateRenderLayer<OpaqueRenderLayer>();
+	CreateRenderLayer<OpaqueLayer>();
+	CreateRenderLayer<SkyLayer>();
 }
-void RenderLayerManage::ResetCommandList() 
-{
-	for (auto& Tmp : m_RenderLayers)
-		Tmp.second->ResetCommandList();
-}
-void RenderLayerManage::BuildPipelineState(UINT TextureSize, ID3D12RootSignature* rootSignature) 
-{
-	for (auto& Tmp : m_RenderLayers)
-		Tmp.second->BuildPipelineState(TextureSize, rootSignature);
-}
-void RenderLayerManage::CaptureKeyboardKeys() 
-{
-	for (auto& Tmp : m_RenderLayers)
-		Tmp.second->CaptureKeyboardKeys();
-}
-
 void RenderLayerManage::RegisterRenderLayer(EMeshRenderLayerType type,std::shared_ptr<RenderLayer> renderLayer)
 {
 	m_RenderLayers.insert(make_pair(type, renderLayer));
@@ -50,4 +35,16 @@ void RenderLayerManage::DrawMesh(map<int, RGeometry*> geometrys, ID3D12Descripto
 std::map<EMeshRenderLayerType, std::shared_ptr<RenderLayer>> RenderLayerManage::GetAllRenderLayers() 
 { 
 	return m_RenderLayers; 
+}
+
+void RenderLayerManage::SetPipelineState(RDXPipelineState* pipelineState)
+{
+	for (auto& Tmp : m_RenderLayers)
+		Tmp.second->SetPipelineState(pipelineState);
+}
+
+void RenderLayerManage::BuildPSO(UINT size) 
+{
+	for (auto& Tmp : m_RenderLayers)
+		Tmp.second->BuildPSO(size);
 }

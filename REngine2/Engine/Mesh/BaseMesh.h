@@ -61,7 +61,7 @@ public:
 
 	virtual void Draw(float DeltaTime);
 
-	void CreateMesh(float radius, uint32_t axialSub, uint32_t heightSub);
+	void CreateMesh(float radius, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type= EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 };
 
 class CustomMesh :public BMesh

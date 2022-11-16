@@ -1,6 +1,6 @@
 #pragma once
 enum  RPipeLineType
 {
-	Wireframe=1,
-	Solid =2,
+	Wireframe=8,
+	Solid =9,
 };
