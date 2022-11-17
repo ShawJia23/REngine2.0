@@ -60,30 +60,26 @@ RDXRootSignature::RDXRootSignature()
 
 void RDXRootSignature::BuildRootSignature(UINT textureNum)
 {
-    CD3DX12_ROOT_PARAMETER RootParam[5];
+    CD3DX12_ROOT_PARAMETER RootParam[6];
 
-    CD3DX12_DESCRIPTOR_RANGE DescriptorRangeObjectCBV;
-    DescriptorRangeObjectCBV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
+	CD3DX12_DESCRIPTOR_RANGE DescriptorRangeTextureSRV;
+	DescriptorRangeTextureSRV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, textureNum, 1);
 
-    CD3DX12_DESCRIPTOR_RANGE DescriptorRangeViewportCBV;
-    DescriptorRangeViewportCBV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 1);
+	CD3DX12_DESCRIPTOR_RANGE DescriptorRangeCubeMapSRV;
+	DescriptorRangeCubeMapSRV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
 
-    CD3DX12_DESCRIPTOR_RANGE DescriptorRangeLightCBV;
-    DescriptorRangeLightCBV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 2);
+    RootParam[0].InitAsConstantBufferView(0);
+    RootParam[1].InitAsConstantBufferView(1);
+    RootParam[2].InitAsConstantBufferView(2);
 
-    CD3DX12_DESCRIPTOR_RANGE DescriptorRangeTextureSRV;
-    DescriptorRangeTextureSRV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, textureNum, 3);
+    RootParam[3].InitAsShaderResourceView(0, 1);
 
-    RootParam[0].InitAsDescriptorTable(1, &DescriptorRangeObjectCBV);
-    RootParam[1].InitAsDescriptorTable(1, &DescriptorRangeViewportCBV);
-    RootParam[2].InitAsDescriptorTable(1, &DescriptorRangeLightCBV);
-    RootParam[3].InitAsDescriptorTable(1, &DescriptorRangeTextureSRV);
-
-    RootParam[4].InitAsShaderResourceView(4, 1);
+	RootParam[4].InitAsDescriptorTable(1, &DescriptorRangeTextureSRV, D3D12_SHADER_VISIBILITY_PIXEL);
+	RootParam[5].InitAsDescriptorTable(1, &DescriptorRangeCubeMapSRV, D3D12_SHADER_VISIBILITY_PIXEL);
 
 	auto staticSamplers = GetStaticSamplers();
     CD3DX12_ROOT_SIGNATURE_DESC RootSignatureDesc(
-        5,
+        6,
         RootParam,
 		(UINT)staticSamplers.size(),
 		staticSamplers.data(),

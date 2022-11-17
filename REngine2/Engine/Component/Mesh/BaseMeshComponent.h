@@ -26,7 +26,7 @@ class CustomMeshComponent :public RStaticMeshComponent
 public:
 	CustomMeshComponent();
 
-	void CreateMesh(MeshRenderData& MeshData, int i);
+	void CreateMesh(MeshRenderData& MeshData,int i);
 };
 
 class CylinderMeshComponent :public RStaticMeshComponent
@@ -48,7 +48,8 @@ class PlaneMeshComponent :public RStaticMeshComponent
 public:
 	PlaneMeshComponent();
 
-	void CreateMesh(MeshRenderData& MeshData, float InHeight, float InWidth, uint32_t InHeightSubdivide, uint32_t InWidthSubdivide);
+	void CreateMesh(MeshRenderData& MeshData, float InHeight, float InWidth, 
+		uint32_t InHeightSubdivide, uint32_t InWidthSubdivide);
 };
 
 class SphereMeshComponent :public RStaticMeshComponent
@@ -56,5 +57,6 @@ class SphereMeshComponent :public RStaticMeshComponent
 public:
 	SphereMeshComponent();
 
-	void CreateMesh(MeshRenderData& MeshData, float InRadius, uint32_t InAxialSubdivision, uint32_t InHeightSubdivision);
+	void CreateMesh(MeshRenderData& MeshData, float InRadius, 
+		uint32_t InAxialSubdivision, uint32_t InHeightSubdivision);
 };

@@ -258,7 +258,7 @@
     <ClCompile Include="Engine\LoadAsset\ObjectAnalysis.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\LoadAsset\Texture.cpp">
+    <ClCompile Include="Engine\Manage\TextureManage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ThirdParty\stb\stb_image.cpp">
@@ -271,6 +271,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\LoadAsset\DDSTextureLoader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -590,7 +593,7 @@
     <ClInclude Include="Engine\LoadAsset\ObjectAnalysis.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\LoadAsset\Texture.h">
+    <ClInclude Include="Engine\Manage\TextureManage.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\stb\stb_image.h">
@@ -618,6 +621,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\LoadAsset\DDSTextureLoader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

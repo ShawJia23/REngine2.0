@@ -15,14 +15,18 @@ void RenderLayer::SetPipelineState(RDXPipelineState* pipelineState)
 	m_PipelineState = pipelineState;
 }
 
-void RenderLayer::DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap)
+void RenderLayer::DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView)
 {
 	m_PipelineState->ResetPSO((int)RenderLayerType);
 
 	UINT m_DescriptorOffset = GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 
+	UINT MeshOffset = objectConstantBufferView.GetConstantBufferByteSize();
+
 	for (auto& Tmp : m_RenderDatas) 
 	{
+		D3D12_GPU_VIRTUAL_ADDRESS FirstVirtualMeshAddress = objectConstantBufferView.GetBuffer()->GetGPUVirtualAddress();
+
 		D3D12_VERTEX_BUFFER_VIEW VBV = geometrys[Tmp->GeometryIndex]->GetVertexBufferView();
 		D3D12_INDEX_BUFFER_VIEW IBV = geometrys[Tmp->GeometryIndex]->GetIndexBufferView();
 
@@ -38,9 +42,10 @@ void RenderLayer::DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap*
 		EMaterialDisplayStatue pDisplayState = (*Tmp->Mesh->GetMaterials())[0]->GetMaterialDisplayState();
 		GetCommandList()->IASetPrimitiveTopology((D3D_PRIMITIVE_TOPOLOGY)pDisplayState);
 
-		auto DesMeshHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(heap->GetGPUDescriptorHandleForHeapStart());
-		DesMeshHandle.Offset(Tmp->ObjectIndex, m_DescriptorOffset);
-		GetCommandList()->SetGraphicsRootDescriptorTable(0, DesMeshHandle);
+		D3D12_GPU_VIRTUAL_ADDRESS VAddress =
+			FirstVirtualMeshAddress + Tmp->ObjectIndex * MeshOffset;
+
+		GetCommandList()->SetGraphicsRootConstantBufferView(0, VAddress);
 
 		GetCommandList()->DrawIndexedInstanced(
 			Tmp->IndexSize,//¶¥µãÊýÁ¿

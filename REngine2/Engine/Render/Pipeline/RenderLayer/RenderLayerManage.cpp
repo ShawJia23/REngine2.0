@@ -26,10 +26,10 @@ void RenderLayerManage::UpdateCalculations(const ViewportInfo viewportInfo, RCon
 		Tmp.second->UpdateCalculations(viewportInfo, objectConstantBufferView);
 }
 
-void RenderLayerManage::DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap)
+void RenderLayerManage::DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView)
 {
 	for (auto& Tmp : m_RenderLayers)
-		Tmp.second->DrawMesh(geometrys, heap);
+		Tmp.second->DrawMesh(geometrys, heap, objectConstantBufferView);
 }
 
 std::map<EMeshRenderLayerType, std::shared_ptr<RenderLayer>> RenderLayerManage::GetAllRenderLayers() 

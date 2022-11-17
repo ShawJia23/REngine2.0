@@ -1,5 +1,5 @@
 #include "BaseMesh.h"
-#include"../LoadAsset/Texture.h"
+#include"../Manage/TextureManage.h"
 #include"../Core/World.h"
 #include"../Materials/Material.h"
 #include"../Component/Mesh/BaseMeshComponent.h"
@@ -15,9 +15,9 @@ void BoxMesh::Draw(float DeltaTime)
 {
 	Super::Draw(DeltaTime);
 }
-void  BoxMesh::CreateMesh(float height, float width, float depth)
+void  BoxMesh::CreateMesh(float height, float width, float depth, EMeshRenderLayerType type)
 {
-	auto Tmp = CREATE_RENDER_DATA(BoxMeshComponent, height, width, depth);
+	auto Tmp = CREATE_RENDER_DATA(BoxMeshComponent,height, width, depth);
 	SetMeshComponent(Tmp);
 }
 
@@ -35,7 +35,7 @@ void ConeMesh::Draw(float DeltaTime)
 	Super::Draw(DeltaTime);
 }
 
-void ConeMesh::CreateMesh(float radius, float height, uint32_t axialSub, uint32_t heightSub)
+void ConeMesh::CreateMesh(float radius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)
 {
 	auto Tmp = CREATE_RENDER_DATA(ConeMeshComponent, radius, height, axialSub, heightSub);
 	SetMeshComponent(Tmp);
@@ -55,7 +55,7 @@ void CylinderMesh::Draw(float DeltaTime)
 	Super::Draw(DeltaTime);
 }
 
-void CylinderMesh::CreateMesh(float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub)
+void CylinderMesh::CreateMesh(float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)
 {
 	auto Tmp = CREATE_RENDER_DATA(CylinderMeshComponent, topRadius, bottomRadius, height, axialSub, heightSub);
 	SetMeshComponent(Tmp);
@@ -75,7 +75,7 @@ void PlaneMesh::Draw(float DeltaTime)
 	Super::Draw(DeltaTime);
 }
 
-void PlaneMesh::CreateMesh(float height, float width, uint32_t heightSub, uint32_t widthSub)
+void PlaneMesh::CreateMesh(float height, float width, uint32_t heightSub, uint32_t widthSub, EMeshRenderLayerType type)
 {
 	auto Tmp = CREATE_RENDER_DATA(PlaneMeshComponent, height, width, heightSub, widthSub);
 	SetMeshComponent(Tmp);
@@ -98,7 +98,7 @@ void SphereMesh::Draw(float DeltaTime)
 void SphereMesh::CreateMesh( float radius, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)
 {
 	auto Tmp = CREATE_RENDER_DATA(SphereMeshComponent, radius, axialSub, heightSub);
-	Tmp->SetMeshRenderLayerType(type);
+
 	SetMeshComponent(Tmp);
 	
 }
@@ -117,9 +117,9 @@ void CustomMesh::Draw(float DeltaTime)
 	Super::Draw(DeltaTime);
 }
 
-void CustomMesh::CreateMesh()
+void CustomMesh::CreateMesh(EMeshRenderLayerType type)
 {
-	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent, 0);
+	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent,0);
 	SetMeshComponent(Tmp);
 }
 

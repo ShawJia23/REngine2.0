@@ -5,7 +5,7 @@
 namespace MeshConstruction
 {
     template<class T, typename ...ParamTypes>
-    T* CreateMeshComponent(RMeshManage* manage, ParamTypes &&...Params)
+    T* CreateMeshComponent(RMeshManage* manage, EMeshRenderLayerType type, ParamTypes &&...Params)
     {
         if (manage)
         {
@@ -16,6 +16,8 @@ namespace MeshConstruction
             mesh->CreateMesh(meshData, forward<ParamTypes>(Params)...);
 
             mesh->Init();
+
+            mesh->SetMeshRenderLayerType(type);
 
             manage->GetDX12Pipeline().BuildMesh(mesh, meshData);
             return mesh;

@@ -14,7 +14,7 @@ public:
 	void SetPipelineState(RDXPipelineState* pipelineState);
 public:
 	void UpdateCalculations(ViewportInfo viewportInfo, RConstantBufferView objectConstantBufferView);
-	void DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap);
+	void DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView);
 public:
 	virtual void BuildShader(UINT TextureSize)=0;
 	virtual void BuildPSO(UINT size);

@@ -9,7 +9,7 @@ public:
 
 	virtual void Draw(float DeltaTime);
 
-	void CreateMesh(float height,float width,float depth);
+	void CreateMesh(float height,float width,float depth, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 };
 
 class ConeMesh :public BMesh
@@ -22,7 +22,7 @@ public:
 
 	virtual void Draw(float DeltaTime);
 
-	void CreateMesh(float radius, float height, uint32_t axialSub, uint32_t heightSub);
+	void CreateMesh(float radius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 };
 
 class CylinderMesh :public BMesh
@@ -35,7 +35,7 @@ public:
 
 	virtual void Draw(float DeltaTime);
 
-	void CreateMesh(float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub);
+	void CreateMesh(float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 };
 
 class PlaneMesh :public BMesh
@@ -48,7 +48,7 @@ public:
 
 	virtual void Draw(float DeltaTime);
 
-	void CreateMesh(float height, float width, uint32_t heightSub, uint32_t widthSub);
+	void CreateMesh(float height, float width, uint32_t heightSub, uint32_t widthSub, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 };
 
 class SphereMesh :public BMesh
@@ -74,7 +74,7 @@ public:
 
 	virtual void Draw(float DeltaTime);
 
-	void CreateMesh();
+	void CreateMesh(EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 };
 
 

@@ -1,6 +1,6 @@
 #include"DX12Pipeline.h"
 #include"../../Component/Mesh/MeshComponent.h"
-#include"../../LoadAsset/Texture.h"
+#include"../../Manage/TextureManage.h"
 #include"../DX12/d3dx12.h"
 
 DX12Pipeline::DX12Pipeline()

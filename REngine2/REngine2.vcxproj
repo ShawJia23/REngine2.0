@@ -137,8 +137,9 @@
     <ClCompile Include="Engine\Component\Input\Input.cpp" />
     <ClCompile Include="Engine\Component\Input\RInputType.cpp" />
     <ClCompile Include="Engine\Component\Light\LightComponent.cpp" />
+    <ClCompile Include="Engine\LoadAsset\DDSTextureLoader.cpp" />
     <ClCompile Include="Engine\LoadAsset\ObjectAnalysis.cpp" />
-    <ClCompile Include="Engine\LoadAsset\Texture.cpp" />
+    <ClCompile Include="Engine\Manage\TextureManage.cpp" />
     <ClCompile Include="Engine\Render\ConstontBuffer\LightConstantBuffer.cpp" />
     <ClCompile Include="Engine\Component\Mesh\BaseMeshComponent.cpp" />
     <ClCompile Include="Engine\Component\Mesh\MeshComponent.cpp" />
@@ -230,8 +231,9 @@
     <ClInclude Include="Engine\Core\Construction\MacroConstruction.h" />
     <ClInclude Include="Engine\Core\Construction\MeshConstruction.h" />
     <ClInclude Include="Engine\Core\Construction\ObjectConstruction.h" />
+    <ClInclude Include="Engine\LoadAsset\DDSTextureLoader.h" />
     <ClInclude Include="Engine\LoadAsset\ObjectAnalysis.h" />
-    <ClInclude Include="Engine\LoadAsset\Texture.h" />
+    <ClInclude Include="Engine\Manage\TextureManage.h" />
     <ClInclude Include="Engine\Render\ConstontBuffer\ConstontBufferMinimal.h" />
     <ClInclude Include="Engine\Render\ConstontBuffer\LightConstantBuffer.h" />
     <ClInclude Include="Engine\Component\Mesh\BaseMeshComponent.h" />

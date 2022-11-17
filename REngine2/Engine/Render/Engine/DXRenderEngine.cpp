@@ -2,7 +2,7 @@
 #include"../../Config/RenderConfig.h"
 #include"../../Manage/MeshManage.h"
 #include"../../Manage/LightManage.h"
-#include"../../LoadAsset/Texture.h"
+#include"../../Manage/TextureManage.h"
 #include"../../Materials/Material.h"
 #include"../../Core/World.h"
 #include".././../Mesh/BaseMesh.h"
@@ -208,6 +208,8 @@ int DXRenderEngine::PostInit()
 		ObjectAnalysisByAssimp lo;
 		lo.LoadMesh("Asset/Model/Brolyviewer001out/Brolyviewer001out.fbx", "Brolyviewer001out", 
 			XMFLOAT3(0.f, 10.f, 10.f),false);
+
+		GetTextureManage()->LoadCubeMapFormPath("cubemap", "Asset/Cubemap/grasscube1024.dds");
 	}
 	m_meshManage->BuildPipeline();
 

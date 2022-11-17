@@ -19,7 +19,7 @@ public:
 
 	vector<RMaterial*>* GetMaterials() { return &m_Materials; }
 
-	void SetMeshRenderLayerType(EMeshRenderLayerType InRenderLayerType) { MeshRenderLayerType =InRenderLayerType; }
+	void SetMeshRenderLayerType(EMeshRenderLayerType renderLayerType) { MeshRenderLayerType =renderLayerType; }
 
 	EMeshRenderLayerType GetRenderLayerType()const { return MeshRenderLayerType; }
 

@@ -3,7 +3,7 @@
 #include"../../../Mesh/Mesh.h"
 #include"../../../Materials/Material.h"
 #include"../../../Manage/LightManage.h"
-#include"../../../LoadAsset/Texture.h"
+#include"../../../Manage/TextureManage.h"
 #include"../../../Component/RComponentMinimal.h"
 #include"../../ConstontBuffer/ConstontBufferMinimal.h"
 #include"../RenderLayer/RenderLayerManage.h"
@@ -95,9 +95,7 @@ void RGeometryMap::BuildViewportConstantBufferView()
 
 void RGeometryMap::BuildTextureConstantBuffer() 
 {
-	GetTextureManage()->BuildTextureConstantBuffer(
-		m_DescriptorHeap.GetHeap(),
-		GetMeshNumber()  + GetLightsNumber()+1);//йс©з
+	GetTextureManage()->BuildTextureConstantBuffer(m_DescriptorHeap.GetHeap(),0);
 }
 
 
@@ -165,39 +163,42 @@ void RGeometryMap::Draw()
 void RGeometryMap::DrawMaterial()
 {
 	GetCommandList()->SetGraphicsRootShaderResourceView(
-		4,
+		3,
 		m_MaterialsBufferView.GetBuffer()->GetGPUVirtualAddress());
 }
 
 void RGeometryMap::DrawLights()
 {
-	auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
-	DesHandle.Offset(GetMeshNumber(), m_DescriptorOffset);
-
-	GetCommandList()->SetGraphicsRootDescriptorTable(2, DesHandle);
+	GetCommandList()->SetGraphicsRootConstantBufferView(
+		2,
+		m_LightsBufferView.GetBuffer()->GetGPUVirtualAddress());
 }
 
 void RGeometryMap::DrawViewport()
 {
 	m_DescriptorHeap.SetDescriptorHeap();
 
-	auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
-	DesHandle.Offset(GetMeshNumber()+GetLightsNumber(), m_DescriptorOffset);
-
-	GetCommandList()->SetGraphicsRootDescriptorTable(1, DesHandle);
+	GetCommandList()->SetGraphicsRootConstantBufferView(
+		1,
+		m_ViewportConstantBufferView.GetBuffer()->GetGPUVirtualAddress());
 }
 
 void RGeometryMap::DrawTexture()
 {
 	auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
-	DesHandle.Offset(GetMeshNumber() + GetLightsNumber() + 1, m_DescriptorOffset);
+	DesHandle.Offset(0, m_DescriptorOffset);
 
-	GetCommandList()->SetGraphicsRootDescriptorTable(3, DesHandle);
+	GetCommandList()->SetGraphicsRootDescriptorTable(4, DesHandle);
+
+	auto DesHandle1 = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
+	DesHandle1.Offset(GetTextureManage()->GetTextureSize(), m_DescriptorOffset);
+
+	GetCommandList()->SetGraphicsRootDescriptorTable(5, DesHandle1);
 }
 
 void RGeometryMap::DrawMesh()
 {
-	m_RenderLayerManage->DrawMesh(m_Geometrys, GetHeap());
+	m_RenderLayerManage->DrawMesh(m_Geometrys, GetHeap(), m_ObjectConstantBufferView);
 }
 
 

@@ -13,6 +13,8 @@ struct RConstantBufferView :public IDirectXDeviceInterface_Struct
 		UINT handleOffset = 0);
 
 	ID3D12Resource* GetBuffer() { return m_Constant->GetBuffer(); }
+
+	UINT GetConstantBufferByteSize();
 protected:
 	shared_ptr<ResourcesUpdate> m_Constant;
 };
