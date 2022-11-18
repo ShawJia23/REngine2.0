@@ -132,13 +132,13 @@
     <ClCompile Include="Engine\Config\RenderConfig.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Mesh.cpp">
+    <ClCompile Include="Engine\Mesh\BaseMesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Mesh\MeshType.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\BaseMesh.cpp">
+    <ClCompile Include="Engine\Mesh\Mesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Render\ResourcesUpdate.cpp">
@@ -446,7 +446,7 @@
     <ClInclude Include="Engine\Config\RenderConfig.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Mesh.h">
+    <ClInclude Include="Engine\Mesh\BaseMesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Mesh\MeshType.h">
@@ -455,7 +455,7 @@
     <ClInclude Include="Engine\Math\RMath.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\BaseMesh.h">
+    <ClInclude Include="Engine\Mesh\Mesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\ResourcesUpdate.h">

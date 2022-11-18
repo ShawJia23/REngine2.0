@@ -1,3 +1,4 @@
+
 #include"Material.hlsl"
 
 struct MeshVertexIn
@@ -53,22 +54,24 @@ float4 PixelShaderMain(MeshVertexOut MVOut) :SV_TARGET
 	Material.DiffuseAlbedo = GetMaterialDiffuse(MatConstBuffer, MVOut.TexCoord);
 	Material.SpecularAlbedo = GetMaterialSpecular(MatConstBuffer, MVOut.TexCoord);
 	Material.Shininess = 1.0f - MatConstBuffer.MaterialRoughness;
-	Material.FresnelR0 = 0.3f;
+	Material.FresnelR0 = 0.03f;
 
 	MVOut.Normal = normalize(MVOut.Normal);
 
+	//模型法线
 	float3 ModelNormal = GetMaterialNormal(MatConstBuffer, MVOut.TexCoord, MVOut.Normal, MVOut.UTangent);
 
+	//归一化的摄像机到物体的向量
 	float3 View2Eye = ViewportPosition.rgb - MVOut.WorldPosition.rgb;
 	float Dist2Eye = length(View2Eye);
 	View2Eye /= Dist2Eye;
 
-	float3 AmbientLight = { 0.15f, 0.15f, 0.25f };
+	//float3 AmbientLight = { 0.f, 0.f, 0.f };
+	float3 AmbientLight = { 0.2f, 0.2f, 0.2f };
 
 	float3 directLight = ComputeDirectionalLight(SceneLights[0], Material, ModelNormal, View2Eye);
 
 	float3 r = reflect(-View2Eye, ModelNormal);
-	//float4 reflectionColor = gCubeMap.Sample(gsamLinearWrap, r);
 	float3 fresnelFactor = SchlickFresnel(Material.FresnelR0, ModelNormal, r,5);
 
 	MVOut.Color.xyz = AmbientLight + directLight+ Material.Shininess * fresnelFactor;

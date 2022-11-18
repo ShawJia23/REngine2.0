@@ -165,11 +165,11 @@
     <ClCompile Include="Engine\Render\Engine\RenderEngine.cpp" />
     <ClCompile Include="Engine\Interface\DXDeviceInterface.cpp" />
     <ClCompile Include="Engine\Math\RMath.cpp" />
-    <ClCompile Include="Engine\Mesh\Mesh.cpp" />
+    <ClCompile Include="Engine\Mesh\BaseMesh.cpp" />
     <ClCompile Include="Engine\Manage\MeshManage.cpp" />
     <ClCompile Include="Engine\Mesh\MeshType.cpp" />
     <ClCompile Include="Engine\Render\ConstontBuffer\ObjectTransformation.cpp" />
-    <ClCompile Include="Engine\Mesh\BaseMesh.cpp" />
+    <ClCompile Include="Engine\Mesh\Mesh.cpp" />
     <ClCompile Include="Engine\Platform\Windows\WindowsEngine.cpp" />
     <ClCompile Include="Engine\Platform\Windows\WindowsMessageProcessing.cpp" />
     <ClCompile Include="Engine\main.cpp" />
@@ -265,11 +265,11 @@
     <ClInclude Include="Engine\Render\Engine\RenderEngine.h" />
     <ClInclude Include="Engine\Interface\DXDeviceInterface.h" />
     <ClInclude Include="Engine\Math\RMath.h" />
-    <ClInclude Include="Engine\Mesh\Mesh.h" />
+    <ClInclude Include="Engine\Mesh\BaseMesh.h" />
     <ClInclude Include="Engine\Manage\MeshManage.h" />
     <ClInclude Include="Engine\Mesh\MeshType.h" />
     <ClInclude Include="Engine\Render\ConstontBuffer\ObjectTransformation.h" />
-    <ClInclude Include="Engine\Mesh\BaseMesh.h" />
+    <ClInclude Include="Engine\Mesh\Mesh.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsEngine.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsMessageProcessing.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsPlatform.h" />

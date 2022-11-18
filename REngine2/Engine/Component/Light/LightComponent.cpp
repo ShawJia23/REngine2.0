@@ -80,7 +80,7 @@ RParallelLightComponent::RParallelLightComponent()
 		{
 			pMaterial->SetMaterialType(EMaterialType::BaseColor);
 			pMaterial->SetMaterialDisplayState(EMaterialDisplayStatue::RTOPOLOGY_LINELIST);
-			pMaterial->SetBaseColor(fvector_4d(1.0f, 0.7f, 1.0f, 1.0f));
+			pMaterial->SetBaseColor(fvector_4d(0.9f, 0.36f, 0.09f, 1.0f));
 		}
 	}
 }

@@ -1,101 +1,44 @@
 #pragma once
-#include "Mesh.h"
-class BoxMesh :public BMesh
+#include "MeshType.h"
+#include"../Core/RObject/RMinimalObject.h"
+#include "../Render/Render.h"
+#include "../Shader/Shader.h"
+#include"../Actor/ActorObject.h"
+#include"../Interface/DXDeviceInterface.h"
+#include"../Render/Pipeline/RenderLayer/RenderLayerType.h"
+
+class RMaterial;
+class RMeshComponent;
+class BMesh : public GActorObject, public IRenderingInterface, public IDirectXDeviceInterface
 {
-	typedef BMesh Super;
+	RVARIABLE()
+	RMeshComponent* MeshComponent;
 public:
-	BoxMesh();
-	virtual void Init();
-
-	virtual void Draw(float DeltaTime);
-
-	void CreateMesh(float height,float width,float depth, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-};
-
-class ConeMesh :public BMesh
-{
-	typedef BMesh Super;
-public:
-	ConeMesh();
-
-	virtual void Init();
-
-	virtual void Draw(float DeltaTime);
-
-	void CreateMesh(float radius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-};
-
-class CylinderMesh :public BMesh
-{
-	typedef BMesh Super;
-public:
-	CylinderMesh();
+	BMesh();
 
 	virtual void Init();
 
+	virtual void PreDraw(float DeltaTime);
 	virtual void Draw(float DeltaTime);
+	virtual void PostDraw(float DeltaTime);
 
-	void CreateMesh(float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-};
+	virtual RMeshComponent* GetMeshComponent() { return MeshComponent; }
 
-class PlaneMesh :public BMesh
-{
-	typedef BMesh Super;
-public:
-	PlaneMesh();
+	virtual void SetMeshComponent(RMeshComponent* InMeshComponent);
+	virtual void SetRenderLayer(EMeshRenderLayerType type);
 
-	virtual void Init();
-
-	virtual void Draw(float DeltaTime);
-
-	void CreateMesh(float height, float width, uint32_t heightSub, uint32_t widthSub, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-};
-
-class SphereMesh :public BMesh
-{
-	typedef BMesh Super;
-public:
-	SphereMesh();
-
-	virtual void Init();
-
-	virtual void Draw(float DeltaTime);
-
-	void CreateMesh(float radius, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type= EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-};
-
-class CustomMesh :public BMesh
-{
-	typedef BMesh Super;
-public:
-	CustomMesh();
-
-	virtual void Init();
-
-	virtual void Draw(float DeltaTime);
-
-	void CreateMesh(EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-};
-
-
-class MeshGroup: public IDirectXDeviceInterface
-{
-public:
-	MeshGroup();
-
-	struct SubMesh
+	template<class T>
+	T* GetMeshComponent()
 	{
-		SubMesh();
-		CustomMesh* Mesh;
-		MeshRenderData MeshData;
-	};
+		return dynamic_cast<T*>(MeshComponent);
+	}
 
-	void AddSubmesh(std::string name,RMeshComponent* mesh, MeshRenderData MeshData);
-	void CreateMesh();
-	void AddTexture(std::string objName, std::string texName, std::string fileName, int type);
-	void CreateTexture();
+	UINT GetMaterialsNum();
 
-	void SetPosition(const XMFLOAT3& newPosition);
-private:
-	std::unordered_map<std::string, SubMesh> m_RenderDatas;
+	vector<RMaterial*>* GetMaterials();
+
+public:
+	virtual void SetPosition(const XMFLOAT3& InNewPosition);
+	virtual void SetRotation(const fvector_3d& InRotation);
+	virtual void SetScale(const fvector_3d& InNewScale);
 };

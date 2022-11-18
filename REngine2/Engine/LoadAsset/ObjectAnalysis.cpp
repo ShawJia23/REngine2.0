@@ -65,6 +65,11 @@ void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name, con
 			{
 				aiMaterial* pMaterial = pModel->mMaterials[pMesh->mMaterialIndex];
 				SetMaterialTex(pMaterial, pMeshGroup, pMesh->mName.C_Str(), name, IsRight);
+
+				aiColor3D ainum;
+
+				pMaterial->Get(AI_MATKEY_COLOR_AMBIENT, ainum);
+				float a = ainum.r;
 			}
 		}
 		pMeshGroup->SetPosition(newPosition);
