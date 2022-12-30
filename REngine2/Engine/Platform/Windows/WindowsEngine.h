@@ -8,6 +8,7 @@ class DXRenderEngine;
 class RWorld;
 class RMeshManage;
 class RLightManage;
+class EditorEngine;
 class RWindowsEngine :public REngine
 {
 	friend class IRenderingInterface;
@@ -30,6 +31,10 @@ public:
 	HWND GetMainWindowsHandle() { return MianWindowsHandle; }
 	bool InitWindows(WinMainCommandParameters InParameters);
 
+#if EDITOR_ENGINE
+	EditorEngine* GetEditorEngine() { return m_EditorEngine; }
+#endif
+
 public:
 	RMeshManage* GetMeshManage();
 	RLightManage* GetLightManage();
@@ -41,6 +46,9 @@ protected:
 
 	HWND MianWindowsHandle;//主windows句柄
 	DXRenderEngine* m_renderEngine;
+#if EDITOR_ENGINE
+	class EditorEngine* m_EditorEngine;
+#endif
 	RWorld* m_world;
 };
 #endif

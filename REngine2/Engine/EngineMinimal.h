@@ -8,6 +8,10 @@
 #pragma comment(lib, "D3D12.lib")
 #pragma comment(lib, "dxgi.lib")
 
+#include "../imgui/imgui.h"
+#include "../imgui/backends/imgui_impl_win32.h"
+#include "../imgui/backends/imgui_impl_dx12.h"
+
 #include"Render/DX12/d3dx12.h"
 #include"Math/RMath.h"
 #include <wrl.h>
@@ -17,6 +21,7 @@
 #include <DirectXPackedVector.h>
 #include <DirectXColors.h>
 #include <DirectXCollision.h>
+#include"EngineMacro.h"
 
 using namespace Microsoft::WRL;
 using namespace DirectX;

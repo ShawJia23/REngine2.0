@@ -45,17 +45,11 @@ public:
 	void Init();
 
 	void Draw();
-	void DrawLights();
-	void DrawViewport();
-	void DrawMesh();
 	void DrawTexture();
-	void DrawMaterial();
 
 	void BuildConstantBufferView();
-	void BuildMeshConstantBufferView();
-	void BuildViewportConstantBufferView();
+
 	void BuildMaterialsConstantBufferView();
-	void BuildLightsConstantBufferView();
 	void BuildTextureConstantBuffer();
 	void BuildDescriptorHeap();
 
@@ -76,6 +70,7 @@ public:
 	UINT GetMeshNumber();
 	UINT GetLightsNumber();
 	UINT GetTextureNumber();
+	UINT GetDesptorSize();
 
 	void SetPipelineState(RDXPipelineState* pipelineState);
 	void BuildPSO();

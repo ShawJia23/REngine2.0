@@ -29,6 +29,8 @@ public:
 
 	virtual void MoveForward(float InValue);
 	virtual void MoveRight(float InValue);
+
+public:
 protected:
 	void RotateAroundXAxis(float InRotateDegrees);
 	void RotateAroundYAxis(float InRotateDegrees);

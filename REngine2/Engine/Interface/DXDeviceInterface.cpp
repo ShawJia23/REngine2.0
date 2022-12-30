@@ -219,3 +219,22 @@ CEngine* IDirectXDeviceInterface_Struct::GetEngine()
 	return Interfece.GetEngine();
 }
 #endif
+
+
+#if EDITOR_ENGINE
+#include"../../Editor/Editor.h"
+EditorEngine* IDirectXDeviceInterface::GetEditorEngine()
+{
+	if (RWindowsEngine* engine = GetEngine())
+	{
+		return engine->GetEditorEngine();
+	}
+
+	return NULL;
+}
+
+EditorEngine* IDirectXDeviceInterface_Struct::GetEditorEngine()
+{
+	return Interfece.GetEditorEngine();
+}
+#endif

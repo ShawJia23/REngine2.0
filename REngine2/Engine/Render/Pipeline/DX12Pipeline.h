@@ -5,6 +5,7 @@
 #include"../../Core/ViewPort/ViewportInfo.h"
 #include"Geometry/GeometryMap.h"
 #include"RenderLayer/RenderLayerManage.h"
+#include"UI/ImGuiPipeline.h"
 
 class RMeshComponent;
 class  DX12Pipeline:IDirectXDeviceInterface
@@ -25,12 +26,13 @@ public:
 
 	void UpdateCalculations(const ViewportInfo viewportInfo);
 
-	void Draw();
+	void Draw(float DeltaTime);
 
 	void BuildPSO();
 private:
 	RGeometryMap m_GeometryMap;
 	RDXPipelineState m_PipelineState;
 	RDXRootSignature m_RootSignature;
+	RImGuiPipeline m_UIPipeline;
 };
 

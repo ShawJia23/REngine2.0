@@ -9,11 +9,18 @@
 #include"../../Manage/MeshManage.h"
 #include"../../Manage/LightManage.h"
 #include"../../Core/Construction/MacroConstruction.h"
+
+#if EDITOR_ENGINE
+#include"../../../Editor/Editor.h"
+#endif
+
 #if defined(_WIN32)
 #include "WindowsMessageProcessing.h"
 
 
-RWindowsEngine::RWindowsEngine():m_renderEngine(new DXRenderEngine())
+RWindowsEngine::RWindowsEngine():
+	m_renderEngine(new DXRenderEngine()),
+	m_EditorEngine(new EditorEngine())
 {
 
 }

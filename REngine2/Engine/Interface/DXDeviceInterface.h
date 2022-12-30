@@ -34,6 +34,10 @@ public:
 #else
 	CEngine* GetEngine();
 #endif
+
+#if EDITOR_ENGINE
+	class EditorEngine* GetEditorEngine();
+#endif 
 };
 
 //提供渲染内容的接口
@@ -59,7 +63,9 @@ public:
 #else
 	REngine* GetEngine();
 #endif
-
+#if EDITOR_ENGINE
+	class EditorEngine* GetEditorEngine();
+#endif 
 private:
 	IDirectXDeviceInterface Interfece;
 };

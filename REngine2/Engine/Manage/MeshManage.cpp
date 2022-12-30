@@ -28,7 +28,7 @@ void RMeshManage::PostDraw(float DeltaTime)
 
 void RMeshManage::Draw(float DeltaTime)
 {
-    m_pipeline.Draw();
+    m_pipeline.Draw(DeltaTime);
 }
 
 void RMeshManage::PreDraw(float DeltaTime)

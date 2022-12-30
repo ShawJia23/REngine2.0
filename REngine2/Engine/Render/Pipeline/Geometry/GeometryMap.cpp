@@ -26,25 +26,17 @@ void RGeometryMap::Init()
 
 void RGeometryMap::BuildDescriptorHeap()
 {
-	m_DescriptorHeap.CreatePSO(GetMeshNumber() + GetMaterialsNumber() + GetLightsNumber() + 1);
+	m_DescriptorHeap.CreatePSO(GetDesptorSize()
+		+ 1);//ui
 }
 
 void RGeometryMap::BuildConstantBufferView()
 {
-	BuildMeshConstantBufferView();
-	BuildMaterialsConstantBufferView();
-	BuildLightsConstantBufferView();
-	BuildViewportConstantBufferView();
-	BuildTextureConstantBuffer();
-}
-
-void RGeometryMap::BuildMeshConstantBufferView()
-{
 	m_ObjectConstantBufferView.CreateConstant(sizeof(RObjectTransformation), GetMeshNumber());
-
-	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
-
-	m_ObjectConstantBufferView.BuildConstantBuffer(DesHandle, GetMeshNumber());
+	BuildMaterialsConstantBufferView();
+	m_LightsBufferView.CreateConstant(sizeof(RLightConstantBuffer), 1);
+	m_ViewportConstantBufferView.CreateConstant(sizeof(ViewportTransformation), 1);
+	BuildTextureConstantBuffer();
 }
 
 void RGeometryMap::BuildMaterialsConstantBufferView()
@@ -73,24 +65,6 @@ void RGeometryMap::BuildMaterialsConstantBufferView()
 			}
 		}
 	}
-}
-
-void RGeometryMap::BuildLightsConstantBufferView()
-{
-	m_LightsBufferView.CreateConstant(sizeof(RLightConstantBuffer), 1);
-
-	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
-
-	m_LightsBufferView.BuildConstantBuffer(DesHandle, GetLightsNumber(), GetMeshNumber());
-}
-
-void RGeometryMap::BuildViewportConstantBufferView()
-{
-	m_ViewportConstantBufferView.CreateConstant(sizeof(ViewportTransformation), 1);
-
-	CD3DX12_CPU_DESCRIPTOR_HANDLE DesHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(GetHeap()->GetCPUDescriptorHandleForHeapStart());
-
-	m_ViewportConstantBufferView.BuildConstantBuffer(DesHandle, 1, GetMeshNumber()+GetLightsNumber());
 }
 
 void RGeometryMap::BuildTextureConstantBuffer() 
@@ -140,6 +114,12 @@ UINT RGeometryMap::GetTextureNumber()
 	return GetTextureManage()->GetTextureSize();
 }
 
+UINT RGeometryMap::GetDesptorSize()
+{
+	return GetTextureManage()->GetTextureSize()
+		+ 1;//cubemapsize
+}
+
 
 void RGeometryMap::SetPipelineState(RDXPipelineState* pipelineState)
 {
@@ -153,34 +133,19 @@ void RGeometryMap::BuildPSO()
 
 void RGeometryMap::Draw() 
 {
-	DrawViewport();
-	DrawLights();
-	DrawTexture();
-	DrawMaterial();
-	DrawMesh();
-}
-
-void RGeometryMap::DrawMaterial()
-{
-	GetCommandList()->SetGraphicsRootShaderResourceView(
-		3,
-		m_MaterialsBufferView.GetBuffer()->GetGPUVirtualAddress());
-}
-
-void RGeometryMap::DrawLights()
-{
-	GetCommandList()->SetGraphicsRootConstantBufferView(
-		2,
-		m_LightsBufferView.GetBuffer()->GetGPUVirtualAddress());
-}
-
-void RGeometryMap::DrawViewport()
-{
 	m_DescriptorHeap.SetDescriptorHeap();
 
 	GetCommandList()->SetGraphicsRootConstantBufferView(
 		1,
 		m_ViewportConstantBufferView.GetBuffer()->GetGPUVirtualAddress());
+	GetCommandList()->SetGraphicsRootConstantBufferView(
+		2,
+		m_LightsBufferView.GetBuffer()->GetGPUVirtualAddress());
+	GetCommandList()->SetGraphicsRootShaderResourceView(
+		3,
+		m_MaterialsBufferView.GetBuffer()->GetGPUVirtualAddress());
+	DrawTexture();
+	m_RenderLayerManage->DrawMesh(m_Geometrys, GetHeap(), m_ObjectConstantBufferView);
 }
 
 void RGeometryMap::DrawTexture()
@@ -195,12 +160,6 @@ void RGeometryMap::DrawTexture()
 
 	GetCommandList()->SetGraphicsRootDescriptorTable(5, DesHandle1);
 }
-
-void RGeometryMap::DrawMesh()
-{
-	m_RenderLayerManage->DrawMesh(m_Geometrys, GetHeap(), m_ObjectConstantBufferView);
-}
-
 
 void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 {
