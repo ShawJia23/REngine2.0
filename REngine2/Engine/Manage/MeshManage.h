@@ -55,7 +55,7 @@ public:
 
 	RMeshComponent* CreateCustomMeshComponent();
 
-	void CreateMeshGroup(RMeshComponent* mesh, const MeshRenderData& meshData);
+	void CreateMeshGroup(size_t hashKey, RMeshComponent* mesh, const MeshRenderData& meshData);
 	
 	DX12Pipeline& GetDX12Pipeline() { return m_pipeline; }
 protected:

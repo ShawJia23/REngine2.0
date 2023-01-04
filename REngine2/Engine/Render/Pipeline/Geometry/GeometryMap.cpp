@@ -301,6 +301,11 @@ void RGeometryMap::BuildGeometry()
 }
 
 
+RGeometry::RGeometry()
+{
+
+}
+
 bool RGeometry::RenderDataExistence(RMeshComponent* key, std::shared_ptr<RenderLayer> renderLayer)
 {
 	for (auto& Tmp : renderLayer->GetRenderDatas())

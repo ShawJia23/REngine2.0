@@ -10,8 +10,6 @@ public:
 	virtual void Draw(float DeltaTime);
 
 	void CreateMesh(float height,float width,float depth, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-
-	void BuildKey(size_t& outKey, float height, float width, float depth);
 };
 
 class ConeMesh :public BMesh
@@ -25,8 +23,6 @@ public:
 	virtual void Draw(float DeltaTime);
 
 	void CreateMesh(float radius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-
-	void BuildKey(size_t& outKey, float radius, float height, uint32_t axialSub, uint32_t heightSub);
 };
 
 class CylinderMesh :public BMesh
@@ -40,8 +36,6 @@ public:
 	virtual void Draw(float DeltaTime);
 
 	void CreateMesh(float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-
-	void BuildKey(size_t& outKey, float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub);
 };
 
 class PlaneMesh :public BMesh
@@ -55,8 +49,6 @@ public:
 	virtual void Draw(float DeltaTime);
 
 	void CreateMesh(float height, float width, uint32_t heightSub, uint32_t widthSub, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-
-	void BuildKey(size_t& outKey, float height, float width, uint32_t heightSub, uint32_t widthSub);
 };
 
 class SphereMesh :public BMesh
@@ -70,8 +62,6 @@ public:
 	virtual void Draw(float DeltaTime);
 
 	void CreateMesh(float radius, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type= EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-
-	void BuildKey(size_t& outKey, float radius, uint32_t axialSub, uint32_t heightSub);
 };
 
 class CustomMesh :public BMesh
@@ -85,8 +75,6 @@ public:
 	virtual void Draw(float DeltaTime);
 
 	void CreateMesh(EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
-
-	void BuildKey(size_t& outKey);
 };
 
 
@@ -100,9 +88,10 @@ public:
 		SubMesh();
 		CustomMesh* Mesh;
 		MeshRenderData MeshData;
+		size_t outKey;
 	};
 
-	void AddSubmesh(std::string name,RMeshComponent* mesh, MeshRenderData MeshData);
+	void AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderData MeshData);
 	void CreateMesh();
 	void AddTexture(std::string objName, std::string texName, std::string fileName, int type);
 	void CreateTexture();

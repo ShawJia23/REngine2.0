@@ -48,6 +48,16 @@ void BoxMeshComponent::CreateMesh(MeshRenderData& MeshData, float InHeight, floa
 	MeshData.IndexData.push_back(4); MeshData.IndexData.push_back(3); MeshData.IndexData.push_back(7);
 }
 
+void BoxMeshComponent::BuildKey(size_t& outKey, float height, float width, float depth)
+{
+	std::hash<float> floatHash;
+
+	outKey = 1;
+	outKey += floatHash(height);
+	outKey += floatHash(width);
+	outKey += floatHash(depth);
+}
+
 ConeMeshComponent::ConeMeshComponent()
 {
 
@@ -123,14 +133,34 @@ void ConeMeshComponent::CreateMesh(MeshRenderData& MeshData, float InRadius, flo
 	}
 }
 
+void ConeMeshComponent::BuildKey(size_t& outKey, float radius, float height, uint32_t axialSub, uint32_t heightSub)
+{
+	std::hash<float> floatHash;
+	std::hash<int> intHash;
+	outKey = 2;
+	outKey += floatHash(radius);
+	outKey += floatHash(height);
+
+	outKey += intHash(axialSub);
+	outKey += intHash(heightSub);
+}
+
 CustomMeshComponent::CustomMeshComponent()
 {
 
 }
 
-void CustomMeshComponent::CreateMesh(MeshRenderData& MeshData, int i)
+void CustomMeshComponent::CreateMesh(MeshRenderData& MeshData, const char* name)
 {
 
+}
+
+void CustomMeshComponent::BuildKey(size_t& outKey, const char * name)
+{
+	std::hash<string> floatHash;
+
+	outKey = 6;
+	outKey += floatHash(name);
 }
 
 CylinderMeshComponent::CylinderMeshComponent()
@@ -254,6 +284,18 @@ void CylinderMeshComponent::CreateMesh(MeshRenderData& MeshData, float InTopRadi
 	}
 }
 
+void CylinderMeshComponent::BuildKey(size_t& outKey, float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub)
+{
+	std::hash<float> floatHash;
+	std::hash<int> intHash;
+	outKey = 3;
+	outKey += floatHash(topRadius);
+	outKey += floatHash(bottomRadius);
+	outKey += floatHash(height);
+	outKey += intHash(axialSub);
+	outKey += intHash(heightSub);
+}
+
 PlaneMeshComponent::PlaneMeshComponent()
 {
 
@@ -321,6 +363,17 @@ void PlaneMeshComponent::CreateMesh(MeshRenderData& MeshData, float InHeight, fl
 			MeshData.IndexData.push_back((i + 1) * InWidthSubdivide + j);
 		}
 	}
+}
+
+void PlaneMeshComponent::BuildKey(size_t& outKey, float height, float width, uint32_t heightSub, uint32_t widthSub)
+{
+	std::hash<float> floatHash;
+	std::hash<int> intHash;
+	outKey = 4;
+	outKey += floatHash(height);
+	outKey += floatHash(width);
+	outKey += intHash(heightSub);
+	outKey += intHash(widthSub);
 }
 
 SphereMeshComponent::SphereMeshComponent()
@@ -413,4 +466,16 @@ void SphereMeshComponent::CreateMesh(MeshRenderData& MeshData, float InRadius, u
 		MeshData.IndexData.push_back(BaseIndex + Index);
 		MeshData.IndexData.push_back(BaseIndex + Index + 1);
 	}
+}
+
+void SphereMeshComponent::BuildKey(size_t& outKey, float radius, uint32_t axialSub, uint32_t heightSub)
+{
+	std::hash<float> floatHash;
+	std::hash<int> intHash;
+
+	outKey = 5;
+	outKey += floatHash(radius);
+
+	outKey += intHash._Do_hash(axialSub);
+	outKey += intHash._Do_hash(heightSub);
 }

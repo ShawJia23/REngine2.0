@@ -14,6 +14,8 @@ struct ViewportInfo;
 
 struct RGeometry :public IDirectXDeviceInterface_Struct
 {
+	RGeometry();
+
 	friend struct RGeometryMap;
 
 	bool RenderDataExistence(RMeshComponent* InKey, std::shared_ptr<RenderLayer> renderLayer);
