@@ -1,3 +1,375 @@
-﻿  Editor.cpp
+﻿  ActorObject.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  Light.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  InputComponent.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  LightComponent.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  ObjectAnalysis.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\packages\AssimpCpp.5.0.1.6\build\native\include\assimp\material.h(664,1): warning C4099: “aiMaterial”: 类型名称以前使用“class”现在使用的是“struct”
+E:\ademo\REngine2.0\packages\AssimpCpp.5.0.1.6\build\native\include\assimp\material.h(660): message : 参见“aiMaterial”的声明
+E:\ademo\REngine2.0\REngine2\Engine\LoadAsset\ObjectAnalysis.cpp(40,25): warning C4018: “<”: 有符号/无符号不匹配
+E:\ademo\REngine2.0\REngine2\Engine\LoadAsset\ObjectAnalysis.cpp(48,23): warning C4018: “<”: 有符号/无符号不匹配
+E:\ademo\REngine2.0\REngine2\Engine\LoadAsset\ObjectAnalysis.cpp(55,23): warning C4018: “<”: 有符号/无符号不匹配
+E:\ademo\REngine2.0\REngine2\Engine\LoadAsset\ObjectAnalysis.cpp(58,24): warning C4018: “<”: 有符号/无符号不匹配
+  BaseMeshComponent.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(68,45): warning C4267: “初始化”: 从“size_t”转换到“uint32_t”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(97,24): warning C4244: “初始化”: 从“uint32_t”转换到“float”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(105,65): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(106,69): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(107,71): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(109,71): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(110,69): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(111,75): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(116,58): warning C4267: “初始化”: 从“size_t”转换到“uint32_t”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(121,42): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(122,50): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(165,24): warning C4244: “初始化”: 从“uint32_t”转换到“float”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(187,63): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(188,59): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(189,53): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(192,57): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(193,63): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(194,53): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(201,46): warning C4267: “初始化”: 从“size_t”转换到“uint32_t”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(218,21): warning C4244: “初始化”: 从“unsigned __int64”转换到“float”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(221,33): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(230,46): warning C4267: “初始化”: 从“size_t”转换到“uint32_t”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(247,21): warning C4244: “初始化”: 从“unsigned __int64”转换到“float”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(250,33): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(357,49): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(389,24): warning C4244: “初始化”: 从“uint32_t”转换到“float”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(397,65): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(398,69): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(399,71): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(401,71): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(402,69): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(403,75): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(408,58): warning C4267: “初始化”: 从“size_t”转换到“uint32_t”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(413,42): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.cpp(414,50): warning C4244: “参数”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=uint16_t
+          ]
+  MeshComponent.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  StaticMeshComponent.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  RComponent.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  TransformComponent.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  Camera.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  World.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  LightManage.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  DXRenderEngine.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Manage\TextureManage.h(37,24): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(595,62): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Engine\DXRenderEngine.cpp(596,63): warning C4244: “=”: 从“int”转换到“FLOAT”，可能丢失数据
+  DXDeviceInterface.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Manage\TextureManage.h(37,24): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  BaseMesh.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  MeshManage.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Manage\MeshManage.cpp(71,40): error C2660: “DX12Pipeline::BuildMesh”: 函数不接受 2 个参数
+E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\DX12Pipeline.h(23,7): message : 参见“DX12Pipeline::BuildMesh”的声明
+  Mesh.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Manage\TextureManage.h(37,24): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Mesh.cpp(185,19): warning C4101: “floatHash”: 未引用的局部变量
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\MeshConstruction.h(15,19): error C2039: "BuildKey": 不是 "BoxMeshComponent" 的成员
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.h(3): message : 参见“BoxMeshComponent”的声明
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\ActorMeshConstruction.h(9): message : 查看对正在编译的函数 模板 实例化“T *MeshConstruction::CreateMeshComponent<BoxMeshComponent,float&,float&,float&>(RMeshManage *,EMeshRenderLayerType,float &,float &,float &)”的引用
+          with
+          [
+              T=BoxMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Mesh.cpp(20): message : 查看对正在编译的函数 模板 实例化“T *ActorMeshConstruction::CreateMeshRenderData<BoxMeshComponent,float&,float&,float&>(RMeshManage *,EMeshRenderLayerType,float &,float &,float &)”的引用
+          with
+          [
+              T=BoxMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\MeshConstruction.h(15,19): error C2039: "BuildKey": 不是 "ConeMeshComponent" 的成员
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.h(11): message : 参见“ConeMeshComponent”的声明
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\ActorMeshConstruction.h(9): message : 查看对正在编译的函数 模板 实例化“T *MeshConstruction::CreateMeshComponent<ConeMeshComponent,float&,float&,uint32_t&,uint32_t&>(RMeshManage *,EMeshRenderLayerType,float &,float &,uint32_t &,uint32_t &)”的引用
+          with
+          [
+              T=ConeMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Mesh.cpp(50): message : 查看对正在编译的函数 模板 实例化“T *ActorMeshConstruction::CreateMeshRenderData<ConeMeshComponent,float&,float&,uint32_t&,uint32_t&>(RMeshManage *,EMeshRenderLayerType,float &,float &,uint32_t &,uint32_t &)”的引用
+          with
+          [
+              T=ConeMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\MeshConstruction.h(15,19): error C2039: "BuildKey": 不是 "CylinderMeshComponent" 的成员
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.h(32): message : 参见“CylinderMeshComponent”的声明
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\ActorMeshConstruction.h(9): message : 查看对正在编译的函数 模板 实例化“T *MeshConstruction::CreateMeshComponent<CylinderMeshComponent,float&,float&,float&,uint32_t&,uint32_t&>(RMeshManage *,EMeshRenderLayerType,float &,float &,float &,uint32_t &,uint32_t &)”的引用
+          with
+          [
+              T=CylinderMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Mesh.cpp(82): message : 查看对正在编译的函数 模板 实例化“T *ActorMeshConstruction::CreateMeshRenderData<CylinderMeshComponent,float&,float&,float&,uint32_t&,uint32_t&>(RMeshManage *,EMeshRenderLayerType,float &,float &,float &,uint32_t &,uint32_t &)”的引用
+          with
+          [
+              T=CylinderMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\MeshConstruction.h(15,19): error C2039: "BuildKey": 不是 "PlaneMeshComponent" 的成员
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.h(46): message : 参见“PlaneMeshComponent”的声明
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\ActorMeshConstruction.h(9): message : 查看对正在编译的函数 模板 实例化“T *MeshConstruction::CreateMeshComponent<PlaneMeshComponent,float&,float&,uint32_t&,uint32_t&>(RMeshManage *,EMeshRenderLayerType,float &,float &,uint32_t &,uint32_t &)”的引用
+          with
+          [
+              T=PlaneMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Mesh.cpp(114): message : 查看对正在编译的函数 模板 实例化“T *ActorMeshConstruction::CreateMeshRenderData<PlaneMeshComponent,float&,float&,uint32_t&,uint32_t&>(RMeshManage *,EMeshRenderLayerType,float &,float &,uint32_t &,uint32_t &)”的引用
+          with
+          [
+              T=PlaneMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\MeshConstruction.h(15,19): error C2039: "BuildKey": 不是 "SphereMeshComponent" 的成员
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.h(55): message : 参见“SphereMeshComponent”的声明
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\ActorMeshConstruction.h(9): message : 查看对正在编译的函数 模板 实例化“T *MeshConstruction::CreateMeshComponent<SphereMeshComponent,float&,uint32_t&,uint32_t&>(RMeshManage *,EMeshRenderLayerType,float &,uint32_t &,uint32_t &)”的引用
+          with
+          [
+              T=SphereMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Mesh.cpp(145): message : 查看对正在编译的函数 模板 实例化“T *ActorMeshConstruction::CreateMeshRenderData<SphereMeshComponent,float&,uint32_t&,uint32_t&>(RMeshManage *,EMeshRenderLayerType,float &,uint32_t &,uint32_t &)”的引用
+          with
+          [
+              T=SphereMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\MeshConstruction.h(15,19): error C2039: "BuildKey": 不是 "CustomMeshComponent" 的成员
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\BaseMeshComponent.h(24): message : 参见“CustomMeshComponent”的声明
+E:\ademo\REngine2.0\REngine2\Engine\Core\Construction\ActorMeshConstruction.h(9): message : 查看对正在编译的函数 模板 实例化“T *MeshConstruction::CreateMeshComponent<CustomMeshComponent,int&>(RMeshManage *,EMeshRenderLayerType,int &)”的引用
+          with
+          [
+              T=CustomMeshComponent
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\Mesh.cpp(179): message : 查看对正在编译的函数 模板 实例化“T *ActorMeshConstruction::CreateMeshRenderData<CustomMeshComponent,int>(RMeshManage *,EMeshRenderLayerType,int &&)”的引用
+          with
+          [
+              T=CustomMeshComponent
+          ]
+  WindowsEngine.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  DX12Pipeline.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Manage\TextureManage.h(37,24): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  正在生成代码...
 E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
-  REngine2.vcxproj -> E:\ademo\REngine2.0\x64\Debug\REngine2.exe
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\Engine\Platform\Windows\WindowsEngine.cpp(182): warning C4715: “RWindowsEngine::InitWindows”: 不是所有的控件路径都返回值
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+  正在编译...
+  GeometryMap.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Manage\TextureManage.h(37,24): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\Geometry\GeometryMap.cpp(63,58): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\Geometry\GeometryMap.cpp(327,56): warning C4267: “=”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\Geometry\GeometryMap.cpp(328,58): warning C4267: “=”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\Geometry\GeometryMap.cpp(330,74): warning C4267: “=”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\Geometry\GeometryMap.cpp(331,76): warning C4267: “=”: 从“size_t”转换到“UINT”，可能丢失数据
+  BaseRenderLayer.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Component\Mesh\MeshComponent.h(18,25): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\RenderLayer\BaseRenderLayer.cpp(128,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+  RenderLayerManage.cpp
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(24,30): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+E:\ademo\REngine2.0\REngine2\Engine\Mesh\MeshType.h(25,29): warning C4267: “return”: 从“size_t”转换到“UINT”，可能丢失数据
+D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\utility(415,10): error C2079: “std::pair<const int,RGeometry>::second”使用未定义的 struct“RGeometry”
+D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xtree(331): message : 查看对正在编译的 类 模板 实例化“std::pair<const int,RGeometry>”的引用
+D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xtree(752): message : 查看对正在编译的 类 模板 实例化“std::_Tree_node<std::pair<const int,RGeometry>,std::_Default_allocator_traits<_Alloc>::void_pointer>”的引用
+          with
+          [
+              _Alloc=std::allocator<std::pair<const int,RGeometry>>
+          ]
+D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xtree(1079): message : 查看对正在编译的函数 模板 实例化“void std::_Tree_val<std::_Tree_simple_types<std::pair<const int,RGeometry>>>::_Erase_head<std::allocator<std::_Tree_node<std::pair<const int,RGeometry>,std::_Default_allocator_traits<_Alloc>::void_pointer>>>(_Alnode &) noexcept”的引用
+          with
+          [
+              _Alloc=std::allocator<std::pair<const int,RGeometry>>,
+              _Alnode=std::allocator<std::_Tree_node<std::pair<const int,RGeometry>,std::_Default_allocator_traits<std::allocator<std::pair<const int,RGeometry>>>::void_pointer>>
+          ]
+D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xtree(1079): message : 查看对正在编译的函数 模板 实例化“void std::_Tree_val<std::_Tree_simple_types<std::pair<const int,RGeometry>>>::_Erase_head<std::allocator<std::_Tree_node<std::pair<const int,RGeometry>,std::_Default_allocator_traits<_Alloc>::void_pointer>>>(_Alnode &) noexcept”的引用
+          with
+          [
+              _Alloc=std::allocator<std::pair<const int,RGeometry>>,
+              _Alnode=std::allocator<std::_Tree_node<std::pair<const int,RGeometry>,std::_Default_allocator_traits<std::allocator<std::pair<const int,RGeometry>>>::void_pointer>>
+          ]
+D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xtree(1077): message : 在编译 类 模板 成员函数“std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>::~_Tree(void) noexcept”时
+          with
+          [
+              _Kty=int,
+              _Ty=RGeometry,
+              _Pr=std::less<int>,
+              _Alloc=std::allocator<std::pair<const int,RGeometry>>
+          ]
+D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\map(346): message : 查看对正在编译的函数 模板 实例化“std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>::~_Tree(void) noexcept”的引用
+          with
+          [
+              _Kty=int,
+              _Ty=RGeometry,
+              _Pr=std::less<int>,
+              _Alloc=std::allocator<std::pair<const int,RGeometry>>
+          ]
+D:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\map(73): message : 查看对正在编译的 类 模板 实例化“std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>”的引用
+          with
+          [
+              _Kty=int,
+              _Ty=RGeometry,
+              _Pr=std::less<int>,
+              _Alloc=std::allocator<std::pair<const int,RGeometry>>
+          ]
+E:\ademo\REngine2.0\REngine2\Engine\Render\Pipeline\RenderLayer\RenderLayerManage.cpp(30): message : 查看对正在编译的 类 模板 实例化“std::map<int,RGeometry,std::less<int>,std::allocator<std::pair<const int,RGeometry>>>”的引用
+  正在生成代码...
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+E:\ademo\REngine2.0\REngine2\simple_library\public\simple_math\transformation\vector\vector_4d.h(74): warning C4717: “fvector_4d::operator*”: 如递归所有控件路径，函数将导致运行时堆栈溢出

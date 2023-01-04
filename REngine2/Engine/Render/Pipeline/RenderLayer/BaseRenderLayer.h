@@ -14,16 +14,16 @@ public:
 	void SetPipelineState(RDXPipelineState* pipelineState);
 public:
 	void UpdateCalculations(ViewportInfo viewportInfo, RConstantBufferView objectConstantBufferView);
-	void DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView);
+	void DrawMesh(map<int, RGeometry> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView);
 public:
 	virtual void BuildShader(UINT TextureSize)=0;
 	virtual void BuildPSO(UINT size);
 public:
 	void  SetRenderLayerType(EMeshRenderLayerType type);
-	void  AddRenderData(RRenderData* data);
+	void  AddRenderData(std::shared_ptr<RRenderData> data);
 
 	EMeshRenderLayerType GetRenderLayerType() const;
-	vector<RRenderData*> GetRenderDatas();
+	vector<std::weak_ptr<RRenderData>> GetRenderDatas();
 	UINT GetRenderDataSize();
 protected:
 	RShader m_VertexShader;
@@ -31,6 +31,6 @@ protected:
 	vector<D3D12_INPUT_ELEMENT_DESC> m_InputElementDesc;
 	RDXPipelineState* m_PipelineState;
 private:
-	vector<RRenderData*> m_RenderDatas;
+	vector<std::weak_ptr<RRenderData>> m_RenderDatas;
 	EMeshRenderLayerType RenderLayerType;
 };

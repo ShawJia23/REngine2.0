@@ -21,6 +21,16 @@ void  BoxMesh::CreateMesh(float height, float width, float depth, EMeshRenderLay
 	SetMeshComponent(Tmp);
 }
 
+void BoxMesh::BuildKey(size_t& outKey, float height, float width, float depth) 
+{
+	std::hash<float> floatHash;
+
+	outKey = 1;
+	outKey += floatHash(height);
+	outKey += floatHash(width);
+	outKey += floatHash(depth);
+}
+
 ConeMesh::ConeMesh()
 {
 }
@@ -39,6 +49,18 @@ void ConeMesh::CreateMesh(float radius, float height, uint32_t axialSub, uint32_
 {
 	auto Tmp = CREATE_RENDER_DATA(ConeMeshComponent, radius, height, axialSub, heightSub);
 	SetMeshComponent(Tmp);
+}
+
+void ConeMesh::BuildKey(size_t& outKey, float radius, float height, uint32_t axialSub, uint32_t heightSub)
+{
+	std::hash<float> floatHash;
+	std::hash<int> intHash;
+	outKey = 2;
+	outKey += floatHash(radius);
+	outKey += floatHash(height);
+
+	outKey += intHash(axialSub);
+	outKey += intHash(heightSub);
 }
 
 CylinderMesh::CylinderMesh()
@@ -61,6 +83,18 @@ void CylinderMesh::CreateMesh(float topRadius, float bottomRadius, float height,
 	SetMeshComponent(Tmp);
 }
 
+void CylinderMesh::BuildKey(size_t& outKey, float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub)
+{
+	std::hash<float> floatHash;
+	std::hash<int> intHash;
+	outKey = 3;
+	outKey += floatHash(topRadius);
+	outKey += floatHash(bottomRadius);
+	outKey += floatHash(height);
+	outKey += intHash(axialSub);
+	outKey += intHash(heightSub);
+}
+
 PlaneMesh::PlaneMesh()
 {
 }
@@ -79,6 +113,17 @@ void PlaneMesh::CreateMesh(float height, float width, uint32_t heightSub, uint32
 {
 	auto Tmp = CREATE_RENDER_DATA(PlaneMeshComponent, height, width, heightSub, widthSub);
 	SetMeshComponent(Tmp);
+}
+
+void PlaneMesh::BuildKey(size_t& outKey, float height, float width, uint32_t heightSub, uint32_t widthSub)
+{
+	std::hash<float> floatHash;
+	std::hash<int> intHash;
+	outKey = 4;
+	outKey += floatHash(height);
+	outKey += floatHash(width);
+	outKey += intHash(heightSub);
+	outKey += intHash(widthSub);
 }
 
 SphereMesh::SphereMesh()
@@ -103,6 +148,18 @@ void SphereMesh::CreateMesh( float radius, uint32_t axialSub, uint32_t heightSub
 	
 }
 
+void SphereMesh::BuildKey(size_t& outKey, float radius, uint32_t axialSub, uint32_t heightSub)
+{
+	std::hash<float> floatHash;
+	std::hash<int> intHash;
+
+	outKey = 5;
+	outKey += floatHash(radius);
+
+	outKey += intHash._Do_hash(axialSub);
+	outKey += intHash._Do_hash(heightSub);
+}
+
 CustomMesh::CustomMesh()
 {
 }
@@ -121,6 +178,13 @@ void CustomMesh::CreateMesh(EMeshRenderLayerType type)
 {
 	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent,0);
 	SetMeshComponent(Tmp);
+}
+
+void CustomMesh::BuildKey(size_t& outKey)
+{
+	std::hash<float> floatHash;
+
+	outKey = 5;
 }
 
 MeshGroup::MeshGroup()

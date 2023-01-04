@@ -26,7 +26,7 @@ void RenderLayerManage::UpdateCalculations(const ViewportInfo viewportInfo, RCon
 		Tmp.second->UpdateCalculations(viewportInfo, objectConstantBufferView);
 }
 
-void RenderLayerManage::DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView)
+void RenderLayerManage::DrawMesh(map<int, RGeometry> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView)
 {
 	for (auto& Tmp : m_RenderLayers)
 		Tmp.second->DrawMesh(geometrys, heap, objectConstantBufferView);

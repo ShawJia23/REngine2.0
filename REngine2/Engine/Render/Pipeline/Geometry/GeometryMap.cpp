@@ -9,12 +9,14 @@
 #include"../RenderLayer/RenderLayerManage.h"
 
 UINT MeshObjectCount=0;
+map<size_t, std::shared_ptr<RRenderData>> RGeometry::UniqueRenderingDatas;
+vector<std::shared_ptr<RRenderData>> RGeometry::RenderingDatas;
 
 RGeometryMap::RGeometryMap()
 :m_WorldMatrix(RMath::IdentityMatrix4x4())
 , IndexSize(0)
 {
-	m_Geometrys.insert(pair<int, RGeometry*>(0, new RGeometry()));
+	m_Geometrys.insert(pair<int, RGeometry>(0, RGeometry()));
 	m_RenderLayerManage = std::make_unique<RenderLayerManage>();
 }
 
@@ -53,7 +55,7 @@ void RGeometryMap::BuildMaterialsConstantBufferView()
 		{
 			auto RenderDatas = Tmp.second->GetRenderDatas();
 			auto InData = RenderDatas[i];
-			if (auto InMaterials = InData->Mesh->GetMaterials())
+			if (auto InMaterials = InData.lock()->Mesh->GetMaterials())
 			{
 				for (size_t j = 0; j < InMaterials->size(); j++)
 				{
@@ -92,7 +94,7 @@ UINT RGeometryMap::GetMaterialsNumber()
 		{
 			auto RenderDatas = Tmp.second->GetRenderDatas();
 			auto InData = RenderDatas[i];
-			if (auto InMaterials = InData->Mesh->GetMaterials())
+			if (auto InMaterials = InData.lock()->Mesh->GetMaterials())
 			{
 				for (size_t j = 0; j < InMaterials->size(); j++)
 				{
@@ -260,20 +262,41 @@ void RGeometryMap::UpdateMaterialShaderResourceView()
 }
 
 
-void RGeometryMap::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData)
+void RGeometryMap::BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData)
 {
-	RGeometry* Geometry = m_Geometrys[0];
+	for (auto& Tmp : m_Geometrys)
+	{
+		auto renderLayer = m_RenderLayerManage->GetRenderLayerByType(mesh->GetRenderLayerType());
+		if(renderLayer)
+			Tmp.second.BuildMesh(meshHash,mesh, meshData, renderLayer);
+	}
+}
 
-	auto renderLayer = m_RenderLayerManage->GetRenderLayerByType(mesh->GetRenderLayerType());
-	if(renderLayer)
-		Geometry->BuildMesh(mesh, meshData, renderLayer);
+void RGeometryMap::DuplicateMesh(RMeshComponent* inMesh, std::shared_ptr<RRenderData>& meshData)
+{
+	for (auto& Tmp : m_Geometrys)
+	{
+		Tmp.second.DuplicateMesh(inMesh, meshData, Tmp.first);
+	}
+}
+
+bool RGeometryMap::FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData, int renderLayerIndex)
+{
+	for (auto& Tmp : m_Geometrys)
+	{
+		if (Tmp.second.FindMeshRenderingDataByHash(inHash, meshData, renderLayerIndex))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void RGeometryMap::BuildGeometry() 
 {
 	for (auto& Tmp : m_Geometrys)
 	{
-		Tmp.second->CreatePSO();
+		Tmp.second.CreatePSO();
 	}
 }
 
@@ -282,7 +305,7 @@ bool RGeometry::RenderDataExistence(RMeshComponent* key, std::shared_ptr<RenderL
 {
 	for (auto& Tmp : renderLayer->GetRenderDatas())
 	{
-		if (Tmp->Mesh == key)
+		if (Tmp.lock()->Mesh == key)
 		{
 			return true;
 		}
@@ -291,11 +314,13 @@ bool RGeometry::RenderDataExistence(RMeshComponent* key, std::shared_ptr<RenderL
 	return false;
 }
 
-void RGeometry::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer)
+void RGeometry::BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer)
 {
 	if (!RenderDataExistence(mesh, renderLayer))
 	{
-		RRenderData* pRenderingData = new RRenderData();
+		UniqueRenderingDatas.insert(std::make_pair(meshHash, std::make_shared<RRenderData>()));
+		RenderingDatas.push_back(std::make_shared<RRenderData>());
+		std::shared_ptr<RRenderData> pRenderingData = RenderingDatas.back();
 
 		pRenderingData->Mesh = mesh;
 		pRenderingData->ObjectIndex = MeshObjectCount++;
@@ -317,6 +342,22 @@ void RGeometry::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData, 
 			meshData.VertexData.begin(),
 			meshData.VertexData.end());
 	}
+}
+
+void RGeometry::DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key)
+{
+}
+
+bool RGeometry::FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData, int renderLayerIndex)
+{
+	auto FindElement = UniqueRenderingDatas.find(inHash);
+	if (FindElement != UniqueRenderingDatas.end())
+	{
+		meshData = UniqueRenderingDatas[inHash];
+		return true;
+	}
+
+	return false;
 }
 
 void RGeometry::CreatePSO()

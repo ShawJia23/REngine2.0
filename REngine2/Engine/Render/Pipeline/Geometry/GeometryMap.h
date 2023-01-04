@@ -17,7 +17,9 @@ struct RGeometry :public IDirectXDeviceInterface_Struct
 	friend struct RGeometryMap;
 
 	bool RenderDataExistence(RMeshComponent* InKey, std::shared_ptr<RenderLayer> renderLayer);
-	void BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer);
+	void BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer);
+	void DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key);
+	bool FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData,int renderLayerIndex = -1);
 
 	void CreatePSO();
 
@@ -34,6 +36,14 @@ protected:
 	ComPtr<ID3D12Resource> IndexBufferTmpPtr;
 
 	MeshRenderData m_MeshRenderData;
+
+protected:
+	//唯一性的渲染池
+	static map<size_t, std::shared_ptr<RRenderData>> UniqueRenderingDatas;
+
+public:
+	//真正的渲染池 里面会有重复的 key (size_t)
+	static vector<std::shared_ptr<RRenderData>> RenderingDatas;
 };
 
 
@@ -54,6 +64,9 @@ public:
 	void BuildDescriptorHeap();
 
 	void BuildMesh(const MeshRenderData* renderingData);
+	void DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData);
+	bool FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData,int renderLayerIndex = -1);
+	
 	void BuildGeometry();
 
 	D3D12_VERTEX_BUFFER_VIEW GetVertexBufferView();
@@ -64,7 +77,7 @@ public:
 
 	ID3D12DescriptorHeap* GetHeap()const { return m_DescriptorHeap.GetHeap(); }
 
-	void BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData);
+	void BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData);
 
 	UINT GetMaterialsNumber();
 	UINT GetMeshNumber();
@@ -75,7 +88,7 @@ public:
 	void SetPipelineState(RDXPipelineState* pipelineState);
 	void BuildPSO();
 private:
-	map<int, RGeometry*> m_Geometrys;
+	map<int, RGeometry> m_Geometrys;
 
 	RDXDescriptorHeap m_DescriptorHeap;
 	RConstantBufferView m_ObjectConstantBufferView;

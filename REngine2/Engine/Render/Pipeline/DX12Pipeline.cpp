@@ -15,9 +15,9 @@ void DX12Pipeline::Init()
     m_GeometryMap.Init();
 }
 
-void DX12Pipeline::BuildMesh(RMeshComponent* mesh, const MeshRenderData& meshData)
+void DX12Pipeline::BuildMesh(const size_t meshHash,RMeshComponent* mesh, const MeshRenderData& meshData)
 {
-    m_GeometryMap.BuildMesh(mesh, meshData);
+    m_GeometryMap.BuildMesh(meshHash,mesh, meshData);
 }
 
 void DX12Pipeline::BuildPipeline()
@@ -58,6 +58,11 @@ void DX12Pipeline::Draw(float DeltaTime)
     m_GeometryMap.Draw();
 
     m_UIPipeline.Draw(DeltaTime);
+}
+
+bool DX12Pipeline::FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData, int renderLayerIndex)
+{
+    return m_GeometryMap.FindMeshRenderingDataByHash(inHash, meshData, renderLayerIndex);
 }
 
 void DX12Pipeline::ResetCommandList() 

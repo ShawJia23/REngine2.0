@@ -13,7 +13,7 @@ public:
 	std::map<EMeshRenderLayerType, std::shared_ptr<RenderLayer>> GetAllRenderLayers();
 public:
 	void UpdateCalculations(ViewportInfo viewportInfo, RConstantBufferView objectConstantBufferView);
-	void DrawMesh(map<int, RGeometry*> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView);
+	void DrawMesh(map<int, RGeometry> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView);
 public:
 	template<class T>
 	void  CreateRenderLayer()

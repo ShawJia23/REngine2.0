@@ -11,7 +11,13 @@ namespace MeshConstruction
         {
             T* mesh = new T();
 
-            //提取模型资源
+            size_t hashKey = 0;
+            mesh->BuildKey(hashKey, forward<ParamTypes>(Params)...);
+
+            std::shared_ptr<RRenderData> RenderingData;
+            manage->GetDX12Pipeline().FindMeshRenderingDataByHash(
+                hashKey, RenderingData, (int)mesh->GetRenderLayerType());
+
             MeshRenderData meshData;
             mesh->CreateMesh(meshData, forward<ParamTypes>(Params)...);
 
@@ -19,7 +25,8 @@ namespace MeshConstruction
 
             mesh->SetMeshRenderLayerType(type);
 
-            manage->GetDX12Pipeline().BuildMesh(mesh, meshData);
+            manage->GetDX12Pipeline().BuildMesh(hashKey,mesh, meshData);
+
             return mesh;
         }
 
