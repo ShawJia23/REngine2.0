@@ -4,6 +4,7 @@
 #include"../BufferView/ConstantBufferView.h"
 #include"../../ConstontBuffer/ObjectTransformation.h"
 #include"../Geometry/RenderMeshData.h"
+#include"../Geometry/GeometryMap.h"
 
 RenderLayer::RenderLayer():RenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPAQUE)
 {

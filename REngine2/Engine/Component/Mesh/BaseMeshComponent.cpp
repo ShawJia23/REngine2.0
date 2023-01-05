@@ -150,12 +150,12 @@ CustomMeshComponent::CustomMeshComponent()
 
 }
 
-void CustomMeshComponent::CreateMesh(MeshRenderData& MeshData, const char* name)
+void CustomMeshComponent::CreateMesh(MeshRenderData& MeshData, const string& name)
 {
 
 }
 
-void CustomMeshComponent::BuildKey(size_t& outKey, const char * name)
+void CustomMeshComponent::BuildKey(size_t& outKey, const string& name)
 {
 	std::hash<string> floatHash;
 

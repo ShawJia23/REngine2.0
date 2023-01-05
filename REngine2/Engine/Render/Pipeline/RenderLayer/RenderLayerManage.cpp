@@ -1,5 +1,6 @@
 #include"RenderLayerManage.h"
 #include"RenderLayer.h"
+#include"../Geometry/GeometryMap.h"
 #include"../BufferView/ConstantBufferView.h"
 #include"../../ConstontBuffer/ObjectTransformation.h"
 #include"../../../Core/ViewPort/ViewportInfo.h"

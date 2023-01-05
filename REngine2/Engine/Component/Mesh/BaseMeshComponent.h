@@ -30,9 +30,9 @@ class CustomMeshComponent :public RStaticMeshComponent
 public:
 	CustomMeshComponent();
 
-	void CreateMesh(MeshRenderData& MeshData, const char* name);
+	void CreateMesh(MeshRenderData& MeshData, const string& name);
 
-	void BuildKey(size_t& outKey, const char* name);
+	void BuildKey(size_t& outKey, const string& name);
 };
 
 class CylinderMeshComponent :public RStaticMeshComponent

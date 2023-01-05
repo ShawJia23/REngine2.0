@@ -3,7 +3,7 @@
 #include"../Core/World.h"
 #include"../Materials/Material.h"
 #include"../Component/Mesh/BaseMeshComponent.h"
-
+#include"../Core/Construction/ActorMeshConstruction.h"
 BoxMesh::BoxMesh() 
 {
 }
@@ -119,8 +119,7 @@ void CustomMesh::Draw(float DeltaTime)
 
 void CustomMesh::CreateMesh(EMeshRenderLayerType type)
 {
-	std::string name = "a";
-	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent, name);
+	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent, "name");
 	SetMeshComponent(Tmp);
 }
 
@@ -139,8 +138,12 @@ void MeshGroup::SetPosition(const XMFLOAT3& newPosition)
 
 void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderData MeshData)
 {
+	if (m_RenderDatas.find(name) != m_RenderDatas.end())
+	{
+		name = name + "1";
+	}
 	size_t hashKey = 0;
-
+	dynamic_cast<CustomMeshComponent*>(mesh)->BuildKey(hashKey, name);
 	CustomMesh* pCustomMesh=GetWorld()->CreateActorObject<CustomMesh>();
 	if (pCustomMesh)
 	{
@@ -151,10 +154,6 @@ void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderDat
 	pSubMesh.MeshData.IndexData = MeshData.IndexData;
 	pSubMesh.MeshData.VertexData = MeshData.VertexData;
 	pSubMesh.outKey = hashKey;
-	if (m_RenderDatas.find(name) != m_RenderDatas.end()) 
-	{
-		name = name + "1";
-	}
 	m_RenderDatas[name] = pSubMesh;
 }
 

@@ -63,7 +63,7 @@ RMeshComponent* RMeshManage::CreatePlaneMeshComponent(float InHeight, float InWi
 
 RMeshComponent* RMeshManage::CreateCustomMeshComponent()
 {
-    return MeshConstruction::CreateMeshComponent<CustomMeshComponent>(this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, 0);
+    return MeshConstruction::CreateMeshComponent<CustomMeshComponent>(this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, "name");
 }
 
 void RMeshManage::CreateMeshGroup(size_t hashKey, RMeshComponent* mesh, const MeshRenderData& meshData)
