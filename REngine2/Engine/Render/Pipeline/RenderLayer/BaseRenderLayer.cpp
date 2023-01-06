@@ -26,6 +26,8 @@ void RenderLayer::DrawMesh(map<int, RGeometry> geometrys, ID3D12DescriptorHeap* 
 
 	for (auto& Tmp : m_RenderDatas) 
 	{
+		if (Tmp.expired())
+			continue;
 		D3D12_GPU_VIRTUAL_ADDRESS FirstVirtualMeshAddress = objectConstantBufferView.GetBuffer()->GetGPUVirtualAddress();
 
 		D3D12_VERTEX_BUFFER_VIEW VBV = geometrys[Tmp.lock()->GeometryIndex].GetVertexBufferView();
@@ -66,7 +68,8 @@ void RenderLayer::UpdateCalculations(const ViewportInfo viewportInfo, RConstantB
 	for (size_t i = 0; i < GetRenderDataSize(); i++)
 	{
 	    auto pRenderData = m_RenderDatas[i];
-		
+		if (pRenderData.expired())
+			continue;
 		//构造模型的world
 		{
 			XMFLOAT3& Position = pRenderData.lock().get()->Mesh->GetPosition();

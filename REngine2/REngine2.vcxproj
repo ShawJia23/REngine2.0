@@ -138,6 +138,7 @@
     <ClCompile Include="Editor\Toolbar\ToolbarEditor.cpp" />
     <ClCompile Include="Engine\Actor\ActorObject.cpp" />
     <ClCompile Include="Engine\Actor\Light.cpp" />
+    <ClCompile Include="Engine\Collision\CollisionSystem.cpp" />
     <ClCompile Include="Engine\Component\Input\InputComponent.cpp" />
     <ClCompile Include="Engine\Component\Input\Input.cpp" />
     <ClCompile Include="Engine\Component\Input\RInputType.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="Engine\LoadAsset\DDSTextureLoader.cpp" />
     <ClCompile Include="Engine\LoadAsset\ObjectAnalysis.cpp" />
     <ClCompile Include="Engine\Manage\TextureManage.cpp" />
+    <ClCompile Include="Engine\RayCast\RayCastSystem.cpp" />
     <ClCompile Include="Engine\Render\ConstontBuffer\LightConstantBuffer.cpp" />
     <ClCompile Include="Engine\Component\Mesh\BaseMeshComponent.cpp" />
     <ClCompile Include="Engine\Component\Mesh\MeshComponent.cpp" />
@@ -241,6 +243,7 @@
     <ClInclude Include="Editor\Toolbar\ToolbarEditor.h" />
     <ClInclude Include="Engine\Actor\ActorObject.h" />
     <ClInclude Include="Engine\Actor\Light.h" />
+    <ClInclude Include="Engine\Collision\CollisionSystem.h" />
     <ClInclude Include="Engine\Component\Input\InputComponent.h" />
     <ClInclude Include="Engine\Component\Input\Input.h" />
     <ClInclude Include="Engine\Component\Input\RInputType.h" />
@@ -254,6 +257,7 @@
     <ClInclude Include="Engine\LoadAsset\DDSTextureLoader.h" />
     <ClInclude Include="Engine\LoadAsset\ObjectAnalysis.h" />
     <ClInclude Include="Engine\Manage\TextureManage.h" />
+    <ClInclude Include="Engine\RayCast\RayCastSystem.h" />
     <ClInclude Include="Engine\Render\ConstontBuffer\ConstontBufferMinimal.h" />
     <ClInclude Include="Engine\Render\ConstontBuffer\LightConstantBuffer.h" />
     <ClInclude Include="Engine\Component\Mesh\BaseMeshComponent.h" />

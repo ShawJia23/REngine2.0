@@ -20,7 +20,7 @@ struct RGeometry :public IDirectXDeviceInterface_Struct
 
 	bool RenderDataExistence(RMeshComponent* InKey, std::shared_ptr<RenderLayer> renderLayer);
 	void BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer);
-	void DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key);
+	void DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key, std::unique_ptr<RenderLayerManage>& renderLayerManage);
 	bool FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData,int renderLayerIndex = -1);
 
 	void CreatePSO();

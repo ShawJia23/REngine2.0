@@ -65,6 +65,11 @@ bool DX12Pipeline::FindMeshRenderingDataByHash(const size_t& inHash, std::shared
     return m_GeometryMap.FindMeshRenderingDataByHash(inHash, meshData, renderLayerIndex);
 }
 
+void DX12Pipeline::DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData)
+{
+    m_GeometryMap.DuplicateMesh(mesh, meshData);
+}
+
 void DX12Pipeline::ResetCommandList() 
 {
     m_PipelineState.ResetCommandList();

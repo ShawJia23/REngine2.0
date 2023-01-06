@@ -55,6 +55,8 @@ void RGeometryMap::BuildMaterialsConstantBufferView()
 		{
 			auto RenderDatas = Tmp.second->GetRenderDatas();
 			auto InData = RenderDatas[i];
+			if (InData.expired())
+				continue;
 			if (auto InMaterials = InData.lock()->Mesh->GetMaterials())
 			{
 				for (size_t j = 0; j < InMaterials->size(); j++)
@@ -94,6 +96,8 @@ UINT RGeometryMap::GetMaterialsNumber()
 		{
 			auto RenderDatas = Tmp.second->GetRenderDatas();
 			auto InData = RenderDatas[i];
+			if (InData.expired())
+				continue;
 			if (auto InMaterials = InData.lock()->Mesh->GetMaterials())
 			{
 				for (size_t j = 0; j < InMaterials->size(); j++)
@@ -272,11 +276,11 @@ void RGeometryMap::BuildMesh(const size_t meshHash, RMeshComponent* mesh, const 
 	}
 }
 
-void RGeometryMap::DuplicateMesh(RMeshComponent* inMesh, std::shared_ptr<RRenderData>& meshData)
+void RGeometryMap::DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData)
 {
 	for (auto& Tmp : m_Geometrys)
 	{
-		Tmp.second.DuplicateMesh(inMesh, meshData, Tmp.first);
+		Tmp.second.DuplicateMesh(mesh, meshData, Tmp.first, m_RenderLayerManage);
 	}
 }
 
@@ -306,51 +310,86 @@ RGeometry::RGeometry()
 
 }
 
-bool RGeometry::RenderDataExistence(RMeshComponent* key, std::shared_ptr<RenderLayer> renderLayer)
-{
-	for (auto& Tmp : renderLayer->GetRenderDatas())
-	{
-		if (Tmp.lock()->Mesh == key)
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-
 void RGeometry::BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer)
 {
-	if (!RenderDataExistence(mesh, renderLayer))
+	RenderingDatas.push_back(std::make_shared<RRenderData>());
+	std::shared_ptr<RRenderData> pRenderingData = RenderingDatas.back();
+
+	pRenderingData->Mesh = mesh;
+	pRenderingData->ObjectIndex = MeshObjectCount++;
+	pRenderingData->IndexSize = meshData.IndexData.size();
+	pRenderingData->VertexSize = meshData.VertexData.size();
+
+	pRenderingData->IndexOffsetPosition = m_MeshRenderData.IndexData.size();
+	pRenderingData->VertexOffsetPosition = m_MeshRenderData.VertexData.size();
+
+	//АќЮЇКа
 	{
-		UniqueRenderingDatas.insert(std::make_pair(meshHash, std::make_shared<RRenderData>()));
+		fvector_3d MaxPoint = fvector_3d(-FLT_MAX);
+		fvector_3d MinPoint = fvector_3d(+FLT_MAX);
+		for (auto& Tmp : meshData.VertexData)
+		{
+			MinPoint.x = math_libray::Min(Tmp.Position.x, MinPoint.x);
+			MinPoint.y = math_libray::Min(Tmp.Position.y, MinPoint.y);
+			MinPoint.z = math_libray::Min(Tmp.Position.z, MinPoint.z);
+
+			MaxPoint.x = math_libray::Max(Tmp.Position.x, MaxPoint.x);
+			MaxPoint.y = math_libray::Max(Tmp.Position.y, MaxPoint.y);
+			MaxPoint.z = math_libray::Max(Tmp.Position.z, MaxPoint.z);
+		}
+
+		XMFLOAT3 XMFMaxPoint = RMath::ToFloat3(MaxPoint);
+		XMFLOAT3 XMFMinPoint = RMath::ToFloat3(MinPoint);
+
+		XMVECTOR XMFMaxPointTOR = XMLoadFloat3(&XMFMaxPoint);
+		XMVECTOR XMFMinPointTOR = XMLoadFloat3(&XMFMinPoint);
+
+		XMStoreFloat3(&pRenderingData->Bounds.Center, (XMFMaxPointTOR + XMFMinPointTOR) * 0.5f);
+		XMStoreFloat3(&pRenderingData->Bounds.Extents, (XMFMaxPointTOR - XMFMinPointTOR) * 0.5f);
+	}
+
+	UniqueRenderingDatas.insert(std::make_pair(meshHash, std::make_shared<RRenderData>()));
+
+	UniqueRenderingDatas[meshHash]->Mesh = pRenderingData->Mesh;
+	UniqueRenderingDatas[meshHash]->ObjectIndex = pRenderingData->ObjectIndex;
+	UniqueRenderingDatas[meshHash]->IndexSize = pRenderingData->IndexSize;
+	UniqueRenderingDatas[meshHash]->VertexSize = pRenderingData->VertexSize;
+
+	UniqueRenderingDatas[meshHash]->IndexOffsetPosition = pRenderingData->IndexOffsetPosition;
+	UniqueRenderingDatas[meshHash]->VertexOffsetPosition = pRenderingData->VertexOffsetPosition;
+	UniqueRenderingDatas[meshHash]->Bounds = pRenderingData->Bounds;
+
+	renderLayer->AddRenderData(pRenderingData);
+
+	m_MeshRenderData.IndexData.insert(
+		m_MeshRenderData.IndexData.end(),
+		meshData.IndexData.begin(),
+		meshData.IndexData.end());
+
+	m_MeshRenderData.VertexData.insert(
+		m_MeshRenderData.VertexData.end(),
+		meshData.VertexData.begin(),
+		meshData.VertexData.end());
+}
+
+void RGeometry::DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key, std::unique_ptr<RenderLayerManage>& renderLayerManage)
+{
+	if (std::shared_ptr<RenderLayer> renderLayer = renderLayerManage->GetRenderLayerByType(mesh->GetRenderLayerType()))
+	{
 		RenderingDatas.push_back(std::make_shared<RRenderData>());
 		std::shared_ptr<RRenderData> pRenderingData = RenderingDatas.back();
 
 		pRenderingData->Mesh = mesh;
 		pRenderingData->ObjectIndex = MeshObjectCount++;
-		pRenderingData->IndexSize = meshData.IndexData.size();
-		pRenderingData->VertexSize = meshData.VertexData.size();
+		pRenderingData->IndexSize = meshData->IndexSize;
+		pRenderingData->VertexSize = meshData->VertexSize;
 
-		pRenderingData->IndexOffsetPosition = m_MeshRenderData.IndexData.size();
-		pRenderingData->VertexOffsetPosition = m_MeshRenderData.VertexData.size();
+		pRenderingData->IndexOffsetPosition = meshData->IndexOffsetPosition;
+		pRenderingData->VertexOffsetPosition = meshData->VertexOffsetPosition;
 
+		pRenderingData->Bounds = meshData->Bounds;
 		renderLayer->AddRenderData(pRenderingData);
-
-		m_MeshRenderData.IndexData.insert(
-			m_MeshRenderData.IndexData.end(),
-			meshData.IndexData.begin(),
-			meshData.IndexData.end()); 
-
-		m_MeshRenderData.VertexData.insert(
-			m_MeshRenderData.VertexData.end(),
-			meshData.VertexData.begin(),
-			meshData.VertexData.end());
 	}
-}
-
-void RGeometry::DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key)
-{
 }
 
 bool RGeometry::FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData, int renderLayerIndex)

@@ -17,6 +17,7 @@ public:
 	UINT VertexTypeSize;
 	UINT IndexTypeSize;
 
+	BoundingBox Bounds;
 public:
 	UINT GetVertexSizeInBytes()const { return VertexSize * VertexTypeSize; }
 	UINT GetIndexSizeInBytes()const { return IndexSize * IndexTypeSize; }

@@ -21,6 +21,9 @@ public:
 	void SetRootSignature();
 
 	void BuildMesh(const size_t meshHash,RMeshComponent* mesh, const MeshRenderData& meshData);
+	bool FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData, int renderLayerIndex);
+	void DuplicateMesh(RMeshComponent*mesh, std::shared_ptr<RRenderData>& meshData);
+
 
 	void BuildPipeline();
 
@@ -29,9 +32,6 @@ public:
 	void Draw(float DeltaTime);
 
 	void BuildPSO();
-
-public:
-	bool FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData,int renderLayerIndex);
 private:
 	RGeometryMap m_GeometryMap;
 	RDXPipelineState m_PipelineState;
