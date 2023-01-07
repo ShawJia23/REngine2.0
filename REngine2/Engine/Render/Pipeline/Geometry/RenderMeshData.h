@@ -2,6 +2,7 @@
 #include"../../../Interface/DXDeviceInterface.h"
 
 class RMeshComponent;
+struct MeshRenderData;
 
 struct RRenderData :public IDirectXDeviceInterface_Struct
 {
@@ -29,5 +30,7 @@ public:
 	XMFLOAT4X4 WorldMatrix;
 	XMFLOAT4X4 TextureTransform;
 
-	RMeshComponent* Mesh;//key
+	RMeshComponent* Mesh;
+
+	MeshRenderData* RenderData;
 };

@@ -14,12 +14,13 @@ bool RayCastSystem::HitResultByScreen(RWorld* inWorld, int screenX, int screenY,
 		View.y = (-2.f * screenY / H + 1.f) / camera->GetProjectMatrix()._22;
 
 		//视口下的 原点 和 方向
-		XMVECTOR OriginPoint = XMVectorSet(0.f, 0.f, 0.f, 1.f);
-		XMVECTOR Direction = XMVectorSet(View.x, View.y, 1.f, 0.f);
+		XMVECTOR OriginPoint = DirectX::XMVectorSet(0.f, 0.f, 0.f, 1.f);
+		XMVECTOR Direction = DirectX::XMVectorSet(View.x, View.y, 1.f, 0.f);
 
-		XMMATRIX ViewMatrix = XMLoadFloat4x4(&camera->GetViewMatrix());
-		XMVECTOR ViewMatrixDeterminant = XMMatrixDeterminant(ViewMatrix);
-		XMMATRIX ViewInverseMatrix = XMMatrixInverse(&ViewMatrixDeterminant, ViewMatrix);
+		auto viewMatrix = camera->GetViewMatrix();
+		XMMATRIX ViewMatrix = DirectX::XMLoadFloat4x4(&viewMatrix);
+		XMVECTOR ViewMatrixDeterminant = DirectX::XMMatrixDeterminant(ViewMatrix);
+		XMMATRIX ViewInverseMatrix = DirectX::XMMatrixInverse(&ViewMatrixDeterminant, ViewMatrix);
 
 		CollisionScene::RaycastSingle(inWorld, OriginPoint, Direction, ViewInverseMatrix, outResult);
 	}

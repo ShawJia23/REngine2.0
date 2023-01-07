@@ -15,8 +15,12 @@ public:
 
 	bool IsTick() { return bTick; }
 	void SetTick(bool tick) { bTick=tick; }
+
+	FORCEINLINE RMinimalObject* GetOuter() const { return Outer; }
+	void SetOuter(RMinimalObject* InNewOuter) { Outer = InNewOuter; }
 	protected:
 		bool bTick;
+		RMinimalObject* Outer;
 };
 
 

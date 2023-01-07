@@ -323,6 +323,7 @@ void RGeometry::BuildMesh(const size_t meshHash, RMeshComponent* mesh, const Mes
 	pRenderingData->IndexOffsetPosition = m_MeshRenderData.IndexData.size();
 	pRenderingData->VertexOffsetPosition = m_MeshRenderData.VertexData.size();
 
+	pRenderingData->RenderData = &m_MeshRenderData;
 	//АќЮЇКа
 	{
 		fvector_3d MaxPoint = fvector_3d(-FLT_MAX);
@@ -358,6 +359,7 @@ void RGeometry::BuildMesh(const size_t meshHash, RMeshComponent* mesh, const Mes
 	UniqueRenderingDatas[meshHash]->IndexOffsetPosition = pRenderingData->IndexOffsetPosition;
 	UniqueRenderingDatas[meshHash]->VertexOffsetPosition = pRenderingData->VertexOffsetPosition;
 	UniqueRenderingDatas[meshHash]->Bounds = pRenderingData->Bounds;
+	UniqueRenderingDatas[meshHash]->RenderData = &m_MeshRenderData;
 
 	renderLayer->AddRenderData(pRenderingData);
 
@@ -388,6 +390,7 @@ void RGeometry::DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>
 		pRenderingData->VertexOffsetPosition = meshData->VertexOffsetPosition;
 
 		pRenderingData->Bounds = meshData->Bounds;
+		pRenderingData->RenderData = &m_MeshRenderData;
 		renderLayer->AddRenderData(pRenderingData);
 	}
 }

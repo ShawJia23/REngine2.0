@@ -1,5 +1,7 @@
 #include"Camera.h"
 #include"../Component/RComponentMinimal.h"
+#include"../Collision/CollisionSystem.h"
+#include"../RayCast/RayCastSystem.h"
 RCamera::RCamera():GActorObject()
 {
 	m_rInputComponent = CreateObject<RInputComponent>(new RInputComponent());
@@ -112,6 +114,8 @@ void RCamera::OnMouseButtonDown(int X, int Y)
 	LastMousePosition.x = X;
 	LastMousePosition.y = Y;
 
+	OnClickedScreen(X, Y);
+
 	SetCapture(GetMianWindowsHandle());
 }
 
@@ -196,6 +200,12 @@ void RCamera::MoveRight(float InValue)
 		XMStoreFloat3(&AT3Position, XMVectorMultiplyAdd(AmountMovement, Right, Position));
 		GetTransformationComponent()->SetPosition(AT3Position);
 	}
+}
+
+void RCamera::OnClickedScreen(int X, int Y)
+{
+	CollisionResult collisionResult;
+	RayCastSystem::HitResultByScreen(GetWorld(), X, Y, collisionResult);
 }
 
 void RCamera::RotateAroundXAxis(float InRotateDegrees)
