@@ -194,6 +194,7 @@
     <ClCompile Include="Engine\Render\Render.cpp" />
     <ClCompile Include="Engine\Render\ResourcesUpdate.cpp" />
     <ClCompile Include="Engine\Shader\Shader.cpp" />
+    <ClCompile Include="Engine\Shader\ShaderMacro.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_dx12.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -316,6 +317,7 @@
     <ClInclude Include="Engine\Render\Render.h" />
     <ClInclude Include="Engine\Render\ResourcesUpdate.h" />
     <ClInclude Include="Engine\Shader\Shader.h" />
+    <ClInclude Include="Engine\Shader\ShaderMacro.h" />
     <ClInclude Include="imgui\backends\imgui_impl_dx12.h" />
     <ClInclude Include="imgui\backends\imgui_impl_win32.h" />
     <ClInclude Include="imgui\imconfig.h" />

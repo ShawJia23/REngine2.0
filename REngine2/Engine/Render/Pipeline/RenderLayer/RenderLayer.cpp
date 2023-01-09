@@ -1,21 +1,20 @@
 #include"RenderLayer.h"
-
+#include"../../../Shader/ShaderMacro.h"
 OpaqueLayer::OpaqueLayer():RenderLayer()
 {
 	SetRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 }
 
-void OpaqueLayer::BuildShader(UINT TextureSize) 
+void OpaqueLayer::BuildShader() 
 {
-    char TextureNumBuff[10] = { 0 };
-    D3D_SHADER_MACRO ShaderMacro[] =
-    {
-        "TEXTURE2D_MAP_NUM",_itoa(TextureSize,TextureNumBuff,10),
-        NULL,NULL,
-    };
+    vector<RShaderMacro> ShaderMacro;
+    BuildShaderMacro(ShaderMacro);
 
-    m_VertexShader.BuildShaders(L"Shader/Default.hlsl", "VertexShaderMain", "vs_5_1", ShaderMacro);
-    m_PixelShader.BuildShaders(L"Shader/Default.hlsl", "PixelShaderMain", "ps_5_1", ShaderMacro);
+    vector<D3D_SHADER_MACRO> D3DShaderMacro;
+    R2D3DShaderMacro(ShaderMacro, D3DShaderMacro);
+
+    m_VertexShader.BuildShaders(L"Shader/Default.hlsl", "VertexShaderMain", "vs_5_1", D3DShaderMacro.data());
+    m_PixelShader.BuildShaders(L"Shader/Default.hlsl", "PixelShaderMain", "ps_5_1", D3DShaderMacro.data());
     m_PipelineState->BindShader(m_VertexShader, m_PixelShader);
 
     m_InputElementDesc =
@@ -29,9 +28,9 @@ void OpaqueLayer::BuildShader(UINT TextureSize)
     m_PipelineState->BindInputLayout(m_InputElementDesc.data(), m_InputElementDesc.size());
 }
 
-void OpaqueLayer::BuildPSO(UINT size)
+void OpaqueLayer::BuildPSO()
 {
-    Super::BuildPSO(size);
+    Super::BuildPSO();
 
     m_PipelineState->CreatePSO((int)GetRenderLayerType());
 }
@@ -41,18 +40,16 @@ SkyLayer::SkyLayer() :RenderLayer()
     SetRenderLayerType(EMeshRenderLayerType::RENDERLAYER_CUBEMAP);
 }
 
-void SkyLayer::BuildShader(UINT TextureSize)
+void SkyLayer::BuildShader()
 {
-    char TextureNumBuff[10] = { 0 };
-    D3D_SHADER_MACRO ShaderMacro[] =
-    {
-        "TEXTURE2D_MAP_NUM",_itoa(TextureSize,TextureNumBuff,10),
-        //"CUBE_MAP_NUM",_itoa(GeometryMap->GetDrawCubeMapResourcesNumber(),TextureNumBuff,10),
-        NULL,NULL,
-    };
+    vector<RShaderMacro> ShaderMacro;
+    BuildShaderMacro(ShaderMacro);
 
-    m_VertexShader.BuildShaders(L"Shader/Sky.hlsl", "VertexShaderMain", "vs_5_1", ShaderMacro);
-    m_PixelShader.BuildShaders(L"Shader/Sky.hlsl", "PixelShaderMain", "ps_5_1", ShaderMacro);
+    vector<D3D_SHADER_MACRO> D3DShaderMacro;
+    R2D3DShaderMacro(ShaderMacro, D3DShaderMacro);
+
+    m_VertexShader.BuildShaders(L"Shader/Sky.hlsl", "VertexShaderMain", "vs_5_1", D3DShaderMacro.data());
+    m_PixelShader.BuildShaders(L"Shader/Sky.hlsl", "PixelShaderMain", "ps_5_1", D3DShaderMacro.data());
     m_PipelineState->BindShader(m_VertexShader, m_PixelShader);
 
     m_InputElementDesc =
@@ -64,9 +61,9 @@ void SkyLayer::BuildShader(UINT TextureSize)
     m_PipelineState->BindInputLayout(m_InputElementDesc.data(), m_InputElementDesc.size());
 }
 
-void SkyLayer::BuildPSO(UINT size)
+void SkyLayer::BuildPSO()
 {
-    Super::BuildPSO(size);
+    Super::BuildPSO();
 
     CD3DX12_RASTERIZER_DESC RasterizerDesc(D3D12_DEFAULT);
     RasterizerDesc.FillMode = D3D12_FILL_MODE_SOLID;
@@ -76,6 +73,38 @@ void SkyLayer::BuildPSO(UINT size)
     CD3DX12_DEPTH_STENCIL_DESC DepthStencilDesc = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
     DepthStencilDesc.DepthFunc = D3D12_COMPARISON_FUNC_LESS_EQUAL;
     m_PipelineState->SetDepthStencilState(DepthStencilDesc);
+
+    m_PipelineState->CreatePSO((int)GetRenderLayerType());
+}
+
+SelectLayer::SelectLayer()
+{
+    SetRenderLayerType(EMeshRenderLayerType::RENDERLAYER_SELECT);
+}
+
+void SelectLayer::BuildShader()
+{
+    vector<RShaderMacro> ShaderMacro;
+    BuildShaderMacro(ShaderMacro);
+
+    vector<D3D_SHADER_MACRO> D3DShaderMacro;
+    R2D3DShaderMacro(ShaderMacro, D3DShaderMacro);
+
+    m_VertexShader.BuildShaders(L"Shader/SelectShadow.hlsl", "VertexShaderMain", "vs_5_1", D3DShaderMacro.data());
+    m_PixelShader.BuildShaders(L"Shader/SelectShadow.hlsl", "PixelShaderMain", "ps_5_1", D3DShaderMacro.data());
+    m_PipelineState->BindShader(m_VertexShader, m_PixelShader);
+
+    m_InputElementDesc =
+    {
+        {"POSITION",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA,0},
+        {"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+    };
+    m_PipelineState->BindInputLayout(m_InputElementDesc.data(), m_InputElementDesc.size());
+}
+
+void SelectLayer::BuildPSO()
+{
+    Super::BuildPSO();
 
     m_PipelineState->CreatePSO((int)GetRenderLayerType());
 }

@@ -8,10 +8,47 @@ RenderLayerManage::RenderLayerManage()
 {
 	CreateRenderLayer<OpaqueLayer>();
 	CreateRenderLayer<SkyLayer>();
+	CreateRenderLayer<SelectLayer>();
 }
-void RenderLayerManage::RegisterRenderLayer(EMeshRenderLayerType type,std::shared_ptr<RenderLayer> renderLayer)
+
+RenderLayerManage::~RenderLayerManage()
+{
+
+}
+
+
+void RenderLayerManage::Init(RDXPipelineState* inPipelineState, RGeometryMap* inGeometryMap)
+{
+	for (auto& Tmp : m_RenderLayers)
+		Tmp.second->InitRenderLayer(inPipelineState, inGeometryMap);
+}
+
+void RenderLayerManage::RegisterRenderLayer(EMeshRenderLayerType type, std::shared_ptr<RenderLayer> renderLayer)
 {
 	m_RenderLayers.insert(make_pair(type, renderLayer));
+}
+void RenderLayerManage::BuildPSO()
+{
+	for (auto& Tmp : m_RenderLayers)
+		Tmp.second->BuildPSO();
+}
+
+void RenderLayerManage::DrawMesh()
+{
+	for (auto& Tmp : m_RenderLayers)
+		Tmp.second->DrawMesh();
+}
+
+void RenderLayerManage::UpdateCalculations(const ViewportInfo viewportInfo, RConstantBufferView objectConstantBufferView)
+{
+	for (auto& Tmp : m_RenderLayers)
+		Tmp.second->UpdateCalculations(viewportInfo, objectConstantBufferView);
+}
+
+void RenderLayerManage::PostDraw() 
+{
+	for (auto& Tmp : m_RenderLayers)
+		Tmp.second->PostDraw();
 }
 
 std::shared_ptr<RenderLayer> RenderLayerManage::GetRenderLayerByType(EMeshRenderLayerType type)
@@ -21,31 +58,30 @@ std::shared_ptr<RenderLayer> RenderLayerManage::GetRenderLayerByType(EMeshRender
 	return nullptr;
 }
 
-void RenderLayerManage::UpdateCalculations(const ViewportInfo viewportInfo, RConstantBufferView objectConstantBufferView)
-{
-	for (auto& Tmp : m_RenderLayers)
-		Tmp.second->UpdateCalculations(viewportInfo, objectConstantBufferView);
-}
-
-void RenderLayerManage::DrawMesh(map<int, RGeometry> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView)
-{
-	for (auto& Tmp : m_RenderLayers)
-		Tmp.second->DrawMesh(geometrys, heap, objectConstantBufferView);
-}
-
 std::map<EMeshRenderLayerType, std::shared_ptr<RenderLayer>> RenderLayerManage::GetAllRenderLayers() 
 { 
 	return m_RenderLayers; 
 }
 
-void RenderLayerManage::SetPipelineState(RDXPipelineState* pipelineState)
+void RenderLayerManage::Add(EMeshRenderLayerType layer, std::weak_ptr<RRenderData> renderData)
 {
-	for (auto& Tmp : m_RenderLayers)
-		Tmp.second->SetPipelineState(pipelineState);
+	if (auto nowLayer = GetRenderLayerByType(layer))
+	{
+		nowLayer->AddRenderData(renderData);
+	}
+}
+void RenderLayerManage::Remove(EMeshRenderLayerType layer, std::weak_ptr<RRenderData> renderData)
+{
+	if (auto nowLayer = GetRenderLayerByType(layer))
+	{
+		nowLayer->RemoveRenderData(renderData);
+	}
 }
 
-void RenderLayerManage::BuildPSO(UINT size) 
+void RenderLayerManage::Clear(EMeshRenderLayerType layer)
 {
-	for (auto& Tmp : m_RenderLayers)
-		Tmp.second->BuildPSO(size);
+	if (auto nowLayer = GetRenderLayerByType(layer))
+	{
+		nowLayer->Clear();
+	}
 }

@@ -324,6 +324,9 @@
     <ClCompile Include="Engine\Collision\CollisionSystem.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Shader\ShaderMacro.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\EngineFactory.h">
@@ -732,6 +735,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Collision\CollisionSystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Shader\ShaderMacro.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

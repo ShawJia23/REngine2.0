@@ -7,8 +7,8 @@ class OpaqueLayer :public RenderLayer
 public:
 	OpaqueLayer();
 
-	virtual void BuildShader(UINT TextureSize);
-	virtual void BuildPSO(UINT size);
+	virtual void BuildShader();
+	virtual void BuildPSO();
 };
 
 class SkyLayer :public RenderLayer
@@ -17,6 +17,16 @@ class SkyLayer :public RenderLayer
 public:
 	SkyLayer();
 
-	virtual void BuildShader(UINT TextureSize);
-	virtual void BuildPSO(UINT size);
+	virtual void BuildShader();
+	virtual void BuildPSO();
+};
+
+class SelectLayer :public RenderLayer
+{
+	typedef RenderLayer Super;
+public:
+	SelectLayer();
+
+	virtual void BuildShader();
+	virtual void BuildPSO();
 };

@@ -1,4 +1,3 @@
-
 #include"Material.hlsl"
 
 struct MeshVertexIn

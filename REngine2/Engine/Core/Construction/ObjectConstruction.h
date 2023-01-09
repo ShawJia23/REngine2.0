@@ -2,10 +2,21 @@
 
 class RMinimalObject;
 
-template<class T>
-T* CreateObject(RMinimalObject* NewObject)
+struct CreateObjectParam
 {
-	return dynamic_cast <T*>(NewObject);
+	CreateObjectParam()
+		:Outer(NULL)
+	{}
+
+	RMinimalObject* Outer;
+};
+
+template<class T>
+T* CreateObject(const CreateObjectParam& inObjectParam,RMinimalObject* newObject)
+{
+	T* obj = dynamic_cast<T*>(newObject);
+	obj->SetOuter(inObjectParam.Outer);
+	return obj;
 }
 
 template<class T, typename ...ParamTypes>

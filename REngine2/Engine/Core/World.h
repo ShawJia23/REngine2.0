@@ -19,6 +19,7 @@ public:
 	T* CreateActorObject()
 	{
 		T* InArray = new T();
+		InArray->SetOuter(this);
 		ActorObjects.push_back(InArray);
 
 		return InArray;

@@ -4,7 +4,9 @@
 #include"../RayCast/RayCastSystem.h"
 RCamera::RCamera():GActorObject()
 {
-	m_rInputComponent = CreateObject<RInputComponent>(new RInputComponent());
+	CreateObjectParam param;
+	param.Outer = this;
+	m_rInputComponent = CreateObject<RInputComponent>(param,new RInputComponent());
 
 	Radius = 10.f;
 	A = XM_PI;

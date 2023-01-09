@@ -120,21 +120,26 @@ UINT RGeometryMap::GetTextureNumber()
 	return GetTextureManage()->GetTextureSize();
 }
 
-UINT RGeometryMap::GetDesptorSize()
+UINT RGeometryMap::GetCubeMapNumber()
 {
-	return GetTextureManage()->GetTextureSize()
-		+ 1;//cubemapsize
+	return 1;
 }
 
 
-void RGeometryMap::SetPipelineState(RDXPipelineState* pipelineState)
+UINT RGeometryMap::GetDesptorSize()
 {
-	m_RenderLayerManage->SetPipelineState(pipelineState);
+	return GetTextureManage()->GetTextureSize()+ GetCubeMapNumber();//cubemapsize
+}
+
+
+void RGeometryMap::InitRenderLayer(RDXPipelineState* pipelineState)
+{
+	m_RenderLayerManage->Init(pipelineState,this);
 }
 
 void RGeometryMap::BuildPSO()
 {
-	m_RenderLayerManage->BuildPSO(GetTextureManage()->GetTextureSize());
+	m_RenderLayerManage->BuildPSO();
 }
 
 void RGeometryMap::Draw() 
@@ -151,7 +156,7 @@ void RGeometryMap::Draw()
 		3,
 		m_MaterialsBufferView.GetBuffer()->GetGPUVirtualAddress());
 	DrawTexture();
-	m_RenderLayerManage->DrawMesh(m_Geometrys, GetHeap(), m_ObjectConstantBufferView);
+	m_RenderLayerManage->DrawMesh();
 }
 
 void RGeometryMap::DrawTexture()
@@ -265,6 +270,10 @@ void RGeometryMap::UpdateMaterialShaderResourceView()
 	}
 }
 
+void RGeometryMap::PostDraw(float DeltaTime)
+{
+	m_RenderLayerManage->PostDraw();
+}
 
 void RGeometryMap::BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData)
 {

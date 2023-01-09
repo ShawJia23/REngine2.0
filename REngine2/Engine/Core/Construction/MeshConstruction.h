@@ -5,12 +5,10 @@
 namespace MeshConstruction
 {
     template<class T, typename ...Args>
-    T* CreateMeshComponent(RMeshManage* manage, EMeshRenderLayerType type, Args &&... rest)
+    T* CreateMeshComponent(RMeshManage* manage, T* mesh,EMeshRenderLayerType type, Args &&... rest)
     {
         if (manage)
         {
-            T* mesh = new T();
-
             size_t hashKey = 0;
             mesh->BuildKey(hashKey, forward<Args>(rest)...);
             mesh->SetMeshRenderLayerType(type);
@@ -29,6 +27,20 @@ namespace MeshConstruction
             mesh->Init();
 
             return mesh;
+        }
+
+        return NULL;
+    }
+
+
+    template<class T, typename ...Args>
+    T* CreateMeshComponent(const CreateObjectParam& inObjectParam, RMeshManage* manage, EMeshRenderLayerType type, Args &&...rest)
+    {
+        if (manage)
+        {
+            T* mesh = CreateObject<T>(inObjectParam, new T());//NewObject
+
+            return CreateMeshComponent<T>(manage, mesh, type,rest...);
         }
 
         return NULL;

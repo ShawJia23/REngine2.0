@@ -3,5 +3,7 @@
 #include"Construction/MacroConstruction.h"
 RWorld::RWorld()
 {
-	m_camera = CreateObject<RCamera>(new RCamera());
+	CreateObjectParam param;
+	param.Outer = this;
+	m_camera = CreateObject<RCamera>(param,new RCamera());
 }

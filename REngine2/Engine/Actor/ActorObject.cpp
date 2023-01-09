@@ -4,7 +4,9 @@
 
 GActorObject::GActorObject()
 {
-	TransformationComponent = CreateObject<RTransformComponent>(new RTransformComponent());
+	CreateObjectParam param;
+	param.Outer = this;
+	TransformationComponent = CreateObject<RTransformComponent>(param,new RTransformComponent());
 }
 
 void GActorObject::SetPosition(const XMFLOAT3& InNewPosition)

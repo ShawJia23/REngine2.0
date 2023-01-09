@@ -52,8 +52,9 @@ int RWindowsEngine::Init(WinMainCommandParameters InParameters)
 	m_renderEngine->SetMianWindowsHandle(MianWindowsHandle);
 
 	m_renderEngine->Init(InParameters);
-
-	m_world = CreateObject<RWorld>(new RWorld());
+	CreateObjectParam param;
+	param.Outer = this;
+	m_world = CreateObject<RWorld>(param,new RWorld());
 	m_renderEngine->m_World = m_world;
 	Engine_Log("引擎 初始化 完成.");
 	return 0;

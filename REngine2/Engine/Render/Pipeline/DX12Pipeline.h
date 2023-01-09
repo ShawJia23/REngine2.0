@@ -30,7 +30,7 @@ public:
 	void UpdateCalculations(const ViewportInfo viewportInfo);
 
 	void Draw(float DeltaTime);
-
+	void PostDraw(float DeltaTime);
 	void BuildPSO();
 private:
 	RGeometryMap m_GeometryMap;

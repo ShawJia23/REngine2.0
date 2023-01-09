@@ -24,7 +24,7 @@ void DX12Pipeline::BuildPipeline()
 {
     m_PipelineState.ResetGPSDesc();
 
-    m_GeometryMap.SetPipelineState(&m_PipelineState);
+    m_GeometryMap.InitRenderLayer(&m_PipelineState);
 
     m_GeometryMap.BuildGeometry();
 
@@ -58,6 +58,11 @@ void DX12Pipeline::Draw(float DeltaTime)
     m_GeometryMap.Draw();
 
     m_UIPipeline.Draw(DeltaTime);
+}
+
+void DX12Pipeline::PostDraw(float DeltaTime) 
+{
+    m_GeometryMap.PostDraw(DeltaTime);
 }
 
 bool DX12Pipeline::FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData, int renderLayerIndex)

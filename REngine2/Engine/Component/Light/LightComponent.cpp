@@ -73,7 +73,9 @@ void RLightComponent::SetScale(const fvector_3d& InNewScale)
 
 RParallelLightComponent::RParallelLightComponent()
 {
-	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(2.f, 50, 50));
+	CreateObjectParam param;
+	param.Outer = this;
+	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(param,2.f, 50, 50));
 	if (GetLightMesh())
 	{
 		if (RMaterial* pMaterial = (*GetLightMesh()->GetMaterials())[0])
@@ -93,7 +95,9 @@ RPointLightComponent::RPointLightComponent() :
 	StartAttenuation(1.0f),
 	EndAttenuation(1.0f)
 {
-	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(2.f, 50, 50));
+	CreateObjectParam param;
+	param.Outer = this;
+	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(param,2.f, 50, 50));
 	if (GetLightMesh())
 	{
 		if (RMaterial* pMaterial = (*GetLightMesh()->GetMaterials())[0])
@@ -112,7 +116,9 @@ RPointLightComponent::RPointLightComponent() :
 
 RSpotLightComponent::RSpotLightComponent()
 {
-	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(2.f, 50, 50));
+	CreateObjectParam param;
+	param.Outer = this;
+	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(param,2.f, 50, 50));
 	if (GetLightMesh())
 	{
 		if (RMaterial* pMaterial = (*GetLightMesh()->GetMaterials())[0])

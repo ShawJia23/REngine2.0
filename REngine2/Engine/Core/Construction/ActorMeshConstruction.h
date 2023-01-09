@@ -5,8 +5,8 @@
 namespace ActorMeshConstruction
 {
 	template<class T, typename ...ParamTypes>
-	T* CreateMeshRenderData(RMeshManage* manage, EMeshRenderLayerType type,ParamTypes &&...Params)
+	T* CreateMeshRenderData(const CreateObjectParam& inObjectParam, RMeshManage* manage,EMeshRenderLayerType type,ParamTypes &&...Params)
 	{
-		return MeshConstruction::CreateMeshComponent<T>(manage, type,Params...);
+		return MeshConstruction::CreateMeshComponent<T>(inObjectParam,manage, type,Params...);
 	}
 }

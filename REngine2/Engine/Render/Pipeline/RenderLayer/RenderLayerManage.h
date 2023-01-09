@@ -5,15 +5,23 @@ class RenderLayerManage
 {
 public:
 	RenderLayerManage();
-	void SetPipelineState(RDXPipelineState* pipelineState);
-	void BuildPSO(UINT size);
+	~RenderLayerManage();
+
+	void Init(RDXPipelineState* inPipelineState, RGeometryMap* inGeometryMap);
 	void RegisterRenderLayer(EMeshRenderLayerType type, std::shared_ptr<RenderLayer> renderLayer);
+	void BuildPSO();
+	void PostDraw();
+public:
+	void DrawMesh();
+	void UpdateCalculations(ViewportInfo viewportInfo, RConstantBufferView objectConstantBufferView);
+
 public:
 	std::shared_ptr<RenderLayer> GetRenderLayerByType(EMeshRenderLayerType type);
 	std::map<EMeshRenderLayerType, std::shared_ptr<RenderLayer>> GetAllRenderLayers();
 public:
-	void UpdateCalculations(ViewportInfo viewportInfo, RConstantBufferView objectConstantBufferView);
-	void DrawMesh(map<int, RGeometry> geometrys, ID3D12DescriptorHeap* heap, RConstantBufferView objectConstantBufferView);
+	void Add(EMeshRenderLayerType layer, std::weak_ptr<RRenderData> renderData);
+	void Remove(EMeshRenderLayerType layer, std::weak_ptr<RRenderData> renderData);
+	void Clear(EMeshRenderLayerType layer);
 public:
 	template<class T>
 	void  CreateRenderLayer()

@@ -8,6 +8,7 @@
 #include"../Render/Pipeline/DX12Pipeline.h"
 
 class RMeshComponent;
+struct CreateObjectParam;
 class RMeshManage :public RMinimalObject, public IRenderingInterface,public IDirectXDeviceInterface
 {
 public:
@@ -25,35 +26,40 @@ public:
 
 public:
 	RMeshComponent* CreateBoxMeshComponent(
-		float InHeight,
-		float InWidth,
-		float InDepth);
+		const CreateObjectParam& inObjectParam,
+		float inHeight,
+		float inWidth,
+		float inDepth);
 
 	RMeshComponent* CreateConeMeshComponent(
-		float InRadius,
-		float InHeight,
-		uint32_t InAxialSubdivision,
-		uint32_t InHeightSubdivision);
+		const CreateObjectParam& inObjectParam,
+		float inRadius,
+		float inHeight,
+		uint32_t inAxialSubdivision,
+		uint32_t inHeightSubdivision);
 
 	RMeshComponent* CreateCylinderMeshComponent(
-		float InTopRadius,
-		float InBottomRadius,
-		float InHeight,
-		uint32_t InAxialSubdivision,
-		uint32_t InHeightSubdivision);
+		const CreateObjectParam& inObjectParam,
+		float inTopRadius,
+		float inBottomRadius,
+		float inHeight,
+		uint32_t inAxialSubdivision,
+		uint32_t inHeightSubdivision);
 
 	RMeshComponent* CreatePlaneMeshComponent(
-		float InHeight,
-		float InWidth,
-		uint32_t InHeightSubdivide,
-		uint32_t InWidthSubdivide);
+		const CreateObjectParam& inObjectParam,
+		float inHeight,
+		float inWidth,
+		uint32_t inHeightSubdivide,
+		uint32_t inWidthSubdivide);
 
 	RMeshComponent* CreateSphereMeshComponent(
-		float InRadius,
-		uint32_t InAxialSubdivision,
-		uint32_t InHeightSubdivision);
+		const CreateObjectParam& inObjectParam,
+		float inRadius,
+		uint32_t inAxialSubdivision,
+		uint32_t inHeightSubdivision);
 
-	RMeshComponent* CreateCustomMeshComponent();
+	RMeshComponent* CreateCustomMeshComponent(const CreateObjectParam& inObjectParam);
 
 	void CreateMeshGroup(size_t hashKey, RMeshComponent* mesh, const MeshRenderData& meshData);
 	

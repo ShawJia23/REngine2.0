@@ -18,7 +18,6 @@ struct RGeometry :public IDirectXDeviceInterface_Struct
 
 	friend struct RGeometryMap;
 
-	bool RenderDataExistence(RMeshComponent* InKey, std::shared_ptr<RenderLayer> renderLayer);
 	void BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer);
 	void DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key, std::unique_ptr<RenderLayerManage>& renderLayerManage);
 	bool FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData,int renderLayerIndex = -1);
@@ -57,6 +56,7 @@ public:
 	void Init();
 
 	void Draw();
+	void PostDraw(float DeltaTime);
 	void DrawTexture();
 
 	void BuildConstantBufferView();
@@ -85,13 +85,22 @@ public:
 	UINT GetMeshNumber();
 	UINT GetLightsNumber();
 	UINT GetTextureNumber();
+	UINT GetCubeMapNumber();
 	UINT GetDesptorSize();
 
-	void SetPipelineState(RDXPipelineState* pipelineState);
+	void InitRenderLayer(RDXPipelineState* pipelineState);
 	void BuildPSO();
-private:
-	map<int, RGeometry> m_Geometrys;
 
+	RConstantBufferView GetObjectConstantBufferView() { return m_ObjectConstantBufferView; }
+	RGeometry GetRGeometry(int ID) 
+	{
+		if(m_Geometrys.find(ID)!= m_Geometrys.end())
+			return m_Geometrys[ID];
+		return RGeometry();
+	}
+protected:
+	map<int, RGeometry> m_Geometrys;
+private:
 	RDXDescriptorHeap m_DescriptorHeap;
 	RConstantBufferView m_ObjectConstantBufferView;
 	RConstantBufferView m_ViewportConstantBufferView;

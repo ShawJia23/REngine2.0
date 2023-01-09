@@ -65,7 +65,9 @@ void GLight::SetLightComponent(RLightComponent* InNewComponent)
 
 GParallelLight::GParallelLight()
 {
-	SetLightComponent(CreateObject<RParallelLightComponent>(new RParallelLightComponent()));
+	CreateObjectParam param;
+	param.Outer = this;
+	SetLightComponent(CreateObject<RParallelLightComponent>(param,new RParallelLightComponent()));
 }
 
 void GParallelLight::Tick(float DeltaTime)
@@ -86,7 +88,9 @@ void GParallelLight::Tick(float DeltaTime)
 
 GPointLight::GPointLight()
 {
-	SetLightComponent(CreateObject<RPointLightComponent>(new RPointLightComponent()));
+	CreateObjectParam param;
+	param.Outer = this;
+	SetLightComponent(CreateObject<RPointLightComponent>(param,new RPointLightComponent()));
 }
 
 void GPointLight::Tick(float DeltaTime)
@@ -144,7 +148,9 @@ void GPointLight::SetEndAttenuation(float InNewEndAttenuation)
 float index_test;
 GSpotLight::GSpotLight()
 {
-	SetLightComponent(CreateObject<RSpotLightComponent>(new RSpotLightComponent()));
+	CreateObjectParam param;
+	param.Outer = this;
+	SetLightComponent(CreateObject<RSpotLightComponent>(param,new RSpotLightComponent()));
 	index_test = 0;
 }
 
