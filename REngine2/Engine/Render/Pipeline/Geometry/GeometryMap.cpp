@@ -9,15 +9,13 @@
 #include"../RenderLayer/RenderLayerManage.h"
 
 UINT MeshObjectCount=0;
-map<size_t, std::shared_ptr<RRenderData>> RGeometry::UniqueRenderingDatas;
-vector<std::shared_ptr<RRenderData>> RGeometry::RenderingDatas;
 
 RGeometryMap::RGeometryMap()
 :m_WorldMatrix(RMath::IdentityMatrix4x4())
 , IndexSize(0)
 {
 	m_Geometrys.insert(pair<int, RGeometry>(0, RGeometry()));
-	m_RenderLayerManage = std::make_unique<RenderLayerManage>();
+	m_RenderLayerManage = std::make_shared<RenderLayerManage>();
 }
 
 void RGeometryMap::Init() 
@@ -321,8 +319,8 @@ RGeometry::RGeometry()
 
 void RGeometry::BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer)
 {
-	RenderingDatas.push_back(std::make_shared<RRenderData>());
-	std::shared_ptr<RRenderData> pRenderingData = RenderingDatas.back();
+	RenderDatasPool.push_back(std::make_shared<RRenderData>());
+	std::shared_ptr<RRenderData> pRenderingData = RenderDatasPool.back();
 
 	pRenderingData->Mesh = mesh;
 	pRenderingData->ObjectIndex = MeshObjectCount++;
@@ -358,17 +356,17 @@ void RGeometry::BuildMesh(const size_t meshHash, RMeshComponent* mesh, const Mes
 		XMStoreFloat3(&pRenderingData->Bounds.Extents, (XMFMaxPointTOR - XMFMinPointTOR) * 0.5f);
 	}
 
-	UniqueRenderingDatas.insert(std::make_pair(meshHash, std::make_shared<RRenderData>()));
+	UniqueRenderDatasPool.insert(std::make_pair(meshHash, std::make_shared<RRenderData>()));
 
-	UniqueRenderingDatas[meshHash]->Mesh = pRenderingData->Mesh;
-	UniqueRenderingDatas[meshHash]->ObjectIndex = pRenderingData->ObjectIndex;
-	UniqueRenderingDatas[meshHash]->IndexSize = pRenderingData->IndexSize;
-	UniqueRenderingDatas[meshHash]->VertexSize = pRenderingData->VertexSize;
+	UniqueRenderDatasPool[meshHash]->Mesh = pRenderingData->Mesh;
+	UniqueRenderDatasPool[meshHash]->ObjectIndex = pRenderingData->ObjectIndex;
+	UniqueRenderDatasPool[meshHash]->IndexSize = pRenderingData->IndexSize;
+	UniqueRenderDatasPool[meshHash]->VertexSize = pRenderingData->VertexSize;
 
-	UniqueRenderingDatas[meshHash]->IndexOffsetPosition = pRenderingData->IndexOffsetPosition;
-	UniqueRenderingDatas[meshHash]->VertexOffsetPosition = pRenderingData->VertexOffsetPosition;
-	UniqueRenderingDatas[meshHash]->Bounds = pRenderingData->Bounds;
-	UniqueRenderingDatas[meshHash]->RenderData = &m_MeshRenderData;
+	UniqueRenderDatasPool[meshHash]->IndexOffsetPosition = pRenderingData->IndexOffsetPosition;
+	UniqueRenderDatasPool[meshHash]->VertexOffsetPosition = pRenderingData->VertexOffsetPosition;
+	UniqueRenderDatasPool[meshHash]->Bounds = pRenderingData->Bounds;
+	UniqueRenderDatasPool[meshHash]->RenderData = &m_MeshRenderData;
 
 	renderLayer->AddRenderData(pRenderingData);
 
@@ -383,12 +381,12 @@ void RGeometry::BuildMesh(const size_t meshHash, RMeshComponent* mesh, const Mes
 		meshData.VertexData.end());
 }
 
-void RGeometry::DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key, std::unique_ptr<RenderLayerManage>& renderLayerManage)
+void RGeometry::DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key, std::shared_ptr<RenderLayerManage> renderLayerManage)
 {
 	if (std::shared_ptr<RenderLayer> renderLayer = renderLayerManage->GetRenderLayerByType(mesh->GetRenderLayerType()))
 	{
-		RenderingDatas.push_back(std::make_shared<RRenderData>());
-		std::shared_ptr<RRenderData> pRenderingData = RenderingDatas.back();
+		RenderDatasPool.push_back(std::make_shared<RRenderData>());
+		std::shared_ptr<RRenderData> pRenderingData = RenderDatasPool.back();
 
 		pRenderingData->Mesh = mesh;
 		pRenderingData->ObjectIndex = MeshObjectCount++;
@@ -406,10 +404,10 @@ void RGeometry::DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>
 
 bool RGeometry::FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData, int renderLayerIndex)
 {
-	auto FindElement = UniqueRenderingDatas.find(inHash);
-	if (FindElement != UniqueRenderingDatas.end())
+	auto FindElement = UniqueRenderDatasPool.find(inHash);
+	if (FindElement != UniqueRenderDatasPool.end())
 	{
-		meshData = UniqueRenderingDatas[inHash];
+		meshData = UniqueRenderDatasPool[inHash];
 		return true;
 	}
 

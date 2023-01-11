@@ -22,8 +22,10 @@ public:
 
 	virtual void BuildViewMatrix(float DeltaTime);
 
-	virtual void OnMouseButtonDown(int X, int Y);
-	virtual void OnMouseButtonUp(int X, int Y);
+	virtual void OnRMouseButtonDown(int X, int Y);
+	virtual void OnRMouseButtonUp(int X, int Y);
+	virtual void OnLMouseButtonDown(int X, int Y);
+	virtual void OnLMouseButtonUp(int X, int Y);
 	virtual void OnMouseMove(int X, int Y);
 	virtual void OnMouseWheel(int X, int Y, float InDelta);
 
@@ -36,8 +38,8 @@ protected:
 	void RotateAroundYAxis(float InRotateDegrees);
 
 	POINT LastMousePosition;
-	bool bLeftMouseDown;
-
+	bool bRMouseDown;
+	bool bLMouseDown;
 	float m_mouseSensitivity;
 	float m_KeyBoardSensitivity;
 	CameraType m_cameraType;

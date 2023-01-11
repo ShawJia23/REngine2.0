@@ -3,6 +3,7 @@
 class RComponent;
 class GActorObject;
 class RWorld;
+class RRenderData;
 
 struct CollisionResult
 {
@@ -18,6 +19,8 @@ struct CollisionResult
 
 	RComponent* Component;
 	GActorObject* Actor;
+
+	std::weak_ptr<RRenderData> RenderData;
 };
 
 struct CollisionScene

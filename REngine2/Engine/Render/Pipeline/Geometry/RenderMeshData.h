@@ -3,7 +3,6 @@
 
 class RMeshComponent;
 struct MeshRenderData;
-
 struct RRenderData :public IDirectXDeviceInterface_Struct
 {
 public:

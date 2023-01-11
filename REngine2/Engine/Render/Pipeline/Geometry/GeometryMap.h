@@ -19,7 +19,7 @@ struct RGeometry :public IDirectXDeviceInterface_Struct
 	friend struct RGeometryMap;
 
 	void BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData, std::shared_ptr<RenderLayer> renderLayer);
-	void DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key, std::unique_ptr<RenderLayerManage>& renderLayerManage);
+	void DuplicateMesh(RMeshComponent* mesh, std::shared_ptr<RRenderData>& meshData, int key, std::shared_ptr<RenderLayerManage> renderLayerManage);
 	bool FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData,int renderLayerIndex = -1);
 
 	void CreatePSO();
@@ -40,11 +40,11 @@ protected:
 
 protected:
 	//唯一性的渲染池
-	static map<size_t, std::shared_ptr<RRenderData>> UniqueRenderingDatas;
+	map<size_t, std::shared_ptr<RRenderData>> UniqueRenderDatasPool;
 
 public:
 	//真正的渲染池 里面会有重复的 key (size_t)
-	static vector<std::shared_ptr<RRenderData>> RenderingDatas;
+	vector<std::shared_ptr<RRenderData>> RenderDatasPool;
 };
 
 
@@ -98,6 +98,10 @@ public:
 			return m_Geometrys[ID];
 		return RGeometry();
 	}
+	std::shared_ptr<RenderLayerManage> GetRenderLayerManage() const
+	{
+		return m_RenderLayerManage;
+	}
 protected:
 	map<int, RGeometry> m_Geometrys;
 private:
@@ -115,5 +119,5 @@ private:
 
 	std::vector<RMaterial*> Materials;
 
-	std::unique_ptr<RenderLayerManage> m_RenderLayerManage;
+	std::shared_ptr<RenderLayerManage> m_RenderLayerManage;
 };

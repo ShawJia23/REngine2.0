@@ -11,32 +11,36 @@ class RLightManage;
 class RMeshManage;
 class RTextureManage;
 class RWorld;
+class DX12Pipeline;
+class RenderLayerManage;
 //提供渲染内容的接口
 class IDirectXDeviceInterface
 {
 public:
-	ComPtr<ID3D12Fence> GetFence();
-	ComPtr<ID3D12Device> GetD3dDevice();
-	RMeshManage* GetMeshManage();
-	RTextureManage* GetTextureManage();
-	RLightManage* GetLightManage();
-	RWorld* GetWorld();
+	ComPtr<ID3D12Fence> GetFence() const;
+	ComPtr<ID3D12Device> GetD3dDevice() const;
+	RMeshManage* GetMeshManage() const;
+	RTextureManage* GetTextureManage() const;
+	RLightManage* GetLightManage() const;
+	RWorld* GetWorld() const;
+	DX12Pipeline* GetRenderPipeline() const;
+	std::shared_ptr<RenderLayerManage> GetRenderLayerManage() const;
 
-	ComPtr<ID3D12GraphicsCommandList> GetCommandList();
-	ComPtr<ID3D12CommandAllocator> GetCommandAllocator();
-	ComPtr<ID3D12CommandQueue> GetCommandQueue();
+	ComPtr<ID3D12GraphicsCommandList> GetCommandList() const;
+	ComPtr<ID3D12CommandAllocator> GetCommandAllocator() const;
+	ComPtr<ID3D12CommandQueue> GetCommandQueue() const;
 
-	UINT64 GetCurrentFenceIndex();
-	HWND GetMianWindowsHandle();
+	UINT64 GetCurrentFenceIndex() const;
+	HWND GetMianWindowsHandle() const;
 
 #if defined(_WIN32)
-	RWindowsEngine* GetEngine();
+	RWindowsEngine* GetEngine()  const;
 #else
 	CEngine* GetEngine();
 #endif
 
 #if EDITOR_ENGINE
-	class EditorEngine* GetEditorEngine();
+	class EditorEngine* GetEditorEngine()  const;
 #endif 
 };
 
@@ -44,28 +48,30 @@ public:
 struct IDirectXDeviceInterface_Struct
 {
 public:
-	ComPtr<ID3D12Fence> GetFence();
-	ComPtr<ID3D12Device> GetD3dDevice();
-	RMeshManage* GetMeshManage();
-	RLightManage* GetLightManage();
-	RTextureManage* GetTextureManage();
-	RWorld* GetWorld();
+	ComPtr<ID3D12Fence> GetFence() const;
+	ComPtr<ID3D12Device> GetD3dDevice() const;
+	RMeshManage* GetMeshManage() const;
+	RLightManage* GetLightManage() const;
+	RTextureManage* GetTextureManage() const;
+	RWorld* GetWorld() const;
+	DX12Pipeline* GetRenderPipeline() const;
+	std::shared_ptr<RenderLayerManage> GetRenderLayerManage() const;
 
-	ComPtr<ID3D12GraphicsCommandList> GetCommandList();
-	ComPtr<ID3D12CommandAllocator> GetCommandAllocator();
-	ComPtr<ID3D12CommandQueue> GetCommandQueue();
+	ComPtr<ID3D12GraphicsCommandList> GetCommandList() const;
+	ComPtr<ID3D12CommandAllocator> GetCommandAllocator() const;
+	ComPtr<ID3D12CommandQueue> GetCommandQueue() const;
 
-	UINT64 GetCurrentFenceIndex();
-	HWND GetMianWindowsHandle();
+	UINT64 GetCurrentFenceIndex() const;
+	HWND GetMianWindowsHandle() const;
 
 #if defined(_WIN32)
-	RWindowsEngine* GetEngine();
+	RWindowsEngine* GetEngine() const;
 #else
 	REngine* GetEngine();
 #endif
 #if EDITOR_ENGINE
-	class EditorEngine* GetEditorEngine();
+	class EditorEngine* GetEditorEngine() const;
 #endif 
 private:
-	IDirectXDeviceInterface Interfece;
+	IDirectXDeviceInterface Interface;
 };

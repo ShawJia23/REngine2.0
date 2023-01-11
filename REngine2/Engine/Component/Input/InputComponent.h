@@ -15,10 +15,16 @@ public:
 		RCaptureKeyBoardDelegate CaptureKeyboardInforDelegate;
 
 	RVARIABLE(xxx, aaaa)
-		RCaptureOnMouseDelegate OnMouseButtonDownDelegate;
+		RCaptureOnMouseDelegate OnRMouseButtonDownDelegate;
 
 	RVARIABLE(aaa, vvv)
-		RCaptureOnMouseDelegate OnMouseButtonUpDelegate;
+		RCaptureOnMouseDelegate OnRMouseButtonUpDelegate;
+
+	RVARIABLE(xxx, aaaa)
+		RCaptureOnMouseDelegate OnLMouseButtonDownDelegate;
+
+	RVARIABLE(aaa, vvv)
+		RCaptureOnMouseDelegate OnLMouseButtonUpDelegate;
 
 	RVARIABLE(xxx, www)
 		RCaptureOnMouseDelegate OnMouseMoveDelegate;
@@ -30,8 +36,10 @@ public:
 	virtual void Init();
 	virtual void Tick(float DeltaTime);
 
-	virtual void OnMouseButtonDown(int X, int Y);
-	virtual void OnMouseButtonUp(int X, int Y);
+	virtual void OnRMouseButtonDown(int X, int Y);
+	virtual void OnRMouseButtonUp(int X, int Y);
+	virtual void OnLMouseButtonDown(int X, int Y);
+	virtual void OnLMouseButtonUp(int X, int Y);
 	virtual void OnMouseMove(int X, int Y);
 	virtual void OnMouseWheel(int X, int Y, float InDelta);
 };

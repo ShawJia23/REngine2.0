@@ -4,7 +4,7 @@
 #include"../Manage/TextureManage.h"
 #include"../Core/World.h"
 
-ComPtr<ID3D12Fence> IDirectXDeviceInterface::GetFence()
+ComPtr<ID3D12Fence> IDirectXDeviceInterface::GetFence() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -17,7 +17,7 @@ ComPtr<ID3D12Fence> IDirectXDeviceInterface::GetFence()
 	return NULL;
 }
 
-ComPtr<ID3D12Device> IDirectXDeviceInterface::GetD3dDevice()
+ComPtr<ID3D12Device> IDirectXDeviceInterface::GetD3dDevice() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -30,7 +30,7 @@ ComPtr<ID3D12Device> IDirectXDeviceInterface::GetD3dDevice()
 	return NULL;
 }
 
-ComPtr<ID3D12GraphicsCommandList> IDirectXDeviceInterface::GetCommandList()
+ComPtr<ID3D12GraphicsCommandList> IDirectXDeviceInterface::GetCommandList() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -43,7 +43,7 @@ ComPtr<ID3D12GraphicsCommandList> IDirectXDeviceInterface::GetCommandList()
 	return NULL;
 }
 
-ComPtr<ID3D12CommandAllocator> IDirectXDeviceInterface::GetCommandAllocator()
+ComPtr<ID3D12CommandAllocator> IDirectXDeviceInterface::GetCommandAllocator() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -56,7 +56,7 @@ ComPtr<ID3D12CommandAllocator> IDirectXDeviceInterface::GetCommandAllocator()
 	return NULL;
 }
 
-ComPtr<ID3D12CommandQueue> IDirectXDeviceInterface::GetCommandQueue()
+ComPtr<ID3D12CommandQueue> IDirectXDeviceInterface::GetCommandQueue() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -69,7 +69,7 @@ ComPtr<ID3D12CommandQueue> IDirectXDeviceInterface::GetCommandQueue()
 	return NULL;
 }
 
-UINT64 IDirectXDeviceInterface::GetCurrentFenceIndex()
+UINT64 IDirectXDeviceInterface::GetCurrentFenceIndex() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -82,7 +82,7 @@ UINT64 IDirectXDeviceInterface::GetCurrentFenceIndex()
 	return NULL;
 }
 
-HWND IDirectXDeviceInterface::GetMianWindowsHandle()
+HWND IDirectXDeviceInterface::GetMianWindowsHandle() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -95,20 +95,21 @@ HWND IDirectXDeviceInterface::GetMianWindowsHandle()
 	return HWND();
 }
 
-RMeshManage* IDirectXDeviceInterface::GetMeshManage()
+RMeshManage* IDirectXDeviceInterface::GetMeshManage() const
 {
 	return GetEngine()->GetMeshManage();
 }
-RTextureManage* IDirectXDeviceInterface::GetTextureManage()
+RTextureManage* IDirectXDeviceInterface::GetTextureManage() const
 {
 	return GetEngine()->GetTextureManage();
 }
-RLightManage* IDirectXDeviceInterface::GetLightManage()
+
+RLightManage* IDirectXDeviceInterface::GetLightManage() const
 {
 	return GetEngine()->GetLightManage();
 }
 
-RWorld* IDirectXDeviceInterface::GetWorld()
+RWorld* IDirectXDeviceInterface::GetWorld() const
 {
 	if (RWindowsEngine* InEngine = GetEngine())
 	{
@@ -119,30 +120,50 @@ RWorld* IDirectXDeviceInterface::GetWorld()
 }
 
 
+DX12Pipeline* IDirectXDeviceInterface::GetRenderPipeline() const
+{
+	if (RMeshManage* meshManage = GetMeshManage())
+	{
+		return meshManage->GetDX12Pipeline();
+	}
+
+	return NULL;
+}
+
+std::shared_ptr<RenderLayerManage> IDirectXDeviceInterface::GetRenderLayerManage() const
+{
+	if (DX12Pipeline* pipeline = GetRenderPipeline())
+	{
+		return pipeline->GetRenderLayer();
+	}
+
+	return nullptr;
+}
+
 #if defined(_WIN32)
-RWindowsEngine* IDirectXDeviceInterface::GetEngine()
+RWindowsEngine* IDirectXDeviceInterface::GetEngine() const
 {
 	return dynamic_cast<RWindowsEngine*>(Engine);
 }
 #else
-CEngine* IDirectXDeviceInterfece::GetEngine()
+CEngine* IDirectXDeviceInterfece::GetEngine() const
 {
 	return Engine;
 }
 #endif
 
 
-ComPtr<ID3D12Fence> IDirectXDeviceInterface_Struct::GetFence()
+ComPtr<ID3D12Fence> IDirectXDeviceInterface_Struct::GetFence() const
 {
-	return Interfece.GetFence();
+	return Interface.GetFence();
 }
 
-ComPtr<ID3D12Device> IDirectXDeviceInterface_Struct::GetD3dDevice()
+ComPtr<ID3D12Device> IDirectXDeviceInterface_Struct::GetD3dDevice() const
 {
-	return Interfece.GetD3dDevice();
+	return Interface.GetD3dDevice();
 }
 
-RMeshManage* IDirectXDeviceInterface_Struct::GetMeshManage()
+RMeshManage* IDirectXDeviceInterface_Struct::GetMeshManage() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -154,7 +175,7 @@ RMeshManage* IDirectXDeviceInterface_Struct::GetMeshManage()
 	return nullptr;
 }
 
-RLightManage* IDirectXDeviceInterface_Struct::GetLightManage()
+RLightManage* IDirectXDeviceInterface_Struct::GetLightManage() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -166,7 +187,7 @@ RLightManage* IDirectXDeviceInterface_Struct::GetLightManage()
 	return nullptr;
 }
 
-RTextureManage* IDirectXDeviceInterface_Struct::GetTextureManage()
+RTextureManage* IDirectXDeviceInterface_Struct::GetTextureManage() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -178,52 +199,62 @@ RTextureManage* IDirectXDeviceInterface_Struct::GetTextureManage()
 	return nullptr;
 }
 
-RWorld* IDirectXDeviceInterface_Struct::GetWorld()
+RWorld* IDirectXDeviceInterface_Struct::GetWorld() const
 {
-	return Interfece.GetWorld();
+	return Interface.GetWorld();
 }
 
-ComPtr<ID3D12GraphicsCommandList> IDirectXDeviceInterface_Struct::GetCommandList()
+ComPtr<ID3D12GraphicsCommandList> IDirectXDeviceInterface_Struct::GetCommandList() const
 {
-	return Interfece.GetCommandList();
+	return Interface.GetCommandList();
 }
 
-ComPtr<ID3D12CommandAllocator> IDirectXDeviceInterface_Struct::GetCommandAllocator()
+ComPtr<ID3D12CommandAllocator> IDirectXDeviceInterface_Struct::GetCommandAllocator() const
 {
-	return Interfece.GetCommandAllocator();
+	return Interface.GetCommandAllocator();
 }
 
-ComPtr<ID3D12CommandQueue> IDirectXDeviceInterface_Struct::GetCommandQueue()
+ComPtr<ID3D12CommandQueue> IDirectXDeviceInterface_Struct::GetCommandQueue() const
 {
-	return Interfece.GetCommandQueue();
+	return Interface.GetCommandQueue();
 }
 
-UINT64 IDirectXDeviceInterface_Struct::GetCurrentFenceIndex()
+UINT64 IDirectXDeviceInterface_Struct::GetCurrentFenceIndex() const
 {
-	return Interfece.GetCurrentFenceIndex();
+	return Interface.GetCurrentFenceIndex();
 }
 
-HWND IDirectXDeviceInterface_Struct::GetMianWindowsHandle()
+HWND IDirectXDeviceInterface_Struct::GetMianWindowsHandle() const
 {
-	return Interfece.GetMianWindowsHandle();
+	return Interface.GetMianWindowsHandle();
+}
+
+DX12Pipeline* IDirectXDeviceInterface_Struct::GetRenderPipeline() const
+{
+	return Interface.GetRenderPipeline();
+}
+
+std::shared_ptr<RenderLayerManage> IDirectXDeviceInterface_Struct::GetRenderLayerManage() const
+{
+	return Interface.GetRenderLayerManage();
 }
 
 #if defined(_WIN32)
-RWindowsEngine* IDirectXDeviceInterface_Struct::GetEngine()
+RWindowsEngine* IDirectXDeviceInterface_Struct::GetEngine() const
 {
-	return Interfece.GetEngine();
+	return Interface.GetEngine();
 }
 #else
-CEngine* IDirectXDeviceInterface_Struct::GetEngine()
+CEngine* IDirectXDeviceInterface_Struct::GetEngine() const
 {
-	return Interfece.GetEngine();
+	return Interface.GetEngine();
 }
 #endif
 
 
 #if EDITOR_ENGINE
 #include"../../Editor/Editor.h"
-EditorEngine* IDirectXDeviceInterface::GetEditorEngine()
+EditorEngine* IDirectXDeviceInterface::GetEditorEngine() const
 {
 	if (RWindowsEngine* engine = GetEngine())
 	{
@@ -233,8 +264,8 @@ EditorEngine* IDirectXDeviceInterface::GetEditorEngine()
 	return NULL;
 }
 
-EditorEngine* IDirectXDeviceInterface_Struct::GetEditorEngine()
+EditorEngine* IDirectXDeviceInterface_Struct::GetEditorEngine() const
 {
-	return Interfece.GetEditorEngine();
+	return Interface.GetEditorEngine();
 }
 #endif

@@ -32,6 +32,16 @@ public:
 	void Draw(float DeltaTime);
 	void PostDraw(float DeltaTime);
 	void BuildPSO();
+
+	std::shared_ptr<RenderLayerManage> GetRenderLayer() const
+	{ 
+		return m_GeometryMap.GetRenderLayerManage(); 
+	}
+
+	RGeometryMap GetGeometryMap()
+	{
+		return m_GeometryMap;
+	}
 private:
 	RGeometryMap m_GeometryMap;
 	RDXPipelineState m_PipelineState;

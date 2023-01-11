@@ -63,7 +63,7 @@ public:
 
 	void CreateMeshGroup(size_t hashKey, RMeshComponent* mesh, const MeshRenderData& meshData);
 	
-	DX12Pipeline& GetDX12Pipeline() { return m_pipeline; }
+	DX12Pipeline* GetDX12Pipeline() const { return const_cast<DX12Pipeline*>(&m_pipeline); }
 protected:
 	DX12Pipeline m_pipeline;
 

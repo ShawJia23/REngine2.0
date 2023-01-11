@@ -15,7 +15,7 @@ RCamera::RCamera():GActorObject()
 	m_cameraType = CameraType::CameraRoaming;
 
 	m_mouseSensitivity = 0.25f;
-	m_KeyBoardSensitivity = 0.05f;
+	m_KeyBoardSensitivity = 0.5f;
 }
 
 void RCamera::Init()
@@ -24,8 +24,10 @@ void RCamera::Init()
 
 	m_rInputComponent->CaptureKeyboardInforDelegate.Bind(this, &RCamera::ExecuteKeyboard);
 
-	m_rInputComponent->OnMouseButtonDownDelegate.Bind(this, &RCamera::OnMouseButtonDown);
-	m_rInputComponent->OnMouseButtonUpDelegate.Bind(this, &RCamera::OnMouseButtonUp);
+	m_rInputComponent->OnRMouseButtonDownDelegate.Bind(this, &RCamera::OnRMouseButtonDown);
+	m_rInputComponent->OnRMouseButtonUpDelegate.Bind(this, &RCamera::OnRMouseButtonUp);
+	m_rInputComponent->OnLMouseButtonDownDelegate.Bind(this, &RCamera::OnLMouseButtonDown);
+	m_rInputComponent->OnLMouseButtonUpDelegate.Bind(this, &RCamera::OnLMouseButtonUp);
 	m_rInputComponent->OnMouseMoveDelegate.Bind(this, &RCamera::OnMouseMove);
 	m_rInputComponent->OnMouseWheelDelegate.Bind(this, &RCamera::OnMouseWheel);
 }
@@ -109,21 +111,19 @@ void RCamera::BuildViewMatrix(float DeltaTime)
 	}
 }
 
-void RCamera::OnMouseButtonDown(int X, int Y)
+void RCamera::OnRMouseButtonDown(int X, int Y)
 {
-	bLeftMouseDown = true;
+	bRMouseDown = true;
 
 	LastMousePosition.x = X;
 	LastMousePosition.y = Y;
 
-	OnClickedScreen(X, Y);
-
 	SetCapture(GetMianWindowsHandle());
 }
 
-void RCamera::OnMouseButtonUp(int X, int Y)
+void RCamera::OnRMouseButtonUp(int X, int Y)
 {
-	bLeftMouseDown = false;
+	bRMouseDown = false;
 
 	ReleaseCapture();
 
@@ -131,9 +131,21 @@ void RCamera::OnMouseButtonUp(int X, int Y)
 	LastMousePosition.y = Y;
 }
 
+void RCamera::OnLMouseButtonDown(int X, int Y)
+{
+	bLMouseDown = true;
+	OnClickedScreen(X, Y);
+}
+
+void RCamera::OnLMouseButtonUp(int X, int Y)
+{
+	bLMouseDown = false;
+}
+
+
 void RCamera::OnMouseMove(int X, int Y)
 {
-	if (bLeftMouseDown)
+	if (bRMouseDown)
 	{
 		float XRadians = XMConvertToRadians((float)(X - LastMousePosition.x) * m_mouseSensitivity);
 		float YRadians = XMConvertToRadians((float)(Y - LastMousePosition.y) * m_mouseSensitivity);
@@ -208,6 +220,18 @@ void RCamera::OnClickedScreen(int X, int Y)
 {
 	CollisionResult collisionResult;
 	RayCastSystem::HitResultByScreen(GetWorld(), X, Y, collisionResult);
+
+	std::shared_ptr<RenderLayerManage> InLayer = GetRenderLayerManage();
+	if (InLayer) 
+	{
+		//清除旧的物体
+		InLayer->Clear(EMeshRenderLayerType::RENDERLAYER_SELECT);
+		if (collisionResult.bHit) 
+		{
+			//设置新的
+			InLayer->Add(EMeshRenderLayerType::RENDERLAYER_SELECT, collisionResult.RenderData);
+		}
+	}
 }
 
 void RCamera::RotateAroundXAxis(float InRotateDegrees)
