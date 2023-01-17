@@ -86,7 +86,7 @@ public:
 	struct SubMesh
 	{
 		SubMesh();
-		CustomMesh* Mesh;
+		BMesh* Mesh;
 		MeshRenderData MeshData;
 		size_t outKey;
 	};

@@ -17,10 +17,13 @@ public:
 	void SetTick(bool tick) { bTick=tick; }
 
 	FORCEINLINE RMinimalObject* GetOuter() const { return Outer; }
+	FORCEINLINE std::string GetName() const { return m_Name; }
 	void SetOuter(RMinimalObject* InNewOuter) { Outer = InNewOuter; }
+	void Rename(const std::string& name) { m_Name = name; }
 	protected:
 		bool bTick;
 		RMinimalObject* Outer;
+		std::string m_Name;
 };
 
 

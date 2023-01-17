@@ -6,6 +6,7 @@ RCamera::RCamera():GActorObject()
 {
 	CreateObjectParam param;
 	param.Outer = this;
+	param.Name = "Input";
 	m_rInputComponent = CreateObject<RInputComponent>(param,new RInputComponent());
 
 	Radius = 10.f;
@@ -221,16 +222,10 @@ void RCamera::OnClickedScreen(int X, int Y)
 	CollisionResult collisionResult;
 	RayCastSystem::HitResultByScreen(GetWorld(), X, Y, collisionResult);
 
-	std::shared_ptr<RenderLayerManage> InLayer = GetRenderLayerManage();
-	if (InLayer) 
+	std::shared_ptr<RenderLayerManage> layer = GetRenderLayerManage();
+	if (layer && collisionResult.bHit)
 	{
-		//清除旧的物体
-		InLayer->Clear(EMeshRenderLayerType::RENDERLAYER_SELECT);
-		if (collisionResult.bHit) 
-		{
-			//设置新的
-			InLayer->Add(EMeshRenderLayerType::RENDERLAYER_SELECT, collisionResult.RenderData);
-		}
+		layer->HighlightDisplayObject(collisionResult.RenderData);
 	}
 }
 

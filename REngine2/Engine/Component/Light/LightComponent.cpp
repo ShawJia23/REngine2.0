@@ -75,6 +75,7 @@ RParallelLightComponent::RParallelLightComponent()
 {
 	CreateObjectParam param;
 	param.Outer = this;
+	param.Name = "ParallelLight";
 	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(param,2.f, 50, 50));
 	if (GetLightMesh())
 	{
@@ -97,6 +98,7 @@ RPointLightComponent::RPointLightComponent() :
 {
 	CreateObjectParam param;
 	param.Outer = this;
+	param.Name = "PointLight";
 	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(param,2.f, 50, 50));
 	if (GetLightMesh())
 	{
@@ -118,6 +120,7 @@ RSpotLightComponent::RSpotLightComponent()
 {
 	CreateObjectParam param;
 	param.Outer = this;
+	param.Name = "SpotLight";
 	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(param,2.f, 50, 50));
 	if (GetLightMesh())
 	{

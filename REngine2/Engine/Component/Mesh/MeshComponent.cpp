@@ -5,6 +5,7 @@ RMeshComponent::RMeshComponent():MeshRenderLayerType(EMeshRenderLayerType::RENDE
 {
 	CreateObjectParam param;
 	param.Outer = this;
+	param.Name = "Material";
 	m_Materials.push_back(CreateObject<RMaterial>(param,new RMaterial()));
 }
 

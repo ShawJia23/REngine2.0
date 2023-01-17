@@ -6,6 +6,7 @@
 #include"../Core/Construction/ActorMeshConstruction.h"
 BoxMesh::BoxMesh() 
 {
+	Rename("Box");
 }
 void BoxMesh::Init()
 {
@@ -19,12 +20,14 @@ void  BoxMesh::CreateMesh(float height, float width, float depth, EMeshRenderLay
 {
 	CreateObjectParam inObjectParam;
 	inObjectParam.Outer = this;
+	inObjectParam.Name = "BoxComponent";
 	auto Tmp = CREATE_RENDER_DATA(BoxMeshComponent,height, width, depth);
 	SetMeshComponent(Tmp);
 }
 
 ConeMesh::ConeMesh()
 {
+	Rename("Cone");
 }
 
 void ConeMesh::Init()
@@ -41,12 +44,14 @@ void ConeMesh::CreateMesh(float radius, float height, uint32_t axialSub, uint32_
 {
 	CreateObjectParam inObjectParam;
 	inObjectParam.Outer = this;
+	inObjectParam.Name = "ConeComponent";
 	auto Tmp = CREATE_RENDER_DATA(ConeMeshComponent, radius, height, axialSub, heightSub);
 	SetMeshComponent(Tmp);
 }
 
 CylinderMesh::CylinderMesh()
 {
+	Rename("Cylinder");
 }
 
 void CylinderMesh::Init()
@@ -63,12 +68,14 @@ void CylinderMesh::CreateMesh(float topRadius, float bottomRadius, float height,
 {
 	CreateObjectParam inObjectParam;
 	inObjectParam.Outer = this;
+	inObjectParam.Name = "CylinderComponent";
 	auto Tmp = CREATE_RENDER_DATA(CylinderMeshComponent, topRadius, bottomRadius, height, axialSub, heightSub);
 	SetMeshComponent(Tmp);
 }
 
 PlaneMesh::PlaneMesh()
 {
+	Rename("Plane");
 }
 
 void PlaneMesh::Init()
@@ -85,12 +92,14 @@ void PlaneMesh::CreateMesh(float height, float width, uint32_t heightSub, uint32
 {
 	CreateObjectParam inObjectParam;
 	inObjectParam.Outer = this;
+	inObjectParam.Name = "PlaneComponent";
 	auto Tmp = CREATE_RENDER_DATA(PlaneMeshComponent, height, width, heightSub, widthSub);
 	SetMeshComponent(Tmp);
 }
 
 SphereMesh::SphereMesh()
 {
+	Rename("Sphere");
 }
 
 void SphereMesh::Init()
@@ -107,12 +116,14 @@ void SphereMesh::CreateMesh( float radius, uint32_t axialSub, uint32_t heightSub
 {
 	CreateObjectParam inObjectParam;
 	inObjectParam.Outer = this;
+	inObjectParam.Name = "SphereComponent";
 	auto Tmp = CREATE_RENDER_DATA(SphereMeshComponent, radius, axialSub, heightSub);
 	SetMeshComponent(Tmp);
 }
 
 CustomMesh::CustomMesh()
 {
+	Rename("Custom");
 }
 
 void CustomMesh::Init()
@@ -129,6 +140,7 @@ void CustomMesh::CreateMesh(EMeshRenderLayerType type)
 {
 	CreateObjectParam inObjectParam;
 	inObjectParam.Outer = this;
+	inObjectParam.Name = "CustomComponent";
 	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent, "name");
 	SetMeshComponent(Tmp);
 }
@@ -158,6 +170,7 @@ void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderDat
 	if (pCustomMesh)
 	{
 		pCustomMesh->SetMeshComponent(mesh);
+		pCustomMesh->Rename(name);
 	}
 	SubMesh pSubMesh;
 	pSubMesh.Mesh = pCustomMesh;

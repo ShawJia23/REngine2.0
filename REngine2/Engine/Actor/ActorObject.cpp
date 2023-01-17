@@ -6,6 +6,7 @@ GActorObject::GActorObject()
 {
 	CreateObjectParam param;
 	param.Outer = this;
+	param.Name = "Transform";
 	TransformationComponent = CreateObject<RTransformComponent>(param,new RTransformComponent());
 }
 

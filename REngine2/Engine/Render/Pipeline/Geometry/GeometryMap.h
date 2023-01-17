@@ -11,6 +11,7 @@ class RenderLayerManage;
 class RenderLayer;
 struct RDXPipelineState;
 struct ViewportInfo;
+class GActorObject;
 
 struct RGeometry :public IDirectXDeviceInterface_Struct
 {
@@ -45,6 +46,9 @@ protected:
 public:
 	//真正的渲染池 里面会有重复的 key (size_t)
 	vector<std::shared_ptr<RRenderData>> RenderDatasPool;
+
+public:
+	std::weak_ptr<RRenderData> FindRenderData(GActorObject * actor);
 };
 
 

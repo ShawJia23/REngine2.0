@@ -54,6 +54,7 @@ int RWindowsEngine::Init(WinMainCommandParameters InParameters)
 	m_renderEngine->Init(InParameters);
 	CreateObjectParam param;
 	param.Outer = this;
+	param.Name = "World";
 	m_world = CreateObject<RWorld>(param,new RWorld());
 	m_renderEngine->m_World = m_world;
 	Engine_Log("引擎 初始化 完成.");
@@ -160,7 +161,7 @@ bool RWindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 		L"REngine", // 窗口名称
 		L"REngine",//会显示在窗口的标题栏上去
 		WS_OVERLAPPEDWINDOW, //窗口风格
-		100, 100,//窗口的坐标
+		0, 0,//窗口的坐标
 		WindowWidth, WindowHight,//
 		NULL, //副窗口句柄
 		nullptr, //菜单句柄

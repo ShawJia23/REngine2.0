@@ -24,6 +24,7 @@ public:
 
 		return InArray;
 	}
+	const vector<GActorObject*>& GetActors() const { return ActorObjects; }
 protected:
 	RVARIABLE()
 	RCamera* m_camera;

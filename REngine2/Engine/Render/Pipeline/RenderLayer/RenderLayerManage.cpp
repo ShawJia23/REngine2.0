@@ -85,3 +85,12 @@ void RenderLayerManage::Clear(EMeshRenderLayerType layer)
 		nowLayer->Clear();
 	}
 }
+
+void RenderLayerManage::HighlightDisplayObject(std::weak_ptr<RRenderData> renderData)
+{
+	//清除旧的物体
+	Clear(EMeshRenderLayerType::RENDERLAYER_SELECT);
+
+	//设置新的
+	Add(EMeshRenderLayerType::RENDERLAYER_SELECT, renderData);
+}

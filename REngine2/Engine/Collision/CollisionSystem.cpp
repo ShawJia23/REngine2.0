@@ -3,17 +3,20 @@
 #include"../Component/Mesh/BaseMeshComponent.h"
 #include"../Camera/Camera.h"
 #include"../Core/World.h"
-bool CollisionScene::RaycastSingle(RWorld* inWorld, const XMVECTOR& originPoint, 
-	const XMVECTOR& direction, const XMMATRIX& viewInverseMatrix, 
+bool CollisionScene::RaycastSingle(RWorld* inWorld, const XMVECTOR& originPoint,
+	const XMVECTOR& direction, const XMMATRIX& viewInverseMatrix,
 	CollisionResult& outResult)
 {
 	float FinalTime = FLT_MAX;
 	float BoundTime = 0.f;
+	float dis = FLT_MAX;
 	auto renderDatas = inWorld->GetCamera()->GetRenderPipeline()->GetGeometryMap().GetRGeometry(0).RenderDatasPool;
 	for (size_t i = 0; i < renderDatas.size(); i++)
 	{
 		std::shared_ptr<RRenderData>& pRenderData = renderDatas[i];
-
+		if (!pRenderData->RenderData || !pRenderData->Mesh)
+			continue;
+		//点击点和射线转为模型空间做相交，在世界空间太费劲
 		//转模型局部
 		XMMATRIX WorldMatrix = XMLoadFloat4x4(&pRenderData->WorldMatrix);
 		XMVECTOR WorldMatrixDeterminant = XMMatrixDeterminant(WorldMatrix);
@@ -29,27 +32,49 @@ bool CollisionScene::RaycastSingle(RWorld* inWorld, const XMVECTOR& originPoint,
 		//单位化
 		LocalDirection = XMVector3Normalize(LocalDirection);
 
+		if (!pRenderData->Bounds.Intersects(LocalOriginPoint, LocalDirection, BoundTime))
+			continue;
+		if (BoundTime <= 0.f || BoundTime > FinalTime)
+			continue;
 
-		if (pRenderData->Bounds.Intersects(LocalOriginPoint, LocalDirection, BoundTime))
+		auto oPos= pRenderData->Mesh->GetPosition();
+		auto cPos = inWorld->GetCamera()->GetPosition();
+		float a = abs(cPos.x - oPos.x);
+		float b = abs(cPos.y - oPos.y);
+		float c = abs(cPos.z - oPos.z);
+		float tempDis = a * a + b * b + c * c;
+
+		//包围盒相交之后判断三角形
+		UINT TriangleNumber = pRenderData->IndexSize / 3;
+		float TriangleFinalTime = FLT_MAX;
+		for (UINT j = 0; j < TriangleNumber; j++)
 		{
-			auto cPos=inWorld->GetCamera()->GetPosition();
-			if (BoundTime > 0.f && BoundTime < FinalTime)
-			{
-				FinalTime = BoundTime;
-				if (pRenderData->RenderData)
-				{
-					outResult.bHit = true;
-					outResult.Component = pRenderData->Mesh;
-					outResult.Time = BoundTime;
-					if (pRenderData->Mesh)
-					{
-						outResult.Actor = dynamic_cast<GActorObject*>(pRenderData->Mesh->GetOuter());
-					}
+			fvector_3id Indices;
+			Indices.x = pRenderData->RenderData->IndexData[pRenderData->IndexOffsetPosition + j * 3 + 0];
+			Indices.y = pRenderData->RenderData->IndexData[pRenderData->IndexOffsetPosition + j * 3 + 1];
+			Indices.z = pRenderData->RenderData->IndexData[pRenderData->IndexOffsetPosition + j * 3 + 2];
 
-					//拿到渲染数据
-					outResult.RenderData = pRenderData;
-				}
-			}
+			
+			XMVECTOR Vertex0 = XMLoadFloat3(&pRenderData->RenderData->VertexData[Indices.x].Position);
+			XMVECTOR Vertex1 = XMLoadFloat3(&pRenderData->RenderData->VertexData[Indices.y].Position);
+			XMVECTOR Vertex2 = XMLoadFloat3(&pRenderData->RenderData->VertexData[Indices.z].Position);
+
+			float TriangleTestsTime = 0.f;
+			if (!TriangleTests::Intersects(LocalOriginPoint, LocalDirection, Vertex0, Vertex1, Vertex2, TriangleTestsTime))
+				continue;
+			if (TriangleTestsTime < 0 || TriangleTestsTime>FinalTime)
+				continue;
+			
+			TriangleFinalTime = TriangleTestsTime;
+			if (tempDis > dis)
+				continue;
+			dis = tempDis;
+			
+			outResult.bHit = true;
+			outResult.Component = pRenderData->Mesh;
+			outResult.Time = TriangleTestsTime;
+			outResult.Actor = dynamic_cast<GActorObject*>(pRenderData->Mesh->GetOuter());
+			outResult.RenderData = pRenderData;
 		}
 	}
 

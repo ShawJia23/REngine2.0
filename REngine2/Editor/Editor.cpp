@@ -5,6 +5,7 @@ EditorEngine::EditorEngine()
 {
 	m_ToolbarEditor = new ToolbarEditor();
 	m_LogEditor = new LogEditor();
+	m_ObjectExplorerEditor =new ObjectExplorerEditor();
 }
 
 int EditorEngine::PreInit(
@@ -52,6 +53,7 @@ void EditorEngine::BuildEditor()
 
 	m_ToolbarEditor->BuildEditor();
 	m_LogEditor->BuildEditor();
+	m_ObjectExplorerEditor->BuildEditor();
 }
 
 void EditorEngine::DrawEditor(float DeltaTime)
@@ -67,12 +69,14 @@ void EditorEngine::DrawEditor(float DeltaTime)
 
 	m_ToolbarEditor->DrawEditor(DeltaTime);
 	m_LogEditor->DrawEditor(DeltaTime);
+	m_ObjectExplorerEditor->DrawEditor(DeltaTime);
 }
 
 void EditorEngine::ExitEditor()
 {
 	m_ToolbarEditor->ExitEditor();
 	m_LogEditor->ExitEditor();
+	m_ObjectExplorerEditor->ExitEditor();
 }
 
 void EditorEngine::DrawLayer(float DeltaTime)

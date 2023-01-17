@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="Editor\Editor.cpp" />
     <ClCompile Include="Editor\EditorBase.cpp" />
+    <ClCompile Include="Editor\Explorer\ObjectExplorer.cpp" />
     <ClCompile Include="Editor\Log\LogEditor.cpp" />
     <ClCompile Include="Editor\Log\LogSystem.cpp" />
     <ClCompile Include="Editor\Toolbar\ToolbarEditor.cpp" />
@@ -239,6 +240,7 @@
   <ItemGroup>
     <ClInclude Include="Editor\Editor.h" />
     <ClInclude Include="Editor\EditorBase.h" />
+    <ClInclude Include="Editor\Explorer\ObjectExplorer.h" />
     <ClInclude Include="Editor\Log\LogEditor.h" />
     <ClInclude Include="Editor\Log\LogSystem.h" />
     <ClInclude Include="Editor\Toolbar\ToolbarEditor.h" />

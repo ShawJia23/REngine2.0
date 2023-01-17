@@ -7,7 +7,7 @@
 #include"../../../Component/RComponentMinimal.h"
 #include"../../ConstontBuffer/ConstontBufferMinimal.h"
 #include"../RenderLayer/RenderLayerManage.h"
-
+#include"../../../Actor/ActorObject.h"
 UINT MeshObjectCount=0;
 
 RGeometryMap::RGeometryMap()
@@ -452,4 +452,15 @@ D3D12_INDEX_BUFFER_VIEW RGeometry::GetIndexBufferView()
 	IBV.Format = DXGI_FORMAT_R16_UINT;
 
 	return IBV;
+}
+
+std::weak_ptr<RRenderData> RGeometry::FindRenderData(GActorObject* actor)
+{
+	for (auto& Tmp : RenderDatasPool)
+	{
+		if (actor == dynamic_cast<GActorObject*>(Tmp->Mesh->GetOuter())) 
+		{
+			return Tmp;
+		}
+	}
 }

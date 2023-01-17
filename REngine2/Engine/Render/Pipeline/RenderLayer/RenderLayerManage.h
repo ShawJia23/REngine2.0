@@ -1,6 +1,8 @@
 #pragma once
 #include"RenderLayer.h"
 
+class GActorObject;
+class RComponent;
 class RenderLayerManage 
 {
 public:
@@ -22,6 +24,8 @@ public:
 	void Add(EMeshRenderLayerType layer, std::weak_ptr<RRenderData> renderData);
 	void Remove(EMeshRenderLayerType layer, std::weak_ptr<RRenderData> renderData);
 	void Clear(EMeshRenderLayerType layer);
+public:
+	virtual void HighlightDisplayObject(std::weak_ptr<RRenderData> renderData);
 public:
 	template<class T>
 	void  CreateRenderLayer()
