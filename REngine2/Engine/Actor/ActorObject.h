@@ -1,5 +1,6 @@
 #pragma once
-#include"../Core/RObject/RMinimalObject.h"
+#include"RObject/RMinimalObject.h"
+#include"../EngineMinimal.h"
 class RTransformComponent;
 
 class GActorObject :public RMinimalObject

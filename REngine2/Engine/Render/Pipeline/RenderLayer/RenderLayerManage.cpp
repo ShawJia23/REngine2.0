@@ -4,6 +4,9 @@
 #include"../BufferView/ConstantBufferView.h"
 #include"../../ConstontBuffer/ObjectTransformation.h"
 #include"../../../Core/ViewPort/ViewportInfo.h"
+#include"../../../Component/RComponentMinimal.h"
+#include"../../../Actor/ActorObject.h"
+#include"../../../Core/World.h"
 RenderLayerManage::RenderLayerManage() 
 {
 	CreateRenderLayer<OpaqueLayer>();
@@ -86,6 +89,7 @@ void RenderLayerManage::Clear(EMeshRenderLayerType layer)
 	}
 }
 
+extern int SelectedVariable;
 void RenderLayerManage::HighlightDisplayObject(std::weak_ptr<RRenderData> renderData)
 {
 	//清除旧的物体
@@ -93,4 +97,19 @@ void RenderLayerManage::HighlightDisplayObject(std::weak_ptr<RRenderData> render
 
 	//设置新的
 	Add(EMeshRenderLayerType::RENDERLAYER_SELECT, renderData);
+
+#if EDITOR_ENGINE
+	if (GActorObject* pActor = dynamic_cast<GActorObject*>(renderData.lock()->Mesh->GetOuter()))
+	{
+		const vector<GActorObject*>& actors = GetWorld()->GetActors();
+		for (size_t i = 0; i < actors.size(); i++)
+		{
+			if (actors[i] == pActor)
+			{
+				SelectedVariable = i;
+				break;
+			}
+		}
+	}
+#endif 
 }

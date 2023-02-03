@@ -1,7 +1,7 @@
 #pragma once
 
-#include"../RComponent.h"
-
+#include"Component/RComponent.h"
+#include"../../EngineMinimal.h"
 class RTransformComponent :public RComponent 
 {
 public:

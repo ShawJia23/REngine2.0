@@ -1,6 +1,7 @@
 #pragma once
-#include"../Core/RObject/RMinimalObject.h"
+#include"RObject/RMinimalObject.h"
 #include"MaterialType.h"
+#include"../EngineMinimal.h"
 class RMaterial :public RMinimalObject
 {
 public:

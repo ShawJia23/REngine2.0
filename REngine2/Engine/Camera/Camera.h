@@ -1,7 +1,7 @@
 #pragma once
 
 #include"../Core/ViewPort/Viewport.h"
-#include"../Core/RObject/RMinimalObject.h"
+#include"RObject/RMinimalObject.h"
 #include"CameraType.h"
 #include"../Interface/DXDeviceInterface.h"
 #include"../Actor/ActorObject.h"

@@ -1,5 +1,5 @@
 ﻿#include "WindowsEngine.h"
-#include"../../Core/RObject/RMinimalObject.h"
+#include"RObject/RMinimalObject.h"
 #include "../../Debug/EngineLog.h"
 #include "../../Config/RenderConfig.h"
 #include "../../Render/Render.h"

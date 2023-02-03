@@ -2,6 +2,7 @@
 #include"../Component/RComponentMinimal.h"
 #include"../Collision/CollisionSystem.h"
 #include"../RayCast/RayCastSystem.h"
+#include"../Render/Pipeline/RenderLayer/RenderLayerManage.h"
 RCamera::RCamera():GActorObject()
 {
 	CreateObjectParam param;

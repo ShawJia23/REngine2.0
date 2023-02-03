@@ -1,6 +1,6 @@
 #include "Light.h"
 #include"../Component/Light/LightComponent.h"
-#include"../Core/Construction/ObjectConstruction.h"
+#include"Construction/ObjectConstruction.h"
 
 #pragma region GLight
 

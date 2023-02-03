@@ -4,8 +4,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "REngine2", "REngine2\REngine2.vcxproj", "{39903DD4-ED6B-4576-A61F-E3FF6227EB52}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2BEED27B-583B-4647-BA4E-44E0025AEBE1} = {2BEED27B-583B-4647-BA4E-44E0025AEBE1}
+		{D359466A-841F-42ED-9B5B-D0A6C4C5601F} = {D359466A-841F-42ED-9B5B-D0A6C4C5601F}
+	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineBuildTool", "EngineBuildTool\EngineBuildTool.vcxproj", "{10391D87-2D13-4956-BD4E-460D7317359E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleLibrary", "SimpleLibrary\SimpleLibrary.vcxproj", "{D359466A-841F-42ED-9B5B-D0A6C4C5601F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "REngineCoreObject", "REngineCoreObject\REngineCoreObject.vcxproj", "{2BEED27B-583B-4647-BA4E-44E0025AEBE1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D359466A-841F-42ED-9B5B-D0A6C4C5601F} = {D359466A-841F-42ED-9B5B-D0A6C4C5601F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineBuildTool", "..\..\ademo\REngine2.0\EngineBuildTool\EngineBuildTool.vcxproj", "{10391D87-2D13-4956-BD4E-460D7317359E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +34,22 @@ Global
 		{39903DD4-ED6B-4576-A61F-E3FF6227EB52}.Release|x64.Build.0 = Release|x64
 		{39903DD4-ED6B-4576-A61F-E3FF6227EB52}.Release|x86.ActiveCfg = Release|Win32
 		{39903DD4-ED6B-4576-A61F-E3FF6227EB52}.Release|x86.Build.0 = Release|Win32
+		{D359466A-841F-42ED-9B5B-D0A6C4C5601F}.Debug|x64.ActiveCfg = Debug|x64
+		{D359466A-841F-42ED-9B5B-D0A6C4C5601F}.Debug|x64.Build.0 = Debug|x64
+		{D359466A-841F-42ED-9B5B-D0A6C4C5601F}.Debug|x86.ActiveCfg = Debug|Win32
+		{D359466A-841F-42ED-9B5B-D0A6C4C5601F}.Debug|x86.Build.0 = Debug|Win32
+		{D359466A-841F-42ED-9B5B-D0A6C4C5601F}.Release|x64.ActiveCfg = Release|x64
+		{D359466A-841F-42ED-9B5B-D0A6C4C5601F}.Release|x64.Build.0 = Release|x64
+		{D359466A-841F-42ED-9B5B-D0A6C4C5601F}.Release|x86.ActiveCfg = Release|Win32
+		{D359466A-841F-42ED-9B5B-D0A6C4C5601F}.Release|x86.Build.0 = Release|Win32
+		{2BEED27B-583B-4647-BA4E-44E0025AEBE1}.Debug|x64.ActiveCfg = Debug|x64
+		{2BEED27B-583B-4647-BA4E-44E0025AEBE1}.Debug|x64.Build.0 = Debug|x64
+		{2BEED27B-583B-4647-BA4E-44E0025AEBE1}.Debug|x86.ActiveCfg = Debug|Win32
+		{2BEED27B-583B-4647-BA4E-44E0025AEBE1}.Debug|x86.Build.0 = Debug|Win32
+		{2BEED27B-583B-4647-BA4E-44E0025AEBE1}.Release|x64.ActiveCfg = Release|x64
+		{2BEED27B-583B-4647-BA4E-44E0025AEBE1}.Release|x64.Build.0 = Release|x64
+		{2BEED27B-583B-4647-BA4E-44E0025AEBE1}.Release|x86.ActiveCfg = Release|Win32
+		{2BEED27B-583B-4647-BA4E-44E0025AEBE1}.Release|x86.Build.0 = Release|Win32
 		{10391D87-2D13-4956-BD4E-460D7317359E}.Debug|x64.ActiveCfg = Debug|x64
 		{10391D87-2D13-4956-BD4E-460D7317359E}.Debug|x64.Build.0 = Debug|x64
 		{10391D87-2D13-4956-BD4E-460D7317359E}.Debug|x86.ActiveCfg = Debug|Win32

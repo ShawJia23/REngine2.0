@@ -1,6 +1,7 @@
 #include"ObjectAnalysis.h"
 #include"../Mesh/BaseMesh.h"
 #include"../Component/RComponentMinimal.h"
+#include"../Mesh/Mesh.h"
 #include <fstream>
 #include<assimp/Importer.hpp>
 #include<assimp/scene.h>

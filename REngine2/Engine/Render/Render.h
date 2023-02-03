@@ -1,5 +1,5 @@
 #pragma once
-#include"../Core/RObject/RMinimalObject.h"
+#include"RObject/RMinimalObject.h"
 #include"DX12/d3dx12.h"
 #include "../Core/Engine.h"
 #if defined(_WIN32)

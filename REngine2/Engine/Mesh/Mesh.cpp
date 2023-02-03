@@ -3,7 +3,7 @@
 #include"../Core/World.h"
 #include"../Materials/Material.h"
 #include"../Component/Mesh/BaseMeshComponent.h"
-#include"../Core/Construction/ActorMeshConstruction.h"
+#include"../Core/Construction/MacroConstruction.h"
 BoxMesh::BoxMesh() 
 {
 	Rename("Box");
@@ -169,6 +169,8 @@ void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderDat
 	CustomMesh* pCustomMesh=GetWorld()->CreateActorObject<CustomMesh>();
 	if (pCustomMesh)
 	{
+		mesh->Rename("CustomComponent");
+		mesh->SetOuter(pCustomMesh);
 		pCustomMesh->SetMeshComponent(mesh);
 		pCustomMesh->Rename(name);
 	}

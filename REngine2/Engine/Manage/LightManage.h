@@ -1,4 +1,4 @@
-#include"../Core/RObject/RMinimalObject.h"
+#include"RObject/RMinimalObject.h"
 
 class RLightComponent;
 class RLightManage :public RMinimalObject 

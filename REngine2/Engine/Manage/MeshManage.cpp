@@ -2,6 +2,7 @@
 #include"../Config/RenderConfig.h"
 #include"../EngineMinimal.h"
 #include"../Component/Mesh/BaseMeshComponent.h"
+#include"../Core/Construction/MeshConstruction.h"
 RMeshManage::RMeshManage()
 {
 }

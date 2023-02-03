@@ -1,7 +1,9 @@
 ﻿#pragma once
 
 #include"Debug/EngineLog.h"
-#include "../simple_library/public/simple_library.h"
+#pragma comment(lib, "SimpleLibrary.lib")
+#pragma comment(lib, "REngineCoreObject.lib")
+#include "simple_library/public/simple_library.h"
 #include "Debug/Log/SimpleLog.h"
 
 #pragma comment(lib,"d3dcompiler.lib")

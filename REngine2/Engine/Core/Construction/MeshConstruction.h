@@ -1,6 +1,6 @@
 #pragma once
 #include "../../Manage/MeshManage.h"
-#include"ObjectConstruction.h"
+#include"Construction/ObjectConstruction.h"
 
 namespace MeshConstruction
 {

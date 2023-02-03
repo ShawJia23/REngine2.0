@@ -1,6 +1,6 @@
 #pragma once
 #include "MeshType.h"
-#include"../Core/RObject/RMinimalObject.h"
+#include"RObject/RMinimalObject.h"
 #include "../Render/Render.h"
 #include "../Shader/Shader.h"
 #include"../Actor/ActorObject.h"

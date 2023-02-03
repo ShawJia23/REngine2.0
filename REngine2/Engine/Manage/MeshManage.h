@@ -2,7 +2,7 @@
 #include"../Mesh/Mesh.h"
 #include"../Core/ViewPort/ViewportInfo.h"
 #include"../Interface/DXDeviceInterface.h"
-#include"../Core/RObject/RMinimalObject.h"
+#include"RObject/RMinimalObject.h"
 #include"../Render/Render.h"
 #include"../EngineMinimal.h"
 #include"../Render/Pipeline/DX12Pipeline.h"

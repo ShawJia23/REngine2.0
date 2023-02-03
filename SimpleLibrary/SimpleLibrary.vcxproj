@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{10391d87-2d13-4956-bd4e-460d7317359e}</ProjectGuid>
-    <RootNamespace>EngineBuildTool</RootNamespace>
+    <ProjectGuid>{d359466a-841f-42ed-9b5b-d0a6c4c5601f}</ProjectGuid>
+    <RootNamespace>SimpleLibrary</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -71,10 +71,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)SimpleLibrary;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Binaries\Win64\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Binaries\Win64\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\Other\</IntDir>
+    <IncludePath>$(SolutionDir)SimpleLibrary\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -133,9 +132,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CodeReflection\CollectClassInfo.h" />
-    <ClInclude Include="CodeReflection\CollectType.h" />
-    <ClInclude Include="ReBuildTool.h" />
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array_string.c" />
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_core\simple_c_string_algorithm\string_algorithm.c" />
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_guid\simple_guid.c" />
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c" />
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_path\simple_c_path.c" />
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_locale_list.c" />
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_time.c" />
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_register.c" />
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_setting.c" />
+    <ClCompile Include="simple_library\private\simple_cpp_core_minimal\simple_cpp_helper_file\simple_cpp_helper_file.cpp" />
+    <ClCompile Include="simple_library\private\simple_cpp_core_minimal\simple_cpp_string_algorithm\simple_cpp_string_algorithm.cpp" />
+    <ClCompile Include="simple_library\private\simple_c_log\simple_c_log.c" />
+    <ClCompile Include="simple_library\private\simple_image\Core\simple_image_bmp.cpp" />
+    <ClCompile Include="simple_library\private\simple_image\simple_image.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\math_utils.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\simple_math.c" />
+    <ClCompile Include="simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\matrix\matrix_2x2.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\matrix\matrix_3x3.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\matrix\matrix_4x4.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\primitives\line.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\primitives\triangle.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\quaternion\quat.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\rotator\rotator.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_2d.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_2id.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_3d.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_3id.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_4d.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_4id.cpp" />
+    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_color.cpp" />
+    <ClCompile Include="ThirdParty\stb\stb_image.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="simple_library\public\simple_array\simple_hash_array.h" />
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h" />
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\Core\simple_array_c_macro.h" />
@@ -180,41 +210,7 @@
     <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_4d.h" />
     <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_4id.h" />
     <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_color.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CodeReflection\CollectClassInfo.cpp" />
-    <ClCompile Include="ReBuildTool.cpp" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array_string.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_core\simple_c_string_algorithm\string_algorithm.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_guid\simple_guid.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_path\simple_c_path.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_locale_list.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_time.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_register.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_setting.c" />
-    <ClCompile Include="simple_library\private\simple_cpp_core_minimal\simple_cpp_helper_file\simple_cpp_helper_file.cpp" />
-    <ClCompile Include="simple_library\private\simple_cpp_core_minimal\simple_cpp_string_algorithm\simple_cpp_string_algorithm.cpp" />
-    <ClCompile Include="simple_library\private\simple_c_log\simple_c_log.c" />
-    <ClCompile Include="simple_library\private\simple_image\Core\simple_image_bmp.cpp" />
-    <ClCompile Include="simple_library\private\simple_image\simple_image.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\math_utils.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\simple_math.c" />
-    <ClCompile Include="simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\matrix\matrix_2x2.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\matrix\matrix_3x3.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\matrix\matrix_4x4.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\primitives\line.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\primitives\triangle.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\quaternion\quat.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\rotator\rotator.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_2d.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_2id.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_3d.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_3id.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_4d.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_4id.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_color.cpp" />
+    <ClInclude Include="ThirdParty\stb\stb_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

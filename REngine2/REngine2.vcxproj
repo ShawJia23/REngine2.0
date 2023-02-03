@@ -70,6 +70,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)Binaries\Win64\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\Other\</IntDir>
+    <IncludePath>$(SolutionDir)SimpleLibrary\;$(SolutionDir)REngineCoreObject\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Binaries\Win64\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -140,6 +146,7 @@
     <ClCompile Include="Engine\Actor\ActorObject.cpp" />
     <ClCompile Include="Engine\Actor\Light.cpp" />
     <ClCompile Include="Engine\Collision\CollisionSystem.cpp" />
+    <ClCompile Include="Common\EngineEditorCommon.cpp" />
     <ClCompile Include="Engine\Component\Input\InputComponent.cpp" />
     <ClCompile Include="Engine\Component\Input\Input.cpp" />
     <ClCompile Include="Engine\Component\Input\RInputType.cpp" />
@@ -152,13 +159,10 @@
     <ClCompile Include="Engine\Component\Mesh\BaseMeshComponent.cpp" />
     <ClCompile Include="Engine\Component\Mesh\MeshComponent.cpp" />
     <ClCompile Include="Engine\Component\Mesh\StaticMeshComponent.cpp" />
-    <ClCompile Include="Engine\Component\RComponent.cpp" />
     <ClCompile Include="Engine\Component\TransformComponent\TransformComponent.cpp" />
     <ClCompile Include="Engine\Config\RenderConfig.cpp" />
     <ClCompile Include="Engine\Camera\Camera.cpp" />
     <ClCompile Include="Engine\Core\Engine.cpp" />
-    <ClCompile Include="Engine\Core\RObject\GuidInterface.cpp" />
-    <ClCompile Include="Engine\Core\RObject\RMinimalObject.cpp" />
     <ClCompile Include="Engine\Core\ViewPort\Viewport.cpp" />
     <ClCompile Include="Engine\Core\ViewPort\ViewportInfo.cpp" />
     <ClCompile Include="Engine\Render\ConstontBuffer\ViewportTransform.cpp" />
@@ -204,38 +208,6 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="imgui\libs\usynergy\uSynergy.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array_string.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_core\simple_c_string_algorithm\string_algorithm.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_guid\simple_guid.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_path\simple_c_path.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_locale_list.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_time.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_register.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_setting.c" />
-    <ClCompile Include="simple_library\private\simple_cpp_core_minimal\simple_cpp_helper_file\simple_cpp_helper_file.cpp" />
-    <ClCompile Include="simple_library\private\simple_cpp_core_minimal\simple_cpp_string_algorithm\simple_cpp_string_algorithm.cpp" />
-    <ClCompile Include="simple_library\private\simple_c_log\simple_c_log.c" />
-    <ClCompile Include="simple_library\private\simple_image\Core\simple_image_bmp.cpp" />
-    <ClCompile Include="simple_library\private\simple_image\simple_image.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\math_utils.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\simple_math.c" />
-    <ClCompile Include="simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\matrix\matrix_2x2.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\matrix\matrix_3x3.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\matrix\matrix_4x4.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\primitives\line.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\primitives\triangle.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\quaternion\quat.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\rotator\rotator.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_2d.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_2id.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_3d.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_3id.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_4d.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_4id.cpp" />
-    <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_color.cpp" />
-    <ClCompile Include="ThirdParty\stb\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Editor\Editor.h" />
@@ -247,6 +219,7 @@
     <ClInclude Include="Engine\Actor\ActorObject.h" />
     <ClInclude Include="Engine\Actor\Light.h" />
     <ClInclude Include="Engine\Collision\CollisionSystem.h" />
+    <ClInclude Include="Common\EngineEditorCommon.h" />
     <ClInclude Include="Engine\Component\Input\InputComponent.h" />
     <ClInclude Include="Engine\Component\Input\Input.h" />
     <ClInclude Include="Engine\Component\Input\RInputType.h" />
@@ -255,7 +228,6 @@
     <ClInclude Include="Engine\Core\Construction\ActorMeshConstruction.h" />
     <ClInclude Include="Engine\Core\Construction\MacroConstruction.h" />
     <ClInclude Include="Engine\Core\Construction\MeshConstruction.h" />
-    <ClInclude Include="Engine\Core\Construction\ObjectConstruction.h" />
     <ClInclude Include="Engine\EngineMacro.h" />
     <ClInclude Include="Engine\LoadAsset\DDSTextureLoader.h" />
     <ClInclude Include="Engine\LoadAsset\ObjectAnalysis.h" />
@@ -267,14 +239,11 @@
     <ClInclude Include="Engine\Component\Mesh\MeshComponent.h" />
     <ClInclude Include="Engine\Component\Mesh\StaticMeshComponent.h" />
     <ClInclude Include="Engine\Component\RComponentMinimal.h" />
-    <ClInclude Include="Engine\Component\RComponent.h" />
     <ClInclude Include="Engine\Component\TransformComponent\TransformComponent.h" />
     <ClInclude Include="Engine\Config\RenderConfig.h" />
     <ClInclude Include="Engine\Camera\Camera.h" />
     <ClInclude Include="Engine\Camera\CameraType.h" />
     <ClInclude Include="Engine\Core\Engine.h" />
-    <ClInclude Include="Engine\Core\RObject\GuidInterface.h" />
-    <ClInclude Include="Engine\Core\RObject\RMinimalObject.h" />
     <ClInclude Include="Engine\Core\ViewPort\Viewport.h" />
     <ClInclude Include="Engine\Core\ViewPort\ViewportInfo.h" />
     <ClInclude Include="Engine\Render\ConstontBuffer\ViewportTransform.h" />
@@ -300,7 +269,6 @@
     <ClInclude Include="Engine\Platform\Windows\WindowsEngine.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsMessageProcessing.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsPlatform.h" />
-    <ClInclude Include="Engine\Reflection\CodeReflectionMacro.h" />
     <ClInclude Include="Engine\Render\Buffer\ConstructBuffer.h" />
     <ClInclude Include="Engine\Render\DX12\d3dx12.h" />
     <ClInclude Include="Engine\Render\Pipeline\BufferView\ConstantBufferView.h" />
@@ -331,51 +299,6 @@
     <ClInclude Include="imgui\libs\glfw\include\GLFW\glfw3.h" />
     <ClInclude Include="imgui\libs\glfw\include\GLFW\glfw3native.h" />
     <ClInclude Include="imgui\libs\usynergy\uSynergy.h" />
-    <ClInclude Include="simple_library\public\simple_array\simple_hash_array.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\Core\simple_array_c_macro.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array_string.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_string_algorithm\string_algorithm.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_guid\simple_guid.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_helper_file\simple_file_helper.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_path\simple_path.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_time\simple_c_locale_list.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_time\simple_c_time.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_windows\simple_c_windows_register.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_windows\simple_c_windows_setting.h" />
-    <ClInclude Include="simple_library\public\simple_cpp_core_minimal\shared\simple_cpp_shared_ptr.h" />
-    <ClInclude Include="simple_library\public\simple_cpp_core_minimal\shared\simple_cpp_shared_ptr_type.h" />
-    <ClInclude Include="simple_library\public\simple_cpp_core_minimal\simple_cpp_core_minimal.h" />
-    <ClInclude Include="simple_library\public\simple_cpp_core_minimal\simple_cpp_helper_file\simple_cpp_helper_file.h" />
-    <ClInclude Include="simple_library\public\simple_cpp_core_minimal\simple_cpp_string_algorithm\simple_cpp_string_algorithm.h" />
-    <ClInclude Include="simple_library\public\simple_c_log\simple_c_log.h" />
-    <ClInclude Include="simple_library\public\simple_delegate\simple_delegate.h" />
-    <ClInclude Include="simple_library\public\simple_image\Core\simple_image_bmp.h" />
-    <ClInclude Include="simple_library\public\simple_image\Core\simple_image_type.h" />
-    <ClInclude Include="simple_library\public\simple_image\simple_image.h" />
-    <ClInclude Include="simple_library\public\simple_library.h" />
-    <ClInclude Include="simple_library\public\simple_library_macro.h" />
-    <ClInclude Include="simple_library\public\simple_math\math_libray.hpp" />
-    <ClInclude Include="simple_library\public\simple_math\math_utils.h" />
-    <ClInclude Include="simple_library\public\simple_math\simple_core_math.h" />
-    <ClInclude Include="simple_library\public\simple_math\simple_math.h" />
-    <ClInclude Include="simple_library\public\simple_math\soft_rasterization\soft_rasterization.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\matrix\matrix_2x2.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\matrix\matrix_3x3.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\matrix\matrix_4x4.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\primitives\line.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\primitives\triangle.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\quaternion\quat.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\rotator\rotator.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_2d.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_2id.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_3d.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_3id.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_4d.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_4id.h" />
-    <ClInclude Include="simple_library\public\simple_math\transformation\vector\vector_color.h" />
-    <ClInclude Include="ThirdParty\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -6,10 +6,9 @@ void ObjectExplorerEditor::BuildEditor()
 {
 }
 
-
+extern int SelectedVariable;
 void ObjectExplorerEditor::DrawEditor(float DeltaTime)
 {
-	int ActorSelected=0;
 	ImGui::Begin("Object");
 	if (RWorld* world = GetWorld())
 	{
@@ -21,7 +20,7 @@ void ObjectExplorerEditor::DrawEditor(float DeltaTime)
 			char ObjectNameString[128] = { 0 };
 			sprintf(ObjectNameString, "%s_%d",Actors[i]->GetName().c_str(), i);
 
-			if (ImGui::Selectable(ObjectNameString, ActorSelected == i))
+			if (ImGui::Selectable(ObjectNameString, SelectedVariable == i))
 			{
 				HighlightDisplayObject(Actors[i]);
 			}
@@ -42,6 +41,7 @@ void ObjectExplorerEditor::HighlightDisplayObject(GActorObject* actor)
 	if (std::shared_ptr<RenderLayerManage> layer = GetRenderLayerManage())
 	{
 		auto pObject=GetRenderPipeline()->GetGeometryMap().GetRGeometry(0).FindRenderData(actor);
-		layer->HighlightDisplayObject(pObject);
+		if(!pObject.expired())
+			layer->HighlightDisplayObject(pObject);
 	}
 }

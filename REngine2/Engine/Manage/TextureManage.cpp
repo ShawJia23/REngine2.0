@@ -1,5 +1,5 @@
 #include"TextureManage.h"
-#include"../../ThirdParty/stb/stb_image.h"
+#include"ThirdParty/stb/stb_image.h"
 #include"../LoadAsset/DDSTextureLoader.h"
 std::wstring String2Wstring(std::string str)
 {
