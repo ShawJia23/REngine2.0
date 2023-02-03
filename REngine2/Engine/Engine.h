@@ -3,7 +3,7 @@
 #include"RObject/RMinimalObject.h"
 
 #if defined(_WIN32)
-#include "WinMainCommandParameters.h"
+#include"Platform/Windows/WinMainCommandParameters.h"
 #endif // 1
 
 class REngine:public RMinimalObject

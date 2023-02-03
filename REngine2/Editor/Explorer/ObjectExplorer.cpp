@@ -1,5 +1,5 @@
 #include"ObjectExplorer.h"
-#include"../../Engine/Core/World.h"
+#include"../../Engine/World.h"
 #include"../../Engine/Actor/ActorObject.h"
 #include"../../Engine/Render/Pipeline/DX12Pipeline.h"
 void ObjectExplorerEditor::BuildEditor()

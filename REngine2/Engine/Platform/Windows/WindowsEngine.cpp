@@ -3,12 +3,12 @@
 #include "../../Debug/EngineLog.h"
 #include "../../Config/RenderConfig.h"
 #include "../../Render/Render.h"
-#include"../../Core/World.h"
+#include"../../World.h"
 #include"../../Render/Engine/DXRenderEngine.h"
 #include"../../Camera/Camera.h"
 #include"../../Manage/MeshManage.h"
 #include"../../Manage/LightManage.h"
-#include"../../Core/Construction/MacroConstruction.h"
+#include"../../Construction/MacroConstruction.h"
 
 #if EDITOR_ENGINE
 #include"../../../Editor/Editor.h"

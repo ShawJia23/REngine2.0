@@ -2,7 +2,7 @@
 #include"../Render/Pipeline/Geometry/GeometryMap.h"
 #include"../Component/Mesh/BaseMeshComponent.h"
 #include"../Camera/Camera.h"
-#include"../Core/World.h"
+#include"../World.h"
 #include"../Render/Pipeline/DX12Pipeline.h"
 bool CollisionScene::RaycastSingle(RWorld* inWorld, const XMVECTOR& originPoint,
 	const XMVECTOR& direction, const XMMATRIX& viewInverseMatrix,

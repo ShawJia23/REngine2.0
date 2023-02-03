@@ -3,10 +3,10 @@
 #include"../Geometry/GeometryMap.h"
 #include"../BufferView/ConstantBufferView.h"
 #include"../../ConstontBuffer/ObjectTransformation.h"
-#include"../../../Core/ViewPort/ViewportInfo.h"
+#include"../../../ViewPort/ViewportInfo.h"
 #include"../../../Component/RComponentMinimal.h"
 #include"../../../Actor/ActorObject.h"
-#include"../../../Core/World.h"
+#include"../../../World.h"
 RenderLayerManage::RenderLayerManage() 
 {
 	CreateRenderLayer<OpaqueLayer>();

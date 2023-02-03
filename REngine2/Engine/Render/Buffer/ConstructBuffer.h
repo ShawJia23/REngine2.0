@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Core/Engine.h"
+#include "../../Engine.h"
 #include "../../Interface/DXDeviceInterface.h"
 
 namespace ConstructBuffer

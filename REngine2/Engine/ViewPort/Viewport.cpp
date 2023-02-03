@@ -1,6 +1,6 @@
 #include "Viewport.h"
-#include"../../Math/RMath.h"
-#include"../../Config/RenderConfig.h"
+#include"../Math/RMath.h"
+#include"../Config/RenderConfig.h"
 RViewport::RViewport()
     :ViewMatrix(RMath::IdentityMatrix4x4())
     , ProjectMatrix(RMath::IdentityMatrix4x4())

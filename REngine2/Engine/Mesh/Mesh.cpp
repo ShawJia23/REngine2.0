@@ -1,9 +1,9 @@
 #include "Mesh.h"
 #include"../Manage/TextureManage.h"
-#include"../Core/World.h"
+#include"../World.h"
 #include"../Materials/Material.h"
 #include"../Component/Mesh/BaseMeshComponent.h"
-#include"../Core/Construction/MacroConstruction.h"
+#include"../Construction/MacroConstruction.h"
 BoxMesh::BoxMesh() 
 {
 	Rename("Box");

@@ -1,5 +1,5 @@
 #pragma once
-#include "../Engine/Core/Engine.h"
+#include "../Engine/Engine.h"
 #include "EditorBase.h"
 #include "Log/LogEditor.h"
 #include "Toolbar/ToolbarEditor.h"

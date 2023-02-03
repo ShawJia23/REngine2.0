@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderEngine.h"
-#include"../../Core/ViewPort/ViewportInfo.h"
+#include"../../ViewPort/ViewportInfo.h"
 class RMeshManage;
 class RLightManage;
 class RTextureManage;

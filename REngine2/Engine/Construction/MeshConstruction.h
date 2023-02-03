@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Manage/MeshManage.h"
+#include "../Manage/MeshManage.h"
 #include"Construction/ObjectConstruction.h"
 
 namespace MeshConstruction

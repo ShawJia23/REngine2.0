@@ -1,6 +1,6 @@
 #include"RayCastSystem.h"
 #include"../Camera/Camera.h"
-#include"../Core/World.h"
+#include"../World.h"
 #include"../Config/RenderConfig.h"
 bool RayCastSystem::HitResultByScreen(RWorld* inWorld, int screenX, int screenY, CollisionResult& outResult)
 {

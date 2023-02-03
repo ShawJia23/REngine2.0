@@ -21,7 +21,7 @@
     <ClCompile Include="Engine\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\WinMainCommandParameters.cpp">
+    <ClCompile Include="Engine\Platform\Windows\WinMainCommandParameters.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Platform\Windows\WindowsEngine.cpp">
@@ -51,7 +51,7 @@
     <ClCompile Include="Engine\Render\ResourcesUpdate.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\ViewPort\Viewport.cpp">
+    <ClCompile Include="Engine\ViewPort\Viewport.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Component\Input\InputComponent.cpp">
@@ -66,10 +66,10 @@
     <ClCompile Include="Engine\Component\Input\RInputType.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\World.cpp">
+    <ClCompile Include="Engine\World.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\Engine.cpp">
+    <ClCompile Include="Engine\Engine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Manage\MeshManage.cpp">
@@ -96,7 +96,7 @@
     <ClCompile Include="Engine\Math\RMath.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\ViewPort\ViewportInfo.cpp">
+    <ClCompile Include="Engine\ViewPort\ViewportInfo.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Render\ConstontBuffer\ViewportTransform.cpp">
@@ -236,10 +236,10 @@
     <ClInclude Include="Engine\EngineMinimal.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\Engine.h">
+    <ClInclude Include="Engine\Engine.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\WinMainCommandParameters.h">
+    <ClInclude Include="Engine\Platform\Windows\WinMainCommandParameters.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Log\SimpleLog.h">
@@ -284,7 +284,7 @@
     <ClInclude Include="Engine\Camera\Camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\ViewPort\Viewport.h">
+    <ClInclude Include="Engine\ViewPort\Viewport.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Component\Input\InputComponent.h">
@@ -299,7 +299,7 @@
     <ClInclude Include="Engine\Component\Input\RInputType.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\World.h">
+    <ClInclude Include="Engine\World.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Manage\MeshManage.h">
@@ -326,7 +326,7 @@
     <ClInclude Include="Engine\Camera\CameraType.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\ViewPort\ViewportInfo.h">
+    <ClInclude Include="Engine\ViewPort\ViewportInfo.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\ConstontBuffer\ViewportTransform.h">
@@ -404,13 +404,13 @@
     <ClInclude Include="Engine\Manage\TextureManage.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\Construction\MeshConstruction.h">
+    <ClInclude Include="Engine\Construction\MeshConstruction.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\Construction\ActorMeshConstruction.h">
+    <ClInclude Include="Engine\Construction\ActorMeshConstruction.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\Construction\MacroConstruction.h">
+    <ClInclude Include="Engine\Construction\MacroConstruction.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\Pipeline\RenderLayer\BaseRenderLayer.h">

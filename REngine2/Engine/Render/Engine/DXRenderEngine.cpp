@@ -4,7 +4,7 @@
 #include"../../Manage/LightManage.h"
 #include"../../Manage/TextureManage.h"
 #include"../../Materials/Material.h"
-#include"../../Core/World.h"
+#include"../../World.h"
 #include".././../Mesh/BaseMesh.h"
 #include"../../Actor/Light.h"
 #include"../../LoadAsset/ObjectAnalysis.h"

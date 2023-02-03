@@ -2,7 +2,7 @@
 #include "../Platform/Windows/WindowsEngine.h"
 #include"../Manage/MeshManage.h"
 #include"../Manage/TextureManage.h"
-#include"../Core/World.h"
+#include"../World.h"
 
 ComPtr<ID3D12Fence> IDirectXDeviceInterface::GetFence() const
 {

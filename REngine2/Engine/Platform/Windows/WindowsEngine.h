@@ -2,7 +2,7 @@
 
 #include"../../Render/Engine/DXRenderEngine.h"
 #if defined(_WIN32)
-#include "../../Core/Engine.h"
+#include "../../Engine.h"
 
 class DXRenderEngine;
 class RWorld;

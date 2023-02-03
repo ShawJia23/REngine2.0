@@ -2,6 +2,8 @@
 #include "EngineFactory.h"
 #include "Debug/Log/SimpleLog.h"
 
+#include"Engine.h"
+
 int Init(REngine* engine, HINSTANCE hInstance, HINSTANCE prevInstance, PSTR cmdLine, int showCmd)
 {
 #if defined(_WIN32)

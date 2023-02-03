@@ -1,6 +1,6 @@
 #pragma once
 #include"../Mesh/Mesh.h"
-#include"../Core/ViewPort/ViewportInfo.h"
+#include"../ViewPort/ViewportInfo.h"
 #include"../Interface/DXDeviceInterface.h"
 #include"RObject/RMinimalObject.h"
 #include"../Render/Render.h"
