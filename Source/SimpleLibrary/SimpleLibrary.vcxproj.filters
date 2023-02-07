@@ -96,9 +96,6 @@
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_path\simple_c_path.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_guid\simple_guid.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -109,6 +106,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="simple_library\private\simple_c_log\simple_c_log.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -227,9 +227,6 @@
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_helper_file\simple_file_helper.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\Core\simple_array_c_macro.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -246,6 +243,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="simple_library\public\simple_array\simple_hash_array.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_helper_file\simple_file_helper.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

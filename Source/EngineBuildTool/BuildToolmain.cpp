@@ -12,6 +12,7 @@ int main()
 		//先移除所有反射代码
 		remove_dir_all_files(CodeReflectionPath.c_str());
 
+		std::vector<string> paths;
 		def_c_paths Paths;
 		init_def_c_paths(&Paths);
 

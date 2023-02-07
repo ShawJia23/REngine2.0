@@ -45,9 +45,9 @@ namespace IntermediateFile
 		AnalysisRaw.push_back("#pragma once");
 		AnalysisRaw.push_back("");
 
-		AnalysisRaw.push_back("#include \"CoreObject/CoreMinimalObject.h\"");
-		AnalysisRaw.push_back("#include \"CodeReflection/Frame.h\"");
-		AnalysisRaw.push_back("#include \"CodeReflection/ScriptMacro.h\"");
+		AnalysisRaw.push_back("#include \"RObject/RMinimalObject.h\"");
+		AnalysisRaw.push_back("#include \"Reflection/RFrame.h\"");
+		AnalysisRaw.push_back("#include \"Reflection/ScriptMacro.h\"");
 		AnalysisRaw.push_back("");
 
 		std::string MClassName =
@@ -66,8 +66,8 @@ namespace IntermediateFile
 			char* ClearClassNamePtr = const_cast<char*>(ClearClassName.c_str());
 			trim_start_and_end_inline(ClearClassNamePtr);
 
-			//移除头部C开头或者G开头
-			remove_char_start(ClearClassNamePtr, 'C');
+			//移除头部 
+			remove_char_start(ClearClassNamePtr, 'R');
 			remove_char_start(ClearClassNamePtr, 'G');
 		}
 
