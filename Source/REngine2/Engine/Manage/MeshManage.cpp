@@ -22,6 +22,11 @@ void RMeshManage::UpdateCalculations(float DeltaTime, const ViewportInfo viewpor
     m_pipeline.UpdateCalculations(viewportInfo);
 }
 
+void RMeshManage::OnResetSize(int width, int height)
+{
+    m_pipeline.OnResetSize(width, height);
+}
+
 void RMeshManage::PostDraw(float DeltaTime)
 {
     m_pipeline.PostDraw(DeltaTime);

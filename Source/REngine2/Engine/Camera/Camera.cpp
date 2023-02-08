@@ -3,7 +3,7 @@
 #include"../Collision/CollisionSystem.h"
 #include"../RayCast/RayCastSystem.h"
 #include"../Render/Pipeline/RenderLayer/RenderLayerManage.h"
-RCamera::RCamera():GActorObject()
+RCamera::RCamera():Super()
 {
 	CreateObjectParam param;
 	param.Outer = this;
@@ -36,7 +36,7 @@ void RCamera::Init()
 
 void RCamera::Tick(float DeltaTime)
 {
-	BuildViewMatrix(DeltaTime);
+	Super::Tick(DeltaTime);
 }
 
 void RCamera::ExecuteKeyboard(const RInputKey& inputKey)

@@ -8,6 +8,12 @@ public:
 
 	void ViewportInit();
 
+	virtual void OnResetSize(int width, int height);
+
+	void ResetViewport(int width, int height);
+
+	void ResetScissorRect(int width, int height);
+
 	void SetViewMatrix(const XMMATRIX& viewMatrix) { XMStoreFloat4x4(&ViewMatrix, viewMatrix); }
 
 	void SetProjectMatrix(const XMMATRIX& projectMatrix) { XMStoreFloat4x4(&ProjectMatrix, projectMatrix); }
@@ -15,7 +21,11 @@ public:
 	XMFLOAT4X4 GetViewMatrix() { return ViewMatrix; }
 
 	XMFLOAT4X4 GetProjectMatrix() { return ProjectMatrix; }
-private:
+protected:
+	//和屏幕的视口有关
+	D3D12_VIEWPORT ViewprotInfo;
+	D3D12_RECT ViewprotRect;
+
 	//定义摄像机位置,UP，Right,Look
 	XMFLOAT4X4 ViewMatrix;
 

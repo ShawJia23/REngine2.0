@@ -33,8 +33,15 @@ LRESULT CALLBACK EngineWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPa
 	case WM_MOUSEWHEEL:
 		MousesWheelsDelegate.Broadcast(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), (short)HIWORD(wParam));
 		return 0;
+	case WM_SIZE:
+	{
+		int viewPortW = LOWORD(lParam);
+		int viewPortH = HIWORD(lParam);
+		ResizeScreenDelegate.Broadcast(viewPortW, viewPortH);
+		return 0;
+	}
+		
 	}
 
-	//交给windows自己处理完成
 	return DefWindowProc(hwnd, msg, wParam, lParam);
 }

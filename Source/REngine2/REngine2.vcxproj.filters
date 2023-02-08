@@ -96,9 +96,6 @@
     <ClCompile Include="Engine\Math\RMath.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ViewPort\ViewportInfo.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Render\ConstontBuffer\ViewportTransform.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -226,6 +223,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Common\EngineEditorCommon.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ViewPort\ViewportData.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ViewPort\ClientViewport.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -495,6 +498,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Common\EngineEditorCommon.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ViewPort\ViewportData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ViewPort\ClientViewport.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

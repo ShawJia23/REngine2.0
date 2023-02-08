@@ -6,3 +6,4 @@ FCaptureOnMousesDelegate RMouseUpDelegate;
 FCaptureOnMousesDelegate LMouseDownDelegate;
 FCaptureOnMousesDelegate LMouseUpDelegate;
 FCaptureOnMousesDelegate MouseMoveDelegate;
+FCaptureOnMousesDelegate ResizeScreenDelegate;

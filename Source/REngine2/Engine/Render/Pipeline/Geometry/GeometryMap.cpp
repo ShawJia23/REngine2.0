@@ -170,6 +170,10 @@ void RGeometryMap::DrawTexture()
 	GetCommandList()->SetGraphicsRootDescriptorTable(5, DesHandle1);
 }
 
+void RGeometryMap::OnResetSize(int width, int height)
+{
+}
+
 void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 {
 	m_RenderLayerManage->UpdateCalculations(viewportInfo, m_ObjectConstantBufferView);

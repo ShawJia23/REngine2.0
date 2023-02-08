@@ -13,6 +13,7 @@ class RTextureManage;
 class RWorld;
 class DX12Pipeline;
 class RenderLayerManage;
+class RCamera;
 //提供渲染内容的接口
 class IDirectXDeviceInterface
 {
@@ -23,6 +24,7 @@ public:
 	RTextureManage* GetTextureManage() const;
 	RLightManage* GetLightManage() const;
 	RWorld* GetWorld() const;
+	RCamera* GetCamera() const;
 	DX12Pipeline* GetRenderPipeline() const;
 	std::shared_ptr<RenderLayerManage> GetRenderLayerManage() const;
 
@@ -32,6 +34,9 @@ public:
 
 	UINT64 GetCurrentFenceIndex() const;
 	HWND GetMianWindowsHandle() const;
+
+	int GetViewportWidth()const;
+	int GetViewportHeight()const;
 
 #if defined(_WIN32)
 	RWindowsEngine* GetEngine()  const;
@@ -54,6 +59,7 @@ public:
 	RLightManage* GetLightManage() const;
 	RTextureManage* GetTextureManage() const;
 	RWorld* GetWorld() const;
+	RCamera* GetCamera() const;
 	DX12Pipeline* GetRenderPipeline() const;
 	std::shared_ptr<RenderLayerManage> GetRenderLayerManage() const;
 
@@ -63,6 +69,9 @@ public:
 
 	UINT64 GetCurrentFenceIndex() const;
 	HWND GetMianWindowsHandle() const;
+
+	int GetViewportWidth()const;
+	int GetViewportHeight()const;
 
 #if defined(_WIN32)
 	RWindowsEngine* GetEngine() const;

@@ -210,7 +210,6 @@ namespace IntermediateFile
 		const ClassAnalysis& ClassAnalysis,
 		std::vector<std::string>& StaticRegistration)
 	{
-		AnalysisRaw.push_back("// Copyright (C) RenZhai.2022.All Rights Reserved..");
 		AnalysisRaw.push_back("/*===========================================================================");
 		AnalysisRaw.push_back("	Generated code exported from c f.");
 		AnalysisRaw.push_back("===========================================================================*/");
@@ -225,7 +224,7 @@ namespace IntermediateFile
 			"#include \"%s.CodeReflection.h\"",
 			ClassAnalysis.CodeCPPName.c_str()));
 
-		AnalysisRaw.push_back("#include \"CodeReflection/FunctionManage.h\"");
+		AnalysisRaw.push_back("#include \"Reflection/FunctionManage.h\"");
 
 		AnalysisRaw.push_back("");
 		AnalysisRaw.push_back("#ifdef _MSC_VER");

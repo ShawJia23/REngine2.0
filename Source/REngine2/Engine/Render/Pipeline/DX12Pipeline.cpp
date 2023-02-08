@@ -65,6 +65,11 @@ void DX12Pipeline::PostDraw(float DeltaTime)
     m_GeometryMap.PostDraw(DeltaTime);
 }
 
+void DX12Pipeline::OnResetSize(int width, int height)
+{
+    m_GeometryMap.OnResetSize(width, height);
+}
+
 bool DX12Pipeline::FindMeshRenderingDataByHash(const size_t& inHash, std::shared_ptr<RRenderData>& meshData, int renderLayerIndex)
 {
     return m_GeometryMap.FindMeshRenderingDataByHash(inHash, meshData, renderLayerIndex);

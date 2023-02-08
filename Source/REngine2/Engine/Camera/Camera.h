@@ -1,6 +1,6 @@
 #pragma once
 
-#include"../ViewPort/Viewport.h"
+#include"../ViewPort/ClientViewport.h"
 #include"RObject/RMinimalObject.h"
 #include"CameraType.h"
 #include"../Interface/DXDeviceInterface.h"
@@ -8,8 +8,10 @@
 struct RInputKey;
 class RInputComponent;
 
-class RCamera :public GActorObject, public RViewport ,public IDirectXDeviceInterface
+class RCamera :public ClientViewport,public IDirectXDeviceInterface
 {
+	typedef ClientViewport Super;
+
 	RVARIABLE()
 	RInputComponent* m_rInputComponent;
 public:

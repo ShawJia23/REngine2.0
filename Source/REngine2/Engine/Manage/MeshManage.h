@@ -19,6 +19,7 @@ public:
 	virtual void BuildPipeline();
 
 	virtual void UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo);
+	virtual void OnResetSize(int width, int height);
 
 	virtual void PreDraw(float DeltaTime);
 	virtual void Draw(float DeltaTime);

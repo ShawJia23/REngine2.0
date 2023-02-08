@@ -6,8 +6,8 @@ bool RayCastSystem::HitResultByScreen(RWorld* inWorld, int screenX, int screenY,
 {
 	if (RCamera* camera = inWorld->GetCamera())
 	{
-		int H = EngineRenderConfig::GetRenderConfig()->ScreenHeight;
-		int W = EngineRenderConfig::GetRenderConfig()->ScreenWidth;
+		int H = camera->GetWidth();
+		int W = camera->GetHeight();
 
 		fvector_2d View;
 		View.x = (2.f * screenX / W - 1.f) / camera->GetProjectMatrix()._11;

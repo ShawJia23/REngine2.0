@@ -62,6 +62,7 @@ public:
 	void Draw();
 	void PostDraw(float DeltaTime);
 	void DrawTexture();
+	void OnResetSize(int width, int height);
 
 	void BuildConstantBufferView();
 

@@ -3,6 +3,7 @@
 #include"../Manage/MeshManage.h"
 #include"../Manage/TextureManage.h"
 #include"../World.h"
+#include"../Camera/Camera.h"
 
 ComPtr<ID3D12Fence> IDirectXDeviceInterface::GetFence() const
 {
@@ -94,6 +95,35 @@ HWND IDirectXDeviceInterface::GetMianWindowsHandle() const
 
 	return HWND();
 }
+
+RCamera* IDirectXDeviceInterface::GetCamera() const
+{
+	if (GetWorld())
+	{
+		return GetWorld()->GetCamera();
+	}
+
+	return nullptr;
+}
+
+int IDirectXDeviceInterface::GetViewportWidth()const 
+{
+	if (GetCamera())
+	{
+		return GetCamera()->GetWidth();
+	}
+
+	return 0;
+}
+int IDirectXDeviceInterface::GetViewportHeight()const 
+{
+	if (GetCamera())
+	{
+		return GetCamera()->GetHeight();
+	}
+	return 0;
+}
+
 
 RMeshManage* IDirectXDeviceInterface::GetMeshManage() const
 {
@@ -238,6 +268,21 @@ std::shared_ptr<RenderLayerManage> IDirectXDeviceInterface_Struct::GetRenderLaye
 {
 	return Interface.GetRenderLayerManage();
 }
+
+RCamera* IDirectXDeviceInterface_Struct::GetCamera() const
+{
+	return Interface.GetCamera();
+}
+
+int IDirectXDeviceInterface_Struct::GetViewportWidth()const
+{
+	return Interface.GetViewportWidth();
+}
+int IDirectXDeviceInterface_Struct::GetViewportHeight()const
+{
+	return Interface.GetViewportHeight();
+}
+
 
 #if defined(_WIN32)
 RWindowsEngine* IDirectXDeviceInterface_Struct::GetEngine() const

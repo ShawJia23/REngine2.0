@@ -19,6 +19,7 @@ public:
 
 	virtual void UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo);
 	virtual void Tick(float DeltaTime);
+	virtual void OnResetSize(int width, int height);
 
 	virtual int PreExit();
 	virtual int Exit();
@@ -73,7 +74,7 @@ protected:
 	ComPtr<ID3D12CommandAllocator> m_commandAllocator; //存储
 	ComPtr<ID3D12GraphicsCommandList> m_commandList;//命令列表
 
-	ComPtr<IDXGISwapChain> m_swapChain;
+	ComPtr<IDXGISwapChain3> m_swapChain;
 
 	//描述符对象和堆
 	ComPtr<ID3D12DescriptorHeap> m_RTVHeap;

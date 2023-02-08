@@ -22,3 +22,33 @@ void RViewport::ViewportInit()
 
     XMStoreFloat4x4(&ProjectMatrix, Project);
 }
+
+void RViewport::ResetViewport(int width, int height)
+{
+    ViewprotInfo =
+    {
+        0.0f,//TopLeftX
+        0.0f,//TopLeftY
+        (float)width,//Width
+        (float)height,//Height
+        0.0f,//MinDepth
+        1.0f //MaxDepth
+    };
+}
+
+void RViewport::ResetScissorRect(int width, int height)
+{
+    ViewprotRect =
+    {
+        0,//left
+        0,//top
+        (LONG)width,//right
+        (LONG)height//bottom
+    };
+}
+
+void RViewport::OnResetSize(int width, int height)
+{
+    ResetViewport(width, height);
+    ResetScissorRect(width, height);
+}

@@ -163,8 +163,9 @@
     <ClCompile Include="Engine\Config\RenderConfig.cpp" />
     <ClCompile Include="Engine\Camera\Camera.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\ViewPort\ClientViewport.cpp" />
     <ClCompile Include="Engine\ViewPort\Viewport.cpp" />
-    <ClCompile Include="Engine\ViewPort\ViewportInfo.cpp" />
+    <ClCompile Include="Engine\ViewPort\ViewportData.cpp" />
     <ClCompile Include="Engine\Render\ConstontBuffer\ViewportTransform.cpp" />
     <ClCompile Include="Engine\Platform\Windows\WinMainCommandParameters.cpp" />
     <ClCompile Include="Engine\World.cpp" />
@@ -244,7 +245,9 @@
     <ClInclude Include="Engine\Camera\Camera.h" />
     <ClInclude Include="Engine\Camera\CameraType.h" />
     <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\ViewPort\ClientViewport.h" />
     <ClInclude Include="Engine\ViewPort\Viewport.h" />
+    <ClInclude Include="Engine\ViewPort\ViewportData.h" />
     <ClInclude Include="Engine\ViewPort\ViewportInfo.h" />
     <ClInclude Include="Engine\Render\ConstontBuffer\ViewportTransform.h" />
     <ClInclude Include="Engine\Platform\Windows\WinMainCommandParameters.h" />

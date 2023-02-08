@@ -10,3 +10,4 @@ extern FCaptureOnMousesDelegate RMouseUpDelegate;
 extern FCaptureOnMousesDelegate LMouseDownDelegate;
 extern FCaptureOnMousesDelegate LMouseUpDelegate;
 extern FCaptureOnMousesDelegate MouseMoveDelegate;
+extern FCaptureOnMousesDelegate ResizeScreenDelegate;

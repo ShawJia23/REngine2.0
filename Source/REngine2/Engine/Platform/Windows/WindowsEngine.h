@@ -22,6 +22,7 @@ public:
 	virtual int PostInit();
 
 	virtual void Tick(float DeltaTime);
+	virtual void OnResetSize(int width, int height);
 
 	virtual int PreExit();
 	virtual int Exit();

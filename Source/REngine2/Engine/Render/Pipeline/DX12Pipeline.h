@@ -31,6 +31,8 @@ public:
 
 	void Draw(float DeltaTime);
 	void PostDraw(float DeltaTime);
+	void OnResetSize(int width, int height);
+
 	void BuildPSO();
 
 	std::shared_ptr<RenderLayerManage> GetRenderLayer() const

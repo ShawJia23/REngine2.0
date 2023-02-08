@@ -9,7 +9,7 @@
 #include"../../Manage/MeshManage.h"
 #include"../../Manage/LightManage.h"
 #include"../../Construction/MacroConstruction.h"
-
+#include"../../Component/Input/Input.h"
 #if EDITOR_ENGINE
 #include"../../../Editor/Editor.h"
 #endif
@@ -32,6 +32,8 @@ RWindowsEngine::~RWindowsEngine()
 
 int RWindowsEngine::PreInit(WinMainCommandParameters InParameters)
 {
+	ResizeScreenDelegate.AddFunction(this, &RWindowsEngine::OnResetSize);
+
 	//日志系统初始化
 	const char LogPath[] = "../log";
 	init_log_system(LogPath);
@@ -95,6 +97,12 @@ void RWindowsEngine::Tick(float DeltaTime)
 
 
 	m_renderEngine->Tick(DeltaTime);
+}
+
+void RWindowsEngine::OnResetSize(int width, int height)
+{
+	m_renderEngine->OnResetSize(width, height);
+	m_EditorEngine->OnResetSize(width, height);
 }
 
 int RWindowsEngine::PreExit()
