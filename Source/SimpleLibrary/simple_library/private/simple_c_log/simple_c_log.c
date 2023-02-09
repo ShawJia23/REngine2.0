@@ -3,7 +3,7 @@
 #include "../../public/simple_core_minimal/simple_c_windows/simple_c_windows_setting.h"
 #include "../../public/simple_core_minimal/simple_c_core/simple_c_string_algorithm/string_algorithm.h"
 
-char log_path[MAX_PATH] = { 0 }; //存储着我们的路径
+char log_path[MAX_PATH] = { 0 }; //存储路径
 char log_filename[MAX_PATH] = { 0 };//具体文件
 
 const char *get_log_filename()

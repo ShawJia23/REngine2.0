@@ -3,6 +3,7 @@
 #include"Debug/EngineLog.h"
 #pragma comment(lib, "SimpleLibrary.lib")
 #pragma comment(lib, "REngineCoreObject.lib")
+#pragma comment(lib, "REngineHelp.lib")
 #include "simple_library/public/simple_library.h"
 #include "Debug/Log/SimpleLog.h"
 

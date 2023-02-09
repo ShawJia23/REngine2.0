@@ -10,6 +10,7 @@
 #include"../../Manage/LightManage.h"
 #include"../../Construction/MacroConstruction.h"
 #include"../../Component/Input/Input.h"
+#include "Path/PathHelper.h"
 #if EDITOR_ENGINE
 #include"../../../Editor/Editor.h"
 #endif
@@ -33,10 +34,9 @@ RWindowsEngine::~RWindowsEngine()
 int RWindowsEngine::PreInit(WinMainCommandParameters InParameters)
 {
 	ResizeScreenDelegate.AddFunction(this, &RWindowsEngine::OnResetSize);
-
+	string logPath= PathHelper::RelativeToAbsolutePath(PathHelper::GetEngineLogsPath());
 	//日志系统初始化
-	const char LogPath[] = "../log";
-	init_log_system(LogPath);
+	init_log_system(logPath.c_str());
 	Engine_Log("日志初始化.");
 
 	//渲染引擎初始化
@@ -164,8 +164,7 @@ bool RWindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 	int WindowWidth = Rect.right - Rect.left;
 	int WindowHight = Rect.bottom - Rect.top;
 
-	MianWindowsHandle = CreateWindowEx(
-		NULL,//窗口额外的风格
+	MianWindowsHandle = CreateWindow(
 		L"REngine", // 窗口名称
 		L"REngine",//会显示在窗口的标题栏上去
 		WS_OVERLAPPEDWINDOW, //窗口风格

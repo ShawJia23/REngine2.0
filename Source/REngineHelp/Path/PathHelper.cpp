@@ -7,37 +7,42 @@ std::string PathHelper::GetEngineRootPath()
 
 std::string PathHelper::GetEngineBinariesPath()
 {
-	return "..\\Binaries\\Win64";
+	return "../Binaries/Win64";
+}
+
+std::string PathHelper::GetEngineAssetPath()
+{
+	return "../../Asset";
 }
 
 std::string PathHelper::GetEngineLogsPath()
 {
-	return "..\\Saved\\Logs";
+	return "../../log";
 }
 
 std::string PathHelper::GetEngineSourcePath()
 {
-	return "..\\..\\Source";
+	return "../../Source";
 }
 
 std::string PathHelper::GetEngineIntermediatePath()
 {
-	return "..\\Intermediate";
+	return "../../Intermediate";
 }
 
 std::string PathHelper::GetEngineCodeReflectionPath()
 {
-	return "..\\..\\Intermediate\\CodeReflection";
+	return "../../Intermediate/CodeReflection";
 }
 
 std::string PathHelper::GetEngineContentPath()
 {
-	return "..\\..\\Content";
+	return "../../Content";
 }
 
 std::wstring PathHelper::GetEngineShadersPath()
 {
-	return L"..\\..\\Shaders";
+	return L"../../Shaders";
 }
 
 std::string PathHelper::RelativeToAbsolutePath(const std::string& InPath)

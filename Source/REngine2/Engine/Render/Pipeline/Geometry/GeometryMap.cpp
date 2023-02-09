@@ -21,7 +21,6 @@ RGeometryMap::RGeometryMap()
 void RGeometryMap::Init() 
 {
 	m_DescriptorOffset = GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-	
 }
 
 void RGeometryMap::BuildDescriptorHeap()
@@ -172,6 +171,7 @@ void RGeometryMap::DrawTexture()
 
 void RGeometryMap::OnResetSize(int width, int height)
 {
+
 }
 
 void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)

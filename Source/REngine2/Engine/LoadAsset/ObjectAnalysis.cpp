@@ -2,6 +2,7 @@
 #include"../Mesh/BaseMesh.h"
 #include"../Component/RComponentMinimal.h"
 #include"../Mesh/Mesh.h"
+#include "Path/PathHelper.h"
 #include <fstream>
 #include<assimp/Importer.hpp>
 #include<assimp/scene.h>
@@ -97,7 +98,7 @@ void ObjectAnalysisByAssimp::SetMaterialTex(aiMaterial* pMaterial, MeshGroup* pM
 
 std::string ObjectAnalysisByAssimp::GetFilePath(bool IsRight, std::string ObjName, std::string TexName)
 {
-	std::string pTexNamePath = "Asset/Model/";
+	string pTexNamePath = PathHelper::RelativeToAbsolutePath(PathHelper::GetEngineAssetPath()) + "/Model/";;
 	pTexNamePath += ObjName;
 	pTexNamePath += "/";
 	//路径是正确的
@@ -126,6 +127,11 @@ std::string ObjectAnalysisByAssimp::GetTexName(std::string ObjName, std::string 
 {
 	std::string pTexName = ObjName;
 	pTexName += "/";
-	pTexName += TexName;
+	auto str1 = StringSplit(TexName, '\\');
+	if (str1.size() > 0)
+	{
+		TexName = str1.back();
+		pTexName += TexName;
+	}
 	return pTexName;
 }
