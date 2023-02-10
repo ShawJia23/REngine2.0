@@ -2,6 +2,22 @@
 
 namespace IntermediateFile
 {
+	const string* GetInheritName(const std::vector<string>& InheritName)
+	{
+		for (auto& Tmp : InheritName)
+		{
+			if (!Tmp.empty())
+			{
+				if (Tmp.c_str()[0] == 'R' || Tmp.c_str()[0] == 'G')
+				{
+					return &Tmp;
+				}
+			}
+		}
+
+		return NULL;
+	}
+
 	std::string GetCombineParmString(
 		const FunctionAnalysis& Function,
 		std::vector<std::string>& ParamArray)
@@ -60,6 +76,7 @@ namespace IntermediateFile
 				MClassName.c_str(),
 				string((ClassAnalysis.Function.size() > 0) ? "\\" : "").c_str()));
 
+		AnalysisRaw.push_back("public: \\");
 		//类名
 		std::string ClearClassName = ClassAnalysis.ClassName;
 		{
@@ -165,44 +182,76 @@ namespace IntermediateFile
 				}
 			}
 
-			//移除函数拼接的 "\"
-			if (simple_cpp_string_algorithm::index_valid(
-				AnalysisRaw.size(),
-				AnalysisRaw.size() - 1))
-			{
-				remove_char_end(
-					const_cast<char*>(AnalysisRaw[AnalysisRaw.size() - 1].c_str()),
-					'\\');
-			}
-
-			AnalysisRaw.push_back((""));
-
-			//#define GActorObject_10_GENERATED_BODY_BT 
-			AnalysisRaw.push_back(
-				simple_cpp_string_algorithm::printf(
-					"#define %s_%i_GENERATED_BODY_BT \\",
-					ClassAnalysis.ClassName.c_str(),
-					ClassAnalysis.CodeLine));
-
-			// Z_BT_GActorObject
-			AnalysisRaw.push_back(MClassName);
-
-			AnalysisRaw.push_back((""));
-
-			//#define CURRENT_FILE_ID_BT  GActorObject
-			AnalysisRaw.push_back(
-				simple_cpp_string_algorithm::printf(
-					"#define %s %s",
-					std::string("CURRENT_FILE_ID_BT ").c_str(),
-					ClassAnalysis.ClassName.c_str()));
-
-			//#define NewLine 10
-			AnalysisRaw.push_back(
-				simple_cpp_string_algorithm::printf(
-					"#define %s %i",
-					std::string("NewLine").c_str(),
-					ClassAnalysis.CodeLine));
 		}
+		AnalysisRaw.push_back("private:");
+
+		AnalysisRaw.push_back((""));
+
+		//合并内部的函数
+	//GActorObject_10_Internal_Fun
+		std::string InternalFunMacro = simple_cpp_string_algorithm::printf(
+			"%s_%i_Internal_Fun",
+			ClassAnalysis.ClassName.c_str(),
+			ClassAnalysis.CodeLine);
+
+		//#define GActorObject_10_Internal_Fun 
+		AnalysisRaw.push_back(
+			simple_cpp_string_algorithm::printf(
+				"#define %s \\",
+				InternalFunMacro.c_str()));
+
+		if (const string* InheritName = GetInheritName(ClassAnalysis.InheritName))
+		{
+			AnalysisRaw.push_back(
+				simple_cpp_string_algorithm::printf(
+					"typedef %s Super; \\",
+					InheritName->c_str()));
+		}
+		AnalysisRaw.push_back("protected: \\");
+		AnalysisRaw.push_back("virtual void InitReflectionContent(); \\");
+		AnalysisRaw.push_back("private:");
+
+		AnalysisRaw.push_back("");
+
+		AnalysisRaw.push_back(
+			simple_cpp_string_algorithm::printf(
+				"#define %s_%i_GENERATED_BODY_BT \\",
+				ClassAnalysis.ClassName.c_str(),
+				ClassAnalysis.CodeLine));
+
+		// Z_BT_GActorObject
+		AnalysisRaw.push_back(simple_cpp_string_algorithm::printf(
+			"%s \\", MClassName.c_str()));
+		AnalysisRaw.push_back(simple_cpp_string_algorithm::printf(
+			"%s ", InternalFunMacro.c_str()));
+
+		AnalysisRaw.push_back((""));
+
+		AnalysisRaw.push_back("#ifdef CURRENT_FILE_ID_BT");
+		AnalysisRaw.push_back("#undef CURRENT_FILE_ID_BT");
+		AnalysisRaw.push_back("#endif // CURRENT_FILE_ID_BT");
+
+		AnalysisRaw.push_back("");
+
+		AnalysisRaw.push_back("#ifdef CodeReflectionTagLine");
+		AnalysisRaw.push_back("#undef CodeReflectionTagLine");
+		AnalysisRaw.push_back("#endif // NewLine");
+
+		AnalysisRaw.push_back("");
+
+		//#define CURRENT_FILE_ID_BT  GActorObject
+		AnalysisRaw.push_back(
+			simple_cpp_string_algorithm::printf(
+				"#define %s %s",
+				std::string("CURRENT_FILE_ID_BT ").c_str(),
+				ClassAnalysis.ClassName.c_str()));
+
+		//#define NewLine 10
+		AnalysisRaw.push_back(
+			simple_cpp_string_algorithm::printf(
+				"#define %s %i",
+				std::string("NewLine").c_str(),
+				ClassAnalysis.CodeLine));
 	}
 
 	void GeneratePointCpp(
@@ -219,10 +268,10 @@ namespace IntermediateFile
 			"#include \"%s\"",
 			ClassAnalysis.CodeHName.c_str()));
 
-		//反射的.h
-		AnalysisRaw.push_back(simple_cpp_string_algorithm::printf(
-			"#include \"%s.CodeReflection.h\"",
-			ClassAnalysis.CodeCPPName.c_str()));
+		////反射的.h
+		//AnalysisRaw.push_back(simple_cpp_string_algorithm::printf(
+		//	"#include \"%s.CodeReflection.h\"",
+		//	ClassAnalysis.CodeCPPName.c_str()));
 
 		AnalysisRaw.push_back("#include \"Reflection/FunctionManage.h\"");
 
@@ -329,6 +378,23 @@ namespace IntermediateFile
 
 			AnalysisRaw.push_back((""));
 
+			AnalysisRaw.push_back(
+				simple_cpp_string_algorithm::printf(
+					"void %s::InitReflectionContent()",
+					ClassAnalysis.ClassName.c_str()));
+			AnalysisRaw.push_back("{");
+			{
+				//Rename("ActorObject");
+				AnalysisRaw.push_back(
+					simple_cpp_string_algorithm::printf(
+						"\tRename(\"%s\");",
+						ClassAnalysis.CodeCPPName.c_str()));
+			}
+
+			AnalysisRaw.push_back("}");
+
+			AnalysisRaw.push_back((""));
+
 			AnalysisRaw.push_back(("/* 1xxxx xxxx "));
 			AnalysisRaw.push_back((" 2xxxx xxxx */"));
 			//Register_ActorObject
@@ -361,7 +427,6 @@ namespace IntermediateFile
 
 		AnalysisRaw.push_back("");
 
-		AnalysisRaw.push_back("PRAGMA_ENABLE_DEPRECATION_WARNINGS");
 		AnalysisRaw.push_back("#ifdef _MSC_VER");
 		AnalysisRaw.push_back("#pragma warning (pop)");
 		AnalysisRaw.push_back("#endif");

@@ -19,20 +19,23 @@ namespace CollectClassInfo
 		char rStr[1024] = { 0 };
 		char lStr[1024] = { 0 };
 
-		split(ptr, CodeType, rStr, lStr, false);
+		split(ptr, CodeType, lStr, rStr, false);
 
-		vector<string> elementStr;
-		simple_cpp_string_algorithm::parse_into_vector_array(lStr, elementStr, ",");
-
-		if (elementStr[0].find("Event"))
+		if (simple_cpp_string_algorithm::string_contain(rStr, "Event"))
 		{
 			functionAnalysis.CodeType = "Event";
 
 			return true;
 		}
-		else if (elementStr[0].find("Describe"))
+		else if (simple_cpp_string_algorithm::string_contain(rStr, "Function"))
 		{
-			functionAnalysis.CodeType = "Describe";
+			functionAnalysis.CodeType = "Function";
+
+			return true;
+		}
+		else if (simple_cpp_string_algorithm::string_contain(rStr, "PureFunction"))
+		{
+			functionAnalysis.CodeType = "PureFunction";
 
 			return true;
 		}
@@ -113,6 +116,8 @@ namespace CollectClassInfo
 		std::vector<std::string> stringArray;
 		simple_cpp_helper_file::load_file_to_strings(paths, stringArray);
 
+		classAnalysis.CodeHName = paths;
+
 		//遍历每一行代码
 		for (int i = 0; i < stringArray.size(); i++)
 		{
@@ -125,7 +130,7 @@ namespace CollectClassInfo
 				return simple_cpp_string_algorithm::string_contain(row, inSubString);
 			};
 
-			if (contain("GENERATED_BODY"))
+			if (contain("CODEREFLECTION"))
 			{
 				classAnalysis.CodeLine = i + 1;
 			}
@@ -164,6 +169,16 @@ namespace CollectClassInfo
 				trim_start_and_end_inline(const_cast<char*>(elementStr[0].c_str()));
 
 				classAnalysis.ClassName = elementStr[0];
+				classAnalysis.CodeCPPName = elementStr[0];
+				//去除前缀
+				{
+					char* ClearClassNamePtr = const_cast<char*>(classAnalysis.CodeCPPName.c_str());
+
+					trim_start_and_end_inline(ClearClassNamePtr);
+
+					remove_char_start(ClearClassNamePtr, 'R');
+					remove_char_start(ClearClassNamePtr, 'G');
+				}
 
 				//考虑到多继承问题
 				//public GObject ,public Interxx
@@ -203,23 +218,23 @@ namespace CollectClassInfo
 					{
 						functionAnalysis.bStatic = true;
 
-						char R[1024] = { 0 };
 						char L[1024] = { 0 };
+						char R[1024] = { 0 };
 						//remove_string_start();
-						split(rowPtr, SpaceString, R, L, false);
+						split(row.c_str(), SpaceString, L, R, false);
 
-						row = L;
+						row = R;
 					}
 					else if (contain("virtual "))
 					{
 						functionAnalysis.bVirtual = true;
 
-						char R[1024] = { 0 };
 						char L[1024] = { 0 };
+						char R[1024] = { 0 };
 
-						split(rowPtr, SpaceString, R, L, false);
+						split(row.c_str(), SpaceString, L, R, false);
 
-						row = L;
+						row = R;
 					}
 
 					//确定我们函数的返回类型
@@ -227,13 +242,13 @@ namespace CollectClassInfo
 					{
 						//Row =  void Hello1(GObject *Context, int32 &A,float b,bool C);
 
-						char R[1024] = { 0 };
-						trim_start_inline(rowPtr);
+						char L[1024] = { 0 };
+						//trim_start_inline(row.c_str());
 
-						split(rowPtr, SpaceString, R, Tmp, false);
+						split(row.c_str(), SpaceString, L, Tmp, false);
 
 						////Tmp = Hello1(UObject *Context, int32 &A,float b,bool C);  {}
-						functionAnalysis.Return = CollectionVariableType(R, ECollectionParmType::Type_Return);
+						functionAnalysis.Return = CollectionVariableType(L, ECollectionParmType::Type_Return);
 
 						{
 							//void Hello1(UObject *Context, int32 &A,float b,bool C
@@ -245,17 +260,17 @@ namespace CollectClassInfo
 							//Tmp = Hello1(UObject *Context, int32 &A,float b,bool C
 						}
 
-						char rStr[1024] = { 0 };
 						char lStr[1024] = { 0 };
+						char rStr[1024] = { 0 };
 
-						split(Tmp, LeftParenthesisString, rStr, lStr, false);
+						split(Tmp, LeftParenthesisString, lStr, rStr, false);
 
 						//函数名
-						functionAnalysis.FunctionName = rStr;
+						functionAnalysis.FunctionName = lStr;
 
 						//解析参数和参数名
 						vector<string> elementStr;
-						simple_cpp_string_algorithm::parse_into_vector_array(lStr, elementStr, CommaString);
+						simple_cpp_string_algorithm::parse_into_vector_array(rStr, elementStr, CommaString);
 
 						//UObject *Context
 						//int32 &A
@@ -267,46 +282,50 @@ namespace CollectClassInfo
 						{
 							char* ElePtr = const_cast<char*>(Ele.c_str());
 
+							if (Ele == "")
+							{
+								continue;
+							}
 							//int32 &A
 							//移除前后空格
 							trim_start_and_end_inline(ElePtr);
 
 							ParamElement paramElement;
 
-							char R[1024] = { 0 };
 							char L[1024] = { 0 };
+							char R[1024] = { 0 };
 							if (simple_cpp_string_algorithm::string_contain(Ele, StarString))
 							{
 								paramElement.bPointer = true;
 								//GObject *Context
-								split(ElePtr, StarString, R, L, false);
+								split(ElePtr, StarString, L, R, false);
 								//R = GObject
 								//L = Context
 							}
 							else if (simple_cpp_string_algorithm::string_contain(Ele, FetchAddressString))
 							{
 								paramElement.bReference = true;
-								split(ElePtr, FetchAddressString, R, L, false);
+								split(ElePtr, FetchAddressString, L, R, false);
 							}
 							else
 							{
 								//  int a
-								split(ElePtr, SpaceString, R, L, false);
+								split(ElePtr, SpaceString, L, R, false);
 							}
 
-							if (c_str_contain(R, "const"))
+							if (c_str_contain(L, "const"))
 							{
 								//const GObject *Context
 								paramElement.bConst = true;
 
-								remove_string_start(R, "const");
+								remove_string_start(L, "const");
 							}
 
-							trim_start_and_end_inline(R);
 							trim_start_and_end_inline(L);
+							trim_start_and_end_inline(R);
 
-							paramElement.Type = R;
-							paramElement.Name = L;
+							paramElement.Type = L;
+							paramElement.Name = R;
 
 							functionAnalysis.ParamArray.push_back(paramElement);
 						}

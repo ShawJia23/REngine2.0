@@ -1,12 +1,15 @@
 #pragma once
 #include"RObject/RMinimalObject.h"
 #include"../EngineMinimal.h"
+#include"ActorObject.CodeReflection.h"
 class RTransformComponent;
 
 class GActorObject :public RMinimalObject
 {
+	CODEREFLECTION()
+
 	RVARIABLE()
-		RTransformComponent* TransformationComponent;
+	RTransformComponent* TransformationComponent;
 
 public:
 	GActorObject();
@@ -26,4 +29,19 @@ public:
 	XMFLOAT3& GetForwardVector();
 	XMFLOAT3& GetRightVector();
 	XMFLOAT3& GetUPVector();
+public:
+	RVARIABLE(CodeType = Resources)
+	bool PlayerState;
+
+	RFUNCTION(CodeType = Event)
+	static void Hello123(int c, float b);
+
+	RFUNCTION(CodeType = Event)
+	static void Hello();
+
+	RFUNCTION(CodeType = Function)
+	static void Hello1() {}
+
+	RFUNCTION(CodeType = PureFunction)
+	static void Hello2() {}
 };
