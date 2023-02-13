@@ -2,10 +2,12 @@
 #include"../TransformComponent/TransformComponent.h"
 #include"../../Materials/Material.h"
 #include"../../Render/Pipeline/RenderLayer/RenderLayerType.h"
-
+#include"MeshComponent.CodeReflection.h"
 struct MeshRenderData;
 class RMeshComponent :public RTransformComponent
 {
+	CODEREFLECTION()
+
 	RVARIABLE()
 	vector<RMaterial*>	m_Materials;
 public:

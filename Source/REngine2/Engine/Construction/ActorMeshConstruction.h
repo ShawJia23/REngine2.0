@@ -1,6 +1,5 @@
 #pragma once
 #include "MeshConstruction.h"
-#include "../Mesh/Mesh.h"
 
 namespace ActorMeshConstruction
 {

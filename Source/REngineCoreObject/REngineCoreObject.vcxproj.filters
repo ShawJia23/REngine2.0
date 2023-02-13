@@ -45,6 +45,9 @@
     <ClCompile Include="RObject\StructObject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Reflection\RNativeClass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RObject\GuidInterface.h">
@@ -96,6 +99,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="RObject\StructObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Reflection\RNativeClass.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

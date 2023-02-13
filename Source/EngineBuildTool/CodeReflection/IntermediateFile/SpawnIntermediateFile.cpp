@@ -8,10 +8,7 @@ namespace IntermediateFile
 		{
 			if (!Tmp.empty())
 			{
-				if (Tmp.c_str()[0] == 'R' || Tmp.c_str()[0] == 'G')
-				{
-					return &Tmp;
-				}
+				return &Tmp;
 			}
 		}
 
@@ -76,7 +73,6 @@ namespace IntermediateFile
 				MClassName.c_str(),
 				string((ClassAnalysis.Function.size() > 0) ? "\\" : "").c_str()));
 
-		AnalysisRaw.push_back("public: \\");
 		//类名
 		std::string ClearClassName = ClassAnalysis.ClassName;
 		{
@@ -90,6 +86,7 @@ namespace IntermediateFile
 
 		if (ClassAnalysis.Function.size() > 0)
 		{
+			AnalysisRaw.push_back("public: \\");
 			for (const FunctionAnalysis& Function : ClassAnalysis.Function)
 			{
 				if (Function.CodeType == "Function" ||
@@ -174,7 +171,7 @@ namespace IntermediateFile
 					//FFuntionManage::SetNativeFuncPtr(FFuntionID(("ActorObject"),("Hello1"),GActorObject::Script_Hello1));
 					StaticRegistration.push_back(
 						simple_cpp_string_algorithm::printf(
-							"\tFFuntionManage::SetNativeFuncPtr(FFuntionID((\"%s\"),(\"%s\"),%s::%s));",
+							"\tRFuntionManage::SetNativeFuncPtr(RFuntionID((\"%s\"),(\"%s\"),%s::%s));",
 							ClearClassName.c_str(),
 							Function.FunctionName.c_str(),
 							ClassAnalysis.ClassName.c_str(),
@@ -183,7 +180,6 @@ namespace IntermediateFile
 			}
 
 		}
-		AnalysisRaw.push_back("private:");
 
 		AnalysisRaw.push_back((""));
 
@@ -199,8 +195,8 @@ namespace IntermediateFile
 			simple_cpp_string_algorithm::printf(
 				"#define %s \\",
 				InternalFunMacro.c_str()));
-
-		if (const string* InheritName = GetInheritName(ClassAnalysis.InheritName))
+		const string* InheritName = GetInheritName(ClassAnalysis.InheritName);
+		if (InheritName->size()>1)
 		{
 			AnalysisRaw.push_back(
 				simple_cpp_string_algorithm::printf(
@@ -250,7 +246,7 @@ namespace IntermediateFile
 		AnalysisRaw.push_back(
 			simple_cpp_string_algorithm::printf(
 				"#define %s %i",
-				std::string("NewLine").c_str(),
+				std::string("CodeReflectionTagLine").c_str(),
 				ClassAnalysis.CodeLine));
 	}
 
@@ -280,7 +276,7 @@ namespace IntermediateFile
 		AnalysisRaw.push_back("#pragma warning (push)");
 		AnalysisRaw.push_back("#pragma warning (disable : 4883)");
 		AnalysisRaw.push_back("#endif");
-		AnalysisRaw.push_back("PRAGMA_DISABLE_DEPRECATION_WARNINGS");
+
 		AnalysisRaw.push_back("");
 		//代码定义区
 		{
@@ -328,7 +324,7 @@ namespace IntermediateFile
 							{
 								//struct FParm_Hello123
 								AnalysisRaw.push_back(
-									simple_cpp_string_algorithm::printf("\tstruct F%s",
+									simple_cpp_string_algorithm::printf("\tstruct R%s",
 										StructName.c_str()));
 								AnalysisRaw.push_back(std::string(("\t{")));//{
 								{
@@ -344,7 +340,7 @@ namespace IntermediateFile
 								//FParm_Hello123 Parm_Hello123;
 								AnalysisRaw.push_back(
 									simple_cpp_string_algorithm::printf(
-										"\tF%s %s;",
+										"\tR%s %s;",
 										StructName.c_str(),
 										StructName.c_str()));
 
@@ -366,7 +362,7 @@ namespace IntermediateFile
 							//ExecutionScript(FindScriptFuntion(Name_Hello123), &Parm_Hello123);
 							AnalysisRaw.push_back(
 								simple_cpp_string_algorithm::printf(
-									"\tExecutionScript(FindScriptFuntion(%s),%s);",
+									"\tExecutionScript(FindScriptStaticFuntion(%s),%s);",
 									FunctionName.c_str(),
 									string(Function.ParamArray.size() == 0 ? ("NULL") : (("&") + StructName)).c_str()
 								));
@@ -384,19 +380,65 @@ namespace IntermediateFile
 					ClassAnalysis.ClassName.c_str()));
 			AnalysisRaw.push_back("{");
 			{
+				AnalysisRaw.push_back("\tSuper::InitReflectionContent();");
+
+				AnalysisRaw.push_back("");
+
 				//Rename("ActorObject");
 				AnalysisRaw.push_back(
 					simple_cpp_string_algorithm::printf(
 						"\tRename(\"%s\");",
 						ClassAnalysis.CodeCPPName.c_str()));
+
+				AnalysisRaw.push_back("");
+
+				for (auto& Tmp : ClassAnalysis.Variable)
+				{
+					if (Tmp.Type == "map")
+					{
+						if (Tmp.InternalType.size() >= 2)
+						{
+							AnalysisRaw.push_back(
+								simple_cpp_string_algorithm::printf(
+									"\tNativeClass.AddProperty(\"%s\",\"%s\",1,sizeof(std::%s<%s,%s>),&%s);",
+									Tmp.Name.c_str(),
+									Tmp.Type.c_str(),
+									Tmp.Type.c_str(),
+									Tmp.InternalType[0].Type.c_str(),
+									Tmp.InternalType[1].Type.c_str(),
+									Tmp.Name.c_str()));
+						}
+					}
+					else if (Tmp.Type == "vector")
+					{
+						if (Tmp.InternalType.size() >= 1)
+						{
+							AnalysisRaw.push_back(
+								simple_cpp_string_algorithm::printf(
+									"\tNativeClass.AddProperty(\"%s\",\"%s\",1,sizeof(%s),&%s);",
+									Tmp.Name.c_str(),
+									Tmp.Type.c_str(),
+									Tmp.InternalType[0].Type.c_str(),
+									Tmp.Name.c_str()));
+						}
+					}
+					else
+					{
+						AnalysisRaw.push_back(
+							simple_cpp_string_algorithm::printf(
+								"\tNativeClass.AddProperty(\"%s\",\"%s\",1,sizeof(%s),&%s);",
+								Tmp.Name.c_str(),
+								Tmp.Type.c_str(),
+								Tmp.Type.c_str(),
+								Tmp.Name.c_str()));
+					}
+				}
 			}
 
 			AnalysisRaw.push_back("}");
 
 			AnalysisRaw.push_back((""));
 
-			AnalysisRaw.push_back(("/* 1xxxx xxxx "));
-			AnalysisRaw.push_back((" 2xxxx xxxx */"));
 			//Register_ActorObject
 			std::string Register_Func =
 				simple_cpp_string_algorithm::printf("Register_%s()",

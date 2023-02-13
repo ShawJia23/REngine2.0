@@ -45,7 +45,7 @@
     <ClCompile Include="Engine\Mesh\MeshType.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Mesh.cpp">
+    <ClCompile Include="Engine\Mesh\SubMesh\MeshGroup.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Render\ResourcesUpdate.cpp">
@@ -141,7 +141,7 @@
     <ClCompile Include="Engine\Component\Mesh\StaticMeshComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\Mesh\BaseMeshComponent.cpp">
+    <ClCompile Include="Engine\Component\Mesh\SubMeshComponent\CustomMeshComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Manage\LightManage.cpp">
@@ -231,6 +231,54 @@
     <ClCompile Include="Engine\ViewPort\ClientViewport.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="LinkCodeReflection.build.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor\Inspector\InspectorEditor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor\Inspector\InspectorMapping.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor\Inspector\PropertyInspectorMapping.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor\Inspector\RegisterInspector.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Mesh\SubMesh\BoxMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Mesh\SubMeshComponent\BoxMeshComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Mesh\SubMeshComponent\ConeMeshComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Mesh\SubMeshComponent\CylinderMeshComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Mesh\SubMeshComponent\PlaneMeshComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Mesh\SubMeshComponent\SphereMeshComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Mesh\SubMesh\ConeMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Mesh\SubMesh\CustomMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Mesh\SubMesh\CylinderMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Mesh\SubMesh\PlaneMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Mesh\SubMesh\SphereMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\EngineFactory.h">
@@ -278,7 +326,7 @@
     <ClInclude Include="Engine\Math\RMath.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Mesh.h">
+    <ClInclude Include="Engine\Mesh\SubMesh\MeshGroup.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\ResourcesUpdate.h">
@@ -383,7 +431,7 @@
     <ClInclude Include="Engine\Component\Mesh\StaticMeshComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\Mesh\BaseMeshComponent.h">
+    <ClInclude Include="Engine\Component\Mesh\SubMeshComponent\CustomMeshComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Manage\LightManage.h">
@@ -504,6 +552,54 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\ViewPort\ClientViewport.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\Inspector\InspectorEditor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\Inspector\InspectorMapping.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\Inspector\PropertyInspectorMapping.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\Inspector\RegisterInspector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Mesh\SubMesh\BoxMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Mesh\SubMeshComponent\BoxMeshComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Mesh\SubMeshComponent\ConeMeshComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Mesh\SubMeshComponent\CylinderMeshComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Mesh\SubMeshComponent\PlaneMeshComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Mesh\SubMeshComponent\SphereMeshComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Mesh\SubMesh\ConeMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Mesh\SubMesh\CustomMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Mesh\SubMesh\CylinderMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Mesh\SubMesh\PlaneMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Mesh\SubMesh\SphereMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Mesh\MeshMinimal.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

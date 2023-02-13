@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Reflection\FunctionManage.cpp" />
     <ClCompile Include="Reflection\RFrame.cpp" />
+    <ClCompile Include="Reflection\RNativeClass.cpp" />
     <ClCompile Include="RObject\ClassObject.cpp" />
     <ClCompile Include="RObject\EnumObject.cpp" />
     <ClCompile Include="RObject\FieldObject.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Reflection\CodeReflection.h" />
     <ClInclude Include="Reflection\FunctionManage.h" />
     <ClInclude Include="Reflection\RFrame.h" />
+    <ClInclude Include="Reflection\RNativeClass.h" />
     <ClInclude Include="Reflection\ScriptCommand.h" />
     <ClInclude Include="Reflection\ScriptMacro.h" />
     <ClInclude Include="RObjectMacro.h" />

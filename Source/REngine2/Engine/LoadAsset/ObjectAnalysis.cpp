@@ -1,7 +1,7 @@
 #include"ObjectAnalysis.h"
 #include"../Mesh/BaseMesh.h"
 #include"../Component/RComponentMinimal.h"
-#include"../Mesh/Mesh.h"
+#include"../Mesh/SubMesh/MeshGroup.h"
 #include "Path/PathHelper.h"
 #include <fstream>
 #include<assimp/Importer.hpp>

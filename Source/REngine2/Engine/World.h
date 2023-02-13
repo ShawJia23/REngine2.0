@@ -20,6 +20,7 @@ public:
 	{
 		T* InArray = new T();
 		InArray->SetOuter(this);
+		InArray->InitMinimalObject();
 		ActorObjects.push_back(InArray);
 
 		return InArray;

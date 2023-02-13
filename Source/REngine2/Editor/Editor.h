@@ -4,6 +4,7 @@
 #include "Log/LogEditor.h"
 #include "Toolbar/ToolbarEditor.h"
 #include"Explorer/ObjectExplorer.h"
+#include"Inspector/InspectorEditor.h"
 class EditorEngine
 	:public REngine
 	, public EditorBase
@@ -42,4 +43,5 @@ protected:
 	class ToolbarEditor* m_ToolbarEditor;
 	class LogEditor* m_LogEditor;
 	class ObjectExplorerEditor* m_ObjectExplorerEditor;
+	class InspectorEditor* m_InspectorEditor;
 };

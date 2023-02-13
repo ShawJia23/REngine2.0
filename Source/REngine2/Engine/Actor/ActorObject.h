@@ -33,6 +33,12 @@ public:
 	RVARIABLE(CodeType = Resources)
 	bool PlayerState;
 
+	RVARIABLE(CodeType = Resources)
+	int helloInt;
+
+	RVARIABLE(CodeType = Resources)
+	float helloFloat123;
+
 	RFUNCTION(CodeType = Event)
 	static void Hello123(int c, float b);
 

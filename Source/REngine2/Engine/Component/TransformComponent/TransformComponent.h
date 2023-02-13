@@ -2,8 +2,10 @@
 
 #include"Component/RComponent.h"
 #include"../../EngineMinimal.h"
+#include"TransformComponent.CodeReflection.h"
 class RTransformComponent :public RComponent 
 {
+	CODEREFLECTION()
 public:
 	RTransformComponent();
 

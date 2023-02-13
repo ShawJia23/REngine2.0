@@ -10,10 +10,17 @@ struct ParamElement
 	bool bReference;//是否是引用&
 	string Type;//float int ...
 
+	//有可能是内部类型 类型可能是模板
+	vector<struct ParamElement> InternalType;//类似模板 vector<float> or vector123<float,int,float>...
+
+	//分类
+	string Category;
+
 	ParamElement()
 		: bPointer(false)
 		, bReference(false)
 		, bConst(false)
+		, Category("Default")
 	{}
 };
 
@@ -60,6 +67,8 @@ struct ClassAnalysis
 	string CodeCPPName;//CPP名字
 	string CodeHName;//.h文件路径
 	int CodeLine;//反射宏标记在哪行
+
+	string ModularPath;
 };
 
 enum ECollectionParmType

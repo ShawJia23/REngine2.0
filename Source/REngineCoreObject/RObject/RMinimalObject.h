@@ -4,6 +4,7 @@
 #include"../Construction/ObjectConstruction.h"
 #include"../Reflection/ScriptCommand.h"
 #include"../Reflection/ScriptMacro.h"
+#include"../Reflection/RNativeClass.h"
 
 class RFrame;
 class RFunctionObject;
@@ -12,7 +13,8 @@ class RENGINECOREOBJECT_API RMinimalObject :public IGuidInterface
 public:
 	RMinimalObject();
 	virtual ~RMinimalObject();
-
+	virtual void InitMinimalObject();
+	virtual void InitReflectionContent() {};
 	virtual void Init() {};
 	virtual void Tick(float DeltaTime) {};
 
@@ -36,12 +38,13 @@ public:
 
 	//该函数可以获取编译后带字节码的函数
 	RFunctionObject* FindScriptFuntion(const std::string& FunName);
-
+	static RFunctionObject* FindScriptStaticFuntion(const std::string& FunName);
+	RNativeClass& GetNativeClass() { return NativeClass; }
 protected:
 	bool bTick;
 	RMinimalObject* Outer;
 	std::string m_Name;
-
+	RNativeClass NativeClass;
 private:
 	std::map<std::string, RFunctionObject*> FunctionList;
 };

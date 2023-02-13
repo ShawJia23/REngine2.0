@@ -5,7 +5,7 @@
 #include"../../Manage/TextureManage.h"
 #include"../../Materials/Material.h"
 #include"../../World.h"
-#include".././../Mesh/BaseMesh.h"
+#include".././../Mesh/MeshMinimal.h"
 #include"../../Actor/Light.h"
 #include"../../LoadAsset/ObjectAnalysis.h"
 #include"../../Component/RComponentMinimal.h"

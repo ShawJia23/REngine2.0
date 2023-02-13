@@ -6,6 +6,7 @@ EditorEngine::EditorEngine()
 	m_ToolbarEditor = new ToolbarEditor();
 	m_LogEditor = new LogEditor();
 	m_ObjectExplorerEditor =new ObjectExplorerEditor();
+	m_InspectorEditor = new InspectorEditor();
 }
 
 int EditorEngine::PreInit(
@@ -54,6 +55,7 @@ void EditorEngine::BuildEditor()
 	m_ToolbarEditor->BuildEditor();
 	m_LogEditor->BuildEditor();
 	m_ObjectExplorerEditor->BuildEditor();
+	m_InspectorEditor->BuildEditor();
 }
 
 void EditorEngine::DrawEditor(float DeltaTime)
@@ -67,9 +69,11 @@ void EditorEngine::DrawEditor(float DeltaTime)
 	//ImGui::Text("ASDAASDASDASD");
 	//ImGui::End();
 
+
 	m_ToolbarEditor->DrawEditor(DeltaTime);
 	m_LogEditor->DrawEditor(DeltaTime);
 	m_ObjectExplorerEditor->DrawEditor(DeltaTime);
+	m_InspectorEditor->DrawEditor(DeltaTime);
 }
 
 void EditorEngine::ExitEditor()
@@ -77,6 +81,7 @@ void EditorEngine::ExitEditor()
 	m_ToolbarEditor->ExitEditor();
 	m_LogEditor->ExitEditor();
 	m_ObjectExplorerEditor->ExitEditor();
+	m_InspectorEditor->ExitEditor();
 }
 
 void EditorEngine::DrawLayer(float DeltaTime)

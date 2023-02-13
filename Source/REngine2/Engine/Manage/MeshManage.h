@@ -1,5 +1,4 @@
 #pragma once
-#include"../Mesh/Mesh.h"
 #include"../ViewPort/ViewportInfo.h"
 #include"../Interface/DXDeviceInterface.h"
 #include"RObject/RMinimalObject.h"

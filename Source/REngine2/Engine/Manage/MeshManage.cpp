@@ -1,7 +1,12 @@
 #include "MeshManage.h"
 #include"../Config/RenderConfig.h"
 #include"../EngineMinimal.h"
-#include"../Component/Mesh/BaseMeshComponent.h"
+#include"../Component/Mesh/SubMeshComponent/BoxMeshComponent.h"
+#include"../Component/Mesh/SubMeshComponent/PlaneMeshComponent.h"
+#include"../Component/Mesh/SubMeshComponent/CylinderMeshComponent.h"
+#include"../Component/Mesh/SubMeshComponent/CustomMeshComponent.h"
+#include"../Component/Mesh/SubMeshComponent/ConeMeshComponent.h"
+#include"../Component/Mesh/SubMeshComponent/SphereMeshComponent.h"
 #include"../Construction/MeshConstruction.h"
 RMeshManage::RMeshManage()
 {

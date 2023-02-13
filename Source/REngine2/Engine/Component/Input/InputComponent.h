@@ -3,6 +3,7 @@
 #include"Component/RComponent.h"
 #include"../../EngineMinimal.h"
 #include"RInputType.h"
+#include"InputComponent.CodeReflection.h"
 
 DEFINITION_SIMPLE_SINGLE_DELEGATE(RCaptureKeyBoardDelegate, void, const RInputKey &);
 DEFINITION_SIMPLE_SINGLE_DELEGATE(RCaptureOnMouseDelegate, void, int, int);
@@ -10,6 +11,7 @@ DEFINITION_SIMPLE_SINGLE_DELEGATE(RCaptureOnMouseWheelDelegate, void, int, int, 
 
 class RInputComponent:public RComponent
 {
+	CODEREFLECTION()
 public:
 	RVARIABLE(hello world)
 		RCaptureKeyBoardDelegate CaptureKeyboardInforDelegate;

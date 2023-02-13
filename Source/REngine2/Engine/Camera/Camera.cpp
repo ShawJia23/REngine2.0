@@ -3,6 +3,8 @@
 #include"../Collision/CollisionSystem.h"
 #include"../RayCast/RayCastSystem.h"
 #include"../Render/Pipeline/RenderLayer/RenderLayerManage.h"
+
+extern GActorObject* SelectedObject;
 RCamera::RCamera():Super()
 {
 	CreateObjectParam param;
@@ -220,6 +222,7 @@ void RCamera::MoveRight(float InValue)
 
 void RCamera::OnClickedScreen(int X, int Y)
 {
+#if EDITOR_ENGINE
 	CollisionResult collisionResult;
 	RayCastSystem::HitResultByScreen(GetWorld(), X, Y, collisionResult);
 
@@ -228,6 +231,7 @@ void RCamera::OnClickedScreen(int X, int Y)
 	{
 		layer->HighlightDisplayObject(collisionResult.RenderData);
 	}
+#endif
 }
 
 void RCamera::RotateAroundXAxis(float InRotateDegrees)

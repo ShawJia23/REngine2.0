@@ -65,3 +65,15 @@ RFunctionObject* RMinimalObject::FindScriptFuntion(const std::string& FunName)
 
 	return NewFuntion;
 }
+
+RFunctionObject* RMinimalObject::FindScriptStaticFuntion(const std::string& FunName)
+{
+	return nullptr;
+}
+
+void RMinimalObject::InitMinimalObject()
+{
+	NativeClass.Outer = this;
+
+	InitReflectionContent();
+}

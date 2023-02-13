@@ -7,6 +7,8 @@
 #include"../../../Component/RComponentMinimal.h"
 #include"../../../Actor/ActorObject.h"
 #include"../../../World.h"
+
+extern GActorObject* SelectedObject;
 RenderLayerManage::RenderLayerManage() 
 {
 	CreateRenderLayer<OpaqueLayer>();
@@ -92,13 +94,13 @@ void RenderLayerManage::Clear(EMeshRenderLayerType layer)
 extern int SelectedVariable;
 void RenderLayerManage::HighlightDisplayObject(std::weak_ptr<RRenderData> renderData)
 {
+#if EDITOR_ENGINE
 	//清除旧的物体
 	Clear(EMeshRenderLayerType::RENDERLAYER_SELECT);
 
 	//设置新的
 	Add(EMeshRenderLayerType::RENDERLAYER_SELECT, renderData);
 
-#if EDITOR_ENGINE
 	if (GActorObject* pActor = dynamic_cast<GActorObject*>(renderData.lock()->Mesh->GetOuter()))
 	{
 		const vector<GActorObject*>& actors = GetWorld()->GetActors();
@@ -107,6 +109,7 @@ void RenderLayerManage::HighlightDisplayObject(std::weak_ptr<RRenderData> render
 			if (actors[i] == pActor)
 			{
 				SelectedVariable = i;
+				SelectedObject = pActor;
 				break;
 			}
 		}
