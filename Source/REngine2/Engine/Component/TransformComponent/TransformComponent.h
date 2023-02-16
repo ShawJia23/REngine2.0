@@ -28,11 +28,16 @@ public:
 
 	fvector_3d GetCorrectionPosition();
 	void GetCorrectionPosition(fvector_3d& pos3);
-private:
+public:
 	XMFLOAT3 Position;
+
 	XMFLOAT3 Rotation;
+
 	XMFLOAT3 Scale;
+
 	XMFLOAT3 ForwardVector;
+
 	XMFLOAT3 RightVector;
+
 	XMFLOAT3 UpVector;
 };

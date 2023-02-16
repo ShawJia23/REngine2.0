@@ -26,6 +26,9 @@ public:
 	void SetOuter(RMinimalObject* InNewOuter) { Outer = InNewOuter; }
 	void Rename(const std::string& name) { m_Name = name; }
 
+#if EDITOR_ENGINE
+	virtual bool UpdateEditorPropertyDetails(RPropertyObject* InProperty) { return false; }
+#endif // EDITOR_ENGINE
 public:
 	FUNCTION_DEFINITION(Script_Undefined);
 	FUNCTION_DEFINITION(Script_Int);

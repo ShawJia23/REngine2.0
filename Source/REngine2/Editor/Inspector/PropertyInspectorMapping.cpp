@@ -1,16 +1,17 @@
 #include"PropertyInspectorMapping.h"
 #include"RObject/PropertyObject.h"
-void PropertyInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
+bool PropertyInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
+	return false;
 }
 
 /// <summary>
 /// ////
 /// </summary>
 /// <param name="InProperty"></param>
-void IntInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
+bool IntInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
-	ImGui::InputInt(InProperty->GetName().c_str(), InProperty->GetData<int>());
+	return ImGui::InputInt(InProperty->GetName().c_str(), InProperty->GetData<int>());
 }
 
 shared_ptr<PropertyInspectorMapping> IntInspectorMapping::MakeDetailsMapping()
@@ -23,9 +24,9 @@ shared_ptr<PropertyInspectorMapping> IntInspectorMapping::MakeDetailsMapping()
 /// /////
 /// </summary>
 /// <param name="InProperty"></param>
-void FloatInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
+bool FloatInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
-	ImGui::InputFloat(InProperty->GetName().c_str(), InProperty->GetData<float>());
+	return ImGui::InputFloat(InProperty->GetName().c_str(), InProperty->GetData<float>());
 }
 
 shared_ptr<PropertyInspectorMapping> FloatInspectorMapping::MakeDetailsMapping()
@@ -39,9 +40,9 @@ shared_ptr<PropertyInspectorMapping> FloatInspectorMapping::MakeDetailsMapping()
 /// //////
 /// </summary>
 /// <param name="InProperty"></param>
-void BoolInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
+bool BoolInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
-	ImGui::Checkbox(InProperty->GetName().c_str(), InProperty->GetData<bool>());
+	return ImGui::Checkbox(InProperty->GetName().c_str(), InProperty->GetData<bool>());
 }
 
 shared_ptr<PropertyInspectorMapping> BoolInspectorMapping::MakeDetailsMapping()
@@ -53,9 +54,9 @@ shared_ptr<PropertyInspectorMapping> BoolInspectorMapping::MakeDetailsMapping()
 /// //////
 /// </summary>
 /// <param name="InProperty"></param>
-void ArrayInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
+bool ArrayInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
-
+	return false;
 }
 
 shared_ptr<PropertyInspectorMapping> ArrayInspectorMapping::MakeDetailsMapping()
@@ -68,9 +69,9 @@ shared_ptr<PropertyInspectorMapping> ArrayInspectorMapping::MakeDetailsMapping()
 /// ///////
 /// </summary>
 /// <param name="InProperty"></param>
-void MapInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
+bool MapInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
-
+	return false;
 }
 
 shared_ptr<PropertyInspectorMapping> MapInspectorMapping::MakeDetailsMapping()
@@ -83,13 +84,13 @@ shared_ptr<PropertyInspectorMapping> MapInspectorMapping::MakeDetailsMapping()
 /// ////////
 /// </summary>
 /// <param name="InProperty"></param>
-void StringInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
+bool StringInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
 	char Buff[1024] = { 0 };
 	string* BuffChar = InProperty->GetData<string>();
 	strcpy(Buff, BuffChar->c_str());
 
-	ImGui::InputText(
+	return ImGui::InputText(
 		InProperty->GetName().c_str(),
 		Buff, 1024, ImGuiInputTextFlags_CallbackEdit,
 		StringInspectorMapping::StringCallback,
@@ -116,9 +117,9 @@ shared_ptr<PropertyInspectorMapping> StringInspectorMapping::MakeDetailsMapping(
 /// //////
 /// </summary>
 /// <param name="InProperty"></param>
-void Vector3DInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
+bool Vector3DInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
-	ImGui::InputFloat3(
+	return ImGui::InputFloat3(
 		InProperty->GetName().c_str(),
 		(float*)InProperty->GetData<fvector_3d>());
 }
@@ -126,4 +127,15 @@ void Vector3DInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 shared_ptr<PropertyInspectorMapping> Vector3DInspectorMapping::MakeDetailsMapping()
 {
 	return make_shared<Vector3DInspectorMapping>();
+}
+
+bool XMFLOAT3InspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
+{
+	return false;
+	//return ConstructDetailsWidget::ConstructFloat3Widget<fvector_3d>(InProperty);
+}
+
+shared_ptr<PropertyInspectorMapping> XMFLOAT3InspectorMapping::MakeDetailsMapping()
+{
+	return make_shared<XMFLOAT3InspectorMapping>();
 }

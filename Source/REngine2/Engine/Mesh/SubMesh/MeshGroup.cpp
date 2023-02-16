@@ -29,7 +29,6 @@ void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderDat
 	if (pCustomMesh)
 	{
 		mesh->Rename("CustomComponent");
-		mesh->SetOuter(pCustomMesh);
 		pCustomMesh->SetMeshComponent(mesh);
 		pCustomMesh->Rename(name);
 	}

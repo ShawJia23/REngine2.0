@@ -17,7 +17,7 @@ enum EMaterialType
 	BaseColor=13,
 	WorldNormal = 14,
 	Normal = 15,
-	Max,
+	MaterialMax,
 };
 
 //äÖÈ¾ÍØÆË

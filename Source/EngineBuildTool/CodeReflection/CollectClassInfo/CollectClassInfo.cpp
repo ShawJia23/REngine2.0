@@ -111,6 +111,75 @@ namespace CollectClassInfo
 		return false;
 	}
 
+	void AnalyticParameters(char* LStr, std::vector<ParamElement>& OutParam)
+	{
+		//解析参数和参数名
+		vector<string> ElementStr;
+		simple_cpp_string_algorithm::parse_into_vector_array(LStr, ElementStr, CommaString);
+
+		//UObject *Context
+		//int32 &A
+		//float b
+		//bool C
+
+		//收集变量
+		for (std::string& Ele : ElementStr)
+		{
+			char* ElePtr = const_cast<char*>(Ele.c_str());
+
+			if (Ele == "")
+			{
+				continue;
+			}
+
+			//int32 &A
+			//移除前后空格
+			trim_start_and_end_inline(ElePtr);
+
+			OutParam.push_back(ParamElement());
+			ParamElement& paramElement = OutParam[OutParam.size() - 1];
+
+			char R[1024] = { 0 };
+			char L[1024] = { 0 };
+			if (simple_cpp_string_algorithm::string_contain(Ele, StarString))
+			{
+				paramElement.bPointer = true;
+				//GObject *Context
+				split(ElePtr, StarString, R, L, false);
+				//R = GObject
+				//L = Context
+			}
+			else if (simple_cpp_string_algorithm::string_contain(Ele, FetchAddressString))
+			{
+				paramElement.bReference = true;
+				split(ElePtr, FetchAddressString, R, L, false);
+			}
+			else
+			{
+				//  int a
+				split(ElePtr, SpaceString, R, L, false);
+				if (R[0] == '\0')
+				{
+					strcpy(R, ElePtr);
+				}
+			}
+
+			if (c_str_contain(R, "const"))
+			{
+				//const GObject *Context
+				paramElement.bConst = true;
+
+				remove_string_start(R, "const");
+			}
+
+			trim_start_and_end_inline(R);
+			trim_start_and_end_inline(L);
+
+			paramElement.Type = R;
+			paramElement.Name = L;
+		}
+	}
+
 	bool Collection(const string& paths, ClassAnalysis& classAnalysis)
 	{
 		std::vector<std::string> stringArray;
@@ -375,10 +444,29 @@ namespace CollectClassInfo
 							variableAnalysis.bConst = true;
 							remove_string_start(R, "const");
 						}
-
 						trim_start_and_end_inline(R);
 						trim_start_and_end_inline(L);
 
+						//是不是模板
+						if (c_str_contain(R, "<") && c_str_contain(R, ">"))
+						{
+							//V<a,b,c,d,e,f,g,....>
+							char TempR[1024] = { 0 };
+							char TempL[1024] = { 0 };
+							split(R, "<", TempR, TempL, false);
+
+							variableAnalysis.Type = TempR;
+
+							//a,b,c,d,e,f,g,....>
+							remove_char_end(TempL, '>');
+							//a,b,c,d,e,f,g,....
+
+							AnalyticParameters(TempL, variableAnalysis.InternalType);
+						}
+						else
+						{
+							variableAnalysis.Type = R;
+						}
 						variableAnalysis.Type = R;
 						variableAnalysis.Name = L;
 

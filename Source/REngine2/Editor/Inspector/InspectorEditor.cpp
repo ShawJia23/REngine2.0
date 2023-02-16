@@ -1,6 +1,7 @@
 #include"InspectorEditor.h"
 #include"RegisterInspector.h"
 #include"PropertyInspectorMapping.h"
+#include"ClassInspectorMapping.h"
 #include"RObject/PropertyObject.h"
 #include"../../Engine/Actor/ActorObject.h"
 extern GActorObject* SelectedObject;
@@ -12,14 +13,18 @@ InspectorEditor::InspectorEditor()
 
 void InspectorEditor::BuildEditor()
 {
-	//±‰¡ø”≥…‰
-	RegisterInspector::RegisterProperty("bool", BoolInspectorMapping::MakeDetailsMapping());
-	RegisterInspector::RegisterProperty("int", IntInspectorMapping::MakeDetailsMapping());
-	RegisterInspector::RegisterProperty("float", FloatInspectorMapping::MakeDetailsMapping());
-	RegisterInspector::RegisterProperty("string", StringInspectorMapping::MakeDetailsMapping());
-	RegisterInspector::RegisterProperty("map", MapInspectorMapping::MakeDetailsMapping());
-	RegisterInspector::RegisterProperty("vector", ArrayInspectorMapping::MakeDetailsMapping());
-	RegisterInspector::RegisterProperty("fvector_3d", Vector3DInspectorMapping::MakeDetailsMapping());
+	//Property
+	RegisterInspector::RegisterRProperty("bool", BoolInspectorMapping::MakeDetailsMapping());
+	RegisterInspector::RegisterRProperty("int", IntInspectorMapping::MakeDetailsMapping());
+	RegisterInspector::RegisterRProperty("float", FloatInspectorMapping::MakeDetailsMapping());
+	RegisterInspector::RegisterRProperty("string", StringInspectorMapping::MakeDetailsMapping());
+	RegisterInspector::RegisterRProperty("map", MapInspectorMapping::MakeDetailsMapping());
+	RegisterInspector::RegisterRProperty("vector", ArrayInspectorMapping::MakeDetailsMapping());
+	RegisterInspector::RegisterRProperty("fvector_3d", Vector3DInspectorMapping::MakeDetailsMapping());
+	RegisterInspector::RegisterRProperty("XMFLOAT3", Vector3DInspectorMapping::MakeDetailsMapping());
+	
+	//class 
+	RegisterInspector::RegisterRClass("GActorObject", ClassInspectorMapping::MakeDetailsMapping());
 }
 
 void InspectorEditor::DrawEditor(float DeltaTime)

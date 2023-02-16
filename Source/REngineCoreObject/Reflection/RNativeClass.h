@@ -1,10 +1,10 @@
 #pragma once
 #include <map>
 #include <string>
-
+#include<vector>
 class RMinimalObject;
 class RFunctionObject;
-class RPropertyObject;;
+class RPropertyObject;
 
 struct RNativeClass
 {
@@ -19,6 +19,8 @@ public:
 		void* InData);
 public:
 	std::map<std::string, RFunctionObject*> FunctionList;
+	std::map<std::string, std::string> Metas;
+	std::vector<std::string> InheritClassTypes;
 	RPropertyObject* Property;
 	RMinimalObject* Outer;
 };

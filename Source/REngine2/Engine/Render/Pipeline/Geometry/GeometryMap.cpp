@@ -1,6 +1,5 @@
 #include"GeometryMap.h"
 #include"../../Buffer/ConstructBuffer.h"
-#include"../../../Mesh/Mesh.h"
 #include"../../../Materials/Material.h"
 #include"../../../Manage/LightManage.h"
 #include"../../../Manage/TextureManage.h"
@@ -8,6 +7,9 @@
 #include"../../ConstontBuffer/ConstontBufferMinimal.h"
 #include"../RenderLayer/RenderLayerManage.h"
 #include"../../../Actor/ActorObject.h"
+#include"../../../Light/RLightMinimal.h"
+#include"../../../ViewPort/ViewportInfo.h"
+
 UINT MeshObjectCount=0;
 
 RGeometryMap::RGeometryMap()

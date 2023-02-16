@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component\RComponent.cpp" />
     <ClCompile Include="Reflection\FunctionManage.cpp" />
     <ClCompile Include="Reflection\RFrame.cpp" />
     <ClCompile Include="Reflection\RNativeClass.cpp" />

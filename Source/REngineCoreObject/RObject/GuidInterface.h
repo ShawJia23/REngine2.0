@@ -11,6 +11,7 @@ public:
 		return guid_equal(&m_guid, &InOther.m_guid);
 	}
 
+	string GetGuidString() const;
 	simple_c_guid GetGuid() { return m_guid; }
 private:
 	simple_c_guid m_guid;

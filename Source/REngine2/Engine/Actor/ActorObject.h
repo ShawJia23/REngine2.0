@@ -39,6 +39,16 @@ public:
 	RVARIABLE(CodeType = Resources)
 	float helloFloat123;
 
+
+	RVARIABLE(CodeType = Resources)
+	string NameXXXX;
+
+	RVARIABLE(CodeType = Resources)
+	vector<int> TTTT;
+
+	RVARIABLE(CodeType = Resources)
+	map<int,string> TTTT1234567;
+
 	RFUNCTION(CodeType = Event)
 	static void Hello123(int c, float b);
 

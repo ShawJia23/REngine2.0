@@ -147,7 +147,7 @@
     <ClCompile Include="Engine\Manage\LightManage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Actor\Light.cpp">
+    <ClCompile Include="Engine\Light\Light.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\LoadAsset\ObjectAnalysis.cpp">
@@ -277,6 +277,27 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Mesh\SubMesh\SphereMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Light\PointLightComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Light\ParallelLightComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\Light\SpotLightComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Light\ParallelLight.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Light\PointLight.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Light\SpotLight.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor\Inspector\ClassInspectorMapping.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -437,7 +458,7 @@
     <ClInclude Include="Engine\Manage\LightManage.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Actor\Light.h">
+    <ClInclude Include="Engine\Light\Light.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Component\RComponentMinimal.h">
@@ -600,6 +621,30 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Mesh\MeshMinimal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Light\PointLightComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Light\ParallelLightComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\Light\SpotLightComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Light\ParallelLight.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Light\PointLight.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Light\SpotLight.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Light\RLightMinimal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\Inspector\ClassInspectorMapping.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

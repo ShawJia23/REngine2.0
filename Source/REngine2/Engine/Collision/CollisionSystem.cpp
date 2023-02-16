@@ -1,6 +1,6 @@
 #include "CollisionSystem.h"
 #include"../Render/Pipeline/Geometry/GeometryMap.h"
-#include"../Component/Mesh/BaseMeshComponent.h"
+#include"../Component/Mesh/MeshComponent.h"
 #include"../Camera/Camera.h"
 #include"../World.h"
 #include"../Render/Pipeline/DX12Pipeline.h"

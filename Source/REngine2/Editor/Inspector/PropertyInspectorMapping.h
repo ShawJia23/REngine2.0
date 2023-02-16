@@ -5,7 +5,7 @@ class RPropertyObject;
 class PropertyInspectorMapping :public RInspectorMapping
 {
 public:
-	virtual void UpdateDetailsWidget(RPropertyObject* InProperty);
+	virtual bool UpdateDetailsWidget(RPropertyObject* InProperty);
 
 public:
 	static shared_ptr<PropertyInspectorMapping> MakeDetailsMapping() { return nullptr; }
@@ -15,7 +15,7 @@ public:
 class IntInspectorMapping :public PropertyInspectorMapping
 {
 public:
-	virtual void UpdateDetailsWidget(RPropertyObject* InProperty);
+	virtual bool UpdateDetailsWidget(RPropertyObject* InProperty);
 
 public:
 	static shared_ptr<PropertyInspectorMapping> MakeDetailsMapping();
@@ -25,7 +25,7 @@ public:
 class FloatInspectorMapping :public PropertyInspectorMapping
 {
 public:
-	virtual void UpdateDetailsWidget(RPropertyObject* InProperty);
+	virtual bool UpdateDetailsWidget(RPropertyObject* InProperty);
 
 public:
 	static shared_ptr<PropertyInspectorMapping> MakeDetailsMapping();
@@ -35,7 +35,7 @@ public:
 class BoolInspectorMapping :public PropertyInspectorMapping
 {
 public:
-	virtual void UpdateDetailsWidget(RPropertyObject* InProperty);
+	virtual bool UpdateDetailsWidget(RPropertyObject* InProperty);
 
 public:
 	static shared_ptr<PropertyInspectorMapping> MakeDetailsMapping();
@@ -45,7 +45,7 @@ public:
 class ArrayInspectorMapping :public PropertyInspectorMapping
 {
 public:
-	virtual void UpdateDetailsWidget(RPropertyObject* InProperty);
+	virtual bool UpdateDetailsWidget(RPropertyObject* InProperty);
 public:
 	static shared_ptr<PropertyInspectorMapping> MakeDetailsMapping();
 };
@@ -54,7 +54,7 @@ public:
 class MapInspectorMapping :public PropertyInspectorMapping
 {
 public:
-	virtual void UpdateDetailsWidget(RPropertyObject* InProperty);
+	virtual bool UpdateDetailsWidget(RPropertyObject* InProperty);
 
 public:
 	static shared_ptr<PropertyInspectorMapping> MakeDetailsMapping();
@@ -64,7 +64,7 @@ public:
 class StringInspectorMapping :public PropertyInspectorMapping
 {
 public:
-	virtual void UpdateDetailsWidget(RPropertyObject* InProperty);
+	virtual bool UpdateDetailsWidget(RPropertyObject* InProperty);
 
 	static int StringCallback(ImGuiInputTextCallbackData* InData);
 public:
@@ -74,7 +74,16 @@ public:
 class Vector3DInspectorMapping :public PropertyInspectorMapping
 {
 public:
-	virtual void UpdateDetailsWidget(RPropertyObject* InProperty);
+	virtual bool UpdateDetailsWidget(RPropertyObject* InProperty);
+
+public:
+	static shared_ptr<PropertyInspectorMapping> MakeDetailsMapping();
+};
+
+class XMFLOAT3InspectorMapping :public PropertyInspectorMapping
+{
+public:
+	virtual bool UpdateDetailsWidget(RPropertyObject* InProperty);
 
 public:
 	static shared_ptr<PropertyInspectorMapping> MakeDetailsMapping();

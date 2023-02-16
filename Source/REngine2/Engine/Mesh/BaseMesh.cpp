@@ -55,6 +55,7 @@ void BMesh::SetScale(const fvector_3d& InNewScale)
 void BMesh::SetMeshComponent(RMeshComponent* InMeshComponent)
 { 
 	MeshComponent = InMeshComponent; 
+	MeshComponent->SetOuter(this);
 }
 void BMesh::SetRenderLayer(EMeshRenderLayerType type)
 {

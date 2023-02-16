@@ -48,6 +48,9 @@
     <ClCompile Include="Reflection\RNativeClass.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Component\RComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RObject\GuidInterface.h">

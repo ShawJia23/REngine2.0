@@ -6,7 +6,7 @@
 #include"../../Materials/Material.h"
 #include"../../World.h"
 #include".././../Mesh/MeshMinimal.h"
-#include"../../Actor/Light.h"
+#include"../../Light/RLightMinimal.h"
 #include"../../LoadAsset/ObjectAnalysis.h"
 #include"../../Component/RComponentMinimal.h"
 #include"../../World.h"

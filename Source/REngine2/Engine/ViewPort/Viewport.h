@@ -10,10 +10,6 @@ public:
 
 	virtual void OnResetSize(int width, int height);
 
-	void ResetViewport(int width, int height);
-
-	void ResetScissorRect(int width, int height);
-
 	void SetViewMatrix(const XMMATRIX& viewMatrix) { XMStoreFloat4x4(&ViewMatrix, viewMatrix); }
 
 	void SetProjectMatrix(const XMMATRIX& projectMatrix) { XMStoreFloat4x4(&ProjectMatrix, projectMatrix); }
