@@ -1,9 +1,9 @@
 #include "MeshGroup.h"
 #include"CustomMesh.h"
-#include"../../Component/Mesh/SubMeshComponent/CustomMeshComponent.h"
 #include"../../World.h"
 #include"../../Manage/MeshManage.h"
 #include"../../Manage/TextureManage.h"
+#include"../../Component/Mesh/SubMeshComponent/CustomMeshComponent.h"
 MeshGroup::MeshGroup()
 {
 	m_RenderDatas.clear();
@@ -28,8 +28,8 @@ void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderDat
 	CustomMesh* pCustomMesh=GetWorld()->CreateActorObject<CustomMesh>();
 	if (pCustomMesh)
 	{
-		mesh->Rename("CustomComponent");
-		pCustomMesh->SetMeshComponent(mesh);
+		pCustomMesh->MeshComponent = mesh;
+		mesh->SetOuter(pCustomMesh);
 		pCustomMesh->Rename(name);
 	}
 	SubMesh pSubMesh;

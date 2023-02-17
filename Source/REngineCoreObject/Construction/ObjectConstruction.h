@@ -10,6 +10,7 @@ struct RENGINECOREOBJECT_API CreateObjectParam
 	{}
 
 	RMinimalObject* Outer;
+	RComponent* ParentComponent;
 	std::string Name;
 };
 

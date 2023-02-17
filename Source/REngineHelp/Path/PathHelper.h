@@ -10,6 +10,8 @@ struct RENGINECORE_API PathHelper
 
 	static std::string GetEngineAssetPath();
 
+	static std::string GetEngineAssetModelPath();
+
 	static std::string GetEngineLogsPath();
 
 	static std::string GetEngineSourcePath();

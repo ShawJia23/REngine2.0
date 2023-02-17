@@ -147,6 +147,11 @@
     <ClCompile Include="Editor\Inspector\RegisterInspector.cpp" />
     <ClCompile Include="Editor\Log\LogEditor.cpp" />
     <ClCompile Include="Editor\Log\LogSystem.cpp" />
+    <ClCompile Include="Editor\OperationHandle\MoveArrow.cpp" />
+    <ClCompile Include="Editor\OperationHandle\OperationHandleBase.cpp" />
+    <ClCompile Include="Editor\OperationHandle\OperationHandleManage.cpp" />
+    <ClCompile Include="Editor\OperationHandle\RotatorArrow.cpp" />
+    <ClCompile Include="Editor\OperationHandle\ScalingArrow.cpp" />
     <ClCompile Include="Editor\Toolbar\ToolbarEditor.cpp" />
     <ClCompile Include="Engine\Actor\ActorObject.cpp" />
     <ClCompile Include="Engine\Light\Light.cpp" />
@@ -244,6 +249,11 @@
     <ClInclude Include="Editor\Inspector\RegisterInspector.h" />
     <ClInclude Include="Editor\Log\LogEditor.h" />
     <ClInclude Include="Editor\Log\LogSystem.h" />
+    <ClInclude Include="Editor\OperationHandle\MoveArrow.h" />
+    <ClInclude Include="Editor\OperationHandle\OperationHandleBase.h" />
+    <ClInclude Include="Editor\OperationHandle\OperationHandleManage.h" />
+    <ClInclude Include="Editor\OperationHandle\RotatorArrow.h" />
+    <ClInclude Include="Editor\OperationHandle\ScalingArrow.h" />
     <ClInclude Include="Editor\Toolbar\ToolbarEditor.h" />
     <ClInclude Include="Engine\Actor\ActorObject.h" />
     <ClInclude Include="Engine\Light\Light.h" />

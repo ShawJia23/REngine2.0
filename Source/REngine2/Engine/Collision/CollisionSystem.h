@@ -31,4 +31,13 @@ struct CollisionScene
 		const XMVECTOR& direction,
 		const XMMATRIX& viewInverseMatrix,
 		CollisionResult& outResult);
+
+	static bool RaycastSingle(
+		RWorld* InWorld,
+		GActorObject* InSpecificObjects,
+		const std::vector<RComponent*>& IgnoreComponents,
+		const XMVECTOR& OriginPoint,
+		const XMVECTOR& Direction,
+		const XMMATRIX& ViewInverseMatrix,
+		CollisionResult& OutResult);
 };

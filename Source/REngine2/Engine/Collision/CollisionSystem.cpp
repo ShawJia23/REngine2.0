@@ -4,8 +4,20 @@
 #include"../Camera/Camera.h"
 #include"../World.h"
 #include"../Render/Pipeline/DX12Pipeline.h"
-bool CollisionScene::RaycastSingle(RWorld* inWorld, const XMVECTOR& originPoint,
-	const XMVECTOR& direction, const XMMATRIX& viewInverseMatrix,
+
+CollisionResult::CollisionResult()
+	:bHit(false)
+	, Distance(0.f)
+	, Time(0.f)
+	, Component(NULL)
+	, Actor(NULL)
+{
+}
+
+bool CollisionScene::RaycastSingle(RWorld* inWorld, 
+	const XMVECTOR& originPoint,
+	const XMVECTOR& direction, 
+	const XMMATRIX& viewInverseMatrix,
 	CollisionResult& outResult)
 {
 	float FinalTime = FLT_MAX;
@@ -82,11 +94,16 @@ bool CollisionScene::RaycastSingle(RWorld* inWorld, const XMVECTOR& originPoint,
 	return false;
 }
 
-CollisionResult::CollisionResult()
-	:bHit(false)
-	, Distance(0.f)
-	, Time(0.f)
-	, Component(NULL)
-	, Actor(NULL)
+bool CollisionScene::RaycastSingle(
+	RWorld* InWorld,
+	GActorObject* InSpecificObjects,
+	const std::vector<RComponent*>& IgnoreComponents,
+	const XMVECTOR& OriginPoint,
+	const XMVECTOR& Direction,
+	const XMMATRIX& ViewInverseMatrix,
+	CollisionResult& OutResult)
 {
+	return true;
 }
+
+

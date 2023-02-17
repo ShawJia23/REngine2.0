@@ -5,5 +5,19 @@
 class RWorld;
 struct RayCastSystem
 {
-	static bool HitResultByScreen(RWorld* inWorld, int screenX, int screenY, CollisionResult& outResult);
+	//获得射线的数据
+	static bool GetRayParamByScreen(RWorld* inWorld,
+		const fvector_2id& ScreenXY,
+		XMVECTOR& OriginPoint,
+		XMVECTOR& Direction,
+		XMMATRIX& ViewInverseMatrix);
+
+	//射线去判断相交
+	static bool HitResultByScreen(RWorld* InWorld, int ScreenX, int ScreenY, CollisionResult& OutResult);
+
+	static bool HitSpecificObjectsResultByScreen(
+		RWorld* InWorld,
+		GActorObject* InSpecificObjects,
+		const std::vector<RComponent*>& IgnoreComponents,
+		int ScreenX, int ScreenY, CollisionResult& OutResult);
 };

@@ -1,3 +1,4 @@
+#pragma once
 #include"../StaticMeshComponent.h"
 #include"CustomMeshComponent.CodeReflection.h"
 class CustomMeshComponent :public RStaticMeshComponent

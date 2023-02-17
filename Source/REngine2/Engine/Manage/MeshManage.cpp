@@ -80,4 +80,4 @@ RMeshComponent* RMeshManage::CreateCustomMeshComponent(const CreateObjectParam& 
 void RMeshManage::CreateMeshGroup(size_t hashKey, RMeshComponent* mesh, const MeshRenderData& meshData)
 {
     m_pipeline.BuildMesh(hashKey,mesh, meshData);
-}
+ }

@@ -13,9 +13,11 @@ class BMesh : public GActorObject, public IRenderingInterface, public IDirectXDe
 {
 	CODEREFLECTION()
 
+
+public:
 	RVARIABLE()
 	RMeshComponent* MeshComponent;
-public:
+
 	BMesh();
 
 	virtual void Init();
@@ -24,7 +26,7 @@ public:
 	virtual void Draw(float DeltaTime);
 	virtual void PostDraw(float DeltaTime);
 
-	virtual RMeshComponent* GetMeshComponent() { return MeshComponent; }
+	virtual RMeshComponent* GetMeshComponent();
 
 	virtual void SetMeshComponent(RMeshComponent* InMeshComponent);
 	virtual void SetRenderLayer(EMeshRenderLayerType type);

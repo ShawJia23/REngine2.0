@@ -2,7 +2,11 @@
 #include"../Camera/Camera.h"
 #include"../World.h"
 #include"../Config/RenderConfig.h"
-bool RayCastSystem::HitResultByScreen(RWorld* inWorld, int screenX, int screenY, CollisionResult& outResult)
+bool RayCastSystem::GetRayParamByScreen(RWorld* inWorld,
+	const fvector_2id& ScreenXY,
+	XMVECTOR& OriginPoint,
+	XMVECTOR& Direction,
+	XMMATRIX& ViewInverseMatrix)
 {
 	if (RCamera* camera = inWorld->GetCamera())
 	{
@@ -10,20 +14,61 @@ bool RayCastSystem::HitResultByScreen(RWorld* inWorld, int screenX, int screenY,
 		int W = camera->GetWidth();
 
 		fvector_2d View;
-		View.x = (2.f * screenX / W - 1.f) / camera->GetProjectMatrix()._11;
-		View.y = (-2.f * screenY / H + 1.f) / camera->GetProjectMatrix()._22;
+		View.x = (2.f * ScreenXY.x / W - 1.f) / camera->GetProjectMatrix()._11;
+		View.y = (-2.f * ScreenXY.y / H + 1.f) / camera->GetProjectMatrix()._22;
 
 		//视口下的 原点 和 方向
-		XMVECTOR OriginPoint = DirectX::XMVectorSet(0.f, 0.f, 0.f, 1.f);
-		XMVECTOR Direction = DirectX::XMVectorSet(View.x, View.y, 1.f, 0.f);
+		OriginPoint = DirectX::XMVectorSet(0.f, 0.f, 0.f, 1.f);
+		Direction = DirectX::XMVectorSet(View.x, View.y, 1.f, 0.f);
 
 		auto viewMatrix = camera->GetViewMatrix();
 		XMMATRIX ViewMatrix = DirectX::XMLoadFloat4x4(&viewMatrix);
 		XMVECTOR ViewMatrixDeterminant = DirectX::XMMatrixDeterminant(ViewMatrix);
-		XMMATRIX ViewInverseMatrix = DirectX::XMMatrixInverse(&ViewMatrixDeterminant, ViewMatrix);
-
-		CollisionScene::RaycastSingle(inWorld, OriginPoint, Direction, ViewInverseMatrix, outResult);
+		ViewInverseMatrix = DirectX::XMMatrixInverse(&ViewMatrixDeterminant, ViewMatrix);
+		return true;
 	}
 
 	return false;
+}
+
+bool RayCastSystem::HitResultByScreen(RWorld* InWorld, int ScreenX, int ScreenY, CollisionResult& OutResult)
+{
+	XMVECTOR OriginPoint;
+	XMVECTOR Direction;
+	XMMATRIX ViewInverseMatrix;
+	if (GetRayParamByScreen(
+		InWorld,
+		fvector_2id(ScreenX, ScreenY),
+		OriginPoint,
+		Direction,
+		ViewInverseMatrix))
+	{
+		return CollisionScene::RaycastSingle(InWorld, OriginPoint, Direction, ViewInverseMatrix, OutResult);
+	}
+
+	return false;
+}
+
+bool RayCastSystem::HitSpecificObjectsResultByScreen(
+	RWorld* InWorld,
+	GActorObject* InSpecificObjects,
+	const std::vector<RComponent*>& IgnoreComponents,
+	int ScreenX, int ScreenY, CollisionResult& OutResult)
+{
+	XMVECTOR OriginPoint;
+	XMVECTOR Direction;
+	XMMATRIX ViewInverseMatrix;
+	if (GetRayParamByScreen(
+		InWorld,
+		fvector_2id(ScreenX, ScreenY),
+		OriginPoint,
+		Direction,
+		ViewInverseMatrix))
+	{
+		return CollisionScene::RaycastSingle(
+			InWorld,
+			InSpecificObjects,
+			IgnoreComponents,
+			OriginPoint, Direction, ViewInverseMatrix, OutResult);
+	}
 }

@@ -61,3 +61,8 @@ void BMesh::SetRenderLayer(EMeshRenderLayerType type)
 {
 	MeshComponent->SetMeshRenderLayerType(type); 
 }
+
+RMeshComponent* BMesh::GetMeshComponent()
+{
+	return MeshComponent; 
+}

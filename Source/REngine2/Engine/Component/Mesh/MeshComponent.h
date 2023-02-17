@@ -24,7 +24,16 @@ public:
 	void SetMeshRenderLayerType(EMeshRenderLayerType renderLayerType) { MeshRenderLayerType =renderLayerType; }
 
 	EMeshRenderLayerType GetRenderLayerType()const { return MeshRenderLayerType; }
+public:
+	void SetPickup(bool bNewPickup) { bPickup = bNewPickup; }
+	bool IsPickup()const { return bPickup; }
+
+	void SetVisible(bool bNewVisible) { bVisible = bNewVisible; }
+	bool IsVisible()const { return bVisible; }
 
 protected:
+	bool bVisible;
+	bool bPickup;
+
 	EMeshRenderLayerType MeshRenderLayerType;
 };

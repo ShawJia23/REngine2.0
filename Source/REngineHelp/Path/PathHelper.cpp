@@ -15,6 +15,11 @@ std::string PathHelper::GetEngineAssetPath()
 	return "../../Asset";
 }
 
+std::string PathHelper::GetEngineAssetModelPath()
+{
+	return "../../Asset/Model";
+}
+
 std::string PathHelper::GetEngineLogsPath()
 {
 	return "../../log";

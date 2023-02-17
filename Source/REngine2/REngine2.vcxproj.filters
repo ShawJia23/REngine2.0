@@ -300,6 +300,21 @@
     <ClCompile Include="Editor\Inspector\ClassInspectorMapping.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Editor\OperationHandle\OperationHandleManage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor\OperationHandle\OperationHandleBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor\OperationHandle\MoveArrow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor\OperationHandle\RotatorArrow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor\OperationHandle\ScalingArrow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\EngineFactory.h">
@@ -645,6 +660,21 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Editor\Inspector\ClassInspectorMapping.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\OperationHandle\OperationHandleManage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\OperationHandle\OperationHandleBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\OperationHandle\MoveArrow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\OperationHandle\RotatorArrow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\OperationHandle\ScalingArrow.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
