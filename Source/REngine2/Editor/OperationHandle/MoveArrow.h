@@ -1,11 +1,12 @@
 #pragma once
 #include"OperationHandleBase.h"
-class MoveArrow :public OperationHandleBase
+#include"MoveArrow.CodeReflection.h"
+
+class RMoveArrow :public OperationHandleBase
 {
 	CODEREFLECTION()
-
 public:
-	MoveArrow();
+	RMoveArrow();
 
 	void CreateMesh();
 

@@ -1,9 +1,9 @@
 #pragma once
 #include "OperationHandleBase.h"
-
+#include "RotatorArrow.CodeReflection.h"
 class PlaneMeshComponent;
 class RMeshComponent;
-class RotatorArrow :public OperationHandleBase
+class RRotatorArrow :public OperationHandleBase
 {
 	CODEREFLECTION()
 
@@ -17,7 +17,7 @@ class RotatorArrow :public OperationHandleBase
 	PlaneMeshComponent* ZPlaneComponent;
 
 public:
-	RotatorArrow();
+	RRotatorArrow();
 
 	void CreateMesh();
 
@@ -36,7 +36,7 @@ protected:
 
 protected:
 	virtual void Tick(float DeltaTime);
-	virtual void BeginInit();
+	virtual void Init();
 public:
 	virtual void ResetVisible(CustomMeshComponent* InAxisComponent, bool bVisible);
 	virtual void ResetVisible();

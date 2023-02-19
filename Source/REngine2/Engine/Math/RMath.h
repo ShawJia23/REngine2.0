@@ -11,7 +11,7 @@ namespace RMath
 	XMFLOAT4 ToFloat4(const fvector_4d& InV4d);
 	XMFLOAT3 ToFloat3(const fvector_3d& InV3d);
 	fvector_3d ToVector3d(const XMFLOAT3& InV3d);
-
+	frotator ToRotator(const XMFLOAT3& InV3d);
 	fmatrix_4x4 ToMatrix4x4(const XMFLOAT4X4& InMatrix4x4);
 	XMFLOAT4X4 ToFloat4x4(const fmatrix_4x4& InMatrix4x4);
 

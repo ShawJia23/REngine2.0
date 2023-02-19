@@ -2,6 +2,7 @@
 #include"../../Engine/World.h"
 #include"../../Engine/Actor/ActorObject.h"
 #include"../../Engine/Render/Pipeline/DX12Pipeline.h"
+#include"../OperationHandle/OperationHandleManage.h"
 void ObjectExplorerEditor::BuildEditor()
 {
 }
@@ -23,6 +24,11 @@ void ObjectExplorerEditor::DrawEditor(float DeltaTime)
 			if (ImGui::Selectable(ObjectNameString, SelectedVariable == i))
 			{
 				HighlightDisplayObject(Actors[i]);
+				//设置选择对象
+				OperationHandleManage::Get()->SetNewSelectedObject(Actors[i]);
+
+				//显示操作手柄
+				OperationHandleManage::Get()->DisplaySelectedOperationHandle();
 			}
 		}
 

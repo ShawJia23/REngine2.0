@@ -14,6 +14,17 @@
 #include "Path/PathHelper.h"
 #if defined(_WIN32)
 
+#if EDITOR_ENGINE
+#include"../../../Editor/OperationHandle/MoveArrow.h"
+#include"../../../Editor/OperationHandle/RotatorArrow.h"
+#include"../../../Editor/OperationHandle/ScalingArrow.h"
+
+extern RMoveArrow* MoveArrow;
+extern RScalingArrow* ScalingArrow;
+extern RRotatorArrow* RotatorArrow;
+#endif
+
+
 void DXRenderEngine::UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo)
 {
 	m_meshManage->UpdateCalculations(DeltaTime,viewportInfo);
@@ -442,12 +453,33 @@ void DXRenderEngine::CreateMesh()
 
 void DXRenderEngine::LoadAsset()
 {
+	if (RMoveArrow* InMoveArrow = m_World->CreateActorObject<RMoveArrow>())
+	{
+		InMoveArrow->CreateMesh();
+
+		MoveArrow = InMoveArrow;
+	}
+
+	if (RScalingArrow* InScalingArrow = m_World->CreateActorObject<RScalingArrow>())
+	{
+		InScalingArrow->CreateMesh();
+
+		ScalingArrow = InScalingArrow;
+	}
+
+	if (RRotatorArrow* InRotatorArrow = m_World->CreateActorObject<RRotatorArrow>())
+	{
+		InRotatorArrow->CreateMesh();
+
+		RotatorArrow = InRotatorArrow;
+	}
+
 	string AssetPath= PathHelper::RelativeToAbsolutePath(PathHelper::GetEngineAssetPath());
 
+	MeshGroup* pMeshGroup = new MeshGroup();
 	ObjectAnalysisByAssimp lo;
-
 	lo.LoadMesh(AssetPath+"/Model/Brolyviewer001out/Brolyviewer001out.fbx", "Brolyviewer001out",
-		XMFLOAT3(0.f, 10.f, 10.f), false);
+		XMFLOAT3(0.f, 10.f, 10.f), false, pMeshGroup);
 
 	GetTextureManage()->LoadCubeMapFormPath("cubemap", AssetPath + "/Cubemap/grasscube1024.dds");
 }

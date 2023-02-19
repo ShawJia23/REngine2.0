@@ -18,6 +18,7 @@ public:
 	FORCEINLINE RTransformComponent* GetTransformationComponent() const { return TransformationComponent; }
 public:
 	void SetPosition(const XMFLOAT3& InNewPosition);
+	void SetRotation(const frotator& InRotation);
 	void SetRotation(const fvector_3d& InRotation);
 	void SetScale(const fvector_3d& InNewScale);
 

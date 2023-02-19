@@ -31,11 +31,16 @@ void RTransformComponent::SetUPVector(const XMFLOAT3& upVector)
 	UpVector = upVector;
 }
 
-void RTransformComponent::SetRotation(const fvector_3d& InNewRotation)
+void RTransformComponent::SetRotation(const fvector_3d& InNewRotation) 
 {
-	float RollRadians = XMConvertToRadians(InNewRotation.z);
-	float PithRadians = XMConvertToRadians(InNewRotation.x);
-	float YawRadians = XMConvertToRadians(InNewRotation.y);
+	SetRotation(frotator(InNewRotation.x, InNewRotation.y, InNewRotation.z));
+}
+
+void RTransformComponent::SetRotation(const frotator& InNewRotation)
+{
+	float RollRadians = XMConvertToRadians(InNewRotation.yaw);
+	float PithRadians = XMConvertToRadians(InNewRotation.roll);
+	float YawRadians = XMConvertToRadians(InNewRotation.pitch);
 
 	//Ðý×ª¾ØÕó
 	XMMATRIX RotationRollPitchYawMatrix = DirectX::XMMatrixRotationRollPitchYaw(

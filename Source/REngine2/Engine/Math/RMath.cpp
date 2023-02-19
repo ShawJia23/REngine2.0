@@ -25,6 +25,11 @@ namespace RMath
         return fvector_3d(InV3d.x, InV3d.y, InV3d.z);
     }
 
+    frotator ToRotator(const XMFLOAT3& InV3d)
+    {
+        return frotator(InV3d.x, InV3d.y, InV3d.z);
+    }
+
     fmatrix_4x4 ToMatrix4x4(const XMFLOAT4X4& InMatrix4x4)
     {
         return fmatrix_4x4(

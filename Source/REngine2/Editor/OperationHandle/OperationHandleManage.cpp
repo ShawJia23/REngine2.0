@@ -1,34 +1,34 @@
-#include "OperationHandle.h"
-
+#include "OperationHandleManage.h"
+#include"OperationHandleBase.h"
 #if EDITOR_ENGINE
-
-#include "../EditorEngine/SelectEditor/OperationHandle/MoveArrow.h"
-#include "../EditorEngine/SelectEditor/OperationHandle/RotatorArrow.h"
-#include "../EditorEngine/SelectEditor/OperationHandle/ScalingArrow.h"
-
-extern class GMoveArrow* MoveArrow;
-extern class GScalingArrow* ScalingArrow;
-extern class GRotatorArrow* RotatorArrow;
+#include"../../Editor/OperationHandle/MoveArrow.h"
+#include"../../Editor/OperationHandle/RotatorArrow.h"
+#include"../../Editor/OperationHandle/ScalingArrow.h"
+#include"../../Common/EngineEditorCommon.h"
+#include"../../Engine/Actor/ActorObject.h"
+extern class RMoveArrow* MoveArrow;
+extern class RScalingArrow* ScalingArrow;
+extern class RRotatorArrow* RotatorArrow;
 extern class GActorObject* SelectedObject;
 
-FOperationHandleSelectManage* FOperationHandleSelectManage::InManage = nullptr;
+OperationHandleManage* OperationHandleManage::InManage = nullptr;
 
-FOperationHandleSelectManage::FOperationHandleSelectManage()
+OperationHandleManage::OperationHandleManage()
 {
 
 }
 
-FOperationHandleSelectManage* FOperationHandleSelectManage::Get()
+OperationHandleManage* OperationHandleManage::Get()
 {
 	if (!InManage)
 	{
-		InManage = new FOperationHandleSelectManage();
+		InManage = new OperationHandleManage();
 	}
 
 	return InManage;
 }
 
-void FOperationHandleSelectManage::Destroy()
+void OperationHandleManage::Destroy()
 {
 	if (InManage)
 	{
@@ -37,14 +37,14 @@ void FOperationHandleSelectManage::Destroy()
 	}
 }
 
-void FOperationHandleSelectManage::AllOperationHandleHide()
+void OperationHandleManage::AllOperationHandleHide()
 {
 	MoveArrow->SetVisible(false);
 	ScalingArrow->SetVisible(false);
 	RotatorArrow->SetVisible(false);
 }
 
-void FOperationHandleSelectManage::DisplaySelectedOperationHandle(GActorObject* InNewSelectedObject)
+void OperationHandleManage::DisplaySelectedOperationHandle(GActorObject* InNewSelectedObject)
 {
 	if (SelectedObject)
 	{
@@ -52,7 +52,7 @@ void FOperationHandleSelectManage::DisplaySelectedOperationHandle(GActorObject* 
 		AllOperationHandleHide();
 
 		//操作手柄附加到对象身上
-		if (GOperationHandleBase* InHandleBase = dynamic_cast<GOperationHandleBase*>(InNewSelectedObject))
+		if (OperationHandleBase* InHandleBase = dynamic_cast<OperationHandleBase*>(InNewSelectedObject))
 		{
 			InHandleBase->SetPosition(SelectedObject->GetPosition());
 			//InHandleBase->SetRotation(SelectedObject->GetRotation());
@@ -64,7 +64,7 @@ void FOperationHandleSelectManage::DisplaySelectedOperationHandle(GActorObject* 
 	}
 }
 
-void FOperationHandleSelectManage::DisplaySelectedOperationHandle()
+void OperationHandleManage::DisplaySelectedOperationHandle()
 {
 	if (SelectedObject)
 	{
@@ -81,7 +81,7 @@ void FOperationHandleSelectManage::DisplaySelectedOperationHandle()
 		}
 		else
 		{
-			if (GOperationHandleBase* InHandleBase = dynamic_cast<GOperationHandleBase*>(SelectedOperationHandle))
+			if (OperationHandleBase* InHandleBase = dynamic_cast<OperationHandleBase*>(SelectedOperationHandle))
 			{
 				InHandleBase->SetPosition(SelectedObject->GetPosition());
 				//InHandleBase->SetRotation(SelectedObject->GetRotation());
@@ -91,25 +91,25 @@ void FOperationHandleSelectManage::DisplaySelectedOperationHandle()
 	}
 }
 
-void FOperationHandleSelectManage::HideSelectedOperationHandle()
+void OperationHandleManage::HideSelectedOperationHandle()
 {
-	if (GOperationHandleBase* InHandleBase = dynamic_cast<GOperationHandleBase*>(SelectedOperationHandle))
+	if (OperationHandleBase* InHandleBase = dynamic_cast<OperationHandleBase*>(SelectedOperationHandle))
 	{
 		InHandleBase->SetVisible(false);
 	}
 }
 
-void FOperationHandleSelectManage::SetNewSelectedOperationHandle(GActorObject* InNewSelectedObject)
+void OperationHandleManage::SetNewSelectedOperationHandle(GActorObject* InNewSelectedObject)
 {
 	SelectedOperationHandle = InNewSelectedObject;
 }
 
-void FOperationHandleSelectManage::SetNewSelectedObject(GActorObject* InNewSelectedObject)
+void OperationHandleManage::SetNewSelectedObject(GActorObject* InNewSelectedObject)
 {
 	SelectedObject = InNewSelectedObject;
 }
 
-GActorObject* FOperationHandleSelectManage::GetSelectedOperationHandle()
+GActorObject* OperationHandleManage::GetSelectedOperationHandle()
 {
 	return SelectedOperationHandle;
 }

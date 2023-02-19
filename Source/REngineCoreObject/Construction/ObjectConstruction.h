@@ -2,11 +2,13 @@
 #include"../RCoreObjectMinimal.h"
 #include"../RObjectMacro.h"
 class RMinimalObject;
-
+class RComponent;
 struct RENGINECOREOBJECT_API CreateObjectParam
 {
 	CreateObjectParam()
-		:Outer(NULL), Name("NULL")
+		:Outer(NULL),
+		ParentComponent(NULL),
+		Name("NULL")
 	{}
 
 	RMinimalObject* Outer;
@@ -24,7 +26,7 @@ T* CreateObject(const CreateObjectParam& inObjectParam, RMinimalObject* newObjec
 }
 
 template<class T, typename ...ParamTypes>
-T* ConstructionObject(ParamTypes &&...Params)
+T* ConstructionObject(const CreateObjectParam& InObjectParam, ParamTypes &&...Params)
 {
-	return CreateObject<T>(new T(Params...));
+	return CreateObject<T>(InObjectParam, new T(Params...));
 }

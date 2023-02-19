@@ -9,12 +9,12 @@ extern GActorObject* SelectedObject;
 extern bool bOperationHandleSelect;
 extern RMeshComponent* SelectAxisComponent;
 
-ScalingArrow::ScalingArrow()
+RScalingArrow::RScalingArrow()
 {
 	LastT2Value = 0.f;
 }
 
-void ScalingArrow::CreateMesh()
+void RScalingArrow::CreateMesh()
 {
 	string MeshPath = PathHelper::RelativeToAbsolutePath(
 		PathHelper::GetEngineContentPath() + "/Handle/ScalingArrow.fbx");
@@ -25,20 +25,20 @@ void ScalingArrow::CreateMesh()
 	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, XAxisComponent, MeshPath);
 	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, YAxisComponent, MeshPath);
 	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, ZAxisComponent, MeshPath);
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, AxisComponent, AnyAxisMeshPath);
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, AxisComponent,AnyAxisMeshPath);
 
-	YAxisComponent->SetRotation(fvector_3d(-90.f, 0.f, 0.f));
-	XAxisComponent->SetRotation(fvector_3d(0.f, 90.f, 0.f));
+	YAxisComponent->SetRotation(frotator(-90.f, 0.f, 0.f));
+	XAxisComponent->SetRotation(frotator(0.f, 90.f, 0.f));
 
 	ResetColor();
 }
 
-fvector_3d ScalingArrow::AnyAxis(const fvector_3d& InRayWorldOriginPoint, const fvector_3d& InRayWorldDirection, const fvector_3d& InActorWorldOriginPoint)
+fvector_3d RScalingArrow::AnyAxis(const fvector_3d& InRayWorldOriginPoint, const fvector_3d& InRayWorldDirection, const fvector_3d& InActorWorldOriginPoint)
 {
 	return fvector_3d(1.f);
 }
 
-void ScalingArrow::OnMouseMove(int X, int Y)
+void RScalingArrow::OnMouseMove(int X, int Y)
 {
 	Super::OnMouseMove(X, Y);
 
@@ -80,7 +80,7 @@ void ScalingArrow::OnMouseMove(int X, int Y)
 	}
 }
 
-void ScalingArrow::OnLeftMouseButtonDown(int X, int Y)
+void RScalingArrow::OnLeftMouseButtonDown(int X, int Y)
 {
 	Super::OnLeftMouseButtonDown(X, Y);
 
@@ -103,7 +103,7 @@ void ScalingArrow::OnLeftMouseButtonDown(int X, int Y)
 	}
 }
 
-void ScalingArrow::OnLeftMouseButtonUp(int X, int Y)
+void RScalingArrow::OnLeftMouseButtonUp(int X, int Y)
 {
 	Super::OnLeftMouseButtonUp(X, Y);
 
@@ -118,13 +118,13 @@ void ScalingArrow::OnLeftMouseButtonUp(int X, int Y)
 	}
 }
 
-void ScalingArrow::OnCaptureKeyboardInfor(const RInputKey& InKey)
+void RScalingArrow::OnCaptureKeyboardInfor(const RInputKey& InKey)
 {
 	if (SelectObject)
 	{
 		if (InKey.KeyName == "R")
 		{
-			OperationHandleSelectManage::Get()->DisplaySelectedOperationHandle(this);
+			OperationHandleManage::Get()->DisplaySelectedOperationHandle(this);
 		}
 	}
 }

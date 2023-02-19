@@ -4,39 +4,54 @@
 #include"../../Engine/Construction/MacroConstruction.h"
 #include"../../Engine/RayCast/RayCastSystem.h"
 #include"Path/PathHelper.h"
+#include"../../Engine/LoadAsset/ObjectAnalysis.h"
+#include"../../Engine/Mesh/SubMesh/MeshGroup.h"
 extern GActorObject* SelectedObject;
 extern bool bOperationHandleSelect;
 extern RMeshComponent* SelectAxisComponent;
 
-MoveArrow::MoveArrow()
+RMoveArrow::RMoveArrow()
 {
 
 }
 
-void MoveArrow::CreateMesh()
+void RMoveArrow::CreateMesh()
 {
 	string MeshPath = PathHelper::RelativeToAbsolutePath(
-		PathHelper::GetEngineAssetModelPath() + "/Handle/MoveArrow.fbx");
+		PathHelper::GetEngineAssetModelPath() + "/Handle/RMoveArrow.fbx");
 
 	string AnyAxisMeshPath = PathHelper::RelativeToAbsolutePath(
-		PathHelper::GetEngineContentPath() + "/Handle/AnyAxis_Type_1.fbx");
+		PathHelper::GetEngineAssetModelPath() + "/Handle/AnyAxis_Type_1.fbx");
+	ObjectAnalysisByAssimp lo;
+	 
+	MeshGroup* pXMesh = new MeshGroup();
+	lo.LoadMesh(MeshPath, "XAxisComponent",XMFLOAT3(0.f, 0.f, 0.f), false, pXMesh);
+	XAxisComponent = pXMesh->GetCustomMeshComponent();
 
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, XAxisComponent, MeshPath);
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, YAxisComponent, MeshPath);
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, ZAxisComponent, MeshPath);
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, AxisComponent, AnyAxisMeshPath);
-	YAxisComponent->SetRotation(fvector_3d(-90.f, 0.f, 0.f));
-	XAxisComponent->SetRotation(fvector_3d(0.f, 90.f, 0.f));
+	MeshGroup* pYMesh = new MeshGroup();
+	lo.LoadMesh(MeshPath, "YAxisComponent", XMFLOAT3(0.f, 0.f, 0.f), false, pYMesh);
+	YAxisComponent = pYMesh->GetCustomMeshComponent();
+
+	MeshGroup* pZMesh = new MeshGroup();
+	lo.LoadMesh(MeshPath, "ZAxisComponent", XMFLOAT3(0.f, 0.f, 0.f), false, pZMesh);
+	ZAxisComponent = pZMesh->GetCustomMeshComponent();
+
+	MeshGroup* pAMesh = new MeshGroup();
+	lo.LoadMesh(MeshPath, "AAxisComponent", XMFLOAT3(0.f, 0.f, 0.f), false, pAMesh);
+	ZAxisComponent = pAMesh->GetCustomMeshComponent();
+
+	//YAxisComponent->SetRotation(frotator(-90.f, 0.f, 0.f));
+	//XAxisComponent->SetRotation(frotator(0.f, 90.f, 0.f));
 
 	ResetColor();
 }
 
-fvector_3d MoveArrow::AnyAxis(const fvector_3d& InRayWorldOriginPoint, const fvector_3d& InRayWorldDirection, const fvector_3d& InActorWorldOriginPoint)
+fvector_3d RMoveArrow::AnyAxis(const fvector_3d& InRayWorldOriginPoint, const fvector_3d& InRayWorldDirection, const fvector_3d& InActorWorldOriginPoint)
 {
 	return fvector_3d(1.f);
 }
 
-void MoveArrow::OnMouseMove(int X, int Y)
+void RMoveArrow::OnMouseMove(int X, int Y)
 {
 	Super::OnMouseMove(X, Y);
 
@@ -63,7 +78,7 @@ void MoveArrow::OnMouseMove(int X, int Y)
 	}
 }
 
-void MoveArrow::OnLeftMouseButtonDown(int X, int Y)
+void RMoveArrow::OnLeftMouseButtonDown(int X, int Y)
 {
 	Super::OnLeftMouseButtonDown(X, Y);
 
@@ -88,7 +103,7 @@ void MoveArrow::OnLeftMouseButtonDown(int X, int Y)
 	}
 }
 
-void MoveArrow::OnLeftMouseButtonUp(int X, int Y)
+void RMoveArrow::OnLeftMouseButtonUp(int X, int Y)
 {
 	Super::OnLeftMouseButtonUp(X, Y);
 
@@ -103,7 +118,7 @@ void MoveArrow::OnLeftMouseButtonUp(int X, int Y)
 	}
 }
 
-void MoveArrow::OnCaptureKeyboardInfor(const RInputKey& InKey)
+void RMoveArrow::OnCaptureKeyboardInfor(const RInputKey& InKey)
 {
 	if (SelectObject)
 	{

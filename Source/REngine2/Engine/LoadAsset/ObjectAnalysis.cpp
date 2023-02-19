@@ -28,17 +28,18 @@ ObjectAnalysisByAssimp ::~ObjectAnalysisByAssimp()
 {
 }
 
-void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name, const XMFLOAT3& newPosition,bool IsRight)
+void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name, 
+	const XMFLOAT3& newPosition,bool IsRight,
+	MeshGroup* outMeshGroup)
 {
 	Assimp::Importer aiImporter;
-	const aiScene* pModel = aiImporter.ReadFile(fileName, aiProcess_ConvertToLeftHanded);
+	const aiScene* pModel = aiImporter.ReadFile(fileName, aiProcessPreset_TargetRealtime_Quality);
 	if (nullptr == pModel)
 	{
 		return;
 	}
 	if (pModel->HasMeshes())
 	{
-		MeshGroup* pMeshGroup = new MeshGroup();
 		for (int num = 0; num < pModel->mNumMeshes; num++)
 		{
 			aiMesh* pMesh = pModel->mMeshes[num];
@@ -60,13 +61,13 @@ void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name, con
 					for (int j = 0; j < face.mNumIndices; j++)
 						pMeshData.IndexData.push_back(face.mIndices[j]);
 				}
-				pMeshGroup->AddSubmesh(pMesh->mName.C_Str(), pMeshComponent, pMeshData);
+				outMeshGroup->AddSubmesh(pMesh->mName.C_Str(), pMeshComponent, pMeshData);
 			}
 
 			if (pModel->HasMaterials())
 			{
 				aiMaterial* pMaterial = pModel->mMaterials[pMesh->mMaterialIndex];
-				SetMaterialTex(pMaterial, pMeshGroup, pMesh->mName.C_Str(), name, IsRight);
+				SetMaterialTex(pMaterial, outMeshGroup, pMesh->mName.C_Str(), name, IsRight);
 
 				aiColor3D ainum;
 
@@ -74,9 +75,9 @@ void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name, con
 				float a = ainum.r;
 			}
 		}
-		pMeshGroup->SetPosition(newPosition);
-		pMeshGroup->CreateMesh();
-		pMeshGroup->CreateTexture();
+		outMeshGroup->SetPosition(newPosition);
+		outMeshGroup->CreateMesh();
+		outMeshGroup->CreateTexture();
 	}
 }
 

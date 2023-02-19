@@ -118,9 +118,9 @@ void OperationHandleBase::ResetColor(CustomMeshComponent* InAxisComponent, const
 	}
 }
 
-void OperationHandleBase::BeginInit()
+void OperationHandleBase::Init()
 {
-	Super::BeginInit();
+	Super::Init();
 
 	InputComponent->CaptureKeyboardInforDelegate.Bind(this, &OperationHandleBase::OnCaptureKeyboardInfor);
 	InputComponent->OnMouseMoveDelegate.Bind(this, &OperationHandleBase::OnMouseMove);
@@ -150,10 +150,14 @@ void OperationHandleBase::Tick(float DeltaTime)
 
 void OperationHandleBase::SetVisible(bool bNewVisible)
 {
-	XAxisComponent->SetVisible(bNewVisible);
-	YAxisComponent->SetVisible(bNewVisible);
-	ZAxisComponent->SetVisible(bNewVisible);
-	AxisComponent->SetVisible(bNewVisible);
+	if (XAxisComponent)
+		XAxisComponent->SetVisible(bNewVisible);
+	if (YAxisComponent)
+		YAxisComponent->SetVisible(bNewVisible);
+	if (ZAxisComponent)
+		ZAxisComponent->SetVisible(bNewVisible);
+	if (AxisComponent)
+		AxisComponent->SetVisible(bNewVisible);
 }
 
 fvector_3d OperationHandleBase::AnyAxis(

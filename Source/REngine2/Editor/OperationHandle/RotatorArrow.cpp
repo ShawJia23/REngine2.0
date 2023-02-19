@@ -12,8 +12,7 @@ extern GActorObject* SelectedObject;
 extern bool bOperationHandleSelect;
 extern RMeshComponent* SelectAxisComponent;
 
-RotatorArrow::RotatorArrow()
-	:Super()
+RRotatorArrow::RRotatorArrow()
 {
 	BUILD_OBJECT_PARAMETERS(Type, this);
 
@@ -35,7 +34,7 @@ RotatorArrow::RotatorArrow()
 	LastT2Value = 0.f;
 }
 
-void RotatorArrow::CreateMesh()
+void RRotatorArrow::CreateMesh()
 {
 	string MeshPathX = PathHelper::RelativeToAbsolutePath(
 		PathHelper::GetEngineContentPath() + "/Handle/RotateHandleX.fbx");
@@ -53,16 +52,16 @@ void RotatorArrow::CreateMesh()
 	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, AxisComponent, MeshPathZ);
 
 	//显示CD面片
-	CREATE_RENDER_DATA_BY_COMPONENT(CPlaneMeshComponent, XPlaneComponent, 5.2, 5.2, 2, 2);
-	CREATE_RENDER_DATA_BY_COMPONENT(CPlaneMeshComponent, YPlaneComponent, 5.2, 5.2, 2, 2);
-	CREATE_RENDER_DATA_BY_COMPONENT(CPlaneMeshComponent, ZPlaneComponent, 5.2, 5.2, 2, 2);
+	CREATE_RENDER_DATA_BY_COMPONENT(PlaneMeshComponent, XPlaneComponent, 5.2, 5.2, 2, 2);
+	CREATE_RENDER_DATA_BY_COMPONENT(PlaneMeshComponent, YPlaneComponent, 5.2, 5.2, 2, 2);
+	CREATE_RENDER_DATA_BY_COMPONENT(PlaneMeshComponent, ZPlaneComponent, 5.2, 5.2, 2, 2);
 
 	AxisComponent->SetPickup(false);
 
 	//相互垂直
-	YPlaneComponent->SetRotation(fvector_3d(90.f, 0.f, 0.f));
-	XPlaneComponent->SetRotation(fvector_3d(0.f, 00.f, 0.f));
-	ZPlaneComponent->SetRotation(fvector_3d(0.f, 0.f, -90.f));
+	YPlaneComponent->SetRotation(frotator(90.f, 0.f, 0.f));
+	XPlaneComponent->SetRotation(frotator(0.f, 00.f, 0.f));
+	ZPlaneComponent->SetRotation(frotator(0.f, 0.f, -90.f));
 
 	//读取材质
 	std::string PlaneComponentMaterial = "Rot_Handle_Plane";
@@ -73,7 +72,7 @@ void RotatorArrow::CreateMesh()
 	ResetColor();
 }
 
-void RotatorArrow::LoadPlaneComponentMaterial(RMeshComponent* InComponent, const std::string& InFilename)
+void RRotatorArrow::LoadPlaneComponentMaterial(RMeshComponent* InComponent, const std::string& InFilename)
 {
 	if (RMaterial* InMaterial = (*InComponent->GetMaterials())[0])
 	{
@@ -81,7 +80,7 @@ void RotatorArrow::LoadPlaneComponentMaterial(RMeshComponent* InComponent, const
 	}
 }
 
-void RotatorArrow::SetCDValue(RMeshComponent* InComponent, float InValue)
+void RRotatorArrow::SetCDValue(RMeshComponent* InComponent, float InValue)
 {
 	if (RMaterial* InMaterial = (*InComponent->GetMaterials())[0])
 	{
@@ -89,19 +88,19 @@ void RotatorArrow::SetCDValue(RMeshComponent* InComponent, float InValue)
 	}
 }
 
-void RotatorArrow::SetCDValue(float InValue)
+void RRotatorArrow::SetCDValue(float InValue)
 {
 	SetCDValue(YPlaneComponent, InValue);
 	SetCDValue(ZPlaneComponent, InValue);
 	SetCDValue(XPlaneComponent, InValue);
 }
 
-void RotatorArrow::ResetCDValue()
+void RRotatorArrow::ResetCDValue()
 {
 	SetCDValue(0.f);
 }
 
-fvector_3d RotatorArrow::GetSelectedObjectDirection(const fvector_3d& WorldOriginPoint, const fvector_3d& WorldDirection, const fvector_3d& ActorWorldPosition)
+fvector_3d RRotatorArrow::GetSelectedObjectDirection(const fvector_3d& WorldOriginPoint, const fvector_3d& WorldDirection, const fvector_3d& ActorWorldPosition)
 {
 	fvector_3d ActorWorldDir;
 	OperationHandleBase::ESelectAxisType AxisType = GetSelectAxis();
@@ -154,7 +153,7 @@ fvector_3d RotatorArrow::GetSelectedObjectDirection(const fvector_3d& WorldOrigi
 	return ActorWorldDir;
 }
 
-void RotatorArrow::SetScale(const fvector_3d& InNewScale)
+void RRotatorArrow::SetScale(const fvector_3d& InNewScale)
 {
 	Super::SetScale(InNewScale);
 
@@ -171,7 +170,7 @@ void RotatorArrow::SetScale(const fvector_3d& InNewScale)
 	}
 }
 
-void RotatorArrow::SetPosition(const XMFLOAT3& InNewPosition)
+void RRotatorArrow::SetPosition(const XMFLOAT3& InNewPosition)
 {
 	Super::SetPosition(InNewPosition);
 
@@ -180,7 +179,7 @@ void RotatorArrow::SetPosition(const XMFLOAT3& InNewPosition)
 	ZPlaneComponent->SetPosition(InNewPosition);
 }
 
-void RotatorArrow::Tick(float DeltaTime)
+void RRotatorArrow::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
@@ -261,14 +260,14 @@ void RotatorArrow::Tick(float DeltaTime)
 	}
 }
 
-void RotatorArrow::BeginInit()
+void RRotatorArrow::Init()
 {
-	Super::BeginInit();
+	Super::Init();
 
 
 }
 
-void RotatorArrow::ResetVisible(CustomMeshComponent* InAxisComponent, bool bVisible)
+void RRotatorArrow::ResetVisible(CustomMeshComponent* InAxisComponent, bool bVisible)
 {
 	Super::ResetVisible(InAxisComponent, bVisible);
 
@@ -289,7 +288,7 @@ void RotatorArrow::ResetVisible(CustomMeshComponent* InAxisComponent, bool bVisi
 	}
 }
 
-void RotatorArrow::ResetVisible()
+void RRotatorArrow::ResetVisible()
 {
 	Super::ResetVisible();
 
@@ -298,7 +297,7 @@ void RotatorArrow::ResetVisible()
 	ZPlaneComponent->SetVisible(false);
 }
 
-void RotatorArrow::SetVisible(bool bNewVisible)
+void RRotatorArrow::SetVisible(bool bNewVisible)
 {
 	Super::SetVisible(bNewVisible);
 
@@ -307,7 +306,7 @@ void RotatorArrow::SetVisible(bool bNewVisible)
 	ZPlaneComponent->SetVisible(false);
 }
 
-float RotatorArrow::GetSymbol(float InValueOffset, bool bFlip)
+float RRotatorArrow::GetSymbol(float InValueOffset, bool bFlip)
 {
 	if (InValueOffset < 0.f)
 	{
@@ -321,7 +320,7 @@ float RotatorArrow::GetSymbol(float InValueOffset, bool bFlip)
 	return 0.f;
 }
 
-float RotatorArrow::GetSymbolByCubeIndex(float InValueOffset)
+float RRotatorArrow::GetSymbolByCubeIndex(float InValueOffset)
 {
 	float Symbol = 1.f;
 	OperationHandleBase::ESelectAxisType AxisType = GetSelectAxis();
@@ -410,7 +409,7 @@ float RotatorArrow::GetSymbolByCubeIndex(float InValueOffset)
 	return Symbol;
 }
 
-float RotatorArrow::GetSymbolMaterialByCubeIndex(float InValueOffset)
+float RRotatorArrow::GetSymbolMaterialByCubeIndex(float InValueOffset)
 {
 	float Symbol = 1.f;
 	OperationHandleBase::ESelectAxisType AxisType = GetSelectAxis();
@@ -466,7 +465,7 @@ float RotatorArrow::GetSymbolMaterialByCubeIndex(float InValueOffset)
 	return Symbol;
 }
 
-float RotatorArrow::GetAngleRatio(float InAngle)
+float RRotatorArrow::GetAngleRatio(float InAngle)
 {
 	if (InAngle > 0.f)
 	{
@@ -480,7 +479,7 @@ float RotatorArrow::GetAngleRatio(float InAngle)
 	return 0.f;
 }
 
-void RotatorArrow::PrintAix(ESelectAxisType InAxisType)
+void RRotatorArrow::PrintAix(ESelectAxisType InAxisType)
 {
 	switch (InAxisType)
 	{
@@ -502,7 +501,7 @@ void RotatorArrow::PrintAix(ESelectAxisType InAxisType)
 	}
 }
 
-void RotatorArrow::OnMouseMove(int X, int Y)
+void RRotatorArrow::OnMouseMove(int X, int Y)
 {
 	Super::OnMouseMove(X, Y);
 
@@ -601,7 +600,7 @@ void RotatorArrow::OnMouseMove(int X, int Y)
 	}
 }
 
-void RotatorArrow::OnLeftMouseButtonDown(int X, int Y)
+void RRotatorArrow::OnLeftMouseButtonDown(int X, int Y)
 {
 	Super::OnLeftMouseButtonDown(X, Y);
 
@@ -628,7 +627,7 @@ void RotatorArrow::OnLeftMouseButtonDown(int X, int Y)
 	}
 }
 
-void RotatorArrow::OnLeftMouseButtonUp(int X, int Y)
+void RRotatorArrow::OnLeftMouseButtonUp(int X, int Y)
 {
 	Super::OnLeftMouseButtonUp(X, Y);
 
@@ -643,7 +642,7 @@ void RotatorArrow::OnLeftMouseButtonUp(int X, int Y)
 	}
 }
 
-void RotatorArrow::OnCaptureKeyboardInfor(const RInputKey& InKey)
+void RRotatorArrow::OnCaptureKeyboardInfor(const RInputKey& InKey)
 {
 	if (SelectObject)
 	{

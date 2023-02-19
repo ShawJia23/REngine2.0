@@ -10,7 +10,9 @@ class ObjectAnalysisByAssimp
 public:
 	ObjectAnalysisByAssimp();
 	~ObjectAnalysisByAssimp();
-	void LoadMesh(std::string fileName, std::string name, const XMFLOAT3& newPosition, bool IsRight);
+	void LoadMesh(std::string fileName, std::string name, 
+		const XMFLOAT3& newPosition, bool IsRight,
+		MeshGroup* outMeshData);
 
 	std::string GetFilePath(bool IsRight, std::string ObjName, std::string TexName);
 	std::string GetTexName(std::string ObjName, std::string TexName);

@@ -15,6 +15,11 @@ void GActorObject::SetPosition(const XMFLOAT3& InNewPosition)
 	TransformationComponent->SetPosition(InNewPosition);
 }
 
+void GActorObject::SetRotation(const frotator& InRotation)
+{
+	TransformationComponent->SetRotation(InRotation);
+}
+
 void GActorObject::SetRotation(const fvector_3d& InRotation)
 {
 	TransformationComponent->SetRotation(InRotation);

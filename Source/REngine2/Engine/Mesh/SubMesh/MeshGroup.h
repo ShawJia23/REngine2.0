@@ -4,6 +4,7 @@
 
 class BMesh;
 class RMeshComponent;
+class CustomMeshComponent;
 class MeshGroup: public IDirectXDeviceInterface
 {
 public:
@@ -22,7 +23,9 @@ public:
 	void AddTexture(std::string objName, std::string texName, std::string fileName, int type);
 	void CreateTexture();
 
+	CustomMeshComponent* GetCustomMeshComponent() {return m_lastComponent;}
 	void SetPosition(const XMFLOAT3& newPosition);
 private:
 	std::unordered_map<std::string, SubMesh> m_RenderDatas;
+	CustomMeshComponent* m_lastComponent;//临时保存最后一个
 };

@@ -13,6 +13,7 @@ public:
 	virtual void SetForwardVector(const XMFLOAT3& forwardVector);
 	virtual void SetRightVector(const XMFLOAT3& rightVector);
 	virtual void SetUPVector(const XMFLOAT3& upVector);
+	virtual void SetRotation(const frotator& InNewRotation);
 	virtual void SetRotation(const fvector_3d& InNewRotation);
 	virtual void SetScale(const fvector_3d& InNewScale);
 

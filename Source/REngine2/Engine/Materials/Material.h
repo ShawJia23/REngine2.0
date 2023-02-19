@@ -8,6 +8,8 @@ public:
 	RMaterial();
 	void SetMaterialDisplayState(EMaterialDisplayStatue displayState);
 	void SetBaseColor(const fvector_4d& baseColor);
+	void SetBaseColor(const std::string& InAssetFilename);
+	void SetFloatParam(int ParamIndex, float InValue);
 	void SetMaterialType(EMaterialType materialType);
 	void SetRoughness(float	 roughness);
 
@@ -36,6 +38,7 @@ private:
 	bool m_Dirty;
 
 	fvector_4d m_BaseColor;
+	std::string BaseColorIndexKey;
 	fvector_3d m_SpecularColor;
 	EMaterialType m_MaterialType;
 	EMaterialDisplayStatue m_MaterialState;
@@ -46,4 +49,8 @@ private:
 	std::string m_SpecularIndexKey;
 	XMFLOAT4X4 m_MaterialTransform;
 	int m_MaterialIndex;
+private:
+	float Param0;//自定义
+	float Param1;//自定义
+	float Param2;//自定义
 };

@@ -2,15 +2,15 @@
 #include"../../Engine/Actor/ActorObject.h"
 #include"../../Engine/Interface/DXDeviceInterface.h"
 #include"../../Engine/Component/Input/RInputType.h"
-
+#include "OperationHandleBase.CodeReflection.h"
 class CustomMeshComponent;
 class RInputComponent;
-enum EMeshRenderLayerType;
+enum class EMeshRenderLayerType;
 class RComponent;
 
 class OperationHandleBase :public GActorObject, public IDirectXDeviceInterface
 {
-	Super GActorObject;
+	CODEREFLECTION()
 protected:
 	enum ESelectAxisType
 	{
@@ -53,7 +53,7 @@ public:
 	void ResetColor(CustomMeshComponent* InAxisComponent, const fvector_4d& InColor);
 
 public:
-	virtual void BeginInit();
+	virtual void Init();
 	virtual void Tick(float DeltaTime);
 	virtual void SetVisible(bool bNewVisible);
 	// virtual bool IsVisible()const;

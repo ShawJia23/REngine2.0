@@ -1,12 +1,12 @@
 #pragma once
 #include "OperationHandleBase.h"
-
-class ScalingArrow :public OperationHandleBase
+#include "ScalingArrow.CodeReflection.h"
+class RScalingArrow :public OperationHandleBase
 {
 	CODEREFLECTION()
 
 public:
-	ScalingArrow();
+	RScalingArrow();
 
 	void CreateMesh();
 

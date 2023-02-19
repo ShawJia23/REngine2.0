@@ -17,6 +17,37 @@ void RMaterial::SetMaterialDisplayState(EMaterialDisplayStatue displayState)
 	SetDirty(true);
 }
 
+void RMaterial::SetBaseColor(const std::string& InAssetFilename)
+{
+	BaseColorIndexKey = InAssetFilename;
+
+	SetDirty(true);
+}
+
+void RMaterial::SetFloatParam(int ParamIndex, float InValue)
+{
+	switch (ParamIndex)
+	{
+	case 0:
+	{
+		Param0 = InValue;
+		break;
+	}
+	case 1:
+	{
+		Param1 = InValue;
+		break;
+	}
+	case 2:
+	{
+		Param2 = InValue;
+		break;
+	}
+	}
+
+	SetDirty(true);
+}
+
 void RMaterial::SetBaseColor(const fvector_4d& baseColor) 
 { 
 	m_BaseColor = baseColor;
