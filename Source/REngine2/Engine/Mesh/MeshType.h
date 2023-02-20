@@ -4,6 +4,7 @@
 
 struct RVertex
 {
+	RVertex();
 	RVertex(const XMFLOAT3& pos, const XMFLOAT4& color);
 	RVertex(const XMFLOAT3& pos, const XMFLOAT4& color,const XMFLOAT3& normal);
 	RVertex(const XMFLOAT3& pos, const XMFLOAT3& normal , const XMFLOAT2& TexC, const XMFLOAT4& color);

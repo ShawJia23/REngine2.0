@@ -22,26 +22,15 @@ void RMoveArrow::CreateMesh()
 
 	string AnyAxisMeshPath = PathHelper::RelativeToAbsolutePath(
 		PathHelper::GetEngineAssetModelPath() + "/Handle/AnyAxis_Type_1.fbx");
-	ObjectAnalysisByAssimp lo;
-	 
-	MeshGroup* pXMesh = new MeshGroup();
-	lo.LoadMesh(MeshPath, "XAxisComponent",XMFLOAT3(0.f, 0.f, 0.f), false, pXMesh);
-	XAxisComponent = pXMesh->GetCustomMeshComponent();
 
-	MeshGroup* pYMesh = new MeshGroup();
-	lo.LoadMesh(MeshPath, "YAxisComponent", XMFLOAT3(0.f, 0.f, 0.f), false, pYMesh);
-	YAxisComponent = pYMesh->GetCustomMeshComponent();
 
-	MeshGroup* pZMesh = new MeshGroup();
-	lo.LoadMesh(MeshPath, "ZAxisComponent", XMFLOAT3(0.f, 0.f, 0.f), false, pZMesh);
-	ZAxisComponent = pZMesh->GetCustomMeshComponent();
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, XAxisComponent, MeshPath);
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, YAxisComponent, MeshPath);
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, ZAxisComponent, MeshPath);
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, AxisComponent, AnyAxisMeshPath);
 
-	MeshGroup* pAMesh = new MeshGroup();
-	lo.LoadMesh(MeshPath, "AAxisComponent", XMFLOAT3(0.f, 0.f, 0.f), false, pAMesh);
-	ZAxisComponent = pAMesh->GetCustomMeshComponent();
-
-	//YAxisComponent->SetRotation(frotator(-90.f, 0.f, 0.f));
-	//XAxisComponent->SetRotation(frotator(0.f, 90.f, 0.f));
+	YAxisComponent->SetRotation(frotator(-90.f, 0.f, 0.f));
+	XAxisComponent->SetRotation(frotator(0.f, 90.f, 0.f));
 
 	ResetColor();
 }

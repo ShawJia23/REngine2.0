@@ -8,6 +8,6 @@ public:
 	CustomMeshComponent();
 
 	void CreateMesh(MeshRenderData& MeshData, const string& name);
-
+	bool LoadFBXFromBuff(MeshRenderData& MeshData, const string& inName);
 	void BuildKey(size_t& outKey, const string& name);
 };
