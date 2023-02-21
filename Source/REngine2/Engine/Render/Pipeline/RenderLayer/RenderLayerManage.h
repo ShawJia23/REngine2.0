@@ -1,5 +1,5 @@
 #pragma once
-#include"RenderLayer.h"
+#include"RenderLayerMinimal.h"
 #include"../../../Interface/DXDeviceInterface.h"
 class GActorObject;
 class RComponent;

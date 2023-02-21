@@ -15,17 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FBXSDK.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="FBXSDK.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetImport.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="ThirdPartyLibrary\FBX\include\fbxsdk\core\arch\fbxalloc.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -725,5 +714,16 @@
     <ClInclude Include="ThirdPartyLibrary\FBX\include\fbxsdk.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="FBXSDK.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ImportExport.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FBXSDK.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

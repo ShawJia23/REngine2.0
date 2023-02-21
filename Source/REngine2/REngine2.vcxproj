@@ -74,7 +74,7 @@
     <OutDir>$(SolutionDir)Binaries\Win64\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\Other\</IntDir>
     <IncludePath>$(SolutionDir)Source\SimpleLibrary\;$(SolutionDir)Source\REngineCoreObject\;$(SolutionDir)Source\REngineHelp\;$(SolutionDir)Intermediate\CodeReflection\;$(SolutionDir)Source\AssetImport\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Binaries\Win64\;$(SolutionDir)Source\AssetImport\ThirdPartyLibrary\FBX\lib\vs2015\x64\debug\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Binaries\Win64\;$(SolutionDir)Source\RenZhaiMeshImportExportTool\ThirdPartyLibrary\FBX\lib\vs2015\x64\debug\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -190,6 +190,11 @@
     <ClCompile Include="Engine\Config\RenderConfig.cpp" />
     <ClCompile Include="Engine\Camera\Camera.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\OpaqueLayer.cpp" />
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\PositionHandleLayer.cpp" />
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\RotateHandleLayer.cpp" />
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\SelectLayer.cpp" />
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\SkyLayer.cpp" />
     <ClCompile Include="Engine\ViewPort\ClientViewport.cpp" />
     <ClCompile Include="Engine\ViewPort\Viewport.cpp" />
     <ClCompile Include="Engine\ViewPort\ViewportData.cpp" />
@@ -219,8 +224,7 @@
     <ClCompile Include="Engine\Render\Pipeline\Geometry\GeometryMap.cpp" />
     <ClCompile Include="Engine\Render\Pipeline\Geometry\RenderMeshData.cpp" />
     <ClCompile Include="Engine\Render\Pipeline\PipelineState\DXPipelineState.cpp" />
-    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayer.cpp" />
-    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\BaseRenderLayer.cpp" />
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\BaseRenderLayer.cpp" />
     <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerManage.cpp" />
     <ClCompile Include="Engine\Render\Pipeline\RootSignature\DXRootSignature.cpp" />
     <ClCompile Include="Engine\Render\Pipeline\UI\ImGuiPipeline.cpp" />
@@ -302,6 +306,12 @@
     <ClInclude Include="Engine\Camera\Camera.h" />
     <ClInclude Include="Engine\Camera\CameraType.h" />
     <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerMinimal.h" />
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\OpaqueLayer.h" />
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\PositionHandleLayer.h" />
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\RotateHandleLayer.h" />
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\SelectLayer.h" />
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\SkyLayer.h" />
     <ClInclude Include="Engine\ViewPort\ClientViewport.h" />
     <ClInclude Include="Engine\ViewPort\Viewport.h" />
     <ClInclude Include="Engine\ViewPort\ViewportData.h" />
@@ -338,8 +348,7 @@
     <ClInclude Include="Engine\Render\Pipeline\Geometry\RenderMeshData.h" />
     <ClInclude Include="Engine\Render\Pipeline\PipelineState\DXPipelineState.h" />
     <ClInclude Include="Engine\Render\Pipeline\DX12PipelineType.h" />
-    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayer.h" />
-    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\BaseRenderLayer.h" />
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\BaseRenderLayer.h" />
     <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerManage.h" />
     <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType.h" />
     <ClInclude Include="Engine\Render\Pipeline\RootSignature\DXRootSignature.h" />

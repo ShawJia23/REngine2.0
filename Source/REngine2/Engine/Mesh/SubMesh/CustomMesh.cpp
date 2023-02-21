@@ -16,12 +16,12 @@ void CustomMesh::Draw(float DeltaTime)
 	Super::Draw(DeltaTime);
 }
 
-void CustomMesh::CreateMesh(EMeshRenderLayerType type)
+void CustomMesh::CreateMesh(string name,EMeshRenderLayerType type)
 {
 	CreateObjectParam inObjectParam;
 	inObjectParam.Outer = this;
 	inObjectParam.Name = "CustomComponent";
-	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent, "name");
+	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent, name);
 	SetMeshComponent(Tmp);
 }
 

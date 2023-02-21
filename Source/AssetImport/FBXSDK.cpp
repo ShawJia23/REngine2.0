@@ -9,13 +9,13 @@ void InitializeSdkObjects(FbxManager*& InManager, FbxScene*& InScene)
 {
 	InManager = FbxManager::Create();
 
-	FbxIOSettings* FBXIO = FbxIOSettings::Create(InManager, IOSROOT);
+	FbxIOSettings *FBXIO = FbxIOSettings::Create(InManager, IOSROOT);
 	InManager->SetIOSettings(FBXIO);
 
 	FbxString FBXPath = FbxGetApplicationDirectory();
 	InManager->LoadPluginsDirectory(FBXPath);
 
-	InScene = FbxScene::Create(InManager, "OK My");
+	InScene = FbxScene::Create(InManager,"OK My");
 }
 
 bool LoadScene(FbxManager* InManager, FbxDocument* InScene, const char* InFilename)
@@ -26,7 +26,7 @@ bool LoadScene(FbxManager* InManager, FbxDocument* InScene, const char* InFilena
 		SDKVersion.Minor,
 		SDKVersion.Revision);
 
-	FbxImporter* FBXImporterPtr = FbxImporter::Create(InManager, "");
+	FbxImporter* FBXImporterPtr = FbxImporter::Create(InManager,"");
 
 	bool bReturn = FBXImporterPtr->Initialize(
 		InFilename,
@@ -50,7 +50,7 @@ bool LoadScene(FbxManager* InManager, FbxDocument* InScene, const char* InFilena
 	}
 
 	bReturn = FBXImporterPtr->Import(InScene);
-	if (bReturn &&
+	if (bReturn && 
 		FBXImporterPtr->GetStatus().GetCode() == FbxStatus::ePasswordError)
 	{
 		//密码
@@ -71,8 +71,8 @@ void GetPolygons(FbxMesh* InMesh, RFBXMesh& OutData)
 	for (int i = 0; i < PolygonCount; i++)//图元
 	{
 		OutData.VertexData.push_back(RFBXTriangle());
-		RFBXTriangle& InTriangle = OutData.VertexData[OutData.VertexData.size() - 1];
-
+		RFBXTriangle &InTriangle = OutData.VertexData[OutData.VertexData.size() - 1];
+		
 		int PolygonSize = InMesh->GetPolygonSize(i);
 		for (int j = 0; j < PolygonSize; j++)
 		{
@@ -92,7 +92,7 @@ void GetPolygons(FbxMesh* InMesh, RFBXMesh& OutData)
 			}
 
 			//顶点颜色
-			for (int l = 0; l < InMesh->GetElementVertexColorCount(); l++) {}
+			for (int l = 0; l < InMesh->GetElementVertexColorCount(); l++){}
 
 			//UV
 			for (int l = 0; l < InMesh->GetElementUVCount(); ++l)
@@ -125,15 +125,15 @@ void GetPolygons(FbxMesh* InMesh, RFBXMesh& OutData)
 					FbxVector2 UV = TextureUV->GetDirectArray().GetAt(TextureUVIndex);
 					switch (ReferenceMode)
 					{
-					case fbxsdk::FbxLayerElement::eDirect:
-					case fbxsdk::FbxLayerElement::eIndexToDirect:
-					{
-						FbxVector2 UV = TextureUV->GetDirectArray().GetAt(ControlPointIndex);
+						case fbxsdk::FbxLayerElement::eDirect:
+						case fbxsdk::FbxLayerElement::eIndexToDirect:
+						{
+							FbxVector2 UV = TextureUV->GetDirectArray().GetAt(ControlPointIndex);
 
-						InTriangle.Vertexs[j].UV.X = UV.mData[0];
-						InTriangle.Vertexs[j].UV.Y = 1.f - UV.mData[1];//V是反的 DX 和 OpenGL不一样
-						break;
-					}
+							InTriangle.Vertexs[j].UV.X = UV.mData[0];
+							InTriangle.Vertexs[j].UV.Y = 1.f - UV.mData[1];//V是反的 DX 和 OpenGL不一样
+							break;
+						}
 					}
 				}
 			}
@@ -148,48 +148,48 @@ void GetPolygons(FbxMesh* InMesh, RFBXMesh& OutData)
 				{
 					switch (NormalReferenceMode)
 					{
-					case fbxsdk::FbxLayerElement::eDirect:
-					{
-						FbxVector4 NormalPoint = Normal->GetDirectArray().GetAt(VertexID);
+						case fbxsdk::FbxLayerElement::eDirect:
+						{
+							FbxVector4 NormalPoint = Normal->GetDirectArray().GetAt(VertexID);
+							
+							InTriangle.Vertexs[j].Normal.X = NormalPoint.mData[0];
+							InTriangle.Vertexs[j].Normal.Y = NormalPoint.mData[2];
+							InTriangle.Vertexs[j].Normal.Z = NormalPoint.mData[1];
+							
+							break;
+						}
+						case fbxsdk::FbxLayerElement::eIndexToDirect:
+						{
+							int ID = Normal->GetIndexArray().GetAt(VertexID);
 
-						InTriangle.Vertexs[j].Normal.X = NormalPoint.mData[0];
-						InTriangle.Vertexs[j].Normal.Y = NormalPoint.mData[2];
-						InTriangle.Vertexs[j].Normal.Z = NormalPoint.mData[1];
-
-						break;
-					}
-					case fbxsdk::FbxLayerElement::eIndexToDirect:
-					{
-						int ID = Normal->GetIndexArray().GetAt(VertexID);
-
-						FbxVector4 NormalPoint = Normal->GetDirectArray().GetAt(ID);
-						InTriangle.Vertexs[j].Normal.X = NormalPoint.mData[0];
-						InTriangle.Vertexs[j].Normal.Y = NormalPoint.mData[2];
-						InTriangle.Vertexs[j].Normal.Z = NormalPoint.mData[1];
-					}
+							FbxVector4 NormalPoint = Normal->GetDirectArray().GetAt(ID);
+							InTriangle.Vertexs[j].Normal.X = NormalPoint.mData[0];
+							InTriangle.Vertexs[j].Normal.Y = NormalPoint.mData[2];
+							InTriangle.Vertexs[j].Normal.Z = NormalPoint.mData[1];
+						}
 					}
 				}
 				else if (Normal->GetMappingMode() == FbxGeometryElement::eByControlPoint)
 				{
 					switch (NormalReferenceMode)
 					{
-					case fbxsdk::FbxLayerElement::eDirect:
-					{
-						FbxVector4 NormalPoint = Normal->GetDirectArray().GetAt(ControlPointIndex);
-						InTriangle.Vertexs[j].Normal.X = NormalPoint.mData[0];
-						InTriangle.Vertexs[j].Normal.Y = NormalPoint.mData[2];
-						InTriangle.Vertexs[j].Normal.Z = NormalPoint.mData[1];
-						break;
-					}
-					case fbxsdk::FbxLayerElement::eIndexToDirect:
-					{
-						int ID = Normal->GetIndexArray().GetAt(ControlPointIndex);
-						FbxVector4 NormalPoint = Normal->GetDirectArray().GetAt(ID);
-						InTriangle.Vertexs[j].Normal.X = NormalPoint.mData[0];
-						InTriangle.Vertexs[j].Normal.Y = NormalPoint.mData[2];
-						InTriangle.Vertexs[j].Normal.Z = NormalPoint.mData[1];
-						break;
-					}
+						case fbxsdk::FbxLayerElement::eDirect:
+						{
+							FbxVector4 NormalPoint = Normal->GetDirectArray().GetAt(ControlPointIndex);
+							InTriangle.Vertexs[j].Normal.X = NormalPoint.mData[0];
+							InTriangle.Vertexs[j].Normal.Y = NormalPoint.mData[2];
+							InTriangle.Vertexs[j].Normal.Z = NormalPoint.mData[1];
+							break;
+						}
+						case fbxsdk::FbxLayerElement::eIndexToDirect:
+						{
+							int ID = Normal->GetIndexArray().GetAt(ControlPointIndex);
+							FbxVector4 NormalPoint = Normal->GetDirectArray().GetAt(ID);
+							InTriangle.Vertexs[j].Normal.X = NormalPoint.mData[0];
+							InTriangle.Vertexs[j].Normal.Y = NormalPoint.mData[2];
+							InTriangle.Vertexs[j].Normal.Z = NormalPoint.mData[1];
+							break;
+						}
 					}
 				}
 			}
@@ -203,25 +203,25 @@ void GetPolygons(FbxMesh* InMesh, RFBXMesh& OutData)
 				{
 					switch (Tangent->GetReferenceMode())
 					{
-					case FbxGeometryElement::eDirect:
-					{
-						FbxVector4 TangentValue = Tangent->GetDirectArray().GetAt(VertexID);
-
-						InTriangle.Vertexs[j].Tangent.X = TangentValue.mData[0];
-						InTriangle.Vertexs[j].Tangent.Y = TangentValue.mData[2];
-						InTriangle.Vertexs[j].Tangent.Z = TangentValue.mData[1];
-						break;
-					}
-					case FbxGeometryElement::eIndexToDirect:
-					{
-						int ID = Tangent->GetIndexArray().GetAt(VertexID);
-
-						FbxVector4 TangentValue = Tangent->GetDirectArray().GetAt(ID);
-						InTriangle.Vertexs[j].Tangent.X = TangentValue.mData[0];
-						InTriangle.Vertexs[j].Tangent.Y = TangentValue.mData[2];
-						InTriangle.Vertexs[j].Tangent.Z = TangentValue.mData[1];
-						break;
-					}
+						case FbxGeometryElement::eDirect:
+						{
+							FbxVector4 TangentValue = Tangent->GetDirectArray().GetAt(VertexID);
+							
+							InTriangle.Vertexs[j].Tangent.X = TangentValue.mData[0];
+							InTriangle.Vertexs[j].Tangent.Y = TangentValue.mData[2];
+							InTriangle.Vertexs[j].Tangent.Z = TangentValue.mData[1];
+							break;
+						}
+						case FbxGeometryElement::eIndexToDirect:
+						{
+							int ID = Tangent->GetIndexArray().GetAt(VertexID);
+							
+							FbxVector4 TangentValue = Tangent->GetDirectArray().GetAt(ID);
+							InTriangle.Vertexs[j].Tangent.X = TangentValue.mData[0];
+							InTriangle.Vertexs[j].Tangent.Y = TangentValue.mData[2];
+							InTriangle.Vertexs[j].Tangent.Z = TangentValue.mData[1];
+							break;
+						}
 					}
 				}
 			}
@@ -235,11 +235,11 @@ void GetPolygons(FbxMesh* InMesh, RFBXMesh& OutData)
 				{
 					switch (Binormal->GetReferenceMode())
 					{
-					case FbxGeometryElement::eDirect:
-					{
-						Binormal->GetDirectArray().GetAt(VertexID);
-						break;
-					}
+						case FbxGeometryElement::eDirect:
+						{
+							Binormal->GetDirectArray().GetAt(VertexID);
+							break;
+						}
 					}
 				}
 			}
@@ -249,7 +249,7 @@ void GetPolygons(FbxMesh* InMesh, RFBXMesh& OutData)
 	}
 }
 
-void GetMaterial() {}
+void GetMaterial(){}
 
 void GetIndex(RFBXMesh& InMesh)
 {
@@ -264,7 +264,7 @@ void GetIndex(RFBXMesh& InMesh)
 
 void GetMesh(FbxNode* InNode, RFBXModel& InModel)
 {
-	FbxMesh* NodeMesh = (FbxMesh*)InNode->GetNodeAttribute();
+	FbxMesh *NodeMesh = (FbxMesh*)InNode->GetNodeAttribute();
 
 	InModel.MeshData.push_back(RFBXMesh());
 	RFBXMesh& InMesh = InModel.MeshData[InModel.MeshData.size() - 1];
@@ -276,7 +276,7 @@ void GetMesh(FbxNode* InNode, RFBXModel& InModel)
 	//GetMaterial();
 }
 
-void RecursiveLoadMesh(FbxNode* InNode, RFBXRenderData& OutData)
+void RecursiveLoadMesh(FbxNode* InNode,RFBXRenderData& OutData)
 {
 	//XML
 	if (InNode->GetNodeAttribute() == NULL)
@@ -290,7 +290,7 @@ void RecursiveLoadMesh(FbxNode* InNode, RFBXRenderData& OutData)
 		if (AttributeType == fbxsdk::FbxNodeAttribute::eMesh)
 		{
 			OutData.ModelData.push_back(RFBXModel());
-			RFBXModel& InModel = OutData.ModelData[OutData.ModelData.size() - 1];
+			RFBXModel &InModel = OutData.ModelData[OutData.ModelData.size() - 1];
 			GetMesh(InNode, InModel);
 		}
 		else if (AttributeType == fbxsdk::FbxNodeAttribute::eSkeleton)
@@ -320,7 +320,7 @@ void RFBXAssetImport::LoadMeshData(const char* InPath, RFBXRenderData& OutData)
 	FbxScene* Scene = NULL;
 
 	//初始化场景对象
-	InitializeSdkObjects(SdkManager, Scene);
+	InitializeSdkObjects(SdkManager,Scene);
 
 	//读取FBX模型
 	FbxString FBXPath(InPath);
@@ -329,9 +329,9 @@ void RFBXAssetImport::LoadMeshData(const char* InPath, RFBXRenderData& OutData)
 	//FbxAxisSystem::DirectX.ConvertScene(Scene);
 
 	//XML 解析我们的FBX
-	if (FbxNode* Node = Scene->GetRootNode())
+	if (FbxNode *Node = Scene->GetRootNode())
 	{
-		for (int i = 0; i < Node->GetChildCount(); i++)
+		for (int i = 0;i < Node->GetChildCount();i++)
 		{
 			RecursiveLoadMesh(Node->GetChild(i), OutData);
 		}
@@ -341,14 +341,3 @@ void RFBXAssetImport::LoadMeshData(const char* InPath, RFBXRenderData& OutData)
 	DestroySdkObjects(SdkManager);
 }
 
-//int main()
-//{
-//	//
-//	FFBXRenderData Out;
-//	std::string FBXPath = "P:/FBXTest/Heart.fbx";
-//
-//	FFBXAssetImport().LoadMeshData(FBXPath, Out);
-//
-//	return 0;
-//}
-//

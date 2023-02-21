@@ -25,7 +25,7 @@ OperationHandleBase::OperationHandleBase()
 	ZAxisComponent = ConstructionObject<CustomMeshComponent>(ParamType);
 	AxisComponent = ConstructionObject<CustomMeshComponent>(ParamType);
 
-	SetMeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPERATION_HANDLE);
+	SetMeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPERATION_HANDLE_POSITION);
 }
 
 void OperationHandleBase::SetMeshRenderLayerType(EMeshRenderLayerType InRenderLayerType)

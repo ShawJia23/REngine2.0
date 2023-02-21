@@ -17,10 +17,10 @@ RScalingArrow::RScalingArrow()
 void RScalingArrow::CreateMesh()
 {
 	string MeshPath = PathHelper::RelativeToAbsolutePath(
-		PathHelper::GetEngineContentPath() + "/Handle/ScalingArrow.fbx");
+		PathHelper::GetEngineAssetModelPath() + "/Handle/ScalingArrow.fbx");
 
 	string AnyAxisMeshPath = PathHelper::RelativeToAbsolutePath(
-		PathHelper::GetEngineContentPath() + "/Handle/AnyAxis_Type_1.fbx");
+		PathHelper::GetEngineAssetModelPath() + "/Handle/AnyAxis_Type_1.fbx");
 
 	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, XAxisComponent, MeshPath);
 	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, YAxisComponent, MeshPath);

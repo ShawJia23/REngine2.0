@@ -1,7 +1,9 @@
 #include"MeshComponent.h"
 #include"../../Mesh/MeshType.h"
 
-RMeshComponent::RMeshComponent():MeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPAQUE)
+RMeshComponent::RMeshComponent():
+	MeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPAQUE),
+	bVisible(true)
 {
 	CreateObjectParam param;
 	param.Outer = this;

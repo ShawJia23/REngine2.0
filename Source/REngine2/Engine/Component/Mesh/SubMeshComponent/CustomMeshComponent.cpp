@@ -2,6 +2,7 @@
 #include"../../../Mesh/MeshType.h"
 #include "FBXSDK.h"
 #pragma comment(lib, "AssetImport.lib")
+#include"../../../EngineMinimal.h"
 
 CustomMeshComponent::CustomMeshComponent()
 {
@@ -31,7 +32,7 @@ bool CustomMeshComponent::LoadFBXFromBuff(MeshRenderData& MeshData, const string
 {
 	RFBXRenderData RenderData;
 	RFBXAssetImport().LoadMeshData(inName.c_str(), RenderData);
-
+	
 	for (auto& TmpModel : RenderData.ModelData)
 	{
 		for (auto& MeshTmp : TmpModel.MeshData)

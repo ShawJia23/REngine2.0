@@ -449,6 +449,23 @@ void DXRenderEngine::CreateMesh()
 			pMaterial->SetMaterialType(EMaterialType::Normal);
 		}
 	}
+
+	
+
+	CustomMesh* pSMeshCustom = m_World->CreateActorObject<CustomMesh>();
+	if (pSMeshCustom)
+	{
+		string AnyAxisMeshPath = PathHelper::RelativeToAbsolutePath(
+			PathHelper::GetEngineAssetModelPath() + "/Handle/RotateHandleX.fbx");
+		pSMeshCustom->CreateMesh(AnyAxisMeshPath);
+		pSMeshCustom->SetPosition(XMFLOAT3(-4.f, 10, 0.f));
+		if (RMaterial* pMaterial = (*pSMeshCustom->GetMaterials())[0])
+		{
+			pMaterial->SetBaseColor(fvector_4d(1.f));
+			pMaterial->SetMaterialType(EMaterialType::Normal);
+		}
+	}
+
 }
 
 void DXRenderEngine::LoadAsset()

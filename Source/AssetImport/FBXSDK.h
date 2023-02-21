@@ -15,18 +15,18 @@ struct RFBXVector2
 {
 	RFBXVector2()
 		:X(0.f)
-		, Y(0.f)
+		,Y(0.f)
 	{}
 	float X;
 	float Y;
 };
 
 //3DœÚ¡ø
-struct RFBXVector3 :public RFBXVector2
+struct RFBXVector3:public RFBXVector2
 {
 	RFBXVector3()
 		:RFBXVector2()
-		, Z(0.f)
+		,Z(0.f)
 	{}
 
 	float Z;
@@ -39,7 +39,7 @@ struct FBXASSETIMPORT_API RFBXVertex
 	RFBXVector3 Color;
 	RFBXVector3 Normal;
 	RFBXVector3 Tangent;
-	RFBXVector3 UV;
+	RFBXVector2 UV;
 	RFBXVector3 Binormal;
 };
 
@@ -47,7 +47,7 @@ struct FBXASSETIMPORT_API RFBXVertex
 struct FBXASSETIMPORT_API RFBXTriangle
 {
 	RFBXTriangle()
-		:MaterialID(0)
+	:MaterialID(0)
 	{}
 
 	RFBXVertex Vertexs[3];
@@ -98,5 +98,5 @@ struct FBXASSETIMPORT_API RFBXVersion
 //7.5.0
 struct RFBXAssetImport
 {
-	FBXASSETIMPORT_API void LoadMeshData(const char* InPath, RFBXRenderData& OutData);
-};
+	FBXASSETIMPORT_API void LoadMeshData(const char *InPath,RFBXRenderData &OutData);
+}; 

@@ -3,7 +3,7 @@
 #include"../Collision/CollisionSystem.h"
 #include"../RayCast/RayCastSystem.h"
 #include"../Render/Pipeline/RenderLayer/RenderLayerManage.h"
-
+#include"../../Editor/OperationHandle/OperationHandleManage.h"
 extern GActorObject* SelectedObject;
 RCamera::RCamera():Super()
 {
@@ -230,6 +230,21 @@ void RCamera::OnClickedScreen(int X, int Y)
 	if (layer && collisionResult.bHit)
 	{
 		layer->HighlightDisplayObject(collisionResult.RenderData);
+		//设置选择对象
+		OperationHandleManage::Get()->SetNewSelectedObject(collisionResult.Actor);
+
+		//显示操作手柄
+		OperationHandleManage::Get()->DisplaySelectedOperationHandle();
+	}
+	else
+	{
+		layer->Clear(EMeshRenderLayerType::RENDERLAYER_SELECT);
+
+		//设置选择对象
+		OperationHandleManage::Get()->SetNewSelectedObject(nullptr);
+
+		//显示操作手柄
+		OperationHandleManage::Get()->HideSelectedOperationHandle();
 	}
 #endif
 }

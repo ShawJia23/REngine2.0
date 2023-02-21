@@ -156,13 +156,10 @@
     <ClCompile Include="Engine\Manage\TextureManage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\BaseRenderLayer.cpp">
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\BaseRenderLayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerManage.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\LoadAsset\DDSTextureLoader.cpp">
@@ -313,6 +310,21 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Editor\OperationHandle\ScalingArrow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\OpaqueLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\SelectLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\SkyLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\PositionHandleLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\RotateHandleLayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -500,13 +512,10 @@
     <ClInclude Include="Engine\Construction\MacroConstruction.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\BaseRenderLayer.h">
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\BaseRenderLayer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerManage.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType.h">
@@ -675,6 +684,24 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Editor\OperationHandle\ScalingArrow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\OpaqueLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\SelectLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\SkyLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerMinimal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\PositionHandleLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\RotateHandleLayer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

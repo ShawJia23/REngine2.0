@@ -26,9 +26,9 @@ RRotatorArrow::RRotatorArrow()
 	IgnoreComponents.push_back(ZPlaneComponent);
 
 	//指定渲染层级
-	XPlaneComponent->SetMeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPERATION_HANDLE_ROT_PLANE);
-	YPlaneComponent->SetMeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPERATION_HANDLE_ROT_PLANE);
-	ZPlaneComponent->SetMeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPERATION_HANDLE_ROT_PLANE);
+	XPlaneComponent->SetMeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPERATION_HANDLE_ROTATE);
+	YPlaneComponent->SetMeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPERATION_HANDLE_ROTATE);
+	ZPlaneComponent->SetMeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPERATION_HANDLE_ROTATE);
 
 	RotatorRatio = 0.f;
 	LastT2Value = 0.f;
@@ -37,13 +37,13 @@ RRotatorArrow::RRotatorArrow()
 void RRotatorArrow::CreateMesh()
 {
 	string MeshPathX = PathHelper::RelativeToAbsolutePath(
-		PathHelper::GetEngineContentPath() + "/Handle/RotateHandleX.fbx");
+		PathHelper::GetEngineAssetModelPath() + "/Handle/RotateHandleX.fbx");
 
 	string MeshPathY = PathHelper::RelativeToAbsolutePath(
-		PathHelper::GetEngineContentPath() + "/Handle/RotateHandleY.fbx");
+		PathHelper::GetEngineAssetModelPath() + "/Handle/RotateHandleY.fbx");
 
 	string MeshPathZ = PathHelper::RelativeToAbsolutePath(
-		PathHelper::GetEngineContentPath() + "/Handle/RotateHandleZ.fbx");
+		PathHelper::GetEngineAssetModelPath() + "/Handle/RotateHandleZ.fbx");
 
 	//创建操作轴
 	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, XAxisComponent, MeshPathX);

@@ -18,7 +18,7 @@ RMoveArrow::RMoveArrow()
 void RMoveArrow::CreateMesh()
 {
 	string MeshPath = PathHelper::RelativeToAbsolutePath(
-		PathHelper::GetEngineAssetModelPath() + "/Handle/RMoveArrow.fbx");
+		PathHelper::GetEngineAssetModelPath() + "/Handle/MoveArrow.fbx");
 
 	string AnyAxisMeshPath = PathHelper::RelativeToAbsolutePath(
 		PathHelper::GetEngineAssetModelPath() + "/Handle/AnyAxis_Type_1.fbx");

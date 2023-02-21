@@ -38,16 +38,22 @@ vector<RMaterial*>* BMesh::GetMaterials()
 
 void BMesh::SetPosition(const XMFLOAT3& InNewPosition)
 {
+	Super::SetPosition(InNewPosition);
+
 	GetMeshComponent()->SetPosition(InNewPosition);
 }
 
 void BMesh::SetRotation(const fvector_3d& InRotation)
 {
+	Super::SetRotation(InRotation);
+
 	GetMeshComponent()->SetRotation(InRotation);
 }
 
 void BMesh::SetScale(const fvector_3d& InNewScale)
 {
+	Super::SetScale(InNewScale);
+
 	GetMeshComponent()->SetScale(InNewScale);
 }
 

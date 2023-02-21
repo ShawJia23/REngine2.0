@@ -1,5 +1,5 @@
 #include"RenderLayerManage.h"
-#include"RenderLayer.h"
+#include"RenderLayerMinimal.h"
 #include"../Geometry/GeometryMap.h"
 #include"../BufferView/ConstantBufferView.h"
 #include"../../ConstontBuffer/ObjectTransformation.h"
@@ -14,6 +14,8 @@ RenderLayerManage::RenderLayerManage()
 	CreateRenderLayer<OpaqueLayer>();
 	CreateRenderLayer<SkyLayer>();
 	CreateRenderLayer<SelectLayer>();
+	CreateRenderLayer<PositionHandleLayer>();
+	CreateRenderLayer<RotateHandleLayer>();
 }
 
 RenderLayerManage::~RenderLayerManage()

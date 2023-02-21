@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d7290346-f20d-4822-8109-9ed18b17ad7e}</ProjectGuid>
+    <ProjectGuid>{a727e5aa-9312-4888-8e52-d5480a07b2a1}</ProjectGuid>
     <RootNamespace>AssetImport</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -114,7 +114,6 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,11 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FBXSDK.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="FBXSDK.h" />
-    <ClInclude Include="AssetImport.h" />
+    <ClInclude Include="ImportExport.h" />
     <ClInclude Include="ThirdPartyLibrary\FBX\include\fbxsdk.h" />
     <ClInclude Include="ThirdPartyLibrary\FBX\include\fbxsdk\core\arch\fbxalloc.h" />
     <ClInclude Include="ThirdPartyLibrary\FBX\include\fbxsdk\core\arch\fbxarch.h" />
@@ -372,6 +368,9 @@
     <ClInclude Include="ThirdPartyLibrary\FBX\include\fbxsdk\utils\fbxrootnodeutility.h" />
     <ClInclude Include="ThirdPartyLibrary\FBX\include\fbxsdk\utils\fbxscenecheckutility.h" />
     <ClInclude Include="ThirdPartyLibrary\FBX\include\fbxsdk\utils\fbxusernotification.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FBXSDK.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

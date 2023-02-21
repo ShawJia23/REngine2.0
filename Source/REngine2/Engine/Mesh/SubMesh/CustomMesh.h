@@ -11,5 +11,5 @@ public:
 
 	virtual void Draw(float DeltaTime);
 
-	void CreateMesh(EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
+	void CreateMesh(string name,EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 };
