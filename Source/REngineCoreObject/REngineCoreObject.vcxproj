@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Component\RComponent.cpp" />
+    <ClCompile Include="Construction\ConstructionComponents.cpp" />
     <ClCompile Include="Reflection\FunctionManage.cpp" />
     <ClCompile Include="Reflection\RFrame.cpp" />
     <ClCompile Include="Reflection\RNativeClass.cpp" />
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\RComponent.h" />
+    <ClInclude Include="Construction\ConstructionComponents.h" />
     <ClInclude Include="Construction\ObjectConstruction.h" />
     <ClInclude Include="RCoreObjectMinimal.h" />
     <ClInclude Include="Reflection\CodeReflection.h" />

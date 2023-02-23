@@ -24,6 +24,11 @@ void BMesh::PostDraw(float DeltaTime)
 {
 }
 
+void BMesh::SetPickup(bool bNewPickup)
+{
+	GetMeshComponent()->SetPickup(bNewPickup);
+}
+
 
 UINT BMesh::GetMaterialsNum()
 {

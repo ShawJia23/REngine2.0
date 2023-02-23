@@ -33,11 +33,13 @@ struct CollisionScene
 		CollisionResult& outResult);
 
 	static bool RaycastSingle(
-		RWorld* InWorld,
-		GActorObject* InSpecificObjects,
-		const std::vector<RComponent*>& IgnoreComponents,
+		RWorld* inWorld,
+		GActorObject* inSpecificObjects,
+		const std::vector<RComponent*>& ignoreComponents,
 		const XMVECTOR& OriginPoint,
 		const XMVECTOR& Direction,
 		const XMMATRIX& ViewInverseMatrix,
 		CollisionResult& OutResult);
+
+	static bool IsIgnoreComponents(RComponent* InComponent, const std::vector<RComponent*>& IgnoreComponents);
 };

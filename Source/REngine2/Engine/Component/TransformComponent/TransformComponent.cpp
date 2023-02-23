@@ -14,6 +14,15 @@ RTransformComponent::RTransformComponent()
 void RTransformComponent::SetPosition(const XMFLOAT3& newPosition)
 {
 	Position = newPosition;
+
+	CallChildren<RTransformComponent>(
+		[&](RTransformComponent* pComponent)
+		{
+			if (pComponent)
+			{
+				pComponent->SetPosition(Position);
+			}
+		});
 }
 
 void RTransformComponent::SetForwardVector(const XMFLOAT3& forwardVector)
@@ -53,6 +62,15 @@ void RTransformComponent::SetRotation(const frotator& InNewRotation)
 	XMStoreFloat3(&RightVector, XMVector3TransformNormal(XMLoadFloat3(&RightVector), RotationRollPitchYawMatrix));
 	XMStoreFloat3(&UpVector, XMVector3TransformNormal(XMLoadFloat3(&UpVector), RotationRollPitchYawMatrix));
 	XMStoreFloat3(&ForwardVector, XMVector3TransformNormal(XMLoadFloat3(&ForwardVector), RotationRollPitchYawMatrix));
+
+	CallChildren<RTransformComponent>(
+		[&](RTransformComponent* pComponent)
+		{
+			if (pComponent)
+			{
+				pComponent->SetRotation(InNewRotation);
+			}
+		});
 }
 
 void RTransformComponent::SetScale(const fvector_3d& InNewScale)
@@ -60,6 +78,15 @@ void RTransformComponent::SetScale(const fvector_3d& InNewScale)
 	Scale.x = InNewScale.x;
 	Scale.y = InNewScale.y;
 	Scale.z = InNewScale.z;
+
+	CallChildren<RTransformComponent>(
+		[&](RTransformComponent* InComponent)
+		{
+			if (InComponent)
+			{
+				InComponent->SetScale(InNewScale);
+			}
+		});
 }
 
 void RTransformComponent::CorrectionVector()

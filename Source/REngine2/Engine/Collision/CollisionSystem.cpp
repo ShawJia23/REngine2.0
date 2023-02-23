@@ -4,6 +4,32 @@
 #include"../Camera/Camera.h"
 #include"../World.h"
 #include"../Render/Pipeline/DX12Pipeline.h"
+#include"../RayCast/RayCastSystem.h"
+
+
+void GetRaycastDataByLocal(
+	std::shared_ptr<RRenderData>& inRenderingData,
+	const XMVECTOR& originPoint,
+	const XMVECTOR& direction,
+	const XMMATRIX& viewInverseMatrix,
+	XMVECTOR& outLocalOriginPoint,
+	XMVECTOR& outLocalDirection)
+{
+	//转模型局部
+	XMMATRIX WorldMatrix = XMLoadFloat4x4(&inRenderingData->WorldMatrix);
+	XMVECTOR WorldMatrixDeterminant = XMMatrixDeterminant(WorldMatrix);
+	XMMATRIX WorldMatrixInverse = XMMatrixInverse(&WorldMatrixDeterminant, WorldMatrix);
+
+	//局部矩阵
+	XMMATRIX LocalMatrix = XMMatrixMultiply(viewInverseMatrix, WorldMatrixInverse);
+
+	//局部空间的射线点位置
+	outLocalOriginPoint = XMVector3TransformCoord(originPoint, LocalMatrix);
+	outLocalDirection = XMVector3TransformNormal(direction, LocalMatrix);
+
+	//单位化
+	outLocalDirection = XMVector3Normalize(outLocalDirection);
+}
 
 CollisionResult::CollisionResult()
 	:bHit(false)
@@ -27,6 +53,10 @@ bool CollisionScene::RaycastSingle(RWorld* inWorld,
 	for (size_t i = 0; i < renderDatas.size(); i++)
 	{
 		std::shared_ptr<RRenderData>& pRenderData = renderDatas[i];
+
+		if (!pRenderData->Mesh->IsPickup())
+			continue;
+
 		if (!pRenderData->RenderData || !pRenderData->Mesh)
 			continue;
 		//点击点和射线转为模型空间做相交，在世界空间太费劲
@@ -50,7 +80,7 @@ bool CollisionScene::RaycastSingle(RWorld* inWorld,
 		if (BoundTime <= 0.f || BoundTime > FinalTime)
 			continue;
 
-		auto oPos= pRenderData->Mesh->GetPosition();
+		auto oPos = pRenderData->Mesh->GetPosition();
 		auto cPos = inWorld->GetCamera()->GetPosition();
 		float a = abs(cPos.x - oPos.x);
 		float b = abs(cPos.y - oPos.y);
@@ -67,22 +97,22 @@ bool CollisionScene::RaycastSingle(RWorld* inWorld,
 			Indices.y = pRenderData->RenderData->IndexData[pRenderData->IndexOffsetPosition + j * 3 + 1];
 			Indices.z = pRenderData->RenderData->IndexData[pRenderData->IndexOffsetPosition + j * 3 + 2];
 
-			
-			XMVECTOR Vertex0 = XMLoadFloat3(&pRenderData->RenderData->VertexData[Indices.x].Position);
-			XMVECTOR Vertex1 = XMLoadFloat3(&pRenderData->RenderData->VertexData[Indices.y].Position);
-			XMVECTOR Vertex2 = XMLoadFloat3(&pRenderData->RenderData->VertexData[Indices.z].Position);
+
+			XMVECTOR Vertex0 = XMLoadFloat3(&pRenderData->RenderData->VertexData[pRenderData->VertexOffsetPosition+Indices.x].Position);
+			XMVECTOR Vertex1 = XMLoadFloat3(&pRenderData->RenderData->VertexData[pRenderData->VertexOffsetPosition + Indices.y].Position);
+			XMVECTOR Vertex2 = XMLoadFloat3(&pRenderData->RenderData->VertexData[pRenderData->VertexOffsetPosition + Indices.z].Position);
 
 			float TriangleTestsTime = 0.f;
 			if (!TriangleTests::Intersects(LocalOriginPoint, LocalDirection, Vertex0, Vertex1, Vertex2, TriangleTestsTime))
 				continue;
 			if (TriangleTestsTime < 0 || TriangleTestsTime>FinalTime)
 				continue;
-			
+
 			TriangleFinalTime = TriangleTestsTime;
 			if (tempDis > dis)
 				continue;
 			dis = tempDis;
-			
+
 			outResult.bHit = true;
 			outResult.Component = pRenderData->Mesh;
 			outResult.Time = TriangleTestsTime;
@@ -95,15 +125,69 @@ bool CollisionScene::RaycastSingle(RWorld* inWorld,
 }
 
 bool CollisionScene::RaycastSingle(
-	RWorld* InWorld,
-	GActorObject* InSpecificObjects,
-	const std::vector<RComponent*>& IgnoreComponents,
-	const XMVECTOR& OriginPoint,
-	const XMVECTOR& Direction,
-	const XMMATRIX& ViewInverseMatrix,
-	CollisionResult& OutResult)
+	RWorld* inWorld,
+	GActorObject* inSpecificObjects,
+	const std::vector<RComponent*>& ignoreComponents,
+	const XMVECTOR& originPoint,
+	const XMVECTOR& direction,
+	const XMMATRIX& viewInverseMatrix,
+	CollisionResult& outResult)
 {
-	return true;
+	auto renderDatas = inWorld->GetCamera()->GetRenderPipeline()->GetGeometryMap().GetRGeometry(0).RenderDatasPool;
+	for (size_t i = 0; i < renderDatas.size(); i++)
+	{
+		std::shared_ptr<RRenderData>& pRenderData = renderDatas[i];
+		if (pRenderData->Mesh->IsPickup())
+		{
+			if (!IsIgnoreComponents(pRenderData->Mesh, ignoreComponents))
+			{
+				XMVECTOR LocalOriginPoint;
+				XMVECTOR LocalDirection;
+
+				GetRaycastDataByLocal(
+					pRenderData,
+					originPoint,
+					direction,
+					viewInverseMatrix,
+					LocalOriginPoint,
+					LocalDirection);
+
+				float BoundTime = 0.f;
+				if (pRenderData->Bounds.Intersects(LocalOriginPoint, LocalDirection, BoundTime))
+				{
+					if (GActorObject* InActorObject = dynamic_cast<GActorObject*>(pRenderData->Mesh->GetOuter()))
+					{
+						if (InActorObject == inSpecificObjects)
+						{
+							outResult.bHit = true;
+							outResult.Component = pRenderData->Mesh;
+							outResult.Time = BoundTime;
+							outResult.Actor = InActorObject;
+
+							//拿到渲染数据
+							outResult.RenderData = pRenderData;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
+
+bool CollisionScene::IsIgnoreComponents(RComponent* InComponent, const std::vector<RComponent*>& IgnoreComponents)
+{
+	for (auto& Tmp : IgnoreComponents)
+	{
+		if (Tmp == InComponent)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 

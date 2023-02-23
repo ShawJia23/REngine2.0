@@ -1,6 +1,7 @@
 #pragma once
 #include"../RCoreObjectMinimal.h"
 #include"../RObjectMacro.h"
+#include"ConstructionComponents.h"
 class RMinimalObject;
 class RComponent;
 struct RENGINECOREOBJECT_API CreateObjectParam
@@ -19,6 +20,8 @@ struct RENGINECOREOBJECT_API CreateObjectParam
 template<class T>
 T* CreateObject(const CreateObjectParam& inObjectParam, RMinimalObject* newObject)
 {
+	ConstructionComponent::ConstructionComponents(inObjectParam, newObject);
+
 	T* obj = dynamic_cast<T*>(newObject);
 	obj->SetOuter(inObjectParam.Outer);
 	obj->Rename(inObjectParam.Name);

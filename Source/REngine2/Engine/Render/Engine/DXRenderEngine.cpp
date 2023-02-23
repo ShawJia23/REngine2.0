@@ -336,6 +336,7 @@ void DXRenderEngine::CreateMesh()
 		pMesh->CreateMesh(4.f, 3.f, 20, 20);
 		pMesh->SetPosition(XMFLOAT3(0.f, -2.f, 0.f));
 		pMesh->SetScale(fvector_3d(20.f, 20.f, 10.f));
+		pMesh->SetPickup(false);
 	}
 	GParallelLight* pLight = m_World->CreateActorObject<GParallelLight>();
 	if (pLight)
@@ -380,6 +381,7 @@ void DXRenderEngine::CreateMesh()
 			pMaterial->SetSpecular(fvector_3d(0.2f));
 			pMaterial->SetMaterialType(EMaterialType::BaseColor);
 		}
+		pSMesh->SetPickup(false);
 	}
 	pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
@@ -458,11 +460,12 @@ void DXRenderEngine::CreateMesh()
 		string AnyAxisMeshPath = PathHelper::RelativeToAbsolutePath(
 			PathHelper::GetEngineAssetModelPath() + "/Handle/RotateHandleX.fbx");
 		pSMeshCustom->CreateMesh(AnyAxisMeshPath);
-		pSMeshCustom->SetPosition(XMFLOAT3(-4.f, 10, 0.f));
+		pSMeshCustom->SetPosition(XMFLOAT3(-4.f, 4, 0.f));
 		if (RMaterial* pMaterial = (*pSMeshCustom->GetMaterials())[0])
 		{
 			pMaterial->SetBaseColor(fvector_4d(1.f));
-			pMaterial->SetMaterialType(EMaterialType::Normal);
+			pMaterial->SetMaterialType(EMaterialType::BaseColor);
+			pMaterial->SetMaterialDisplayState(EMaterialDisplayStatue::RTOPOLOGY_LINELIST);
 		}
 	}
 

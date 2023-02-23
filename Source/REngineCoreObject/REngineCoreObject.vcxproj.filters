@@ -51,6 +51,9 @@
     <ClCompile Include="Component\RComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Construction\ConstructionComponents.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RObject\GuidInterface.h">
@@ -105,6 +108,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Reflection\RNativeClass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Construction\ConstructionComponents.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

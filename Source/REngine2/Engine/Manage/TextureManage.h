@@ -34,7 +34,7 @@ public:
 		_Out_ ComPtr<ID3D12Resource>& texture,
 		_Out_ ComPtr<ID3D12Resource>& textureUploadHeap);
 
-	UINT GetTextureSize() { return m_TextureMap.size(); }
+	UINT GetTextureSize();
 
 	void LoadCubeMapFormPath(const std::string& name, const std::string& path);
 private:

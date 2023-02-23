@@ -37,6 +37,7 @@ void DX12Pipeline::BuildPipeline()
 
     m_GeometryMap.BuildConstantBufferView();
 
+    //texture=0时构建根签名和shader会报错
     m_RootSignature.BuildRootSignature(GetTextureManage()->GetTextureSize());
 
     m_PipelineState.BindRootSignature(m_RootSignature.GetRootSignature());

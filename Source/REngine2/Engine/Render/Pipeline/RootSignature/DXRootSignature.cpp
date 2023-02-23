@@ -61,7 +61,6 @@ RDXRootSignature::RDXRootSignature()
 void RDXRootSignature::BuildRootSignature(UINT textureNum)
 {
     CD3DX12_ROOT_PARAMETER RootParam[6];
-
 	CD3DX12_DESCRIPTOR_RANGE DescriptorRangeTextureSRV;
 	DescriptorRangeTextureSRV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, textureNum, 1);
 

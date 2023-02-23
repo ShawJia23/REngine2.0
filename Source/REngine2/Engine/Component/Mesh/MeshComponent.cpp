@@ -3,7 +3,8 @@
 
 RMeshComponent::RMeshComponent():
 	MeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPAQUE),
-	bVisible(true)
+	bVisible(true),
+	bPickup(true)
 {
 	CreateObjectParam param;
 	param.Outer = this;

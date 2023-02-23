@@ -29,8 +29,9 @@ void RMoveArrow::CreateMesh()
 	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, ZAxisComponent, MeshPath);
 	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, AxisComponent, AnyAxisMeshPath);
 
-	YAxisComponent->SetRotation(frotator(-90.f, 0.f, 0.f));
-	XAxisComponent->SetRotation(frotator(0.f, 90.f, 0.f));
+	ZAxisComponent->SetRotation(frotator(180.f, 0.f, 0.f));
+	XAxisComponent->SetRotation(frotator(90.f, 0.f, 0.f));
+	YAxisComponent->SetRotation(frotator(0.f, 0.f, -90.f));
 
 	ResetColor();
 }

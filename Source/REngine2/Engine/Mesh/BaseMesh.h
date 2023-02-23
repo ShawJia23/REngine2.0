@@ -26,6 +26,8 @@ public:
 	virtual void Draw(float DeltaTime);
 	virtual void PostDraw(float DeltaTime);
 
+	virtual void SetPickup(bool bNewPickup);
+
 	virtual RMeshComponent* GetMeshComponent();
 
 	virtual void SetMeshComponent(RMeshComponent* InMeshComponent);

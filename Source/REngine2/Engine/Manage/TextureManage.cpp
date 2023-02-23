@@ -211,3 +211,11 @@ void RTextureManage::LoadCubeMapFormPath(const std::string& name, const std::str
 
 	m_CubeMap = std::move(Tex);
 }
+
+UINT RTextureManage::GetTextureSize()
+{
+	//texture为0构建shader会有问题
+	if (m_TextureMap.size() == 0)
+		return 1;
+	return m_TextureMap.size();
+}

@@ -4,6 +4,7 @@
 #include"../RayCast/RayCastSystem.h"
 #include"../Render/Pipeline/RenderLayer/RenderLayerManage.h"
 #include"../../Editor/OperationHandle/OperationHandleManage.h"
+extern RMeshComponent* SelectAxisComponent;
 extern GActorObject* SelectedObject;
 RCamera::RCamera():Super()
 {
@@ -223,6 +224,9 @@ void RCamera::MoveRight(float InValue)
 void RCamera::OnClickedScreen(int X, int Y)
 {
 #if EDITOR_ENGINE
+	if (SelectAxisComponent)
+		return;
+
 	CollisionResult collisionResult;
 	RayCastSystem::HitResultByScreen(GetWorld(), X, Y, collisionResult);
 
