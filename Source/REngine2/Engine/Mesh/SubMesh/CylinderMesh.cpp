@@ -18,9 +18,7 @@ void CylinderMesh::Draw(float DeltaTime)
 
 void CylinderMesh::CreateMesh(float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)
 {
-	CreateObjectParam inObjectParam;
-	inObjectParam.Outer = this;
-	inObjectParam.Name = "CylinderComponent";
+	BUILD_OBJECT_PARAMETERS_BY_COMPONENT("CylinderComponent", GetTransformationComponent(), this);
 	auto Tmp = CREATE_RENDER_DATA(CylinderMeshComponent, topRadius, bottomRadius, height, axialSub, heightSub);
 	SetMeshComponent(Tmp);
 }

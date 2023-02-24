@@ -15,9 +15,7 @@ void BoxMesh::Draw(float DeltaTime)
 }
 void  BoxMesh::CreateMesh(float height, float width, float depth, EMeshRenderLayerType type)
 {
-	CreateObjectParam inObjectParam;
-	inObjectParam.Outer = this;
-	inObjectParam.Name = "BoxComponent";
+	BUILD_OBJECT_PARAMETERS_BY_COMPONENT("BoxComponent", GetTransformationComponent(), this);
 	auto Tmp = CREATE_RENDER_DATA(BoxMeshComponent, height, width, depth);
 	SetMeshComponent(Tmp);
 }

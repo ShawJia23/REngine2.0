@@ -18,9 +18,7 @@ void SphereMesh::Draw(float DeltaTime)
 
 void SphereMesh::CreateMesh(float radius, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)
 {
-	CreateObjectParam inObjectParam;
-	inObjectParam.Outer = this;
-	inObjectParam.Name = "SphereComponent";
+	BUILD_OBJECT_PARAMETERS_BY_COMPONENT("SphereComponent", GetTransformationComponent(), this);
 	auto Tmp = CREATE_RENDER_DATA(SphereMeshComponent, radius, axialSub, heightSub);
 	SetMeshComponent(Tmp);
 }

@@ -18,9 +18,7 @@ void ConeMesh::Draw(float DeltaTime)
 
 void ConeMesh::CreateMesh(float radius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)
 {
-	CreateObjectParam inObjectParam;
-	inObjectParam.Outer = this;
-	inObjectParam.Name = "ConeComponent";
+	BUILD_OBJECT_PARAMETERS_BY_COMPONENT("ConeComponent", GetTransformationComponent(), this);
 	auto Tmp = CREATE_RENDER_DATA(ConeMeshComponent, radius, height, axialSub, heightSub);
 	SetMeshComponent(Tmp);
 }

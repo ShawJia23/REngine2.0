@@ -14,6 +14,7 @@ public:
 public:
 	void AllOperationHandleHide();
 
+	bool IsCaptureMouseNotOnUI();
 public:
 	void DisplaySelectedOperationHandle(GActorObject* InNewSelectedObject);
 	void DisplaySelectedOperationHandle();
@@ -27,6 +28,7 @@ public:
 
 public:
 	GActorObject* GetSelectedOperationHandle();
+
 private:
 	static OperationHandleManage* InManage;
 

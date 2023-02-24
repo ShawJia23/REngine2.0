@@ -18,9 +18,7 @@ void CustomMesh::Draw(float DeltaTime)
 
 void CustomMesh::CreateMesh(string name,EMeshRenderLayerType type)
 {
-	CreateObjectParam inObjectParam;
-	inObjectParam.Outer = this;
-	inObjectParam.Name = "CustomComponent";
+	BUILD_OBJECT_PARAMETERS_BY_COMPONENT("CustomComponent", GetTransformationComponent(), this);
 	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent, name);
 	SetMeshComponent(Tmp);
 }

@@ -136,15 +136,14 @@ void OperationHandleBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (GetWorld())
+	if (!GetWorld())
+		return;
+	if (GetWorld()->GetCamera())
 	{
-		if (GetWorld()->GetCamera())
-		{
-			fvector_3d New3Value = RMath::ToVector3d(GetWorld()->GetCamera()->GetPosition()) - RMath::ToVector3d(GetPosition());
-			fvector_3d Scale = New3Value.len() / FixedZoom;
+		fvector_3d New3Value = RMath::ToVector3d(GetWorld()->GetCamera()->GetPosition()) - RMath::ToVector3d(GetPosition());
+		fvector_3d Scale = New3Value.len() / FixedZoom;
 
-			SetScale(Scale);
-		}
+		SetScale(Scale);
 	}
 }
 
@@ -226,36 +225,36 @@ fvector_3d OperationHandleBase::GetSelectedObjectDirection(
 
 void OperationHandleBase::OnMouseMove(int X, int Y)
 {
-	if (IsCurrentSelectedHandle())
+	if (!OperationHandleManage::Get()->IsCaptureMouseNotOnUI())
+		return;
+	if (!IsCurrentSelectedHandle())
+		return;
+	if (bOperationHandleSelect)
+		return;
+	CollisionResult CollisionResult;
+	RayCastSystem::HitSpecificObjectsResultByScreen(
+		GetWorld(),
+		this,
+		IgnoreComponents,
+		X, Y,
+		CollisionResult);
+
+	ResetColor();
+
+	if (CollisionResult.bHit)
 	{
-		if (!bOperationHandleSelect)
+		CustomMeshComponent* SelectCustomMeshComponent = dynamic_cast<CustomMeshComponent*>(CollisionResult.Component);
+
+		SelectAxisComponent = SelectCustomMeshComponent;
+		ResetColor(SelectCustomMeshComponent, fvector_4d(1.f, 1.f, 0.f, 1.f));
+	}
+	else
+	{
+		SelectAxisComponent = nullptr;
+
+		if (!SelectedObject)
 		{
-			CollisionResult CollisionResult;
-			RayCastSystem::HitSpecificObjectsResultByScreen(
-				GetWorld(),
-				this,
-				IgnoreComponents,
-				X, Y,
-				CollisionResult);
-
-			ResetColor();
-
-			if (CollisionResult.bHit)
-			{
-				CustomMeshComponent* SelectCustomMeshComponent = dynamic_cast<CustomMeshComponent*>(CollisionResult.Component);
-
-				SelectAxisComponent = SelectCustomMeshComponent;
-				ResetColor(SelectCustomMeshComponent, fvector_4d(1.f, 1.f, 0.f, 1.f));
-			}
-			else
-			{
-				SelectAxisComponent = nullptr;
-
-				if (!SelectedObject)
-				{
-					SetVisible(false);
-				}
-			}
+			SetVisible(false);
 		}
 	}
 }

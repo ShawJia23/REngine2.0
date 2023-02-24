@@ -114,4 +114,10 @@ GActorObject* OperationHandleManage::GetSelectedOperationHandle()
 	return SelectedOperationHandle;
 }
 
+bool OperationHandleManage::IsCaptureMouseNotOnUI()
+{
+	ImGuiIO& IO = ImGui::GetIO();
+	return !IO.WantCaptureMouseUnlessPopupClose;
+}
+
 #endif

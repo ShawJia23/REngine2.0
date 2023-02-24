@@ -224,6 +224,9 @@ void RCamera::MoveRight(float InValue)
 void RCamera::OnClickedScreen(int X, int Y)
 {
 #if EDITOR_ENGINE
+	if (!OperationHandleManage::Get()->IsCaptureMouseNotOnUI())
+		return;
+
 	if (SelectAxisComponent)
 		return;
 

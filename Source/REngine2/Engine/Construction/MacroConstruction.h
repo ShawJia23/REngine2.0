@@ -7,17 +7,18 @@ ActorMeshConstruction::CreateMeshRenderData<T>(inObjectParam,GetMeshManage(),typ
 #define CREATE_RENDER_DATA_BY_COMPONENT(T,Component,...)\
 ActorMeshConstruction::CreateMeshRenderDataByComponent<T>(GetMeshManage(), dynamic_cast<T*>(Component),__VA_ARGS__);
 
+//组件构建
+#define BUILD_OBJECT_PARAMETERS_BY_COMPONENT(InName,InComponent,InOuter)\
+CreateObjectParam inObjectParam;\
+inObjectParam.Outer = InOuter;\
+inObjectParam.ParentComponent = InComponent;\
+inObjectParam.Name = InName;
+
 //Actor构建
 #define BUILD_OBJECT_PARAMETERS(Name,CoreActor)\
 CreateObjectParam Param##Name;\
 Param##Name.Outer = CoreActor;\
 Param##Name.ParentComponent = CoreActor->GetTransformationComponent();
-
-//组件构建
-#define BUILD_OBJECT_PARAMETERS_BY_COMPONENT(Name,CoreComponent)\
-CreateObjectParam Param##Name;\
-Param##Name.Outer = CoreComponent;\
-Param##Name.ParentComponent = CoreComponent;
 
 //Object直接构建
 #define BUILD_OBJECT_PARAMETERS_BY_NO_COMPONENT(Name,CoreComponent)\
