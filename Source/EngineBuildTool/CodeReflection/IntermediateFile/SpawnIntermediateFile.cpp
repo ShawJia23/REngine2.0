@@ -28,7 +28,6 @@ namespace IntermediateFile
 			std::string ParamString;
 			for (auto& Param : Function.ParamArray)
 			{
-				//int   c, float   b
 				std::string NewParam =
 					simple_cpp_string_algorithm::printf(
 						"%s %s%s %s",
@@ -37,10 +36,8 @@ namespace IntermediateFile
 						string((Param.bPointer ? ("* ") : (Param.bReference ? ("& ") : (" ")))).c_str(),
 						Param.Name.c_str());
 
-				//int32 A,
 				ParamString += NewParam + (",");
 
-				//int32 A,int32 B.int32 c
 				ParamArray.push_back(NewParam);
 			}
 
@@ -67,7 +64,6 @@ namespace IntermediateFile
 			simple_cpp_string_algorithm::printf(
 				" Z_BT_%s", ClassAnalysis.ClassName.c_str());
 
-		//#define  Z_BT_GActorObject
 		AnalysisRaw.push_back(
 			simple_cpp_string_algorithm::printf("#define %s %s",
 				MClassName.c_str(),
@@ -92,19 +88,16 @@ namespace IntermediateFile
 				if (Function.CodeType == "Function" ||
 					Function.CodeType == "PureFunction")
 				{
-					//Script_Hello1
 					std::string VMString =
 						simple_cpp_string_algorithm::printf(
 							"Script_%s",
 							Function.FunctionName.c_str());
 
-					//FUNCTION_DEFINITION(Script_Hello1) 
 					AnalysisRaw.push_back(
 						simple_cpp_string_algorithm::printf("FUNCTION_DEFINITION(%s) \\", VMString.c_str()));
 
 					AnalysisRaw.push_back("{ \\");
 					{
-						//a,b,c,d
 						std::string VariableAdd;
 						//先拼接函数的参数
 						for (const ParamElement& Variable : Function.ParamArray)
@@ -116,7 +109,6 @@ namespace IntermediateFile
 									" Z_%s_Name",
 									Variable.Name.c_str());
 
-							//float Z_a = *(float*)Stack.GetParmAddr();
 							AnalysisRaw.push_back(
 								simple_cpp_string_algorithm::printf(
 									"\t%s%s %s = %s(%s*)%s",
@@ -127,7 +119,6 @@ namespace IntermediateFile
 									Variable.Type.c_str(),
 									StackString.c_str()));
 
-							//,Z_Context_Name, Z_A_Name, Z_b_Name, Z_C_Name
 							VariableAdd += ("," + VariableName);
 						}
 						//移除最前面的字符串
@@ -139,7 +130,6 @@ namespace IntermediateFile
 						{
 							if (Function.Return.Type == "void")
 							{
-								//GActorObject::Hello1(Z_a,Z_b); 
 								AnalysisRaw.push_back(
 									simple_cpp_string_algorithm::printf(
 										"\t%s::%s(%s); \\",
@@ -149,7 +139,6 @@ namespace IntermediateFile
 							}
 							else
 							{
-								/**(std::string*)RefData = GActorObject::Hello3( Z_Context_Name); \*/
 								AnalysisRaw.push_back(
 									simple_cpp_string_algorithm::printf(
 										"\t%s(%s*) RefData = %s::%s(%s); \\",
@@ -168,7 +157,6 @@ namespace IntermediateFile
 					AnalysisRaw.push_back("} \\");
 
 					//收集静态注册
-					//FFuntionManage::SetNativeFuncPtr(FFuntionID(("ActorObject"),("Hello1"),GActorObject::Script_Hello1));
 					StaticRegistration.push_back(
 						simple_cpp_string_algorithm::printf(
 							"\tRFuntionManage::SetNativeFuncPtr(RFuntionID((\"%s\"),(\"%s\"),%s::%s));",
@@ -184,13 +172,11 @@ namespace IntermediateFile
 		AnalysisRaw.push_back((""));
 
 		//合并内部的函数
-	//GActorObject_10_Internal_Fun
 		std::string InternalFunMacro = simple_cpp_string_algorithm::printf(
 			"%s_%i_Internal_Fun",
 			ClassAnalysis.ClassName.c_str(),
 			ClassAnalysis.CodeLine);
 
-		//#define GActorObject_10_Internal_Fun 
 		AnalysisRaw.push_back(
 			simple_cpp_string_algorithm::printf(
 				"#define %s \\",
@@ -235,14 +221,12 @@ namespace IntermediateFile
 
 		AnalysisRaw.push_back("");
 
-		//#define CURRENT_FILE_ID_BT  GActorObject
 		AnalysisRaw.push_back(
 			simple_cpp_string_algorithm::printf(
 				"#define %s %s",
 				std::string("CURRENT_FILE_ID_BT ").c_str(),
 				ClassAnalysis.ClassName.c_str()));
 
-		//#define NewLine 10
 		AnalysisRaw.push_back(
 			simple_cpp_string_algorithm::printf(
 				"#define %s %i",
@@ -259,15 +243,9 @@ namespace IntermediateFile
 		AnalysisRaw.push_back("	Generated code exported from c f.");
 		AnalysisRaw.push_back("===========================================================================*/");
 
-		//文件的绝对路径
 		AnalysisRaw.push_back(simple_cpp_string_algorithm::printf(
 			"#include \"%s\"",
 			ClassAnalysis.CodeHName.c_str()));
-
-		////反射的.h
-		//AnalysisRaw.push_back(simple_cpp_string_algorithm::printf(
-		//	"#include \"%s.CodeReflection.h\"",
-		//	ClassAnalysis.CodeCPPName.c_str()));
 
 		AnalysisRaw.push_back("#include \"Reflection/FunctionManage.h\"");
 
@@ -293,7 +271,6 @@ namespace IntermediateFile
 								Function.FunctionName.c_str());
 
 						std::vector<std::string> ParamStr;
-						//static std::string Name_Hello123 = std::string(("Hello123"));v
 						AnalysisRaw.push_back(
 							simple_cpp_string_algorithm::printf(
 								"static std::string %s = std::string((\"%s\"));",
@@ -314,7 +291,6 @@ namespace IntermediateFile
 
 						AnalysisRaw.push_back(("{"));
 						{
-							//Parm_Hello123
 							std::string StructName =
 								simple_cpp_string_algorithm::printf(
 									"Parm_%s",
@@ -322,11 +298,10 @@ namespace IntermediateFile
 
 							if (Function.ParamArray.size() > 0)
 							{
-								//struct FParm_Hello123
 								AnalysisRaw.push_back(
 									simple_cpp_string_algorithm::printf("\tstruct R%s",
 										StructName.c_str()));
-								AnalysisRaw.push_back(std::string(("\t{")));//{
+								AnalysisRaw.push_back(std::string(("\t{")));
 								{
 									for (auto& Param : ParamStr)
 									{
@@ -335,9 +310,8 @@ namespace IntermediateFile
 												Param.c_str()));
 									}
 								}
-								AnalysisRaw.push_back(std::string(("\t};")));//};
+								AnalysisRaw.push_back(std::string(("\t};")));
 
-								//FParm_Hello123 Parm_Hello123;
 								AnalysisRaw.push_back(
 									simple_cpp_string_algorithm::printf(
 										"\tR%s %s;",
@@ -346,7 +320,6 @@ namespace IntermediateFile
 
 								//赋值
 								{
-									//Parm_Hello123.c = c;
 									for (auto& Param : Function.ParamArray)
 									{
 										AnalysisRaw.push_back(
@@ -359,7 +332,6 @@ namespace IntermediateFile
 								}
 							}
 
-							//ExecutionScript(FindScriptFuntion(Name_Hello123), &Parm_Hello123);
 							AnalysisRaw.push_back(
 								simple_cpp_string_algorithm::printf(
 									"\tExecutionScript(FindScriptStaticFuntion(%s),%s);",
@@ -384,61 +356,117 @@ namespace IntermediateFile
 
 				AnalysisRaw.push_back("");
 
-				//Rename("ActorObject");
 				AnalysisRaw.push_back(
 					simple_cpp_string_algorithm::printf(
 						"\tRename(\"%s\");",
 						ClassAnalysis.CodeCPPName.c_str()));
 
-				AnalysisRaw.push_back("");
-
-				for (auto& Tmp : ClassAnalysis.Variable)
+				if (ClassAnalysis.Variable.size() > 0)
 				{
-					if (Tmp.Type == "map")
+					AnalysisRaw.push_back("");
+
+					for (auto& Tmp : ClassAnalysis.Variable)
 					{
-						if (Tmp.InternalType.size() >= 2)
+						if (Tmp.Type == "map")
 						{
-							AnalysisRaw.push_back(
-								simple_cpp_string_algorithm::printf(
-									"\tNativeClass.AddProperty(\"%s\",\"%s\",1,sizeof(std::%s<%s,%s>),&%s);",
-									Tmp.Name.c_str(),
-									Tmp.Type.c_str(),
-									Tmp.Type.c_str(),
-									Tmp.InternalType[0].Type.c_str(),
-									Tmp.InternalType[1].Type.c_str(),
-									Tmp.Name.c_str()));
+							if (Tmp.InternalType.size() >= 2)
+							{
+								AnalysisRaw.push_back(
+									simple_cpp_string_algorithm::printf(
+										"\tNativeClass.AddProperty(\"%s\",\"%s\",1,sizeof(std::%s<%s,%s>),&%s);",
+										Tmp.Name.c_str(),
+										Tmp.Type.c_str(),
+										Tmp.Type.c_str(),
+										Tmp.InternalType[0].Type.c_str(),
+										Tmp.InternalType[1].Type.c_str(),
+										Tmp.Name.c_str()));
+							}
 						}
-					}
-					else if (Tmp.Type == "vector")
-					{
-						if (Tmp.InternalType.size() >= 1)
+						else if (Tmp.Type == "vector")
+						{
+							if (Tmp.InternalType.size() >= 1)
+							{
+								AnalysisRaw.push_back(
+									simple_cpp_string_algorithm::printf(
+										"\tNativeClass.AddProperty(\"%s\",\"%s\",1,sizeof(%s),&%s);",
+										Tmp.Name.c_str(),
+										Tmp.Type.c_str(),
+										Tmp.InternalType[0].Type.c_str(),
+										Tmp.Name.c_str()));
+							}
+						}
+						else
 						{
 							AnalysisRaw.push_back(
 								simple_cpp_string_algorithm::printf(
 									"\tNativeClass.AddProperty(\"%s\",\"%s\",1,sizeof(%s),&%s);",
 									Tmp.Name.c_str(),
 									Tmp.Type.c_str(),
-									Tmp.InternalType[0].Type.c_str(),
+									Tmp.Type.c_str(),
 									Tmp.Name.c_str()));
 						}
 					}
-					else
+
+					AnalysisRaw.push_back("");
+
+					//处理元数据
+					//NativeClass.AddMetas
+					AnalysisRaw.push_back("#if EDITOR_ENGINE");
+					for (auto& Tmp : ClassAnalysis.Variable)
 					{
-						AnalysisRaw.push_back(
-							simple_cpp_string_algorithm::printf(
-								"\tNativeClass.AddProperty(\"%s\",\"%s\",1,sizeof(%s),&%s);",
-								Tmp.Name.c_str(),
-								Tmp.Type.c_str(),
-								Tmp.Type.c_str(),
-								Tmp.Name.c_str()));
+						auto It = Tmp.Metas.find("Category");
+						if (It != Tmp.Metas.end())
+						{
+							for (auto& SubTmp : Tmp.Metas)
+							{
+								AnalysisRaw.push_back(
+									simple_cpp_string_algorithm::printf(
+										"\tNativeClass.AddMetas(\"%s\",\"%s\",\"%s\");",
+										Tmp.Name.c_str(),
+										SubTmp.first.c_str(),
+										SubTmp.second.c_str()));
+							}
+						}
+						else
+						{
+							AnalysisRaw.push_back(
+								simple_cpp_string_algorithm::printf(
+									"\tNativeClass.AddMetas(\"%s\",\"Category\",\"Default\");",
+									Tmp.Name.c_str()));
+						}
 					}
+
+					AnalysisRaw.push_back("");
+
+					//处理字段
+					for (auto& Tmp : ClassAnalysis.Variable)
+					{
+						for (auto& SubTmp : Tmp.Fields)
+						{
+							AnalysisRaw.push_back(
+								simple_cpp_string_algorithm::printf(
+									"\tNativeClass.AddFields(\"%s\",\"%s\");",
+									Tmp.Name.c_str(), SubTmp.c_str()));
+						}
+					}
+					AnalysisRaw.push_back("#endif // EDITOR_ENGINE");
+
+					AnalysisRaw.push_back("");
 				}
 			}
+			AnalysisRaw.push_back("#if EDITOR_ENGINE");
+			AnalysisRaw.push_back(
+				simple_cpp_string_algorithm::printf(
+					"\tNativeClass.AddClassType(\"%s\");",
+					ClassAnalysis.ClassName.c_str()));
+			AnalysisRaw.push_back("#endif // EDITOR_ENGINE");
 
 			AnalysisRaw.push_back("}");
 
 			AnalysisRaw.push_back((""));
 
+			AnalysisRaw.push_back(("/* 1xxxx xxxx "));
+			AnalysisRaw.push_back((" 2xxxx xxxx */"));
 			//Register_ActorObject
 			std::string Register_Func =
 				simple_cpp_string_algorithm::printf("Register_%s()",
@@ -459,7 +487,6 @@ namespace IntermediateFile
 			}
 			AnalysisRaw.push_back(("}"));
 
-			//static int ActorObject_Index = Register_ActorObject();
 			AnalysisRaw.push_back(
 				simple_cpp_string_algorithm::printf(
 					"static int %s_Index = %s;",
@@ -481,37 +508,9 @@ namespace IntermediateFile
 	{
 		vector<string> StaticRegistration;
 
-		//生成反射数据
 		GeneratePointH(OutAnalysisRawH, InClassAnalysis, StaticRegistration);
 		GeneratePointCpp(OutAnalysisRawCPP, InClassAnalysis, StaticRegistration);
 
 		return OutAnalysisRawH.size() && OutAnalysisRawH.size();
 	}
 }
-
-/*
-* .h生成的代码
-#pragma once
-
-#include "CoreObject/CoreMinimalObject.h"
-#include "CodeReflection/Frame.h"
-#include "CodeReflection/ScriptMacro.h"
-
-#define  Z_BT_GActorObject \
-FUNCTION_DEFINITION(Script_Hello1) \
-{ \
-	float Z_a = *(float*)Stack.GetParmAddr();\
-	float Z_b = *(float*)Stack.GetParmAddr();\
-	GActorObject::Hello1(Z_a,Z_b); \
-} \
-FUNCTION_DEFINITION(Script_Hello2) \
-{ \
-	GActorObject::Hello2(); \
-}
-
-#define GActorObject_10_GENERATED_BODY_BT \
- Z_BT_GActorObject
-
-#define CURRENT_FILE_ID_BT  GActorObject
-#define NewLine 10
-*/

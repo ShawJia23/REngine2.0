@@ -348,7 +348,7 @@ void DXRenderEngine::CreateMesh()
 	SphereMesh* pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
-		pSMesh->CreateMesh(2.f, 50, 50);
+		pSMesh->CreateMesh(2.f, 10, 10);
 		pSMesh->SetPosition(XMFLOAT3(8.f, 2, 0.f));
 		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
 		{
@@ -361,7 +361,7 @@ void DXRenderEngine::CreateMesh()
 	SphereMesh* pSMesh1 = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh1)
 	{
-		pSMesh1->CreateMesh(2.f, 50, 50);
+		pSMesh1->CreateMesh(2.f, 10, 10);
 		pSMesh1->SetPosition(XMFLOAT3(0.f, 6, 0.f));
 		if (RMaterial* pMaterial = (*pSMesh1->GetMaterials())[0])
 		{
@@ -372,9 +372,9 @@ void DXRenderEngine::CreateMesh()
 	pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
-		pSMesh->CreateMesh(2.f, 100, 100, EMeshRenderLayerType::RENDERLAYER_CUBEMAP);
+		pSMesh->CreateMesh(2.f, 10, 10, EMeshRenderLayerType::RENDERLAYER_CUBEMAP);
 		pSMesh->SetPosition(XMFLOAT3(0.f, 0.f, 0.f));
-		pSMesh->SetScale(fvector_3d(40.f));
+		pSMesh->SetScale(fvector_3d(200.f));
 		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
 		{
 			pMaterial->SetBaseColor(fvector_4d(0.2f, 0.2f, 0.2f, 1.f));
@@ -386,7 +386,7 @@ void DXRenderEngine::CreateMesh()
 	pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
-		pSMesh->CreateMesh(2.f, 50, 50);
+		pSMesh->CreateMesh(2.f, 10, 10);
 		pSMesh->SetPosition(XMFLOAT3(-4.f, 6, 0.f));
 		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
 		{
@@ -397,7 +397,7 @@ void DXRenderEngine::CreateMesh()
 	pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
-		pSMesh->CreateMesh(2.f, 50, 50);
+		pSMesh->CreateMesh(2.f, 10, 10);
 		pSMesh->SetPosition(XMFLOAT3(8.f, 6, 0.f));
 		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
 		{
@@ -408,7 +408,7 @@ void DXRenderEngine::CreateMesh()
 	pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
-		pSMesh->CreateMesh(2.f, 50, 50);
+		pSMesh->CreateMesh(2.f, 10, 10);
 		pSMesh->SetPosition(XMFLOAT3(8.f, 10, 0.f));
 		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
 		{
@@ -419,7 +419,7 @@ void DXRenderEngine::CreateMesh()
 	pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
-		pSMesh->CreateMesh(2.f, 50, 50);
+		pSMesh->CreateMesh(2.f, 10, 10);
 		pSMesh->SetPosition(XMFLOAT3(4.f, 10, 0.f));
 		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
 		{
@@ -431,7 +431,7 @@ void DXRenderEngine::CreateMesh()
 	pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
-		pSMesh->CreateMesh(2.f, 50, 50);
+		pSMesh->CreateMesh(2.f, 10, 10);
 		pSMesh->SetPosition(XMFLOAT3(0.f, 10, 0.f));
 		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
 		{
@@ -443,7 +443,7 @@ void DXRenderEngine::CreateMesh()
 	pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
-		pSMesh->CreateMesh(2.f, 50, 50);
+		pSMesh->CreateMesh(2.f, 10, 10);
 		pSMesh->SetPosition(XMFLOAT3(-4.f, 10, 0.f));
 		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
 		{
@@ -451,24 +451,6 @@ void DXRenderEngine::CreateMesh()
 			pMaterial->SetMaterialType(EMaterialType::Normal);
 		}
 	}
-
-	
-
-	CustomMesh* pSMeshCustom = m_World->CreateActorObject<CustomMesh>();
-	if (pSMeshCustom)
-	{
-		string AnyAxisMeshPath = PathHelper::RelativeToAbsolutePath(
-			PathHelper::GetEngineAssetModelPath() + "/Handle/RotateHandleX.fbx");
-		pSMeshCustom->CreateMesh(AnyAxisMeshPath);
-		pSMeshCustom->SetPosition(XMFLOAT3(-4.f, 4, 0.f));
-		if (RMaterial* pMaterial = (*pSMeshCustom->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(1.f));
-			pMaterial->SetMaterialType(EMaterialType::BaseColor);
-			pMaterial->SetMaterialDisplayState(EMaterialDisplayStatue::RTOPOLOGY_LINELIST);
-		}
-	}
-
 }
 
 void DXRenderEngine::LoadAsset()

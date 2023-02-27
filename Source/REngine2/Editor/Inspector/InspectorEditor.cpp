@@ -24,7 +24,7 @@ void InspectorEditor::BuildEditor()
 	RegisterInspector::RegisterRProperty("XMFLOAT3", Vector3DInspectorMapping::MakeDetailsMapping());
 	
 	//class 
-	RegisterInspector::RegisterRClass("GActorObject", ClassInspectorMapping::MakeDetailsMapping());
+	RegisterInspector::RegisterRClass("GActorObject", ActorObjectInspectorMapping::MakeDetailsMapping());
 }
 
 void InspectorEditor::DrawEditor(float DeltaTime)
@@ -37,18 +37,23 @@ void InspectorEditor::DrawEditor(float DeltaTime)
 	{
 		if (SelectedObject == LastSelectedObject)
 		{
-			ImGui::Separator();
-			RPropertyObject* InProperty = SelectedObject->GetNativeClass().Property;
-			while (InProperty)
+			string ComponentAreaName = SelectedObject->GetName().append(":Component Area");
+			if (ImGui::CollapsingHeader(ComponentAreaName.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
 			{
-				auto iterator = RegisterInspector::PropertyMappings.find(InProperty->GetType());
-				if (iterator != RegisterInspector::PropertyMappings.end())
-				{
-					iterator->second->UpdateDetailsWidget(InProperty);
-				}
-
-				InProperty = dynamic_cast<RPropertyObject*>(InProperty->Nest);
+				//映射对象
+				RegisterInspector::UpdateClassWidget(SelectedObject);
 			}
+			if (SelectedObject->GetNativeClass().Property)
+			{
+				string PropertyAreaName = SelectedObject->GetName().append(":Property Area");
+				if (ImGui::CollapsingHeader(PropertyAreaName.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+				{
+					//映射变量
+					RegisterInspector::UpdatePropertyWidget(SelectedObject->GetNativeClass().Property);
+				}
+			}
+			
+
 			ImGui::Separator();
 		}
 	}

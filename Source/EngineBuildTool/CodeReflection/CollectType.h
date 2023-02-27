@@ -13,14 +13,13 @@ struct ParamElement
 	//有可能是内部类型 类型可能是模板
 	vector<struct ParamElement> InternalType;//类似模板 vector<float> or vector123<float,int,float>...
 
-	//分类
-	string Category;
+	std::map<string, string> Metas;
+	std::vector<string> Fields;
 
 	ParamElement()
 		: bPointer(false)
 		, bReference(false)
 		, bConst(false)
-		, Category("Default")
 	{}
 };
 

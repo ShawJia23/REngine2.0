@@ -66,27 +66,26 @@ void OperationHandleManage::DisplaySelectedOperationHandle(GActorObject* InNewSe
 
 void OperationHandleManage::DisplaySelectedOperationHandle()
 {
-	if (SelectedObject)
+	if (!SelectedObject)
+		return;
+	if (!SelectedOperationHandle)
 	{
-		if (!SelectedOperationHandle)
+		if (MoveArrow)
 		{
-			if (MoveArrow)
-			{
-				MoveArrow->SetPosition(SelectedObject->GetPosition());
-				//MoveArrow->SetRotation(SelectedObject->GetRotation());
-				MoveArrow->SetVisible(true);
+			MoveArrow->SetPosition(SelectedObject->GetPosition());
+			//MoveArrow->SetRotation(SelectedObject->GetRotation());
+			MoveArrow->SetVisible(true);
 
-				SetNewSelectedOperationHandle(MoveArrow);
-			}
+			SetNewSelectedOperationHandle(MoveArrow);
 		}
-		else
+	}
+	else
+	{
+		if (OperationHandleBase* InHandleBase = dynamic_cast<OperationHandleBase*>(SelectedOperationHandle))
 		{
-			if (OperationHandleBase* InHandleBase = dynamic_cast<OperationHandleBase*>(SelectedOperationHandle))
-			{
-				InHandleBase->SetPosition(SelectedObject->GetPosition());
-				//InHandleBase->SetRotation(SelectedObject->GetRotation());
-				InHandleBase->SetVisible(true);
-			}
+			InHandleBase->SetPosition(SelectedObject->GetPosition());
+			//InHandleBase->SetRotation(SelectedObject->GetRotation());
+			InHandleBase->SetVisible(true);
 		}
 	}
 }

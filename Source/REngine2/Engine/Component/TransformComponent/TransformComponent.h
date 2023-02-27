@@ -30,10 +30,13 @@ public:
 	fvector_3d GetCorrectionPosition();
 	void GetCorrectionPosition(fvector_3d& pos3);
 public:
+	RVARIABLE(CodeType = Resources, Category = Transformation, Draggable)
 	XMFLOAT3 Position;
 
+	RVARIABLE(CodeType = Resources, Category = Transformation, Draggable)
 	XMFLOAT3 Rotation;
 
+	RVARIABLE(CodeType = Resources, Category = Transformation, Draggable)
 	XMFLOAT3 Scale;
 
 	XMFLOAT3 ForwardVector;

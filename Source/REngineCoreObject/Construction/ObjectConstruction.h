@@ -25,6 +25,7 @@ T* CreateObject(const CreateObjectParam& inObjectParam, RMinimalObject* newObjec
 	T* obj = dynamic_cast<T*>(newObject);
 	obj->SetOuter(inObjectParam.Outer);
 	obj->Rename(inObjectParam.Name);
+	obj->InitMinimalObject();
 	return obj;
 }
 

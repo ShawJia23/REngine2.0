@@ -1,4 +1,4 @@
-#include"CollectClassInfo.h"
+ #include"CollectClassInfo.h"
 
 namespace CollectClassInfo 
 {
@@ -9,6 +9,55 @@ namespace CollectClassInfo
 	const char StarString[] = "*";
 	const char FetchAddressString[] = "&";
 	const char CodeType[] = "CodeType";
+	const char EqualSign[] = "=";
+	const char Colon[] = "\"";
+
+	//切割CodeType
+	void ProcessingVariableReflexParameters(
+		const string& InRowStrong,
+		VariableAnalysis& InVariableAnalysis)
+	{
+		char* Ptr = const_cast<char*>(InRowStrong.c_str());
+
+		char R[1024] = { 0 };
+		char L[1024] = { 0 };
+
+
+		split(Ptr, LeftParenthesisString, L, R, false);
+
+
+		trim_start_and_end_inline(R);
+
+		remove_char_end(R, ')');
+
+		vector<string> ElementStr;
+		simple_cpp_string_algorithm::parse_into_vector_array(R, ElementStr, CommaString);
+
+		for (auto& Tmp : ElementStr)
+		{
+			char* RowPtr = const_cast<char*>(Tmp.c_str());
+			if (simple_cpp_string_algorithm::string_contain(Tmp, EqualSign))
+			{
+				char EqualR[1024] = { 0 };
+				char EqualL[1024] = { 0 };
+
+				split(RowPtr, EqualSign, EqualL, EqualR, false);
+				trim_start_and_end_inline(EqualL);
+
+				if (simple_cpp_string_algorithm::string_contain(EqualR, Colon))
+				{
+					remove_all_char_end(EqualR, '\"');
+				}
+				trim_start_and_end_inline(EqualR);
+				InVariableAnalysis.Metas.insert({ EqualL,EqualR });
+			}
+			else 
+			{
+				trim_start_and_end_inline(RowPtr);
+				InVariableAnalysis.Fields.push_back(RowPtr);
+			}
+		}
+	}
 
 	bool GetCodeTypeByFunc(
 		const string& rowStrong,
@@ -49,7 +98,6 @@ namespace CollectClassInfo
 	{
 		char* ptr = const_cast<char*>(variable.c_str());
 
-		//& 
 		ParamElement paramElement;
 		paramElement.Name = "ReturnValue";
 
@@ -86,22 +134,15 @@ namespace CollectClassInfo
 		const string& rowStrong,
 		VariableAnalysis* variableAnalysis)
 	{
-		//RowStrong = UPROPERTY(Meta = (CodeType = "Resources", Group = "SimpleCodeLibrary"))
-
 		char rStr[1024] = { 0 };
 		char lStr[1024] = { 0 };
 
 		char* ptr = const_cast<char*>(rowStrong.c_str());
 		split(ptr, CodeType, rStr, lStr, false);
 
-		//R =  UPROPERTY(Meta = (
-		//L =  = "Resources", Group = "SimpleCodeLibrary"))
-
 		vector<string> elementStr;
 		simple_cpp_string_algorithm::parse_into_vector_array(lStr, elementStr, CommaString);
 
-		// "Resources" 0 
-		// Group = "SimpleCodeLibrary")) 1
 		if (elementStr[0].find("Resources"))
 		{
 			variableAnalysis->CodeType = "Resources";
@@ -117,11 +158,6 @@ namespace CollectClassInfo
 		vector<string> ElementStr;
 		simple_cpp_string_algorithm::parse_into_vector_array(LStr, ElementStr, CommaString);
 
-		//UObject *Context
-		//int32 &A
-		//float b
-		//bool C
-
 		//收集变量
 		for (std::string& Ele : ElementStr)
 		{
@@ -132,7 +168,6 @@ namespace CollectClassInfo
 				continue;
 			}
 
-			//int32 &A
 			//移除前后空格
 			trim_start_and_end_inline(ElePtr);
 
@@ -144,10 +179,7 @@ namespace CollectClassInfo
 			if (simple_cpp_string_algorithm::string_contain(Ele, StarString))
 			{
 				paramElement.bPointer = true;
-				//GObject *Context
 				split(ElePtr, StarString, R, L, false);
-				//R = GObject
-				//L = Context
 			}
 			else if (simple_cpp_string_algorithm::string_contain(Ele, FetchAddressString))
 			{
@@ -156,7 +188,6 @@ namespace CollectClassInfo
 			}
 			else
 			{
-				//  int a
 				split(ElePtr, SpaceString, R, L, false);
 				if (R[0] == '\0')
 				{
@@ -166,7 +197,6 @@ namespace CollectClassInfo
 
 			if (c_str_contain(R, "const"))
 			{
-				//const GObject *Context
 				paramElement.bConst = true;
 
 				remove_string_start(R, "const");
@@ -209,15 +239,11 @@ namespace CollectClassInfo
 				contain(":") &&
 				(contain("protected") || contain("private") || contain("public")))
 			{
-				//class FRenderingPipeline :public IDirectXDeviceInterfece
-				//FRenderingPipeline :public IDirectXDeviceInterfece
 				remove_string_start(rowPtr, "class ");
 				remove_string_start(rowPtr, "\tclass ");
 
 				if (contain("_API"))
 				{
-					//XXX_API FRenderingPipeline :public IDirectXDeviceInterfece
-					//L ="XXX_API" R = " FRenderingPipeline :public IDirectXDeviceInterfece"
 					trim_start_inline(rowPtr);
 
 					char R[1024] = { 0 };
@@ -225,7 +251,6 @@ namespace CollectClassInfo
 
 					split(rowPtr, SpaceString, L, R, false);
 
-					//API名称
 					classAnalysis.APIName = L;
 
 					row = R;
@@ -234,7 +259,7 @@ namespace CollectClassInfo
 				vector<string> elementStr;
 				simple_cpp_string_algorithm::parse_into_vector_array(rowPtr, elementStr, ColonString);
 
-				//如果前后有空格 就把它修剪了
+				//前后有空格 修剪
 				trim_start_and_end_inline(const_cast<char*>(elementStr[0].c_str()));
 
 				classAnalysis.ClassName = elementStr[0];
@@ -281,7 +306,6 @@ namespace CollectClassInfo
 				if (GetCodeTypeByFunc(row, functionAnalysis))
 				{
 					row = stringArray[i + 1];
-					//static void Hello1(GObject *Context, int32 &A,float b,bool C);
 
 					if (contain("\tstatic") || contain("static "))
 					{
@@ -289,7 +313,6 @@ namespace CollectClassInfo
 
 						char L[1024] = { 0 };
 						char R[1024] = { 0 };
-						//remove_string_start();
 						split(row.c_str(), SpaceString, L, R, false);
 
 						row = R;
@@ -306,27 +329,21 @@ namespace CollectClassInfo
 						row = R;
 					}
 
-					//确定我们函数的返回类型
+					//确定函数的返回类型
 					char Tmp[1024] = { 0 };
 					{
-						//Row =  void Hello1(GObject *Context, int32 &A,float b,bool C);
-
 						char L[1024] = { 0 };
-						//trim_start_inline(row.c_str());
 
 						split(row.c_str(), SpaceString, L, Tmp, false);
 
-						////Tmp = Hello1(UObject *Context, int32 &A,float b,bool C);  {}
 						functionAnalysis.Return = CollectionVariableType(L, ECollectionParmType::Type_Return);
 
 						{
-							//void Hello1(UObject *Context, int32 &A,float b,bool C
 							remove_char_end(Tmp, '}');
 							remove_char_end(Tmp, '{');
 							trim_end_inline(Tmp);
 							remove_char_end(Tmp, ';');
 							remove_char_end(Tmp, ')');
-							//Tmp = Hello1(UObject *Context, int32 &A,float b,bool C
 						}
 
 						char lStr[1024] = { 0 };
@@ -341,11 +358,6 @@ namespace CollectClassInfo
 						vector<string> elementStr;
 						simple_cpp_string_algorithm::parse_into_vector_array(rStr, elementStr, CommaString);
 
-						//UObject *Context
-						//int32 &A
-						//float b
-						//bool C
-
 						//收集变量
 						for (std::string& Ele : elementStr)
 						{
@@ -355,8 +367,6 @@ namespace CollectClassInfo
 							{
 								continue;
 							}
-							//int32 &A
-							//移除前后空格
 							trim_start_and_end_inline(ElePtr);
 
 							ParamElement paramElement;
@@ -366,10 +376,7 @@ namespace CollectClassInfo
 							if (simple_cpp_string_algorithm::string_contain(Ele, StarString))
 							{
 								paramElement.bPointer = true;
-								//GObject *Context
 								split(ElePtr, StarString, L, R, false);
-								//R = GObject
-								//L = Context
 							}
 							else if (simple_cpp_string_algorithm::string_contain(Ele, FetchAddressString))
 							{
@@ -378,13 +385,11 @@ namespace CollectClassInfo
 							}
 							else
 							{
-								//  int a
 								split(ElePtr, SpaceString, L, R, false);
 							}
 
 							if (c_str_contain(L, "const"))
 							{
-								//const GObject *Context
 								paramElement.bConst = true;
 
 								remove_string_start(L, "const");
@@ -412,16 +417,16 @@ namespace CollectClassInfo
 					VariableAnalysis variableAnalysis;
 					if (GetCodeTypeByProp(row, &variableAnalysis))
 					{
+						ProcessingVariableReflexParameters(row, variableAnalysis);
+
 						char R[1024] = { 0 };
 						char L[1024] = { 0 };
 
 						row = stringArray[i + 1];
 
-						//Row = \tTSubclassOf<UStaticMesh> Mesh;
 						remove_char_start(rowPtr, '\t');
 						remove_char_end(rowPtr, ';');
 
-						//Row = TSubclassOf<UStaticMesh> Mesh
 						if (contain(StarString))
 						{
 							variableAnalysis.bPointer = true;
@@ -450,16 +455,13 @@ namespace CollectClassInfo
 						//是不是模板
 						if (c_str_contain(R, "<") && c_str_contain(R, ">"))
 						{
-							//V<a,b,c,d,e,f,g,....>
 							char TempR[1024] = { 0 };
 							char TempL[1024] = { 0 };
 							split(R, "<", TempR, TempL, false);
 
 							variableAnalysis.Type = TempR;
 
-							//a,b,c,d,e,f,g,....>
 							remove_char_end(TempL, '>');
-							//a,b,c,d,e,f,g,....
 
 							AnalyticParameters(TempL, variableAnalysis.InternalType);
 						}

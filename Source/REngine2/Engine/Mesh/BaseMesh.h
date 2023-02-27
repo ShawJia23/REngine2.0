@@ -13,7 +13,6 @@ class BMesh : public GActorObject, public IRenderingInterface, public IDirectXDe
 {
 	CODEREFLECTION()
 
-
 public:
 	RVARIABLE()
 	RMeshComponent* MeshComponent;

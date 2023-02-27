@@ -64,7 +64,6 @@ int main()
 					std::vector<std::string> OutAnalysisRawCPP;
 					IntermediateFile::Builder(ClassAnalysis, OutAnalysisRawH, OutAnalysisRawCPP);
 
-					//C://dasd//asd//12.h
 					char Buff[1024] = { 0 };
 					get_path_clean_filename(Buff, Paths.paths[i]);
 

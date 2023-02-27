@@ -10,9 +10,9 @@ void ClassInspectorMapping::UpdateDetailsWidget(RMinimalObject* InCoreMinimalObj
 /// 
 /// </summary>
 /// <param name="InCoreMinimalObject"></param>
-void ActorObjectInspectorMapping::UpdateDetailsWidget(RMinimalObject* InCoreMinimalObject)
+void ActorObjectInspectorMapping::UpdateDetailsWidget(RMinimalObject* InRMinimalObject)
 {
-	if (GActorObject* InActorObject = dynamic_cast<GActorObject*>(InCoreMinimalObject))
+	if (GActorObject* InActorObject = dynamic_cast<GActorObject*>(InRMinimalObject))
 	{
 		auto pComponent = dynamic_cast<RComponent*>(InActorObject->GetTransformationComponent());
 		if (pComponent)
@@ -28,7 +28,7 @@ void ActorObjectInspectorMapping::ShowPlaceholderObject(RComponent* InComponent,
 
 	bool bNodeOpen = ImGui::TreeNode(
 		InComponent->GetGuidString().c_str(),
-		"%s(Inherited from C++)",
+		"%s",
 		InComponent->GetName().c_str());
 
 	if (bNodeOpen)

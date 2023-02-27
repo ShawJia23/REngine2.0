@@ -44,27 +44,23 @@ fvector_3d RMoveArrow::AnyAxis(const fvector_3d& InRayWorldOriginPoint, const fv
 void RMoveArrow::OnMouseMove(int X, int Y)
 {
 	Super::OnMouseMove(X, Y);
-
-	if (IsCurrentSelectedHandle())
+	if (!IsCurrentSelectedHandle())
+		return;
+	if (!SelectedObject)
+		return;
+	if (!bOperationHandleSelect)
+		return;
+	fvector_3d ActorWorldPosition;
+	fvector_3d ActorWorldDir;
+	float T2 = GetMouseCreenMovePosition(X, Y, ActorWorldPosition, ActorWorldDir);
+	if (T2 != -1)
 	{
-		if (SelectedObject)
-		{
-			if (bOperationHandleSelect)
-			{
-				fvector_3d ActorWorldPosition;
-				fvector_3d ActorWorldDir;
-				float T2 = GetMouseCreenMovePosition(X, Y, ActorWorldPosition, ActorWorldDir);
-				if (T2 != -1)
-				{
-					fvector_3d WorldMovePosition = ActorWorldDir * T2 + ActorWorldPosition + RelativePosition;
+		fvector_3d WorldMovePosition = ActorWorldDir * T2 + ActorWorldPosition + RelativePosition;
 
-					XMFLOAT3 LOAT3Position = RMath::ToFloat3(WorldMovePosition);
-					SelectedObject->SetPosition(LOAT3Position);
+		XMFLOAT3 LOAT3Position = RMath::ToFloat3(WorldMovePosition);
+		SelectedObject->SetPosition(LOAT3Position);
 
-					SetPosition(LOAT3Position);
-				}
-			}
-		}
+		SetPosition(LOAT3Position);
 	}
 }
 

@@ -77,7 +77,6 @@ bool RegisterInspector::UpdatePropertyWidget(RPropertyObject* InProperty)
 			}
 		};
 
-		//收集我们的类别
 		while (InProperty)
 		{
 			auto MateValue = InProperty->GetNativeClass().Metas.find("Category");
