@@ -1,5 +1,4 @@
-﻿// Copyright (C) RenZhai.2022.All Rights Reserved.
-#pragma once
+﻿#pragma once
 #include "../simple_core_minimal/simple_c_core/simple_core_minimal.h"
 
 template<class ContainerType,typename ElementType>

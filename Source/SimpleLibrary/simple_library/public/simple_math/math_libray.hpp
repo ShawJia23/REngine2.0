@@ -1,5 +1,4 @@
-﻿// Copyright (C) RenZhai.2022.All Rights Reserved.
-#pragma once
+﻿#pragma once
 
 namespace math_libray
 {

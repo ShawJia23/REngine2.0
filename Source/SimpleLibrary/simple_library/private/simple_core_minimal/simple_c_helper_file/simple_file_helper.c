@@ -1,4 +1,3 @@
-// Copyright (C) RenZhai.2022.All Rights Reserved.
 #include "simple_library/public/simple_core_minimal/simple_c_helper_file/simple_file_helper.h"
 #include "simple_library/public/simple_core_minimal/simple_c_core/simple_c_array/simple_c_array_string.h"
 #include "simple_library/public/simple_core_minimal/simple_c_core/simple_c_string_algorithm/string_algorithm.h"

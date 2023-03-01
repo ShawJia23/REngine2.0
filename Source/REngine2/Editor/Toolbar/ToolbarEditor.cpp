@@ -1,5 +1,5 @@
 #include "ToolbarEditor.h"
-
+#include"../Editor.h"
 void ToolbarEditor::BuildEditor()
 {
 
@@ -11,17 +11,13 @@ void ToolbarEditor::DrawEditor(float DeltaTime)
 	{
 		if (ImGui::BeginMenu("File"))
 		{
-			if (ImGui::MenuItem("New Level"))
-			{
-				NewLevel();
-			}
+			ImGui::EndMenu();
+		}
+		ImGui::Separator();
 
-			if (ImGui::MenuItem("Open Level"))
-			{
-
-			}
-
-			if (ImGui::MenuItem("Open Asset"))
+		if (ImGui::BeginMenu("Edit"))
+		{
+			if (ImGui::MenuItem("Undo", "ctrl+z"))
 			{
 
 			}
@@ -29,9 +25,20 @@ void ToolbarEditor::DrawEditor(float DeltaTime)
 			ImGui::EndMenu();
 		}
 
-		if (ImGui::BeginMenu("Edit"))
+		ImGui::Separator();
+		if (ImGui::BeginMenu("View"))
 		{
-			if (ImGui::MenuItem("Undo", "ctrl+z"))
+			if (ImGui::MenuItem("Exploer"))
+			{
+
+			}
+
+			if (ImGui::MenuItem("Inspector"))
+			{
+
+			}
+
+			if (ImGui::MenuItem("Log"))
 			{
 
 			}
@@ -51,11 +58,6 @@ void ToolbarEditor::DrawEditor(float DeltaTime)
 }
 
 void ToolbarEditor::ExitEditor()
-{
-
-}
-
-void ToolbarEditor::NewLevel()
 {
 
 }

@@ -1,4 +1,3 @@
-// Copyright (C) RenZhai.2022.All Rights Reserved.
 #pragma once
 #include <vector>
 #include <string>

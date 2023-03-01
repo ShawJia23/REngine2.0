@@ -1,5 +1,4 @@
-﻿// Copyright (C) RenZhai.2022.All Rights Reserved.
-#pragma once
+﻿#pragma once
 #include <locale.h>
 
 	//区域性/语言名称

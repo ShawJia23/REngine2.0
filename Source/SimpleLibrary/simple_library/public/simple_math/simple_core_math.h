@@ -1,5 +1,4 @@
-﻿// Copyright (C) RenZhai.2022.All Rights Reserved.
-#pragma once
+﻿#pragma once
 #include "math_libray.hpp"
 #include "simple_math.h"
 #include "math_utils.h"

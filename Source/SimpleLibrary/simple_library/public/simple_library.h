@@ -25,7 +25,6 @@
 
 //core
 #include "simple_core_minimal/simple_c_core/simple_c_string_algorithm/string_algorithm.h"
-#include "simple_core_minimal/simple_c_core/simple_c_array/simple_c_array.h"
 
 
 //application 

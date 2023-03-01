@@ -66,31 +66,10 @@
     <ClCompile Include="simple_library\private\simple_math\transformation\vector\vector_2d.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="simple_library\private\simple_image\Core\simple_image_bmp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_image\simple_image.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="simple_library\private\simple_cpp_core_minimal\simple_cpp_string_algorithm\simple_cpp_string_algorithm.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="simple_library\private\simple_cpp_core_minimal\simple_cpp_helper_file\simple_cpp_helper_file.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_setting.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_register.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_time.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_locale_list.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_path\simple_c_path.c">
@@ -109,6 +88,24 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_register.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_setting.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_time.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_library\private\simple_image\Core\simple_image_bmp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_library\private\simple_image\simple_image.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_library\private\simple_math\soft_rasterization\soft_rasterization.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -176,18 +173,6 @@
     <ClInclude Include="simple_library\public\simple_math\transformation\matrix\matrix_2x2.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="simple_library\public\simple_math\soft_rasterization\soft_rasterization.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_image\simple_image.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_image\Core\simple_image_bmp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_image\Core\simple_image_type.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="simple_library\public\simple_delegate\simple_delegate.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -206,18 +191,6 @@
     <ClInclude Include="simple_library\public\simple_cpp_core_minimal\shared\simple_cpp_shared_ptr.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_windows\simple_c_windows_setting.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_windows\simple_c_windows_register.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_time\simple_c_time.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_time\simple_c_locale_list.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_path\simple_path.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -230,9 +203,6 @@
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\Core\simple_array_c_macro.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array_string.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -242,10 +212,34 @@
     <ClInclude Include="simple_library\public\simple_c_log\simple_c_log.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_helper_file\simple_file_helper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_windows\simple_c_windows_register.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_windows\simple_c_windows_setting.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="simple_library\public\simple_array\simple_hash_array.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_helper_file\simple_file_helper.h">
+    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_time\simple_c_locale_list.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_time\simple_c_time.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_library\public\simple_image\Core\simple_image_bmp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_library\public\simple_image\Core\simple_image_type.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_library\public\simple_image\simple_image.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_library\public\simple_math\soft_rasterization\soft_rasterization.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

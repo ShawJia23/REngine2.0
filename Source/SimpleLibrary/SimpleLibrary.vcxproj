@@ -137,7 +137,6 @@
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_guid\simple_guid.c" />
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_helper_file\simple_file_helper.c" />
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_path\simple_c_path.c" />
-    <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_locale_list.c" />
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_time\simple_c_time.c" />
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_register.c" />
     <ClCompile Include="simple_library\private\simple_core_minimal\simple_c_windows\simple_c_windows_setting.c" />
@@ -169,7 +168,6 @@
     <ClInclude Include="simple_library\public\simple_array\simple_hash_array.h" />
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_core_minimal.h" />
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\Core\simple_array_c_macro.h" />
-    <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array.h" />
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_array\simple_c_array_string.h" />
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_core\simple_c_string_algorithm\string_algorithm.h" />
     <ClInclude Include="simple_library\public\simple_core_minimal\simple_c_guid\simple_guid.h" />

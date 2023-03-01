@@ -62,14 +62,6 @@ void EditorEngine::DrawEditor(float DeltaTime)
 {
 	DrawLayer(DeltaTime);
 
-	//bool show_demo_window = true;
-	//ImGui::ShowDemoWindow(&show_demo_window);//Ñ§Ï°°¸Àý
-
-	//ImGui::Begin("XXX");
-	//ImGui::Text("ASDAASDASDASD");
-	//ImGui::End();
-
-
 	m_ToolbarEditor->DrawEditor(DeltaTime);
 	m_LogEditor->DrawEditor(DeltaTime);
 	m_ObjectExplorerEditor->DrawEditor(DeltaTime);
