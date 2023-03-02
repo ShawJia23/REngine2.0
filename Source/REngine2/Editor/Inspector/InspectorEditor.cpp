@@ -29,9 +29,12 @@ void InspectorEditor::BuildEditor()
 
 void InspectorEditor::DrawEditor(float DeltaTime)
 {
+	if (!bOpen)
+		return;
+
 	ImGui::SetNextWindowSize(ImVec2(500, 400), ImGuiCond_FirstUseEver);
 
-	ImGui::Begin("DetailsEditor");
+	ImGui::Begin("InspectorEditor", &bOpen);
 
 	if (SelectedObject)
 	{

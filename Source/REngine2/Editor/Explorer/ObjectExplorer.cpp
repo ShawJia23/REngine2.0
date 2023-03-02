@@ -10,11 +10,11 @@ void ObjectExplorerEditor::BuildEditor()
 extern int SelectedVariable;
 void ObjectExplorerEditor::DrawEditor(float DeltaTime)
 {
-	ImGui::Begin("Object");
+	if (!bOpen)
+		return;
+	ImGui::Begin("Object", &bOpen);
 	if (RWorld* world = GetWorld())
 	{
-		ImGui::BeginChild("Object Panel", ImVec2(150, 0), true);
-
 		const vector<GActorObject*> Actors = world->GetActors();
 		for (int i = 0; i < Actors.size(); i++)
 		{
@@ -31,9 +31,6 @@ void ObjectExplorerEditor::DrawEditor(float DeltaTime)
 				OperationHandleManage::Get()->DisplaySelectedOperationHandle();
 			}
 		}
-
-		ImGui::EndChild();
-
 	}
 	ImGui::End();
 }

@@ -268,7 +268,7 @@ DXRenderEngine::DXRenderEngine()
 
 int DXRenderEngine::PreInit(WinMainCommandParameters InParameters)
 {
-	Engine_Log("DX渲染 预先初始化 完成");
+	Engine_Log("PreInit DXRenderEngine");
 	return 0;
 }
 
@@ -280,14 +280,14 @@ int DXRenderEngine::Init(WinMainCommandParameters InParameters)
 
 	m_meshManage->Init();
 
-	Engine_Log("DX渲染 初始化 完成");
+	Engine_Log("Init DXRenderEngine");
 
 	return 0;
 }
 
 int DXRenderEngine::PostInit()
 {
-	Engine_Log("DX渲染 拖后初始化 完成");
+	Engine_Log("PostInit DXRenderEngine");
 
 	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
@@ -664,13 +664,13 @@ DXRenderEngine::~DXRenderEngine()
 
 int DXRenderEngine::PreExit()
 {
-	Engine_Log("DX渲染 预先退出 完成.");
+	Engine_Log("PreExit DXRenderEngine.");
 	return 0;
 }
 
 int DXRenderEngine::Exit()
 {
-	Engine_Log("DX渲染 退出 完成.");
+	Engine_Log("Exit DXRenderEngine.");
 	return 0;
 }
 
@@ -678,7 +678,7 @@ int DXRenderEngine::PostExit()
 {
 	EngineRenderConfig::Destroy();
 
-	Engine_Log("DX渲染 拖后退出 完成.");
+	Engine_Log("PostExit DXRenderEngine.");
 	return 0;
 }
 

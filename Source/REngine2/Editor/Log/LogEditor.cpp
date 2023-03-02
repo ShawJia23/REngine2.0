@@ -3,15 +3,15 @@
 
 void LogEditor::BuildEditor()
 {
-
 }
 
 void LogEditor::DrawEditor(float DeltaTime)
 {
+	if (!bOpen)
+		return;
 	ImGui::SetNextWindowSize(ImVec2(500, 400), ImGuiCond_FirstUseEver);
 
-	bool bOpenLog = true;
-	ImGui::Begin("Log", &bOpenLog);
+	ImGui::Begin("Log", &bOpen);
 
 	//ImGui::Text("xxxx");
 
@@ -24,4 +24,9 @@ void LogEditor::DrawEditor(float DeltaTime)
 void LogEditor::ExitEditor()
 {
 	EditorLogSystem::Destory();
+}
+
+void LogEditor::RenderEnd() 
+{
+	EditorBase::RenderEnd();
 }

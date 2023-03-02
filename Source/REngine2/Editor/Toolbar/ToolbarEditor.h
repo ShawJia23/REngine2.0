@@ -1,13 +1,10 @@
 #pragma once
 #include"../EditorBase.h"
-
-class ToolbarEditor :public EditorBase
+#include"../../Engine/Interface/DXDeviceInterface.h"
+class ToolbarEditor :public EditorBase, public IDirectXDeviceInterface
 {
 public:
 	virtual void BuildEditor();
 	virtual void DrawEditor(float DeltaTime);
 	virtual void ExitEditor();
-
-public:
-	void NewLevel();
 };

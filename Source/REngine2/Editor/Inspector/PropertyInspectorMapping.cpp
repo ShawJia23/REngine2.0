@@ -26,7 +26,7 @@ shared_ptr<PropertyInspectorMapping> IntInspectorMapping::MakeDetailsMapping()
 /// <param name="InProperty"></param>
 bool FloatInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
-	return ImGui::InputFloat(InProperty->GetName().c_str(), InProperty->GetData<float>());
+	return ImGui::DragFloat(InProperty->GetName().c_str(), InProperty->GetData<float>());
 }
 
 shared_ptr<PropertyInspectorMapping> FloatInspectorMapping::MakeDetailsMapping()

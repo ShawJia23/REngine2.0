@@ -37,12 +37,12 @@ int RWindowsEngine::PreInit(WinMainCommandParameters InParameters)
 	string logPath= PathHelper::RelativeToAbsolutePath(PathHelper::GetEngineLogsPath());
 	//日志系统初始化
 	init_log_system(logPath.c_str());
-	Engine_Log("日志初始化.");
+	Engine_Log("Init logSystem.");
 
 	//渲染引擎初始化
 	m_renderEngine->PreInit(InParameters);
 
-	Engine_Log("引擎 预初始化 完成.");
+	Engine_Log("PreInit Engine.");
 
 	return 0;
 }
@@ -59,13 +59,13 @@ int RWindowsEngine::Init(WinMainCommandParameters InParameters)
 	param.Name = "World";
 	m_world = CreateObject<RWorld>(param,new RWorld());
 	m_renderEngine->m_World = m_world;
-	Engine_Log("引擎 初始化 完成.");
+	Engine_Log("Init Engine.");
 	return 0;
 }
 
 int RWindowsEngine::PostInit()
 {
-	Engine_Log("引擎 拖后初始化 完成.");
+	Engine_Log("PostInit Engine.");
 
 	m_renderEngine->PostInit();
 
@@ -109,7 +109,7 @@ int RWindowsEngine::PreExit()
 {
 	m_renderEngine->PreExit();
 
-	Engine_Log("引擎 预退出 完成");
+	Engine_Log("PreExit Engine.");
 	return 0;
 }
 
@@ -117,7 +117,7 @@ int RWindowsEngine::Exit()
 {
 	m_renderEngine->PreExit();
 
-	Engine_Log("引擎 退出 完成.");
+	Engine_Log("Exit Engine.");
 	return 0;
 }
 
@@ -125,7 +125,7 @@ int RWindowsEngine::PostExit()
 {
 	m_renderEngine->PostExit();
 
-	Engine_Log("引擎 拖后退出 完成.");
+	Engine_Log("PostExit Engine.");
 	return 0;
 }
 
@@ -150,8 +150,8 @@ bool RWindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 	ATOM RegisterAtom = RegisterClassEx(&WindowsClass);
 	if (!RegisterAtom)
 	{
-		Engine_Log_Error("注册windows窗口失败.");
-		MessageBox(NULL, L"注册windows窗口失败.", L"Error", MB_OK);
+		Engine_Log_Error("Register windows Failer.");
+		MessageBox(NULL, L"Register windows Failer.", L"Error", MB_OK);
 	}
 
 	RECT Rect = { 0,0,EngineRenderConfig::GetRenderConfig()->ScreenWidth,EngineRenderConfig::GetRenderConfig()->ScreenHeight };
@@ -176,8 +176,8 @@ bool RWindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 		NULL);//
 	if (!MianWindowsHandle)
 	{
-		Engine_Log_Error("创建窗口失败.");
-		MessageBox(0, L"创建窗口失败.", 0, 0);
+		Engine_Log_Error("Create Windows Failed.");
+		MessageBox(0, L"Create Windows Failed.", 0, 0);
 		return false;
 	}
 
@@ -187,7 +187,7 @@ bool RWindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 	//窗口刷新
 	UpdateWindow(MianWindowsHandle);
 
-	Engine_Log("初始化窗口完成.");
+	Engine_Log("Init Windows.");
 }
 
 RMeshManage* RWindowsEngine::GetMeshManage()

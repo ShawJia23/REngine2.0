@@ -33,17 +33,18 @@ void ActorObjectInspectorMapping::ShowPlaceholderObject(RComponent* InComponent,
 
 	if (bNodeOpen)
 	{
-		std::vector<RComponent*>& InComponents = InComponent->GetChildrens();
-		for (auto& Tmp : InComponents)
-		{
-			ShowPlaceholderObject(Tmp, ++ID);
-		}
-
 		//¸üÐÂWidget
 		RegisterInspector::UpdatePropertyWidget(InComponent->GetNativeClass().Property);
 
 		ImGui::TreePop();
 	}
+
+	std::vector<RComponent*>& InComponents = InComponent->GetChildrens();
+	for (auto& Tmp : InComponents)
+	{
+		ShowPlaceholderObject(Tmp, ++ID);
+	}
+
 
 	ImGui::PopID();
 }

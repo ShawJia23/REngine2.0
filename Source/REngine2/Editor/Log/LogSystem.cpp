@@ -13,7 +13,6 @@ EditorLogSystem* EditorLogSystem::Get()
     {
         LogSystem = new EditorLogSystem();
     }
-
     return LogSystem;
 }
 

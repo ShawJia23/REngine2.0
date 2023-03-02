@@ -7,4 +7,5 @@ public:
 	virtual void BuildEditor();
 	virtual void DrawEditor(float DeltaTime);
 	virtual void ExitEditor();
+	virtual void RenderEnd();
 };

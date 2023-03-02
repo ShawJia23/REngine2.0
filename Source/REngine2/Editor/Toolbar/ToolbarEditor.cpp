@@ -1,8 +1,8 @@
 #include "ToolbarEditor.h"
 #include"../Editor.h"
+
 void ToolbarEditor::BuildEditor()
 {
-
 }
 
 void ToolbarEditor::DrawEditor(float DeltaTime)
@@ -30,17 +30,17 @@ void ToolbarEditor::DrawEditor(float DeltaTime)
 		{
 			if (ImGui::MenuItem("Exploer"))
 			{
-
+				GetEditorEngine()->m_ObjectExplorerEditor->RenderStart();
 			}
 
 			if (ImGui::MenuItem("Inspector"))
 			{
-
+				GetEditorEngine()->m_InspectorEditor->RenderStart();
 			}
 
 			if (ImGui::MenuItem("Log"))
 			{
-
+				GetEditorEngine()->m_LogEditor->RenderStart();
 			}
 
 			ImGui::EndMenu();

@@ -39,7 +39,7 @@ public:
 public:
 	void DrawLayer(float DeltaTime);
 
-protected:
+public:
 	class ToolbarEditor* m_ToolbarEditor;
 	class LogEditor* m_LogEditor;
 	class ObjectExplorerEditor* m_ObjectExplorerEditor;
