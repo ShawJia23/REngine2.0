@@ -13,26 +13,13 @@ class RInputComponent:public RComponent
 {
 	CODEREFLECTION()
 public:
-	RVARIABLE(hello world)
-		RCaptureKeyBoardDelegate CaptureKeyboardInforDelegate;
-
-	RVARIABLE(xxx, aaaa)
-		RCaptureOnMouseDelegate OnRMouseButtonDownDelegate;
-
-	RVARIABLE(aaa, vvv)
-		RCaptureOnMouseDelegate OnRMouseButtonUpDelegate;
-
-	RVARIABLE(xxx, aaaa)
-		RCaptureOnMouseDelegate OnLMouseButtonDownDelegate;
-
-	RVARIABLE(aaa, vvv)
-		RCaptureOnMouseDelegate OnLMouseButtonUpDelegate;
-
-	RVARIABLE(xxx, www)
-		RCaptureOnMouseDelegate OnMouseMoveDelegate;
-
-	RVARIABLE(xxx, www)
-		RCaptureOnMouseWheelDelegate OnMouseWheelDelegate;
+	RCaptureKeyBoardDelegate CaptureKeyboardInforDelegate;
+	RCaptureOnMouseDelegate OnRMouseButtonDownDelegate;
+	RCaptureOnMouseDelegate OnRMouseButtonUpDelegate;
+	RCaptureOnMouseDelegate OnLMouseButtonDownDelegate;
+	RCaptureOnMouseDelegate OnLMouseButtonUpDelegate;
+	RCaptureOnMouseDelegate OnMouseMoveDelegate;
+	RCaptureOnMouseWheelDelegate OnMouseWheelDelegate;
 
 
 	virtual void Init();

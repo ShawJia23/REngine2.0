@@ -46,7 +46,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -71,10 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)Binaries\Win64\</OutDir>
-    <IntDir>$(SolutionDir)Intermediate\Other\</IntDir>
+    <OutDir>$(SolutionDir)Binaries\Win64\Debug\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\Debug\Other\</IntDir>
     <IncludePath>$(SolutionDir)Source\SimpleLibrary\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Binaries\Win64\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Binaries\Win64\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Binaries\Win64\Release\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\Release\Other\</IntDir>
+    <LibraryPath>$(SolutionDir)Binaries\Win64\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Source\SimpleLibrary\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

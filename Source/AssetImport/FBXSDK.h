@@ -94,8 +94,6 @@ struct FBXASSETIMPORT_API RFBXVersion
 	int Revision;
 };
 
-//UE4 2.4
-//7.5.0
 struct RFBXAssetImport
 {
 	FBXASSETIMPORT_API void LoadMeshData(const char *InPath,RFBXRenderData &OutData);

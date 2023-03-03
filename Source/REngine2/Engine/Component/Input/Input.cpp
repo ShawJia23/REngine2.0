@@ -1,9 +1,9 @@
 #include "Input.h"
 
-FCaptureOnMousesWheelsDelegate MousesWheelsDelegate;
-FCaptureOnMousesDelegate RMouseDownDelegate;
-FCaptureOnMousesDelegate RMouseUpDelegate;
-FCaptureOnMousesDelegate LMouseDownDelegate;
-FCaptureOnMousesDelegate LMouseUpDelegate;
-FCaptureOnMousesDelegate MouseMoveDelegate;
-FCaptureOnMousesDelegate ResizeScreenDelegate;
+RCaptureOnMousesWheelsDelegate MousesWheelsDelegate;
+RCaptureOnMousesDelegate RMouseDownDelegate;
+RCaptureOnMousesDelegate RMouseUpDelegate;
+RCaptureOnMousesDelegate LMouseDownDelegate;
+RCaptureOnMousesDelegate LMouseUpDelegate;
+RCaptureOnMousesDelegate MouseMoveDelegate;
+RCaptureOnMousesDelegate ResizeScreenDelegate;

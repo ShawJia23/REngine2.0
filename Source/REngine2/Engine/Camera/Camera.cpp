@@ -29,7 +29,6 @@ void RCamera::Init()
 	ViewportInit();
 
 	m_rInputComponent->CaptureKeyboardInforDelegate.Bind(this, &RCamera::ExecuteKeyboard);
-
 	m_rInputComponent->OnRMouseButtonDownDelegate.Bind(this, &RCamera::OnRMouseButtonDown);
 	m_rInputComponent->OnRMouseButtonUpDelegate.Bind(this, &RCamera::OnRMouseButtonUp);
 	m_rInputComponent->OnLMouseButtonDownDelegate.Bind(this, &RCamera::OnLMouseButtonDown);
@@ -224,7 +223,6 @@ void RCamera::MoveRight(float InValue)
 
 void RCamera::OnClickedScreen(int X, int Y)
 {
-#if EDITOR_ENGINE
 	if (!OperationHandleManage::Get()->IsCaptureMouseNotOnUI())
 		return;
 
@@ -254,7 +252,6 @@ void RCamera::OnClickedScreen(int X, int Y)
 		//ÏÔÊ¾²Ù×÷ÊÖ±ú
 		OperationHandleManage::Get()->HideSelectedOperationHandle();
 	}
-#endif
 }
 
 void RCamera::RotateAroundXAxis(float InRotateDegrees)

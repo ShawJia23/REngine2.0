@@ -71,10 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)Binaries\Win64\</OutDir>
-    <IntDir>$(SolutionDir)Intermediate\Other\</IntDir>
+    <OutDir>$(SolutionDir)Binaries\Win64\Debug\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\Debug\Other\</IntDir>
     <IncludePath>$(SolutionDir)Source\SimpleLibrary\;$(SolutionDir)Source\REngineCoreObject\;$(SolutionDir)Source\REngineHelp\;$(SolutionDir)Intermediate\CodeReflection\;$(SolutionDir)Source\AssetImport\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Binaries\Win64\;$(SolutionDir)Source\AssetImport\ThirdPartyLibrary\FBX\lib\vs2015\x64\debug\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Binaries\Win64\Debug;$(SolutionDir)Source\AssetImport\ThirdPartyLibrary\FBX\lib\vs2015\x64\debug\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Binaries\Win64\Release\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\Release\Other\</IntDir>
+    <LibraryPath>$(SolutionDir)Binaries\Win64\Release;$(SolutionDir)Source\AssetImport\ThirdPartyLibrary\FBX\lib\vs2015\x64\release\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Source\SimpleLibrary\;$(SolutionDir)Source\REngineCoreObject\;$(SolutionDir)Source\REngineHelp\;$(SolutionDir)Intermediate\CodeReflection\;$(SolutionDir)Source\AssetImport\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -110,7 +116,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;FBXSDK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;FBXSDK_EXPORTS;SIMPLE_LIBRARY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -126,7 +132,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;FBXSDK_EXPORTS;SIMPLE_LIBRARY_EXPORTS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
