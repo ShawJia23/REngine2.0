@@ -17,6 +17,22 @@ void MeshGroup::SetPosition(const XMFLOAT3& newPosition)
 	}
 }
 
+void MeshGroup::SetScale(const fvector_3d& InNewScale)
+{
+	for (auto& Tmp : m_RenderDatas)
+	{
+		Tmp.second.Mesh->SetScale(InNewScale);
+	}
+}
+
+void MeshGroup::SetPickup(bool bNewPickup)
+{
+	for (auto& Tmp : m_RenderDatas)
+	{
+		Tmp.second.Mesh->SetPickup(bNewPickup);
+	}
+}
+
 void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderData MeshData)
 {
 	if (m_RenderDatas.find(name) != m_RenderDatas.end())

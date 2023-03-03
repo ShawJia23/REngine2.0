@@ -54,8 +54,6 @@ protected:
 	float GetSymbol(float InValueOffset, bool bFlip = false);
 	float GetSymbolByCubeIndex(float InValueOffset);
 	float GetSymbolMaterialByCubeIndex(float InValueOffset);
-
-	//辅助内容 非课程内容
 protected:
 	float GetAngleRatio(float InAngle);
 	void PrintAix(ESelectAxisType InAxisType);

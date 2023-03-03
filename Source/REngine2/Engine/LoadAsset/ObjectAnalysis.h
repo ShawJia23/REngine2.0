@@ -11,8 +11,8 @@ public:
 	ObjectAnalysisByAssimp();
 	~ObjectAnalysisByAssimp();
 	void LoadMesh(std::string fileName, std::string name, 
-		const XMFLOAT3& newPosition, bool IsRight,
-		MeshGroup* outMeshData);
+		const XMFLOAT3& newPosition, const fvector_3d& newScale, 
+		bool IsRight,MeshGroup* outMeshData);
 
 	std::string GetFilePath(bool IsRight, std::string ObjName, std::string TexName);
 	std::string GetTexName(std::string ObjName, std::string TexName);

@@ -25,6 +25,8 @@ public:
 
 	CustomMeshComponent* GetCustomMeshComponent() {return m_lastComponent;}
 	void SetPosition(const XMFLOAT3& newPosition);
+	void SetScale(const fvector_3d& InNewScale);
+	void SetPickup(bool bNewPickup);
 private:
 	std::unordered_map<std::string, SubMesh> m_RenderDatas;
 	CustomMeshComponent* m_lastComponent;//临时保存最后一个

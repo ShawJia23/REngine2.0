@@ -44,6 +44,7 @@ protected:
 	bool bLMouseDown;
 	float m_mouseSensitivity;
 	float m_KeyBoardSensitivity;
+	float m_moveDistance;
 	CameraType m_cameraType;
 
 	//ÇòÃæ×ø±ê

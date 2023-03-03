@@ -21,6 +21,7 @@ RCamera::RCamera():Super()
 
 	m_mouseSensitivity = 0.25f;
 	m_KeyBoardSensitivity = 0.5f;
+	m_moveDistance = 2;
 }
 
 void RCamera::Init()
@@ -46,28 +47,28 @@ void RCamera::ExecuteKeyboard(const RInputKey& inputKey)
 {
 	if (inputKey.KeyName == "W")
 	{
-		MoveForward(1.f);
+		MoveForward(1.f* m_moveDistance);
 	}
 	else if (inputKey.KeyName == "S")
 	{
-		MoveForward(-1.f);
+		MoveForward(-1.f* m_moveDistance);
 	}
 	else if (inputKey.KeyName == "A")
 	{
-		MoveRight(-1.f);
+		MoveRight(-1.f * m_moveDistance);
 	}
 	else if (inputKey.KeyName == "D")
 	{
-		MoveRight(1.f);
+		MoveRight(1.f * m_moveDistance);
 	}
-	else if (inputKey.KeyName == "Q")
-	{
-		m_cameraType = CameraType::ObservationObject;
-	}
-	else  if (inputKey.KeyName == "E")
-	{
-		m_cameraType = CameraType::CameraRoaming;
-	}
+	//else if (inputKey.KeyName == "Q")
+	//{
+	//	m_cameraType = CameraType::ObservationObject;
+	//}
+	//else  if (inputKey.KeyName == "E")
+	//{
+	//	m_cameraType = CameraType::CameraRoaming;
+	//}
 }
 
 void RCamera::BuildViewMatrix(float DeltaTime)

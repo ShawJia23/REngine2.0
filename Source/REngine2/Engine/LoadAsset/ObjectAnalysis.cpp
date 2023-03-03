@@ -29,11 +29,11 @@ ObjectAnalysisByAssimp ::~ObjectAnalysisByAssimp()
 }
 
 void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name, 
-	const XMFLOAT3& newPosition,bool IsRight,
-	MeshGroup* outMeshGroup)
+	const XMFLOAT3& newPosition, const fvector_3d& newScale,
+	bool IsRight,MeshGroup* outMeshGroup)
 {
 	Assimp::Importer aiImporter;
-	const aiScene* pModel = aiImporter.ReadFile(fileName, aiProcessPreset_TargetRealtime_Quality);
+	const aiScene* pModel = aiImporter.ReadFile(fileName, aiProcess_ConvertToLeftHanded);
 	if (nullptr == pModel)
 	{
 		return;
@@ -76,6 +76,7 @@ void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name,
 			}
 		}
 		outMeshGroup->SetPosition(newPosition);
+		outMeshGroup->SetScale(newScale);
 		outMeshGroup->CreateMesh();
 		outMeshGroup->CreateTexture();
 	}

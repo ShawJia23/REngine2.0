@@ -6,5 +6,5 @@ bool bOperationHandleSelect;
 class RMeshComponent* SelectAxisComponent= nullptr;
 
 class RMoveArrow* MoveArrow = nullptr;
-class RScalingArrow* ScalingArrow = nullptr;
-class RRotatorArrow* RotatorArrow = nullptr;
+//class RScalingArrow* ScalingArrow = nullptr;
+//class RRotatorArrow* RotatorArrow = nullptr;

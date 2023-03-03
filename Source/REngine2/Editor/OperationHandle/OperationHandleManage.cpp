@@ -7,8 +7,8 @@
 #include"../../Common/EngineEditorCommon.h"
 #include"../../Engine/Actor/ActorObject.h"
 extern class RMoveArrow* MoveArrow;
-extern class RScalingArrow* ScalingArrow;
-extern class RRotatorArrow* RotatorArrow;
+//extern class RScalingArrow* ScalingArrow;
+//extern class RRotatorArrow* RotatorArrow;
 extern class GActorObject* SelectedObject;
 
 OperationHandleManage* OperationHandleManage::InManage = nullptr;
@@ -40,8 +40,8 @@ void OperationHandleManage::Destroy()
 void OperationHandleManage::AllOperationHandleHide()
 {
 	MoveArrow->SetVisible(false);
-	ScalingArrow->SetVisible(false);
-	RotatorArrow->SetVisible(false);
+	//ScalingArrow->SetVisible(false);
+	//RotatorArrow->SetVisible(false);
 }
 
 void OperationHandleManage::DisplaySelectedOperationHandle(GActorObject* InNewSelectedObject)

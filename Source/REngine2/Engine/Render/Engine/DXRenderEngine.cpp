@@ -20,8 +20,8 @@
 #include"../../../Editor/OperationHandle/ScalingArrow.h"
 
 extern RMoveArrow* MoveArrow;
-extern RScalingArrow* ScalingArrow;
-extern RRotatorArrow* RotatorArrow;
+//extern RScalingArrow* ScalingArrow;
+//extern RRotatorArrow* RotatorArrow;
 #endif
 
 
@@ -294,7 +294,9 @@ int DXRenderEngine::PostInit()
 		CreateMesh();
 		LoadAsset();
 	}
-
+	Engine_Log("W A S D to Move");
+	Engine_Log("Press RMouse + Move Mouse to Rotate");
+	
 	m_meshManage->BuildPipeline();
 
 	ANALYSIS_HRESULT(m_commandList->Close());
@@ -330,14 +332,15 @@ void DXRenderEngine::CreateMesh()
 	//}
 
 	//¹¹½¨Mesh
-	PlaneMesh* pMesh = m_World->CreateActorObject<PlaneMesh>();
-	if (pMesh)
-	{
-		pMesh->CreateMesh(4.f, 3.f, 20, 20);
-		pMesh->SetPosition(XMFLOAT3(0.f, -2.f, 0.f));
-		pMesh->SetScale(fvector_3d(20.f, 20.f, 10.f));
-		pMesh->SetPickup(false);
-	}
+	// 
+	//PlaneMesh* pMesh = m_World->CreateActorObject<PlaneMesh>();
+	//if (pMesh)
+	//{
+	//	pMesh->CreateMesh(4.f, 3.f, 20, 20);
+	//	pMesh->SetPosition(XMFLOAT3(0.f, -2.f, 0.f));
+	//	pMesh->SetScale(fvector_3d(20.f, 20.f, 10.f));
+	//	pMesh->SetPickup(false);
+	//}
 	GParallelLight* pLight = m_World->CreateActorObject<GParallelLight>();
 	if (pLight)
 	{
@@ -462,27 +465,27 @@ void DXRenderEngine::LoadAsset()
 		MoveArrow = InMoveArrow;
 	}
 
-	if (RScalingArrow* InScalingArrow = m_World->CreateActorObject<RScalingArrow>())
-	{
-		InScalingArrow->CreateMesh();
+	//if (RScalingArrow* InScalingArrow = m_World->CreateActorObject<RScalingArrow>())
+	//{
+	//	InScalingArrow->CreateMesh();
 
-		ScalingArrow = InScalingArrow;
-	}
+	//	ScalingArrow = InScalingArrow;
+	//}
 
-	if (RRotatorArrow* InRotatorArrow = m_World->CreateActorObject<RRotatorArrow>())
-	{
-		InRotatorArrow->CreateMesh();
+	//if (RRotatorArrow* InRotatorArrow = m_World->CreateActorObject<RRotatorArrow>())
+	//{
+	//	InRotatorArrow->CreateMesh();
 
-		RotatorArrow = InRotatorArrow;
-	}
+	//	RotatorArrow = InRotatorArrow;
+	//}
 
 	string AssetPath= PathHelper::RelativeToAbsolutePath(PathHelper::GetEngineAssetPath());
 
 	MeshGroup* pMeshGroup = new MeshGroup();
 	ObjectAnalysisByAssimp lo;
-	lo.LoadMesh(AssetPath+"/Model/Brolyviewer001out/Brolyviewer001out.fbx", "Brolyviewer001out",
-		XMFLOAT3(0.f, 10.f, 10.f), false, pMeshGroup);
-
+	lo.LoadMesh(AssetPath+"/Model/shennvpiguan/shennvpiguan.pmx", "shennvpiguan",
+		XMFLOAT3(0.f, 0.f, 0.f), fvector_3d(0.5f, 0.5f, 0.5f),true, pMeshGroup);
+	pMeshGroup->SetPickup(false);
 	GetTextureManage()->LoadCubeMapFormPath("cubemap", AssetPath + "/Cubemap/grasscube1024.dds");
 }
 
