@@ -30,13 +30,13 @@ void DX12Pipeline::BuildPipeline()
 
     m_GeometryMap.BuildDescriptorHeap();
 
-
     m_UIPipeline.Init(
         m_GeometryMap.GetHeap(),
         m_GeometryMap.GetDesptorSize());//ShadowCubeMap
-
+    Engine_Log("test3");
     m_GeometryMap.BuildConstantBufferView();
 
+    
     //texture=0时构建根签名和shader会报错
     m_RootSignature.BuildRootSignature(GetTextureManage()->GetTextureSize());
 

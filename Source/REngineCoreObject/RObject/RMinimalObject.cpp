@@ -8,6 +8,7 @@ RMinimalObject::RMinimalObject()
 {
 	bTick = true;
 	GRObjects.push_back(this);
+	Outer = NULL;
 }
 RMinimalObject::~RMinimalObject() 
 {

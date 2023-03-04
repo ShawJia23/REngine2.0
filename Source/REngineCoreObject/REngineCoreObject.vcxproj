@@ -80,7 +80,7 @@
     <OutDir>$(SolutionDir)Binaries\Win64\Release\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\Release\Other\</IntDir>
     <IncludePath>$(SolutionDir)Source\SimpleLibrary\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Binaries\Win64\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Binaries\Win64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

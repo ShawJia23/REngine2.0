@@ -111,6 +111,7 @@ void RTextureManage::BuildTextureConstantBuffer(ID3D12DescriptorHeap* InHeap, in
 
 		Handle.Offset(1, DescriptorOffset);
 	}
+	Engine_Log("BuildTextureConstantBuffer");
 }
 
 void RTextureManage::LoadTextureFormPath(const std::string& name,const std::string& path)

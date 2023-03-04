@@ -84,7 +84,7 @@ void create_guid_str(char* c_guid)
 void create_guid(simple_c_guid* c_guid)
 {
 	normalization_guid(c_guid);
-	assert(CoCreateGuid((GUID*)c_guid) == S_OK);
+	CoCreateGuid((GUID*)c_guid);
 }
 
 void guid_to_string(char* buf,const simple_c_guid* c_guid)

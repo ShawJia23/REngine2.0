@@ -4,14 +4,13 @@
 #include"../RayCast/RayCastSystem.h"
 #include"../Render/Pipeline/RenderLayer/RenderLayerManage.h"
 #include"../../Editor/OperationHandle/OperationHandleManage.h"
+#include"../../Engine/Construction/MacroConstruction.h"
 extern RMeshComponent* SelectAxisComponent;
 extern GActorObject* SelectedObject;
 RCamera::RCamera():Super()
 {
-	CreateObjectParam param;
-	param.Outer = this;
-	param.Name = "Input";
-	m_rInputComponent = CreateObject<RInputComponent>(param,new RInputComponent());
+	BUILD_OBJECT_PARAMETERS(Type, this);
+	m_rInputComponent = CreateObject<RInputComponent>(ParamType,new RInputComponent());
 
 	Radius = 10.f;
 	A = XM_PI;
@@ -35,39 +34,6 @@ void RCamera::Init()
 	m_rInputComponent->OnLMouseButtonUpDelegate.Bind(this, &RCamera::OnLMouseButtonUp);
 	m_rInputComponent->OnMouseMoveDelegate.Bind(this, &RCamera::OnMouseMove);
 	m_rInputComponent->OnMouseWheelDelegate.Bind(this, &RCamera::OnMouseWheel);
-}
-
-void RCamera::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
-void RCamera::ExecuteKeyboard(const RInputKey& inputKey)
-{
-	if (inputKey.KeyName == "W")
-	{
-		MoveForward(1.f* m_moveDistance);
-	}
-	else if (inputKey.KeyName == "S")
-	{
-		MoveForward(-1.f* m_moveDistance);
-	}
-	else if (inputKey.KeyName == "A")
-	{
-		MoveRight(-1.f * m_moveDistance);
-	}
-	else if (inputKey.KeyName == "D")
-	{
-		MoveRight(1.f * m_moveDistance);
-	}
-	//else if (inputKey.KeyName == "Q")
-	//{
-	//	m_cameraType = CameraType::ObservationObject;
-	//}
-	//else  if (inputKey.KeyName == "E")
-	//{
-	//	m_cameraType = CameraType::CameraRoaming;
-	//}
 }
 
 void RCamera::BuildViewMatrix(float DeltaTime)
@@ -116,6 +82,31 @@ void RCamera::BuildViewMatrix(float DeltaTime)
 	}
 }
 
+void RCamera::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+}
+
+void RCamera::ExecuteKeyboard(const RInputKey& inputKey)
+{
+	if (inputKey.KeyName == "W")
+	{
+		MoveForward(1.f* m_moveDistance);
+	}
+	else if (inputKey.KeyName == "S")
+	{
+		MoveForward(-1.f* m_moveDistance);
+	}
+	else if (inputKey.KeyName == "A")
+	{
+		MoveRight(-1.f * m_moveDistance);
+	}
+	else if (inputKey.KeyName == "D")
+	{
+		MoveRight(1.f * m_moveDistance);
+	}
+}
+
 void RCamera::OnRMouseButtonDown(int X, int Y)
 {
 	bRMouseDown = true;
@@ -146,7 +137,6 @@ void RCamera::OnLMouseButtonUp(int X, int Y)
 {
 	bLMouseDown = false;
 }
-
 
 void RCamera::OnMouseMove(int X, int Y)
 {

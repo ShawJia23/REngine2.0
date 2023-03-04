@@ -21,7 +21,6 @@ public:
 	RCaptureOnMouseDelegate OnMouseMoveDelegate;
 	RCaptureOnMouseWheelDelegate OnMouseWheelDelegate;
 
-
 	virtual void Init();
 	virtual void Tick(float DeltaTime);
 
