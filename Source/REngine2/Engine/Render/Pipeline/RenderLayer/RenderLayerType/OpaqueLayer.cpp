@@ -14,8 +14,10 @@ void OpaqueLayer::BuildShader()
     vector<D3D_SHADER_MACRO> D3DShaderMacro;
     R2D3DShaderMacro(ShaderMacro, D3DShaderMacro);
 
-    m_VertexShader.BuildShaders(L"Shader/Default.hlsl", "VertexShaderMain", "vs_5_1", D3DShaderMacro.data());
-    m_PixelShader.BuildShaders(L"Shader/Default.hlsl", "PixelShaderMain", "ps_5_1", D3DShaderMacro.data());
+    wstring pStr = PathHelper::GetEngineShadersPath() + L"/Default.hlsl";
+
+    m_VertexShader.BuildShaders(pStr, "VertexShaderMain", "vs_5_1", D3DShaderMacro.data());
+    m_PixelShader.BuildShaders(pStr, "PixelShaderMain", "ps_5_1", D3DShaderMacro.data());
     m_PipelineState->BindShader(m_VertexShader, m_PixelShader);
 
     m_InputElementDesc =

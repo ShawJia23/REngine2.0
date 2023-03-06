@@ -4,6 +4,7 @@
 #include"../../../../Shader/ShaderMacro.h"
 #include"../../../../Interface/DXDeviceInterface.h"
 #include"../../PipelineState/DXPipelineState.h"
+#include"Path/PathHelper.h"
 struct ViewportInfo;
 struct RConstantBufferView;
 struct RRenderData;

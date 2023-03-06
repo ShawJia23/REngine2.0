@@ -33,7 +33,6 @@ void DX12Pipeline::BuildPipeline()
     m_UIPipeline.Init(
         m_GeometryMap.GetHeap(),
         m_GeometryMap.GetDesptorSize());//ShadowCubeMap
-    Engine_Log("test3");
     m_GeometryMap.BuildConstantBufferView();
 
     

@@ -221,7 +221,6 @@ void DXRenderEngine::WaitGPUCommandQueueComplete()
 	//GPU完成后会通知我们的Handle
 	ANALYSIS_HRESULT(m_fence->SetEventOnCompletion(m_fenceValues[m_frameIndex], m_fenceEvent));
 
-	Engine_Log_Success("test");
 	//等待GPU,阻塞主线程
 	WaitForSingleObject(m_fenceEvent, INFINITE);
 
