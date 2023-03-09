@@ -5,9 +5,7 @@
 #include "Toolbar/ToolbarEditor.h"
 #include"Explorer/ObjectExplorer.h"
 #include"Inspector/InspectorEditor.h"
-class EditorEngine
-	:public REngine
-	, public EditorBase
+class EditorEngine:public REngine, public EditorBase
 {
 public:
 	EditorEngine();
@@ -25,7 +23,8 @@ public:
 	);
 	virtual int PostInit();
 
-	virtual void Tick(float DeltaTime) {};
+	virtual void Tick(GameTimer& gt) {};
+	virtual void Tick() {};
 	virtual void OnResetSize(int width, int height) {};
 	virtual int PreExit();
 	virtual int Exit();
@@ -33,11 +32,11 @@ public:
 
 public:
 	virtual void BuildEditor();
-	virtual void DrawEditor(float DeltaTime);
+	virtual void DrawEditor(GameTimer& gt);
 	virtual void ExitEditor();
 
 public:
-	void DrawLayer(float DeltaTime);
+	void DrawLayer(GameTimer& gt);
 
 public:
 	class ToolbarEditor* m_ToolbarEditor;

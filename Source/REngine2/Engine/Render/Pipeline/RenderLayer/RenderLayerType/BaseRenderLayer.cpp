@@ -5,6 +5,8 @@
 #include"../../../ConstontBuffer/ObjectTransformation.h"
 #include"../../Geometry/RenderMeshData.h"
 #include"../../Geometry/GeometryMap.h"
+#include"../../../../World.h"
+#include"../../../../Camera/Camera.h"
 
 RenderLayer::RenderLayer():RenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPAQUE)
 {
@@ -88,6 +90,10 @@ void RenderLayer::DrawMesh(std::weak_ptr<RRenderData>& geometry)
 	if (!geometry.lock()->Mesh->IsVisible())
 		return;
 
+	auto pFrustum=GetWorld()->GetCamera()->GetBoundingFrustum();
+	if(!pFrustum.Contains(geometry.lock()->Bounds))
+		return;
+
 	UINT MeshOffset = m_GeometryMap->GetObjectConstantBufferView().GetConstantBufferByteSize();
 
 	auto pRenderData = geometry.lock();
@@ -150,10 +156,13 @@ void RenderLayer::UpdateCalculations(const ViewportInfo viewportInfo, RConstantB
 		//更新模型位置
 		XMMATRIX ATRIXWorld = XMLoadFloat4x4(&pRenderData.lock().get()->WorldMatrix);
 		XMMATRIX ATRIXTextureTransform = XMLoadFloat4x4(&pRenderData.lock().get()->TextureTransform);
+		XMVECTOR AATRIXWorldDeterminant = DirectX::XMMatrixDeterminant(ATRIXWorld);
+		XMMATRIX NormalInverseMatrix = DirectX::XMMatrixInverse(&AATRIXWorldDeterminant, ATRIXWorld);
 
 		RObjectTransformation ObjectTransformation;
-		XMStoreFloat4x4(&ObjectTransformation.World, XMMatrixTranspose(ATRIXWorld));
-		XMStoreFloat4x4(&ObjectTransformation.TextureTransformation, XMMatrixTranspose(ATRIXTextureTransform));
+		XMStoreFloat4x4(&ObjectTransformation.World, DirectX::XMMatrixTranspose(ATRIXWorld));
+		XMStoreFloat4x4(&ObjectTransformation.TextureTransformation, DirectX::XMMatrixTranspose(ATRIXTextureTransform));
+		XMStoreFloat4x4(&ObjectTransformation.NormalTransformation, NormalInverseMatrix);
 		//收集材质Index
 		if (auto& InMater = (*pRenderData.lock().get()->Mesh->GetMaterials())[0])
 		{

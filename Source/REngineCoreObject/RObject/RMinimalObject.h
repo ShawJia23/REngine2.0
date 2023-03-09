@@ -8,6 +8,7 @@
 
 class RFrame;
 class RFunctionObject;
+class GameTimer;
 class RENGINECOREOBJECT_API RMinimalObject :public IGuidInterface
 {
 public:
@@ -16,7 +17,7 @@ public:
 	virtual void InitMinimalObject();
 	virtual void InitReflectionContent() {};
 	virtual void Init() {};
-	virtual void Tick(float DeltaTime) {};
+	virtual void Tick(GameTimer& gt) {};
 
 	bool IsTick() { return bTick; }
 	void SetTick(bool tick) { bTick=tick; }

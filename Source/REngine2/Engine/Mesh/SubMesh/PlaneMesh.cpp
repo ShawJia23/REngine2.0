@@ -11,9 +11,9 @@ void PlaneMesh::Init()
 	Super::Init();
 }
 
-void PlaneMesh::Draw(float DeltaTime)
+void PlaneMesh::Draw(GameTimer& gt)
 {
-	Super::Draw(DeltaTime);
+	Super::Draw(gt);
 }
 
 void PlaneMesh::CreateMesh(float height, float width, uint32_t heightSub, uint32_t widthSub, EMeshRenderLayerType type)

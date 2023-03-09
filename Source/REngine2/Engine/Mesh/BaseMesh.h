@@ -21,9 +21,9 @@ public:
 
 	virtual void Init();
 
-	virtual void PreDraw(float DeltaTime);
-	virtual void Draw(float DeltaTime);
-	virtual void PostDraw(float DeltaTime);
+	virtual void PreDraw(GameTimer& gt);
+	virtual void Draw(GameTimer& gt);
+	virtual void PostDraw(GameTimer& gt);
 
 	virtual void SetPickup(bool bNewPickup);
 

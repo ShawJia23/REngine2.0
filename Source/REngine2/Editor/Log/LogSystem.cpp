@@ -1,5 +1,5 @@
 #include "LogSystem.h"
-
+#include"../../Timer/GameTimer.h"
 EditorLogSystem* EditorLogSystem::LogSystem = nullptr;
 
 EditorLogSystem::EditorLogSystem()
@@ -67,7 +67,7 @@ void EditorLogSystem::AddSuccess(const char* Fmt, ...)
 
 }
 
-void EditorLogSystem::Draw(float DeltaTime)
+void EditorLogSystem::Draw(GameTimer& gt)
 {
     if (!ImGui::Begin("Log"))
     {

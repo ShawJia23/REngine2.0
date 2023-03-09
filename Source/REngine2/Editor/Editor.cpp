@@ -58,14 +58,14 @@ void EditorEngine::BuildEditor()
 	m_InspectorEditor->BuildEditor();
 }
 
-void EditorEngine::DrawEditor(float DeltaTime)
+void EditorEngine::DrawEditor(GameTimer& gt)
 {
-	DrawLayer(DeltaTime);
+	DrawLayer(gt);
 
-	m_ToolbarEditor->DrawEditor(DeltaTime);
-	m_LogEditor->DrawEditor(DeltaTime);
-	m_ObjectExplorerEditor->DrawEditor(DeltaTime);
-	m_InspectorEditor->DrawEditor(DeltaTime);
+	m_ToolbarEditor->DrawEditor(gt);
+	m_LogEditor->DrawEditor(gt);
+	m_ObjectExplorerEditor->DrawEditor(gt);
+	m_InspectorEditor->DrawEditor(gt);
 }
 
 void EditorEngine::ExitEditor()
@@ -76,7 +76,7 @@ void EditorEngine::ExitEditor()
 	m_InspectorEditor->ExitEditor();
 }
 
-void EditorEngine::DrawLayer(float DeltaTime)
+void EditorEngine::DrawLayer(GameTimer& gt)
 {
 	ImGuiDockNodeFlags DockspaceFlags = ImGuiDockNodeFlags_None;
 

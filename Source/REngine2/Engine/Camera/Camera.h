@@ -20,8 +20,8 @@ public:
 	FORCEINLINE RInputComponent* GetInputComponent() { return m_rInputComponent; }
 public:
 	virtual void Init();
-	virtual void Tick(float DeltaTime);
-	virtual void BuildViewMatrix(float DeltaTime);
+	virtual void Tick(GameTimer& gt);
+	virtual void BuildViewMatrix(GameTimer& gt);
 
 protected:
 	virtual void ExecuteKeyboard(const RInputKey& inputKey);

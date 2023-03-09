@@ -9,7 +9,7 @@ public:
 
 	virtual void Init();
 
-	virtual void Draw(float DeltaTime);
+	virtual void Draw(GameTimer& gt);
 
 	void CreateMesh(string name,EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 };

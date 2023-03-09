@@ -5,7 +5,7 @@ void ToolbarEditor::BuildEditor()
 {
 }
 
-void ToolbarEditor::DrawEditor(float DeltaTime)
+void ToolbarEditor::DrawEditor(GameTimer& gt)
 {
 	if (ImGui::BeginMainMenuBar())
 	{

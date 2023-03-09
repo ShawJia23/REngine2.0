@@ -35,7 +35,7 @@ protected:
 		const fvector_3d& ActorWorldPosition);
 
 protected:
-	virtual void Tick(float DeltaTime);
+	virtual void Tick(GameTimer& gt);
 	virtual void Init();
 public:
 	virtual void ResetVisible(CustomMeshComponent* InAxisComponent, bool bVisible);

@@ -11,9 +11,9 @@ void CustomMesh::Init()
 	Super::Init();
 }
 
-void CustomMesh::Draw(float DeltaTime)
+void CustomMesh::Draw(GameTimer& gt)
 {
-	Super::Draw(DeltaTime);
+	Super::Draw(gt);
 }
 
 void CustomMesh::CreateMesh(string name,EMeshRenderLayerType type)

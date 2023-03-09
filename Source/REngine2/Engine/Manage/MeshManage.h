@@ -17,12 +17,12 @@ public:
 
 	virtual void BuildPipeline();
 
-	virtual void UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo);
+	virtual void UpdateCalculations(GameTimer& gt, const ViewportInfo viewportInfo);
 	virtual void OnResetSize(int width, int height);
 
-	virtual void PreDraw(float DeltaTime);
-	virtual void Draw(float DeltaTime);
-	virtual void PostDraw(float DeltaTime);
+	virtual void PreDraw(GameTimer& gt);
+	virtual void Draw(GameTimer& gt);
+	virtual void PostDraw(GameTimer& gt);
 
 public:
 	RMeshComponent* CreateBoxMeshComponent(

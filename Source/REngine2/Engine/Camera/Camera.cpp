@@ -36,7 +36,7 @@ void RCamera::Init()
 	m_rInputComponent->OnMouseWheelDelegate.Bind(this, &RCamera::OnMouseWheel);
 }
 
-void RCamera::BuildViewMatrix(float DeltaTime)
+void RCamera::BuildViewMatrix(GameTimer& gt)
 {
 	switch (m_cameraType)
 	{
@@ -82,9 +82,9 @@ void RCamera::BuildViewMatrix(float DeltaTime)
 	}
 }
 
-void RCamera::Tick(float DeltaTime)
+void RCamera::Tick(GameTimer& gt)
 {
-	Super::Tick(DeltaTime);
+	Super::Tick(gt);
 }
 
 void RCamera::ExecuteKeyboard(const RInputKey& inputKey)

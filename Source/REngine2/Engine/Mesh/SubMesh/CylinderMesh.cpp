@@ -11,9 +11,9 @@ void CylinderMesh::Init()
 	Super::Init();
 }
 
-void CylinderMesh::Draw(float DeltaTime)
+void CylinderMesh::Draw(GameTimer& gt)
 {
-	Super::Draw(DeltaTime);
+	Super::Draw(gt);
 }
 
 void CylinderMesh::CreateMesh(float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)

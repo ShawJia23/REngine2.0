@@ -45,8 +45,7 @@ int Init(REngine* engine, HINSTANCE hInstance, HINSTANCE prevInstance, PSTR cmdL
 
 void Tick(REngine* engine)
 {
-	float DeltaTime = 0.03f;
-	engine->Tick(DeltaTime);
+	engine->Tick();
 }
 
 int Exit(REngine* engine)

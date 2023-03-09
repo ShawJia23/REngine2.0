@@ -11,9 +11,9 @@ void SphereMesh::Init()
 	Super::Init();
 }
 
-void SphereMesh::Draw(float DeltaTime)
+void SphereMesh::Draw(GameTimer& gt)
 {
-	Super::Draw(DeltaTime);
+	Super::Draw(gt);
 }
 
 void SphereMesh::CreateMesh(float radius, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)

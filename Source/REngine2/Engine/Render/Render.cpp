@@ -14,15 +14,15 @@ void IRenderingInterface::Init()
 {
 }
 
-void IRenderingInterface::PreDraw(float DeltaTime)
+void IRenderingInterface::PreDraw(GameTimer& gt)
 {
 }
 
-void IRenderingInterface::Draw(float DeltaTime)
+void IRenderingInterface::Draw(GameTimer& gt)
 {
 
 }
 
-void IRenderingInterface::PostDraw(float DeltaTime)
+void IRenderingInterface::PostDraw(GameTimer& gt)
 {
 }

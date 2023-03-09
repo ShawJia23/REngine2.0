@@ -8,7 +8,7 @@ GPointLight::GPointLight()
 	SetLightComponent(CreateObject<RPointLightComponent>(param, new RPointLightComponent()));
 }
 
-void GPointLight::Tick(float DeltaTime)
+void GPointLight::Tick(GameTimer& gt)
 {
 	fvector_3d v3 = GetRotation();
 

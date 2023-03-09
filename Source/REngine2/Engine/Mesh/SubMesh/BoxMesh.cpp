@@ -9,9 +9,9 @@ void BoxMesh::Init()
 {
 	Super::Init();
 }
-void BoxMesh::Draw(float DeltaTime)
+void BoxMesh::Draw(GameTimer& gt)
 {
-	Super::Draw(DeltaTime);
+	Super::Draw(gt);
 }
 void  BoxMesh::CreateMesh(float height, float width, float depth, EMeshRenderLayerType type)
 {

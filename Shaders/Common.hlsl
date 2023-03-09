@@ -14,6 +14,7 @@ cbuffer ObjectConstBuffer :register(b0)
 {
 	float4x4 WorldMatrix;
 	float4x4 ObjectTextureTransform;
+	float4x4 NormalTransformation;//法线矩阵 处理不等比缩放
 	uint MaterialIndex;
 	uint RR1;
 	uint RR2;
@@ -24,6 +25,8 @@ cbuffer ViewportConstBuffer : register(b1)
 {
 	float4 ViewportPosition;
 	float4x4 ViewProjectionMatrix;
+
+	float4x4 TexViewProjectionMatrix;
 }
 
 cbuffer LightConstBuffer : register(b2)

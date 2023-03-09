@@ -1,5 +1,5 @@
 #include "Material.hlsl"
-
+//顶点法线外扩
 struct MeshVertexIn
 {
 	float3 Position : POSITION;
@@ -40,5 +40,14 @@ MeshVertexOut VertexShaderMain(MeshVertexIn MV)
 
 float4 PixelShaderMain(MeshVertexOut MVOut) :SV_TARGET
 {
-	return float4(0.f, 0.f, 1.f, 0.15f) ;
+	float3 ModelNormal = normalize(MVOut.Normal);
+
+	float3 ViewDirection = normalize(ViewportPosition.xyz - MVOut.WorldPosition.xyz);
+	float NoV = dot(ModelNormal, ViewDirection);
+	if (NoV <= 0.2f && NoV >= -0.2f)
+	{
+		return float4(1.f, 1.f, 0.f, 1.f);
+	}
+
+	return float4(0.f, 0.f, 0.f, 0.f);
 }

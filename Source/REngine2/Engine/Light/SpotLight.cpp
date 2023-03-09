@@ -10,9 +10,9 @@ GSpotLight::GSpotLight()
 	index_test = 0;
 }
 
-void GSpotLight::Tick(float DeltaTime)
+void GSpotLight::Tick(GameTimer& gt)
 {
-	index_test += DeltaTime;
+	index_test += gt.DeltaTime();
 
 	float O = 50.f;
 	float I = 30.f;
@@ -22,8 +22,8 @@ void GSpotLight::Tick(float DeltaTime)
 
 	fvector_3d v3 = GetRotation();
 
-	v3.x += DeltaTime * 10.f;
-	v3.y += DeltaTime * 10.f;
+	v3.x += gt.DeltaTime() * 10.f;
+	v3.y += gt.DeltaTime() * 10.f;
 	//v3.z += DeltaTime * 100.f;
 
 	SetRotation(v3);

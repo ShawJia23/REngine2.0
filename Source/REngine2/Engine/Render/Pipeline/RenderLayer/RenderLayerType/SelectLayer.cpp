@@ -13,7 +13,7 @@ void SelectLayer::BuildShader()
 
     vector<D3D_SHADER_MACRO> D3DShaderMacro;
     R2D3DShaderMacro(ShaderMacro, D3DShaderMacro);
-    wstring pStr = PathHelper::GetEngineShadersPath() + L"/SelectShadow.hlsl";
+    wstring pStr = PathHelper::GetEngineShadersPath() + L"/Selected.hlsl";
     m_VertexShader.BuildShaders(pStr, "VertexShaderMain", "vs_5_1", D3DShaderMacro.data());
     m_PixelShader.BuildShaders(pStr, "PixelShaderMain", "ps_5_1", D3DShaderMacro.data());
     m_PipelineState->BindShader(m_VertexShader, m_PixelShader);
@@ -49,6 +49,10 @@ void SelectLayer::BuildPSO()
     RenderTargetBlendDesc.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
 
     m_PipelineState->SetRenderTarget(0, RenderTargetBlendDesc);
+
+    CD3DX12_DEPTH_STENCIL_DESC DepthStencilDesc = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
+    DepthStencilDesc.DepthFunc = D3D12_COMPARISON_FUNC_ALWAYS;
+    m_PipelineState->SetDepthStencilState(DepthStencilDesc);
 
     m_PipelineState->CreatePSO((int)GetRenderLayerType());
 }

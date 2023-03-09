@@ -12,15 +12,15 @@ void BMesh::Init()
 
 }
 
-void BMesh::PreDraw(float DeltaTime)
+void BMesh::PreDraw(GameTimer& gt)
 {
 }
 
-void BMesh::Draw(float DeltaTime)
+void BMesh::Draw(GameTimer& gt)
 {
 }
 
-void BMesh::PostDraw(float DeltaTime)
+void BMesh::PostDraw(GameTimer& gt)
 {
 }
 

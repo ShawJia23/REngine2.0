@@ -7,10 +7,10 @@ struct RImGuiPipeline :public IDirectXDeviceInterface_Struct
 
 	void Init(ID3D12DescriptorHeap* heap, UINT offset);
 
-	void Draw(float DeltaTime);
+	void Draw(GameTimer& gt);
 
 	void Exit();
 
 protected:
-	void Tick(float DeltaTime);
+	void Tick(GameTimer& gt);
 };

@@ -18,8 +18,9 @@ public:
 	virtual int Init(WinMainCommandParameters InParameters);
 	virtual int PostInit();
 
-	virtual void UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo);
-	virtual void Tick(float DeltaTime);
+	virtual void UpdateCalculations(GameTimer& gt, const ViewportInfo viewportInfo);
+	virtual void Tick(GameTimer& gt);
+	virtual void Tick() {};
 	virtual void OnResetSize(int width, int height);
 
 	virtual int PreExit();
@@ -78,9 +79,6 @@ protected:
 	vector<ComPtr<ID3D12Resource>> m_swapChainBuffer;
 	ComPtr<ID3D12Resource> m_depthStencilBuffer;
 
-	//和屏幕的视口有关
-	D3D12_VIEWPORT m_viewprotInfo;
-	D3D12_RECT m_viewprotRect;
 protected:
 	UINT M4XQualityLevels;
 	bool bMSAA4XEnabled;

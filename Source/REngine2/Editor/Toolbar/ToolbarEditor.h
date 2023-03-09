@@ -5,6 +5,6 @@ class ToolbarEditor :public EditorBase, public IDirectXDeviceInterface
 {
 public:
 	virtual void BuildEditor();
-	virtual void DrawEditor(float DeltaTime);
+	virtual void DrawEditor(GameTimer& gt);
 	virtual void ExitEditor();
 };

@@ -11,9 +11,9 @@ void ConeMesh::Init()
 	Super::Init();
 }
 
-void ConeMesh::Draw(float DeltaTime)
+void ConeMesh::Draw(GameTimer& gt)
 {
-	Super::Draw(DeltaTime);
+	Super::Draw(gt);
 }
 
 void ConeMesh::CreateMesh(float radius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)

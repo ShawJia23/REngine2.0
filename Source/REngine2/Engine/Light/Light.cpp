@@ -9,9 +9,9 @@ GLight::GLight()
 
 }
 
-void GLight::Tick(float DeltaTime)
+void GLight::Tick(GameTimer& gt)
 {
-	Super::Tick(DeltaTime);
+	Super::Tick(gt);
 }
 
 void GLight::SetPosition(const XMFLOAT3& InNewPosition)

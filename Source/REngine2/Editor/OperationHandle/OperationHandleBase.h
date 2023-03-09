@@ -54,7 +54,7 @@ public:
 
 public:
 	virtual void Init();
-	virtual void Tick(float DeltaTime);
+	virtual void Tick(GameTimer& gt);
 	virtual void SetVisible(bool bNewVisible);
 	// virtual bool IsVisible()const;
 

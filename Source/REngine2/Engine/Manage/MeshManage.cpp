@@ -22,7 +22,7 @@ void RMeshManage::BuildPipeline()
     m_pipeline.BuildPipeline();
 }
 
-void RMeshManage::UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo)
+void RMeshManage::UpdateCalculations(GameTimer& gt, const ViewportInfo viewportInfo)
 {
     m_pipeline.UpdateCalculations(viewportInfo);
 }
@@ -32,17 +32,17 @@ void RMeshManage::OnResetSize(int width, int height)
     m_pipeline.OnResetSize(width, height);
 }
 
-void RMeshManage::PostDraw(float DeltaTime)
+void RMeshManage::PostDraw(GameTimer& gt)
 {
-    m_pipeline.PostDraw(DeltaTime);
+    m_pipeline.PostDraw(gt);
 }
 
-void RMeshManage::Draw(float DeltaTime)
+void RMeshManage::Draw(GameTimer& gt)
 {
-    m_pipeline.Draw(DeltaTime);
+    m_pipeline.Draw(gt);
 }
 
-void RMeshManage::PreDraw(float DeltaTime)
+void RMeshManage::PreDraw(GameTimer& gt)
 {
     m_pipeline.ResetCommandList();
 }

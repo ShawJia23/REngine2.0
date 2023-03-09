@@ -17,7 +17,7 @@ public:
 	XMFLOAT4X4 GetViewMatrix() { return ViewMatrix; }
 
 	XMFLOAT4X4 GetProjectMatrix() { return ProjectMatrix; }
-protected:
+public:
 	//和屏幕的视口有关
 	D3D12_VIEWPORT ViewprotInfo;
 	D3D12_RECT ViewprotRect;

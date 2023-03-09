@@ -274,7 +274,7 @@ void RGeometryMap::UpdateMaterialShaderResourceView()
 	}
 }
 
-void RGeometryMap::PostDraw(float DeltaTime)
+void RGeometryMap::PostDraw(GameTimer& gt)
 {
 	m_RenderLayerManage->PostDraw();
 }

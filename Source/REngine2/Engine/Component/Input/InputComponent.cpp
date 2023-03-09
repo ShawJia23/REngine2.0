@@ -11,7 +11,7 @@ void RInputComponent::Init()
 	MousesWheelsDelegate.AddFunction(this, &RInputComponent::OnMouseWheel);
 }
 
-void RInputComponent::Tick(float DeltaTime)
+void RInputComponent::Tick(GameTimer& gt)
 {
 	if (CaptureKeyboardInforDelegate.IsBound())
 	{

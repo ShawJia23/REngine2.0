@@ -5,7 +5,7 @@ class LogEditor :public EditorBase
 {
 public:
 	virtual void BuildEditor();
-	virtual void DrawEditor(float DeltaTime);
+	virtual void DrawEditor(GameTimer& gt);
 	virtual void ExitEditor();
 	virtual void RenderEnd();
 };

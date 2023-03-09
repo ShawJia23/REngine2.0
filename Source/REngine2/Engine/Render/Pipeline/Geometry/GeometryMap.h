@@ -60,7 +60,7 @@ public:
 	void Init();
 
 	void Draw();
-	void PostDraw(float DeltaTime);
+	void PostDraw(GameTimer& gt);
 	void DrawTexture();
 	void OnResetSize(int width, int height);
 

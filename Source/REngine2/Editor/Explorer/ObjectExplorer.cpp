@@ -8,7 +8,7 @@ void ObjectExplorerEditor::BuildEditor()
 }
 
 extern int SelectedVariable;
-void ObjectExplorerEditor::DrawEditor(float DeltaTime)
+void ObjectExplorerEditor::DrawEditor(GameTimer& gt)
 {
 	if (!bOpen)
 		return;

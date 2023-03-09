@@ -7,7 +7,7 @@ class GSpotLight :public GLight
 public:
 	GSpotLight();
 
-	virtual void Tick(float DeltaTime);
+	virtual void Tick(GameTimer& gt);
 
 	float GetStartAttenuation() const;
 	float GetEndAttenuation() const;

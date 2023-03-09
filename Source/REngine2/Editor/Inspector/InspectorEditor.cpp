@@ -27,7 +27,7 @@ void InspectorEditor::BuildEditor()
 	RegisterInspector::RegisterRClass("GActorObject", ActorObjectInspectorMapping::MakeDetailsMapping());
 }
 
-void InspectorEditor::DrawEditor(float DeltaTime)
+void InspectorEditor::DrawEditor(GameTimer& gt)
 {
 	if (!bOpen)
 		return;

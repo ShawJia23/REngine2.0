@@ -18,8 +18,8 @@ public:
 	void SetFrustum(float InYFOV, float InAspect, float InZNear, float InZFar);
 	void FaceTarget(const fvector_3d& InPosition, const fvector_3d& InTargetPosition, const fvector_3d& InUP = fvector_3d(0.f, 1.f, 0.f));
 
-	virtual void Tick(float DeltaTime);
-	virtual void BuildViewMatrix(float DeltaTime);
+	virtual void Tick(GameTimer& gt);
+	virtual void BuildViewMatrix(GameTimer& gt);
 	virtual void OnResetSize(int InWidth, int InHeight);
 
 	void BuildOrthographicOffCenterLHMatrix(float InRadius, const fvector_3d& InTargetPosition);
@@ -35,8 +35,11 @@ public:
 
 	void SetDirty(bool bNewDirty) { bDirty = bNewDirty; }
 
+	BoundingFrustum GetBoundingFrustum() {return m_Frustum;}
 private:
 	RViewportData ViewportData;
+
+	BoundingFrustum m_Frustum;
 
 	bool bDirty;
 };

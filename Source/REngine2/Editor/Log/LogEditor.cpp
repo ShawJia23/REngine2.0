@@ -5,7 +5,7 @@ void LogEditor::BuildEditor()
 {
 }
 
-void LogEditor::DrawEditor(float DeltaTime)
+void LogEditor::DrawEditor(GameTimer& gt)
 {
 	if (!bOpen)
 		return;
@@ -18,7 +18,7 @@ void LogEditor::DrawEditor(float DeltaTime)
 	ImGui::End();
 
 	//»æÖÆ×ÖÌå
-	EditorLogSystem::Get()->Draw(DeltaTime);
+	EditorLogSystem::Get()->Draw(gt);
 }
 
 void LogEditor::ExitEditor()

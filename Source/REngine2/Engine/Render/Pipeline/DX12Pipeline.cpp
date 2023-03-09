@@ -49,7 +49,7 @@ void DX12Pipeline::UpdateCalculations(const ViewportInfo viewportInfo)
     m_GeometryMap.UpdateCalculations(viewportInfo);
 }
 
-void DX12Pipeline::Draw(float DeltaTime)
+void DX12Pipeline::Draw(GameTimer& gt)
 {
     SetRootSignature();
 
@@ -57,12 +57,12 @@ void DX12Pipeline::Draw(float DeltaTime)
 
     m_GeometryMap.Draw();
 
-    m_UIPipeline.Draw(DeltaTime);
+    m_UIPipeline.Draw(gt);
 }
 
-void DX12Pipeline::PostDraw(float DeltaTime) 
+void DX12Pipeline::PostDraw(GameTimer& gt) 
 {
-    m_GeometryMap.PostDraw(DeltaTime);
+    m_GeometryMap.PostDraw(gt);
 }
 
 void DX12Pipeline::OnResetSize(int width, int height)

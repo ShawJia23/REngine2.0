@@ -327,6 +327,9 @@
     <ClCompile Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\RotateHandleLayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Timer\GameTimer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\EngineFactory.h">
@@ -702,6 +705,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\Pipeline\RenderLayer\RenderLayerType\RotateHandleLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer\GameTimer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

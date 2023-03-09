@@ -22,7 +22,7 @@ public:
 	RCaptureOnMouseWheelDelegate OnMouseWheelDelegate;
 
 	virtual void Init();
-	virtual void Tick(float DeltaTime);
+	virtual void Tick(GameTimer& gt);
 
 	virtual void OnRMouseButtonDown(int X, int Y);
 	virtual void OnRMouseButtonUp(int X, int Y);

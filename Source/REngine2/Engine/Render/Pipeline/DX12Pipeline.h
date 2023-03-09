@@ -29,8 +29,8 @@ public:
 
 	void UpdateCalculations(const ViewportInfo viewportInfo);
 
-	void Draw(float DeltaTime);
-	void PostDraw(float DeltaTime);
+	void Draw(GameTimer& gt);
+	void PostDraw(GameTimer& gt);
 	void OnResetSize(int width, int height);
 
 	void BuildPSO();

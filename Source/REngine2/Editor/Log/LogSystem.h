@@ -1,5 +1,6 @@
 #pragma once
 #include "../../imgui/imgui.h"
+class GameTimer;
 class EditorLogSystem
 {
 	friend class LogEditor;
@@ -17,7 +18,7 @@ public:
 	void AddSuccess(const char* Fmt, ...);
 
 protected:
-	virtual void Draw(float DeltaTime);
+	virtual void Draw(GameTimer& gt);
 
 protected:
 	ImGuiTextBuffer TextBuff;

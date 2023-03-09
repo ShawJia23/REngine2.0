@@ -35,14 +35,14 @@ void RImGuiPipeline::Init(ID3D12DescriptorHeap* heap, UINT offset)
 #endif
 }
 
-void RImGuiPipeline::Draw(float DeltaTime)
+void RImGuiPipeline::Draw(GameTimer& gt)
 {
 	ImGui_ImplDX12_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 
 	ImGui::NewFrame();
 
-	Tick(DeltaTime);
+	Tick(gt);
 
 	ImGui::Render();
 
@@ -58,9 +58,9 @@ void RImGuiPipeline::Exit()
 	ImGui_ImplWin32_Shutdown();
 }
 
-void RImGuiPipeline::Tick(float DeltaTime)
+void RImGuiPipeline::Tick(GameTimer& gt)
 {
 #if EDITOR_ENGINE
-	GetEditorEngine()->DrawEditor(DeltaTime);
+	GetEditorEngine()->DrawEditor(gt);
 #endif
 }

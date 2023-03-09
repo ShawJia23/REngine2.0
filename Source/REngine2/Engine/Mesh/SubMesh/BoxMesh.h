@@ -9,7 +9,7 @@ public:
 	BoxMesh();
 	virtual void Init();
 
-	virtual void Draw(float DeltaTime);
+	virtual void Draw(GameTimer& gt);
 
 	void CreateMesh(float height, float width, float depth, EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
 };

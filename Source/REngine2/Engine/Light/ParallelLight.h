@@ -7,5 +7,5 @@ class GParallelLight :public GLight
 public:
 	GParallelLight();
 
-	virtual void Tick(float DeltaTime);
+	virtual void Tick(GameTimer& gt);
 };

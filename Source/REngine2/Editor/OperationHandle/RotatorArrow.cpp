@@ -179,9 +179,9 @@ void RRotatorArrow::SetPosition(const XMFLOAT3& InNewPosition)
 	ZPlaneComponent->SetPosition(InNewPosition);
 }
 
-void RRotatorArrow::Tick(float DeltaTime)
+void RRotatorArrow::Tick(GameTimer& gt)
 {
-	Super::Tick(DeltaTime);
+	Super::Tick(gt);
 
 	if (IsCurrentSelectedHandle())
 	{

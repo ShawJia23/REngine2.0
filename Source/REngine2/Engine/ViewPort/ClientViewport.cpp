@@ -38,6 +38,8 @@ void ClientViewport::SetFrustum(float InYFOV, float InAspect, float InZNear, flo
     );
 
     XMStoreFloat4x4(&ProjectMatrix, Project);
+
+    BoundingFrustum::CreateFromMatrix(m_Frustum,Project);
 #endif // USE_SIMPLE_LIB_MATH
     SetDirty(true);
 }
@@ -70,12 +72,12 @@ void ClientViewport::FaceTarget(
     SetDirty(true);
 }
 
-void ClientViewport::Tick(float DeltaTime)
+void ClientViewport::Tick(GameTimer& gt)
 {
-    BuildViewMatrix(DeltaTime);
+    BuildViewMatrix(gt);
 }
 
-void ClientViewport::BuildViewMatrix(float DeltaTime)
+void ClientViewport::BuildViewMatrix(GameTimer& gt)
 {
     //¼ÆËãºÍ½ÃÕýÖá
     GetTransformationComponent()->CorrectionVector();

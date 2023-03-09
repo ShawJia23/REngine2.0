@@ -132,9 +132,9 @@ void OperationHandleBase::Init()
 	SetVisible(false);
 }
 
-void OperationHandleBase::Tick(float DeltaTime)
+void OperationHandleBase::Tick(GameTimer& gt)
 {
-	Super::Tick(DeltaTime);
+	Super::Tick(gt);
 
 	if (!GetWorld())
 		return;

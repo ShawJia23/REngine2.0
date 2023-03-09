@@ -25,9 +25,9 @@ extern RMoveArrow* MoveArrow;
 #endif
 
 
-void DXRenderEngine::UpdateCalculations(float DeltaTime, const ViewportInfo viewportInfo)
+void DXRenderEngine::UpdateCalculations(GameTimer& gt, const ViewportInfo viewportInfo)
 {
-	m_meshManage->UpdateCalculations(DeltaTime,viewportInfo);
+	m_meshManage->UpdateCalculations(gt,viewportInfo);
 }
 
 void DXRenderEngine::BeforeDraw() 
@@ -40,8 +40,8 @@ void DXRenderEngine::BeforeDraw()
 
 	//需要每帧执行
 	//绑定矩形框
-	m_commandList->RSSetViewports(1, &m_viewprotInfo);
-	m_commandList->RSSetScissorRects(1, &m_viewprotRect);
+	m_commandList->RSSetViewports(1, &m_World->GetCamera()->ViewprotInfo);
+	m_commandList->RSSetScissorRects(1, &m_World->GetCamera()->ViewprotRect);
 
 	//清除画布
 	m_commandList->ClearRenderTargetView(GetCurrentSwapBufferView(),
@@ -74,16 +74,16 @@ void DXRenderEngine::AfterDraw()
 	m_commandQueue->ExecuteCommandLists(_countof(CommandList), CommandList);
 }
 
-void DXRenderEngine::Tick(float DeltaTime)
+void DXRenderEngine::Tick(GameTimer& gt)
 {
 	//重置录制相关的内存，为下一帧做准备
 	ANALYSIS_HRESULT(m_commandAllocator->Reset());
 
-	m_meshManage->PreDraw(DeltaTime);
+	m_meshManage->PreDraw(gt);
 
 	BeforeDraw();
 
-	m_meshManage->Draw(DeltaTime);
+	m_meshManage->Draw(gt);
 
 	AfterDraw();
 
@@ -92,7 +92,7 @@ void DXRenderEngine::Tick(float DeltaTime)
 	ANALYSIS_HRESULT(m_swapChain->Present(0, presentFlags));
 	MoveToNextFrame();
 
-	m_meshManage->PostDraw(DeltaTime);
+	m_meshManage->PostDraw(gt);
 	//CPU等GPU
 	WaitGPUCommandQueueComplete();
 }
@@ -197,20 +197,11 @@ void DXRenderEngine::ChangeResources(int width, int height)
 	ID3D12CommandList* CommandList[] = { m_commandList.Get() };
 	m_commandQueue->ExecuteCommandLists(_countof(CommandList), CommandList);
 
-	//这些会覆盖原先windows画布
-	//描述视口尺寸
-	m_viewprotInfo.TopLeftX = 0;
-	m_viewprotInfo.TopLeftY = 0;
-	m_viewprotInfo.Width = width;
-	m_viewprotInfo.Height = height;
-	m_viewprotInfo.MinDepth = 0.f;
-	m_viewprotInfo.MaxDepth = 1.f;
-
-	//矩形
-	m_viewprotRect.left = 0;
-	m_viewprotRect.top = 0;
-	m_viewprotRect.right = width;
-	m_viewprotRect.bottom = height;
+	if (m_World &&
+		m_World->GetCamera())
+	{
+		m_World->GetCamera()->OnResetSize(width, height);
+	}
 }
 
 void DXRenderEngine::WaitGPUCommandQueueComplete()

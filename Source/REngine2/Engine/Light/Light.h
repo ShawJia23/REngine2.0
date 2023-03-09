@@ -12,7 +12,7 @@ class GLight :public GActorObject
 public:
 	GLight();
 
-	virtual void Tick(float DeltaTime);
+	virtual void Tick(GameTimer& gt);
 public:
 	virtual void SetPosition(const XMFLOAT3& InNewPosition);
 	virtual void SetRotation(const fvector_3d& InRotation);

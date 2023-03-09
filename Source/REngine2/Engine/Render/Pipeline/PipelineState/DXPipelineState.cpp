@@ -49,7 +49,7 @@ void RDXPipelineState::Build()
 {
     m_GPSDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
     m_GPSDesc.RasterizerState.FillMode = D3D12_FILL_MODE_WIREFRAME;//以线框方式显示
-    m_GPSDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
+    m_GPSDesc.RasterizerState.CullMode = D3D12_CULL_MODE_BACK;
 
     m_GPSDesc.SampleMask = UINT_MAX;
 

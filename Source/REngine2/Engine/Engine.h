@@ -24,7 +24,8 @@ public:
 
 	virtual int PostInit() = 0;
 
-	virtual void Tick(float DeltaTime) = 0;
+	virtual void Tick(GameTimer& gt) = 0;
+	virtual void Tick()=0;
 	virtual void OnResetSize(int width,int height) = 0;
 	virtual int PreExit() = 0;
 	virtual int Exit() = 0;

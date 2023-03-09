@@ -11,6 +11,7 @@
 #include"../../Construction/MacroConstruction.h"
 #include"../../Component/Input/Input.h"
 #include "Path/PathHelper.h"
+#include"../../../Timer/GameTimer.h"
 #if EDITOR_ENGINE
 #include"../../../Editor/Editor.h"
 #endif
@@ -49,6 +50,8 @@ int RWindowsEngine::PreInit(WinMainCommandParameters InParameters)
 
 int RWindowsEngine::Init(WinMainCommandParameters InParameters)
 {
+	m_Timer.Reset();
+
 	InitWindows(InParameters);
 
 	m_renderEngine->SetMianWindowsHandle(MianWindowsHandle);
@@ -77,12 +80,37 @@ int RWindowsEngine::PostInit()
 	return 0;
 }
 
-void RWindowsEngine::Tick(float DeltaTime)
+//void RWindowsEngine::Tick(GameTimer& gt)
+//{
+//	m_Timer.Tick();
+//	CalculateFrameStats();
+//	for (auto& Temp : GRObjects)
+//	{
+//		if(Temp->IsTick())
+//			Temp->Tick(gt);
+//	}
+//
+//	if (m_world && m_world->GetCamera())
+//	{
+//		ViewportInfo pViewportInfo;
+//		XMFLOAT3 pViewPosition = m_world->GetCamera()->GetPosition();
+//		pViewportInfo.ViewportPosition = XMFLOAT4(pViewPosition.x, pViewPosition.y, pViewPosition.z, 1.f);
+//		pViewportInfo.ProjectMatrix= m_world->GetCamera()->GetProjectMatrix();
+//		pViewportInfo.ViewMatrix = m_world->GetCamera()->GetViewMatrix();
+//		m_renderEngine->UpdateCalculations(gt, pViewportInfo);
+//	}
+//
+//	m_renderEngine->Tick(gt);
+//}
+
+void RWindowsEngine::Tick()
 {
+	m_Timer.Tick();
+	CalculateFrameStats();
 	for (auto& Temp : GRObjects)
 	{
-		if(Temp->IsTick())
-			Temp->Tick(DeltaTime);
+		if (Temp->IsTick())
+			Temp->Tick(m_Timer);
 	}
 
 	if (m_world && m_world->GetCamera())
@@ -90,14 +118,14 @@ void RWindowsEngine::Tick(float DeltaTime)
 		ViewportInfo pViewportInfo;
 		XMFLOAT3 pViewPosition = m_world->GetCamera()->GetPosition();
 		pViewportInfo.ViewportPosition = XMFLOAT4(pViewPosition.x, pViewPosition.y, pViewPosition.z, 1.f);
-		pViewportInfo.ProjectMatrix= m_world->GetCamera()->GetProjectMatrix();
+		pViewportInfo.ProjectMatrix = m_world->GetCamera()->GetProjectMatrix();
 		pViewportInfo.ViewMatrix = m_world->GetCamera()->GetViewMatrix();
-		m_renderEngine->UpdateCalculations(DeltaTime, pViewportInfo);
+		m_renderEngine->UpdateCalculations(m_Timer, pViewportInfo);
 	}
 
-
-	m_renderEngine->Tick(DeltaTime);
+	m_renderEngine->Tick(m_Timer);
 }
+
 
 void RWindowsEngine::OnResetSize(int width, int height)
 {
@@ -166,7 +194,7 @@ bool RWindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 
 	MianWindowsHandle = CreateWindow(
 		L"REngine", // 窗口名称
-		L"REngine",//会显示在窗口的标题栏上去
+		mMainWndCaption.c_str(),//会显示在窗口的标题栏上去
 		WS_OVERLAPPEDWINDOW, //窗口风格
 		0, 0,//窗口的坐标
 		WindowWidth, WindowHight,//
@@ -189,6 +217,35 @@ bool RWindowsEngine::InitWindows(WinMainCommandParameters InParameters)
 
 	Engine_Log("Init Windows.");
 }
+
+void RWindowsEngine::CalculateFrameStats()
+{
+	static int frameCnt = 0;
+	static float timeElapsed = 0.0f;
+
+	frameCnt++;
+	float totalTime = m_Timer.TotalTime();
+	// Compute averages over one second period.
+	if ((m_Timer.TotalTime() - timeElapsed) >= 1.0f)
+	{
+		float fps = (float)frameCnt; // fps = frameCnt / 1
+		float mspf = 1000.0f / fps;
+
+		wstring fpsStr = to_wstring(fps);
+		wstring mspfStr = to_wstring(mspf);
+
+		wstring windowText = mMainWndCaption +
+			L"    fps: " + fpsStr +
+			L"   mspf: " + mspfStr;
+
+		SetWindowText(MianWindowsHandle, windowText.c_str());
+
+		// Reset for next average.
+		frameCnt = 0;
+		timeElapsed += 1.0f;
+	}
+}
+
 
 RMeshManage* RWindowsEngine::GetMeshManage()
 {

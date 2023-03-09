@@ -248,6 +248,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="imgui\libs\usynergy\uSynergy.c" />
     <ClCompile Include="LinkCodeReflection.build.cpp" />
+    <ClCompile Include="Timer\GameTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Editor\Editor.h" />
@@ -375,6 +376,7 @@
     <ClInclude Include="imgui\libs\glfw\include\GLFW\glfw3.h" />
     <ClInclude Include="imgui\libs\glfw\include\GLFW\glfw3native.h" />
     <ClInclude Include="imgui\libs\usynergy\uSynergy.h" />
+    <ClInclude Include="Timer\GameTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="imgui\libs\glfw\lib-vc2010-32\glfw3.lib" />
