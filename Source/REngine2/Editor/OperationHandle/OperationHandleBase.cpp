@@ -17,13 +17,13 @@ OperationHandleBase::OperationHandleBase()
 	bPressRightMouse = false;
 	FixedZoom = 30.f;
 
-	BUILD_OBJECT_PARAMETERS(Type, this);
+	BUILD_OBJECT_PARAMETERS(this);
 
-	InputComponent = CreateObject<RInputComponent>(ParamType, new RInputComponent());
-	XAxisComponent = ConstructionObject<CustomMeshComponent>(ParamType);
-	YAxisComponent = ConstructionObject<CustomMeshComponent>(ParamType);
-	ZAxisComponent = ConstructionObject<CustomMeshComponent>(ParamType);
-	AxisComponent = ConstructionObject<CustomMeshComponent>(ParamType);
+	InputComponent = CreateObject<RInputComponent>(inObjectParam, new RInputComponent());
+	XAxisComponent = ConstructionObject<CustomMeshComponent>(inObjectParam);
+	YAxisComponent = ConstructionObject<CustomMeshComponent>(inObjectParam);
+	ZAxisComponent = ConstructionObject<CustomMeshComponent>(inObjectParam);
+	AxisComponent = ConstructionObject<CustomMeshComponent>(inObjectParam);
 
 	SetMeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPERATION_HANDLE_POSITION);
 }

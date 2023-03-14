@@ -9,8 +9,8 @@ extern RMeshComponent* SelectAxisComponent;
 extern GActorObject* SelectedObject;
 RCamera::RCamera():Super()
 {
-	BUILD_OBJECT_PARAMETERS(Type, this);
-	m_rInputComponent = CreateObject<RInputComponent>(ParamType,new RInputComponent());
+	BUILD_OBJECT_PARAMETERS(this);
+	m_rInputComponent = CreateObject<RInputComponent>(inObjectParam,new RInputComponent());
 
 	Radius = 10.f;
 	A = XM_PI;

@@ -8,13 +8,11 @@ struct RENGINECOREOBJECT_API CreateObjectParam
 {
 	CreateObjectParam()
 		:Outer(NULL),
-		ParentComponent(NULL),
-		Name("NULL")
+		ParentComponent(NULL)
 	{}
 
 	RMinimalObject* Outer;
 	RComponent* ParentComponent;
-	std::string Name;
 };
 
 template<class T>
@@ -24,7 +22,6 @@ T* CreateObject(const CreateObjectParam& inObjectParam, RMinimalObject* newObjec
 
 	T* obj = dynamic_cast<T*>(newObject);
 	obj->SetOuter(inObjectParam.Outer);
-	obj->Rename(inObjectParam.Name);
 	obj->InitMinimalObject();
 	return obj;
 }

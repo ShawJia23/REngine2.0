@@ -3,9 +3,7 @@
 #include"Construction/MacroConstruction.h"
 RWorld::RWorld()
 {
-	CreateObjectParam param;
-	param.Outer = this;
-	param.Name = "World";
-	m_camera = CreateObject<RCamera>(param,new RCamera());
+	BUILD_OBJECT_PARAMETERS_BY_NO_COMPONENT(this);
+	m_camera = CreateObject<RCamera>(inObjectParam,new RCamera());
 	m_camera->SetPosition(XMFLOAT3(0, 10, -40));
 }

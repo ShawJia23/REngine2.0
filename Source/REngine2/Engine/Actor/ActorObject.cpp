@@ -1,13 +1,11 @@
 #include"ActorObject.h"
 #include"../Component/TransformComponent/TransformComponent.h"
-
+#include"../Construction/MacroConstruction.h"
 
 GActorObject::GActorObject()
 {
-	CreateObjectParam param;
-	param.Outer = this;
-	param.Name = "Transform";
-	TransformationComponent = CreateObject<RTransformComponent>(param,new RTransformComponent());
+	BUILD_OBJECT_PARAMETERS(this);
+	TransformationComponent = CreateObject<RTransformComponent>(inObjectParam,new RTransformComponent());
 }
 
 void GActorObject::SetPosition(const XMFLOAT3& InNewPosition)

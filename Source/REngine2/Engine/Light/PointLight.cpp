@@ -1,11 +1,10 @@
 #include"PointLight.h"
 #include"../Component/Light/PointLightComponent.h"
+#include"../Construction/MacroConstruction.h"
 GPointLight::GPointLight()
 {
-	CreateObjectParam param;
-	param.Outer = this;
-	param.Name = "PointLightComponent";
-	SetLightComponent(CreateObject<RPointLightComponent>(param, new RPointLightComponent()));
+	BUILD_OBJECT_PARAMETERS(this);
+	SetLightComponent(CreateObject<RPointLightComponent>(inObjectParam, new RPointLightComponent()));
 }
 
 void GPointLight::Tick(GameTimer& gt)

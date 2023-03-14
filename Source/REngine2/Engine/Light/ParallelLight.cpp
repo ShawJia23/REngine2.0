@@ -1,12 +1,10 @@
 #include"ParallelLight.h"
 #include"../Component/Light/ParallelLightComponent.h"
-
+#include"../Construction/MacroConstruction.h"
 GParallelLight::GParallelLight()
 {
-	CreateObjectParam param;
-	param.Outer = this;
-	param.Name = "ParallelLightComponent";
-	SetLightComponent(CreateObject<RParallelLightComponent>(param, new RParallelLightComponent()));
+	BUILD_OBJECT_PARAMETERS(this);
+	SetLightComponent(CreateObject<RParallelLightComponent>(inObjectParam, new RParallelLightComponent()));
 }
 
 void GParallelLight::Tick(GameTimer& gt)

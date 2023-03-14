@@ -14,11 +14,11 @@ extern RMeshComponent* SelectAxisComponent;
 
 RRotatorArrow::RRotatorArrow()
 {
-	BUILD_OBJECT_PARAMETERS(Type, this);
+	BUILD_OBJECT_PARAMETERS(this);
 
-	XPlaneComponent = ConstructionObject<PlaneMeshComponent>(ParamType);
-	YPlaneComponent = ConstructionObject<PlaneMeshComponent>(ParamType);
-	ZPlaneComponent = ConstructionObject<PlaneMeshComponent>(ParamType);
+	XPlaneComponent = ConstructionObject<PlaneMeshComponent>(inObjectParam);
+	YPlaneComponent = ConstructionObject<PlaneMeshComponent>(inObjectParam);
+	ZPlaneComponent = ConstructionObject<PlaneMeshComponent>(inObjectParam);
 
 	//射线检测中 希望这些组件不会被检测
 	IgnoreComponents.push_back(XPlaneComponent);

@@ -18,7 +18,7 @@ void CylinderMesh::Draw(GameTimer& gt)
 
 void CylinderMesh::CreateMesh(float topRadius, float bottomRadius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)
 {
-	BUILD_OBJECT_PARAMETERS_BY_COMPONENT("CylinderComponent", GetTransformationComponent(), this);
+	BUILD_OBJECT_PARAMETERS_BY_COMPONENT(GetTransformationComponent(), this);
 	auto Tmp = CREATE_RENDER_DATA(CylinderMeshComponent, topRadius, bottomRadius, height, axialSub, heightSub);
 	SetMeshComponent(Tmp);
 }

@@ -57,10 +57,8 @@ int RWindowsEngine::Init(WinMainCommandParameters InParameters)
 	m_renderEngine->SetMianWindowsHandle(MianWindowsHandle);
 
 	m_renderEngine->Init(InParameters);
-	CreateObjectParam param;
-	param.Outer = this;
-	param.Name = "World";
-	m_world = CreateObject<RWorld>(param,new RWorld());
+	BUILD_OBJECT_PARAMETERS_BY_NO_COMPONENT(this);
+	m_world = CreateObject<RWorld>(inObjectParam,new RWorld());
 	m_renderEngine->m_World = m_world;
 	Engine_Log("Init Engine.");
 	return 0;

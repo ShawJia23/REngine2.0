@@ -15,7 +15,7 @@ void BoxMesh::Draw(GameTimer& gt)
 }
 void  BoxMesh::CreateMesh(float height, float width, float depth, EMeshRenderLayerType type)
 {
-	BUILD_OBJECT_PARAMETERS_BY_COMPONENT("BoxComponent", GetTransformationComponent(), this);
+	BUILD_OBJECT_PARAMETERS_BY_COMPONENT(GetTransformationComponent(), this);
 	auto Tmp = CREATE_RENDER_DATA(BoxMeshComponent, height, width, depth);
 	SetMeshComponent(Tmp);
 }

@@ -1,12 +1,11 @@
 #include"SpotLight.h"
 #include"../Component/Light/SpotLightComponent.h"
+#include"../Construction/MacroConstruction.h"
 float index_test;
 GSpotLight::GSpotLight()
 {
-	CreateObjectParam param;
-	param.Outer = this;
-	param.Name = "SpotLightComponent";
-	SetLightComponent(CreateObject<RSpotLightComponent>(param, new RSpotLightComponent()));
+	BUILD_OBJECT_PARAMETERS(this);
+	SetLightComponent(CreateObject<RSpotLightComponent>(inObjectParam, new RSpotLightComponent()));
 	index_test = 0;
 }
 

@@ -18,7 +18,7 @@ void ConeMesh::Draw(GameTimer& gt)
 
 void ConeMesh::CreateMesh(float radius, float height, uint32_t axialSub, uint32_t heightSub, EMeshRenderLayerType type)
 {
-	BUILD_OBJECT_PARAMETERS_BY_COMPONENT("ConeComponent", GetTransformationComponent(), this);
+	BUILD_OBJECT_PARAMETERS_BY_COMPONENT(GetTransformationComponent(), this);
 	auto Tmp = CREATE_RENDER_DATA(ConeMeshComponent, radius, height, axialSub, heightSub);
 	SetMeshComponent(Tmp);
 }

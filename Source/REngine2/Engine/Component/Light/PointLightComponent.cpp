@@ -2,15 +2,13 @@
 #include"../../Manage/MeshManage.h"
 #include"../../Materials/Material.h"
 #include"../Mesh/MeshComponent.h"
-
+#include"../../Construction/MacroConstruction.h"
 RPointLightComponent::RPointLightComponent() :
 	StartAttenuation(1.0f),
 	EndAttenuation(1.0f)
 {
-	CreateObjectParam param;
-	param.Outer = this;
-	param.Name = "PointLight";
-	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(param, 2.f, 50, 50));
+	BUILD_OBJECT_PARAMETERS_BY_NO_COMPONENT(this);
+	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(inObjectParam, 2.f, 50, 50));
 	if (GetLightMesh())
 	{
 		if (RMaterial* pMaterial = (*GetLightMesh()->GetMaterials())[0])
