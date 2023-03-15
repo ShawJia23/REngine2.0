@@ -3,7 +3,7 @@
 #include"../Construction/MacroConstruction.h"
 GParallelLight::GParallelLight()
 {
-	BUILD_OBJECT_PARAMETERS(this);
+	BUILD_OBJECT_PARAMETERS_BY_COMPONENT(this->GetTransformationComponent(), this);
 	SetLightComponent(CreateObject<RParallelLightComponent>(inObjectParam, new RParallelLightComponent()));
 }
 
@@ -13,9 +13,9 @@ void GParallelLight::Tick(GameTimer& gt)
 
 	float time = gt.DeltaTime();
 
-	v3.x += gt.DeltaTime() * 5.f;
-	v3.y += gt.DeltaTime() * 5.f;
-	//v3.z += DeltaTime * 100.f;
+	v3.x += gt.DeltaTime() * RotateSpeed.x;
+	v3.y += gt.DeltaTime() * RotateSpeed.y;
+	v3.z += gt.DeltaTime() * RotateSpeed.z;
 
 	SetRotation(v3);
 }

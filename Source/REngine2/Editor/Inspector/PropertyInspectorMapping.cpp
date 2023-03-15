@@ -119,7 +119,7 @@ shared_ptr<PropertyInspectorMapping> StringInspectorMapping::MakeDetailsMapping(
 /// <param name="InProperty"></param>
 bool Vector3DInspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
-	return ImGui::InputFloat3(
+	return ImGui::DragFloat3(
 		InProperty->GetName().c_str(),
 		(float*)InProperty->GetData<fvector_3d>());
 }

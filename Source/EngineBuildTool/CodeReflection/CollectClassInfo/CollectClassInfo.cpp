@@ -469,7 +469,6 @@ namespace CollectClassInfo
 						{
 							variableAnalysis.Type = R;
 						}
-						variableAnalysis.Type = R;
 						variableAnalysis.Name = L;
 
 						classAnalysis.Variable.push_back(variableAnalysis);

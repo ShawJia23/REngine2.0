@@ -91,21 +91,16 @@ bool RegisterInspector::UpdatePropertyWidget(RPropertyObject* InProperty)
 		ImGui::Separator();
 		for (auto& Tmp : Categorys)
 		{
-			if (ImGui::CollapsingHeader(Tmp.first.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+			if (!ImGui::CollapsingHeader(Tmp.first.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+				continue;
+
+			for (auto& SubTmp : Tmp.second)
 			{
-				for (auto& SubTmp : Tmp.second)
-				{
-					if (auto InDetailsProperty = FindProperty(SubTmp->GetType().c_str()))
-					{
-						if (InDetailsProperty->UpdateDetailsWidget(SubTmp))
-						{
-							if (RMinimalObject* InObject = dynamic_cast<RMinimalObject*>(SubTmp->GetOuter()))
-							{
-								InObject->UpdateEditorPropertyDetails(SubTmp);
-							}
-						}
-					}
-				}
+				auto InDetailsProperty = FindProperty(SubTmp->GetType().c_str());
+				if (!InDetailsProperty || !InDetailsProperty->UpdateDetailsWidget(SubTmp))
+					continue;
+				if (RMinimalObject* InObject = dynamic_cast<RMinimalObject*>(SubTmp->GetOuter()))
+					InObject->UpdateEditorPropertyDetails(SubTmp);
 			}
 		}
 		ImGui::Separator();

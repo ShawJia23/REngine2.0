@@ -19,9 +19,9 @@ public:
 	const fvector_3d& GetLightIntensity() { return LightIntensity; }
 
 	void SetLightMesh(RMeshComponent* mesh);
-	RMeshComponent* GetLightMesh() { return LightMesh; }
-
 	void SetLightType(ELightType lightType) { LightType = lightType; }
+
+	RMeshComponent* GetLightMesh() { return LightMesh; }
 	ELightType GetLightType() { return LightType; }
 
 public:

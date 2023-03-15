@@ -8,9 +8,10 @@ class RMeshComponent :public RTransformComponent
 {
 	CODEREFLECTION()
 
-	RVARIABLE()
-	vector<RMaterial*>	m_Materials;
 public:
+	RVARIABLE(CodeType = Resources, Category = Mesh)
+	vector<RMaterial*> m_Materials;
+
 	RMeshComponent();
 
 	virtual void Init();
@@ -32,7 +33,9 @@ public:
 	bool IsVisible()const { return bVisible; }
 
 protected:
+	RVARIABLE(CodeType = Resources, Category = Mesh, Draggable)
 	bool bVisible;
+	RVARIABLE(CodeType = Resources, Category = Mesh, Draggable)
 	bool bPickup;
 
 	EMeshRenderLayerType MeshRenderLayerType;

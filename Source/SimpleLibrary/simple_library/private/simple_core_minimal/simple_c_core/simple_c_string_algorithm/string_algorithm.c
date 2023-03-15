@@ -80,10 +80,9 @@ bool split(const char* buf,const char* str_split, char* l, char* r, bool bcontai
 		}
 
 		int buf_len = strlen(buf);
-
 		strncpy(l, buf, pos);
 
-		int nest_pos = pos + str_split_len;
+		int nest_pos = pos + str_split_len+1;
 		strncpy(r, &buf[nest_pos], buf_len - nest_pos);
 
 		return true;

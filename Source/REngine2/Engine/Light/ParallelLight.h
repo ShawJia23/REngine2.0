@@ -8,4 +8,7 @@ public:
 	GParallelLight();
 
 	virtual void Tick(GameTimer& gt);
+
+	RVARIABLE(CodeType = Resources, Category = Light, Draggable)
+	fvector_3d RotateSpeed;
 };
