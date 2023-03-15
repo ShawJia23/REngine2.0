@@ -427,6 +427,8 @@ namespace CollectClassInfo
 						remove_char_start(rowPtr, '\t');
 						remove_char_end(rowPtr, ';');
 
+						trim_start_and_end_inline(rowPtr);
+
 						if (contain(StarString))
 						{
 							variableAnalysis.bPointer = true;

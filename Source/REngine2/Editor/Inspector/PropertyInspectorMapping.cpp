@@ -129,6 +129,11 @@ shared_ptr<PropertyInspectorMapping> Vector3DInspectorMapping::MakeDetailsMappin
 	return make_shared<Vector3DInspectorMapping>();
 }
 
+/// <summary>
+/// /////////
+/// </summary>
+/// <param name="InProperty"></param>
+/// <returns></returns>
 bool XMFLOAT3InspectorMapping::UpdateDetailsWidget(RPropertyObject* InProperty)
 {
 	return false;
