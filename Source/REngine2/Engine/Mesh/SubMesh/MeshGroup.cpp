@@ -40,7 +40,7 @@ void MeshGroup::AddSubmesh(std::string name, RMeshComponent* mesh, MeshRenderDat
 		name = name + "1";
 	}
 	size_t hashKey = 0;
-	dynamic_cast<CustomMeshComponent*>(mesh)->BuildKey(hashKey, name);
+	dynamic_cast<CustomMeshComponent*>(mesh)->BuildKey(hashKey, name, MeshData);
 	CustomMesh* pCustomMesh=GetWorld()->CreateActorObject<CustomMesh>();
 	if (pCustomMesh)
 	{

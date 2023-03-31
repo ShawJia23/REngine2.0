@@ -7,7 +7,6 @@
 #include<assimp/Importer.hpp>
 #include<assimp/scene.h>
 #include<assimp/postprocess.h>
-
 std::vector<std::string> StringSplit(const std::string& str, char delim) {
 	std::stringstream ss(str);
 	std::string item;
@@ -33,7 +32,7 @@ void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name,
 	bool IsRight,MeshGroup* outMeshGroup)
 {
 	Assimp::Importer aiImporter;
-	const aiScene* pModel = aiImporter.ReadFile(fileName, aiProcess_ConvertToLeftHanded);
+	const aiScene* pModel = aiImporter.ReadFile(fileName, aiProcessPreset_TargetRealtime_MaxQuality);
 	if (nullptr == pModel)
 	{
 		return;
@@ -50,10 +49,15 @@ void ObjectAnalysisByAssimp::LoadMesh(std::string fileName,std::string name,
 			{
 				for (int i = 0; i < pMesh->mNumVertices; i++)
 				{
-					pMeshData.VertexData.push_back(RVertex(XMFLOAT3(pMesh->mVertices[i].x, pMesh->mVertices[i].y, pMesh->mVertices[i].z),
-						XMFLOAT3(pMesh->mNormals[i].x, pMesh->mNormals[i].y, pMesh->mNormals[i].z),
-						XMFLOAT2(pMesh->mTextureCoords[0][i].x, pMesh->mTextureCoords[0][i].y),
-						XMFLOAT4(Colors::Red)));
+					RVertex pVertex;
+					if(pMesh->mVertices)
+						pVertex.Position = XMFLOAT3(pMesh->mVertices[i].x, pMesh->mVertices[i].y, pMesh->mVertices[i].z);
+					if(pMesh->mNormals)
+						pVertex.Normal = XMFLOAT3(pMesh->mNormals[i].x, pMesh->mNormals[i].y, pMesh->mNormals[i].z);
+					if (pMesh->mTextureCoords)
+						pVertex.TexC = XMFLOAT2(pMesh->mTextureCoords[0][i].x, pMesh->mTextureCoords[0][i].y);
+					pVertex.Color = XMFLOAT4(Colors::Red);
+					pMeshData.VertexData.push_back(pVertex);
 				}
 				for (int i = 0; i < pMesh->mNumFaces; i++)
 				{
@@ -136,4 +140,60 @@ std::string ObjectAnalysisByAssimp::GetTexName(std::string ObjName, std::string 
 		pTexName += TexName;
 	}
 	return pTexName;
+}
+
+void ObjectAnalysisByAssimp::LoadMeshData(const char* InPath, RAssimpObj& OutData)
+{
+	Assimp::Importer aiImporter;
+	const aiScene* pModel = aiImporter.ReadFile(InPath, aiProcessPreset_TargetRealtime_MaxQuality);
+	if (nullptr == pModel)
+	{
+		return;
+	}
+	if (pModel->HasMeshes())
+	{
+		for (int num = 0; num < pModel->mNumMeshes; num++)
+		{
+			OutData.ModelData.push_back(RAssimpModel());
+			auto& pImportModel = OutData.ModelData.back();
+			aiMesh* pMesh = pModel->mMeshes[num];
+			if (pMesh->HasFaces())
+			{
+				pImportModel.MeshData.push_back(MeshRenderData());
+				auto& pImportMesh = pImportModel.MeshData.back();
+				for (int i = 0; i < pMesh->mNumVertices; i++)
+				{
+					RVertex pVertex;
+					if (pMesh->mVertices)
+						pVertex.Position = XMFLOAT3(pMesh->mVertices[i].x, pMesh->mVertices[i].y, pMesh->mVertices[i].z);
+					if (pMesh->mNormals)
+						pVertex.Normal = XMFLOAT3(pMesh->mNormals[i].x, pMesh->mNormals[i].y, pMesh->mNormals[i].z);
+					if (pMesh->mTextureCoords)
+						pVertex.TexC = XMFLOAT2(pMesh->mTextureCoords[0][i].x, pMesh->mTextureCoords[0][i].y);
+					pVertex.Color = XMFLOAT4(Colors::Red);
+					pImportMesh.VertexData.push_back(pVertex);
+				}
+				for (int i = 0; i < pMesh->mNumFaces; i++)
+				{
+					aiFace face = pMesh->mFaces[i];
+					for (int j = 0; j < face.mNumIndices; j++)
+						pImportMesh.IndexData.push_back(face.mIndices[j]);
+				}
+			}
+
+			if (pModel->HasMaterials())
+			{
+				aiMaterial* pMaterial = pModel->mMaterials[pMesh->mMaterialIndex];
+
+				aiString aistr;
+				pMaterial->GetTexture(aiTextureType_AMBIENT, 0, &aistr);
+				std::string pPath = aistr.C_Str();
+
+				RAssimpMaterial pAssimpMateria;
+				pAssimpMateria.DiffuseMapFileName = pPath;
+				if(pImportModel.MaterialMap.find(0)== pImportModel.MaterialMap.end())
+					pImportModel.MaterialMap.insert(make_pair(0, pAssimpMateria));
+			}
+		}
+	}
 }

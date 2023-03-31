@@ -714,7 +714,7 @@
     <ClInclude Include="ThirdPartyLibrary\FBX\include\fbxsdk.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="FBXSDK.h">
+    <ClInclude Include="ImportSDK.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ImportExport.h">
@@ -722,7 +722,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FBXSDK.cpp">
+    <ClCompile Include="ImportSDK.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

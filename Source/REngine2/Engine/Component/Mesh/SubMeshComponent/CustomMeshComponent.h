@@ -7,7 +7,8 @@ class CustomMeshComponent :public RStaticMeshComponent
 public:
 	CustomMeshComponent();
 
-	void CreateMesh(MeshRenderData& MeshData, const string& name);
+	void CreateMesh(MeshRenderData& meshData, const string& name, MeshRenderData& inData);
 	bool LoadFBXFromBuff(MeshRenderData& MeshData, const string& inName);
-	void BuildKey(size_t& outKey, const string& name);
+	bool LoadOBJFromBuff(MeshRenderData& MeshData, const string& inName);
+	void BuildKey(size_t& outKey, const string& name, MeshRenderData& inData);
 };

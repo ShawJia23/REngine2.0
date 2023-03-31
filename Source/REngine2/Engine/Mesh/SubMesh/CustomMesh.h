@@ -12,4 +12,8 @@ public:
 	virtual void Draw(GameTimer& gt);
 
 	void CreateMesh(string name,EMeshRenderLayerType type = EMeshRenderLayerType::RENDERLAYER_OPAQUE);
+
+	void SetMeshRenderData(MeshRenderData inData) { m_data = inData; }
+
+	MeshRenderData m_data;
 };

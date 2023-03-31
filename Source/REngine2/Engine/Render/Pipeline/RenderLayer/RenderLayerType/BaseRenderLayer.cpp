@@ -90,9 +90,9 @@ void RenderLayer::DrawMesh(std::weak_ptr<RRenderData>& geometry)
 	if (!geometry.lock()->Mesh->IsVisible())
 		return;
 
-	auto pFrustum=GetWorld()->GetCamera()->GetBoundingFrustum();
-	if(!pFrustum.Contains(geometry.lock()->Bounds))
-		return;
+	//auto pFrustum=GetWorld()->GetCamera()->GetBoundingFrustum();
+	//if(!pFrustum.Contains(geometry.lock()->Bounds))
+	//	return;
 
 	UINT MeshOffset = m_GeometryMap->GetObjectConstantBufferView().GetConstantBufferByteSize();
 
@@ -110,7 +110,7 @@ void RenderLayer::DrawMesh(std::weak_ptr<RRenderData>& geometry)
 		1,//k k+1 ... k+n-1 
 		&VBV);
 
-	//定义我们要绘制的哪种图元 点 线 面
+	//定义要绘制的图元 点 线 面
 	EMaterialDisplayStatue pDisplayState = (*pRenderData->Mesh->GetMaterials())[0]->GetMaterialDisplayState();
 	GetCommandList()->IASetPrimitiveTopology((D3D_PRIMITIVE_TOPOLOGY)pDisplayState);
 

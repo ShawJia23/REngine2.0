@@ -342,6 +342,22 @@ void DXRenderEngine::CreateMesh()
 	SphereMesh* pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
+		pSMesh->CreateMesh(2.f, 10, 10, EMeshRenderLayerType::RENDERLAYER_CUBEMAP);
+		pSMesh->SetPosition(XMFLOAT3(0.f, 0.f, 0.f));
+		pSMesh->SetScale(fvector_3d(200.f));
+		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
+		{
+			pMaterial->SetBaseColor(fvector_4d(0.2f, 0.2f, 0.2f, 1.f));
+			pMaterial->SetSpecular(fvector_3d(0.2f));
+			pMaterial->SetMaterialType(EMaterialType::BaseColor);
+		}
+		pSMesh->SetPickup(false);
+	}
+
+
+	/*SphereMesh* pSMesh = m_World->CreateActorObject<SphereMesh>();
+	if (pSMesh)
+	{
 		pSMesh->CreateMesh(2.f, 10, 10);
 		pSMesh->SetPosition(XMFLOAT3(8.f, 2, 0.f));
 		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
@@ -363,20 +379,7 @@ void DXRenderEngine::CreateMesh()
 			pMaterial->SetMaterialType(EMaterialType::WrapLight);
 		}
 	}
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10, EMeshRenderLayerType::RENDERLAYER_CUBEMAP);
-		pSMesh->SetPosition(XMFLOAT3(0.f, 0.f, 0.f));
-		pSMesh->SetScale(fvector_3d(200.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.2f, 0.2f, 0.2f, 1.f));
-			pMaterial->SetSpecular(fvector_3d(0.2f));
-			pMaterial->SetMaterialType(EMaterialType::BaseColor);
-		}
-		pSMesh->SetPickup(false);
-	}
+
 	pSMesh = m_World->CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
@@ -444,7 +447,7 @@ void DXRenderEngine::CreateMesh()
 			pMaterial->SetBaseColor(fvector_4d(1.f));
 			pMaterial->SetMaterialType(EMaterialType::Normal);
 		}
-	}
+	}*/
 }
 
 void DXRenderEngine::LoadAsset()
@@ -470,14 +473,49 @@ void DXRenderEngine::LoadAsset()
 	//	RotatorArrow = InRotatorArrow;
 	//}
 
-	string AssetPath= PathHelper::RelativeToAbsolutePath(PathHelper::GetEngineAssetPath());
+	string AssetPath = PathHelper::RelativeToAbsolutePath(PathHelper::GetEngineAssetPath());
+
+	LoadModel((AssetPath+"/Model/yamato/yamato.obj").c_str());
 
 	MeshGroup* pMeshGroup = new MeshGroup();
 	ObjectAnalysisByAssimp lo;
-	lo.LoadMesh(AssetPath+"/Model/shennvpiguan/shennvpiguan.pmx", "shennvpiguan",
-		XMFLOAT3(0.f, 0.f, 0.f), fvector_3d(0.5f, 0.5f, 0.5f),true, pMeshGroup);
+	lo.LoadMesh(AssetPath + "/Model/shennvpiguan/shennvpiguan.pmx", "shennvpiguan",
+		XMFLOAT3(0.f, 0.f, 0.f), fvector_3d(0.5f, 0.5f, 0.5f), true, pMeshGroup);
 	pMeshGroup->SetPickup(false);
 	GetTextureManage()->LoadCubeMapFormPath("cubemap", AssetPath + "/Cubemap/grasscube1024.dds");
+}
+
+void DXRenderEngine::LoadModel(const char* inPath)
+{
+	ObjectAnalysisByAssimp lo;
+	RAssimpObj RenderData;
+	lo.LoadMeshData(inPath, RenderData);
+	
+	int num = 0;
+	for (auto& TmpModel : RenderData.ModelData)
+	{
+		num++;
+		for (auto& MeshTmp : TmpModel.MeshData)
+		{
+			MeshRenderData pData;
+			for (auto& VertexTmp : MeshTmp.VertexData)
+			{
+				pData.VertexData.push_back(VertexTmp);
+			}
+			for (auto& IndexData : MeshTmp.IndexData)
+			{
+				pData.IndexData.push_back(IndexData);
+			}
+			CustomMesh* pSMesh = m_World->CreateActorObject<CustomMesh>();
+			if (pSMesh)
+			{
+				pSMesh->SetMeshRenderData(pData);
+
+				string name = "yamato" + std::to_string(num);
+				pSMesh->CreateMesh(name);
+			}
+		}
+	}
 }
 
 bool DXRenderEngine::InitDirect3D()

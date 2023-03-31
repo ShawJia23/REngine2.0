@@ -46,10 +46,11 @@ void RRotatorArrow::CreateMesh()
 		PathHelper::GetEngineAssetModelPath() + "/Handle/RotateHandleZ.fbx");
 
 	//创建操作轴
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, XAxisComponent, MeshPathX);
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, YAxisComponent, MeshPathY);
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, ZAxisComponent, MeshPathZ);
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, AxisComponent, MeshPathZ);
+	MeshRenderData pData;
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, XAxisComponent, MeshPathX, pData);
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, YAxisComponent, MeshPathY, pData);
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, ZAxisComponent, MeshPathZ, pData);
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, AxisComponent, MeshPathZ, pData);
 
 	//显示CD面片
 	CREATE_RENDER_DATA_BY_COMPONENT(PlaneMeshComponent, XPlaneComponent, 5.2, 5.2, 2, 2);

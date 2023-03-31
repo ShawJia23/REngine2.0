@@ -74,7 +74,8 @@ RMeshComponent* RMeshManage::CreatePlaneMeshComponent(const CreateObjectParam& i
 
 RMeshComponent* RMeshManage::CreateCustomMeshComponent(const CreateObjectParam& inObjectParam)
 {
-    return MeshConstruction::CreateMeshComponent<CustomMeshComponent>(inObjectParam, this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, "name");
+    MeshRenderData pData;
+    return MeshConstruction::CreateMeshComponent<CustomMeshComponent>(inObjectParam, this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, "name", pData);
 }
 
 void RMeshManage::CreateMeshGroup(size_t hashKey, RMeshComponent* mesh, const MeshRenderData& meshData)

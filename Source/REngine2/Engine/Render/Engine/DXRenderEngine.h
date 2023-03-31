@@ -40,6 +40,7 @@ protected:
 	void PostInitDirect3D();
 	void CreateMesh();
 	void LoadAsset();
+	void LoadModel(const char* inPath);
 protected:
 	//Ã¿Ö¡µ÷ÓÃ
 	void WaitGPUCommandQueueComplete();

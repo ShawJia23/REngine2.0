@@ -16,10 +16,10 @@ void CustomMesh::Draw(GameTimer& gt)
 	Super::Draw(gt);
 }
 
-void CustomMesh::CreateMesh(string name,EMeshRenderLayerType type)
+void CustomMesh::CreateMesh(string name, EMeshRenderLayerType type)
 {
 	BUILD_OBJECT_PARAMETERS_BY_COMPONENT(GetTransformationComponent(), this);
-	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent, name);
+	auto Tmp = CREATE_RENDER_DATA(CustomMeshComponent, name, m_data);
 	SetMeshComponent(Tmp);
 }
 

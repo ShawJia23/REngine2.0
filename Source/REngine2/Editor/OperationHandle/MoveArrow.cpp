@@ -23,11 +23,11 @@ void RMoveArrow::CreateMesh()
 	string AnyAxisMeshPath = PathHelper::RelativeToAbsolutePath(
 		PathHelper::GetEngineAssetModelPath() + "/Handle/AnyAxis_Type_1.fbx");
 
-
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, XAxisComponent, MeshPath);
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, YAxisComponent, MeshPath);
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, ZAxisComponent, MeshPath);
-	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, AxisComponent, AnyAxisMeshPath);
+	MeshRenderData pData;
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, XAxisComponent, MeshPath, pData);
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, YAxisComponent, MeshPath, pData);
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, ZAxisComponent, MeshPath, pData);
+	CREATE_RENDER_DATA_BY_COMPONENT(CustomMeshComponent, AxisComponent, AnyAxisMeshPath, pData);
 
 	ZAxisComponent->SetRotation(frotator(180.f, 0.f, 0.f));
 	XAxisComponent->SetRotation(frotator(90.f, 0.f, 0.f));
