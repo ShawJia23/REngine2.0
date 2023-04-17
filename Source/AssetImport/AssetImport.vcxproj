@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -73,8 +73,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Binaries\Win64\Debug\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\Debug\Other\</IntDir>
-    <IncludePath>$(SolutionDir)Source\SimpleLibrary;$(SolutionDir)Source\AssetImport\ThirdPartyLibrary\FBX\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$($(SolutionDir)Binaries\Win64\Debug;$(SolutionDir)Source\AssetImport\ThirdPartyLibrary\FBX\lib\vs2017\x64\debug\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Source\SimpleLibrary;$(SolutionDir)Source\AssetImport\ThirdPartyLibrary\FBX\include\;$(SolutionDir)Source\REngineHelp;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Source\AssetImport\ThirdPartyLibrary\FBX\lib\vs2015\x64\debug\;$(SolutionDir)Binaries\Win64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Binaries\Win64\Release\</OutDir>
@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;RASSETSDK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -378,7 +379,17 @@
   <ItemGroup>
     <ClCompile Include="ImportSDK.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\packages\AssimpCpp.5.0.1.6\build\native\AssimpCpp.targets" Condition="Exists('..\..\packages\AssimpCpp.5.0.1.6\build\native\AssimpCpp.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\AssimpCpp.5.0.1.6\build\native\AssimpCpp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\AssimpCpp.5.0.1.6\build\native\AssimpCpp.targets'))" />
+  </Target>
 </Project>

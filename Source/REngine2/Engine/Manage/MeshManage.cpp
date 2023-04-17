@@ -77,8 +77,3 @@ RMeshComponent* RMeshManage::CreateCustomMeshComponent(const CreateObjectParam& 
     MeshRenderData pData;
     return MeshConstruction::CreateMeshComponent<CustomMeshComponent>(inObjectParam, this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, "name", pData);
 }
-
-void RMeshManage::CreateMeshGroup(size_t hashKey, RMeshComponent* mesh, const MeshRenderData& meshData)
-{
-    m_pipeline.BuildMesh(hashKey,mesh, meshData);
- }

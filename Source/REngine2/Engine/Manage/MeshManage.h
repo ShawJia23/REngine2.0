@@ -61,8 +61,6 @@ public:
 
 	RMeshComponent* CreateCustomMeshComponent(const CreateObjectParam& inObjectParam);
 
-	void CreateMeshGroup(size_t hashKey, RMeshComponent* mesh, const MeshRenderData& meshData);
-	
 	DX12Pipeline* GetDX12Pipeline() const { return const_cast<DX12Pipeline*>(&m_pipeline); }
 protected:
 	DX12Pipeline m_pipeline;

@@ -45,9 +45,6 @@
     <ClCompile Include="Engine\Mesh\MeshType.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\SubMesh\MeshGroup.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Render\ResourcesUpdate.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -148,9 +145,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Light\Light.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\LoadAsset\ObjectAnalysis.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Manage\TextureManage.cpp">
@@ -330,6 +324,9 @@
     <ClCompile Include="Timer\GameTimer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Manage\ActorManage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\EngineFactory.h">
@@ -375,9 +372,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Math\RMath.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Mesh\SubMesh\MeshGroup.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\ResourcesUpdate.h">
@@ -498,9 +492,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Component\Light\LightType.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\LoadAsset\ObjectAnalysis.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Manage\TextureManage.h">
@@ -710,11 +701,11 @@
     <ClInclude Include="Timer\GameTimer.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Manage\ActorManage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="imgui\libs\glfw\lib-vc2010-32\glfw3.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>

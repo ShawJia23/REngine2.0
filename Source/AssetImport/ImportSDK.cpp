@@ -1,6 +1,9 @@
 #include "ThirdPartyLibrary/FBX/include/fbxsdk.h"
 #include "ImportSDK.h"
-
+#include"ImportExport.h"
+#include<assimp/Importer.hpp>
+#include<assimp/scene.h>
+#include<assimp/postprocess.h>
 #pragma comment(lib, "libfbxsdk.lib")
 #pragma comment(lib, "libfbxsdk-md.lib")
 #pragma comment(lib, "libfbxsdk-mt.lib")
@@ -341,3 +344,146 @@ void RAssetImport::LoadMeshData(const char* InPath, RImportRenderData& OutData)
 	DestroySdkObjects(SdkManager);
 }
 
+std::vector<std::string> StringSplit(const std::string& str, char delim) {
+	std::stringstream ss(str);
+	std::string item;
+	std::vector<std::string> elems;
+	while (std::getline(ss, item, delim)) {
+		if (!item.empty()) {
+			elems.push_back(item);
+		}
+	}
+	return elems;
+}
+
+bool GetLastString(std::string & final, const std::string& str, char delim) {
+	std::stringstream ss(str);
+	std::string item;
+	std::vector<std::string> elems;
+	while (std::getline(ss, item, delim)) {
+		if (!item.empty()) {
+			elems.push_back(item);
+		}
+	}
+	if (elems.size() > 1)
+	{
+		final += elems.back();
+		return true;
+	}
+	return  false;
+}
+
+std::string GetFilePath(std::string ObjName, std::string TexName)
+{
+	std::string pTexNamePath = PathHelper::RelativeToAbsolutePath(PathHelper::GetEngineAssetPath()) + "/Model/";;
+	pTexNamePath += ObjName;
+	pTexNamePath += "/";
+	pTexNamePath += "tex";
+	pTexNamePath += "/";
+
+	if (GetLastString(pTexNamePath, TexName, '\\'))
+		return pTexNamePath;
+	if (GetLastString(pTexNamePath, TexName, '/'))
+		return pTexNamePath;
+
+	return "";
+}
+
+std::string GetTexName(std::string ObjName, std::string TexName)
+{
+	std::string pTexName = ObjName;
+	pTexName += ".";
+
+	GetLastString(pTexName, TexName, '\\');
+	GetLastString(pTexName, TexName, '/');
+
+	return pTexName;
+}
+
+void RAssimpObject::LoadMeshData(const char* InPath, const char* InName, RAssimpObj& OutData)
+{
+	Assimp::Importer aiImporter;
+	const aiScene* pModel = aiImporter.ReadFile(InPath, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_ConvertToLeftHanded);
+	if (nullptr == pModel)
+	{
+		return;
+	}
+	if (pModel->HasMeshes())
+	{
+		for (int num = 0; num < pModel->mNumMeshes; num++)
+		{
+			OutData.ModelData.push_back(RAssimpModel());
+			auto& pImportModel = OutData.ModelData.back();
+			aiMesh* pMesh = pModel->mMeshes[num];
+			if (pMesh->HasFaces())
+			{
+				pImportModel.MeshData.push_back(RAssimpData());
+				auto& pImportMesh = pImportModel.MeshData.back();
+				for (int i = 0; i < pMesh->mNumVertices; i++)
+				{
+					RAssimpVertex pVertex;
+					if (pMesh->mVertices)
+					{
+						pVertex.Position.X = pMesh->mVertices[i].x;
+						pVertex.Position.Y = pMesh->mVertices[i].y;
+						pVertex.Position.Z = pMesh->mVertices[i].z;
+					}
+					if (pMesh->mNormals)
+					{
+						pVertex.Normal.X = pMesh->mNormals[i].x;
+						pVertex.Normal.Y = pMesh->mNormals[i].y;
+						pVertex.Normal.Z = pMesh->mNormals[i].z;
+					}
+					if (pMesh->mTextureCoords)
+					{
+						pVertex.TexC.X = pMesh->mTextureCoords[0][i].x;
+						pVertex.TexC.Y = pMesh->mTextureCoords[0][i].y;
+					}
+					pImportMesh.VertexData.push_back(pVertex);
+				}
+				for (int i = 0; i < pMesh->mNumFaces; i++)
+				{
+					aiFace face = pMesh->mFaces[i];
+					for (int j = 0; j < face.mNumIndices; j++)
+						pImportMesh.IndexData.push_back(face.mIndices[j]);
+				}
+			}
+
+			if (pModel->HasMaterials())
+			{
+				aiMaterial* pMaterial = pModel->mMaterials[pMesh->mMaterialIndex];
+				RAssimpMaterial pAssimpMateria;
+				for (int i = 1; i <= 6; i++)
+				{
+					aiString aistr;
+					pMaterial->GetTexture((aiTextureType)i, 0, &aistr);
+					std::string pPath = aistr.C_Str();
+					if (!(pPath.size() > 1))
+						continue;
+					pPath = GetFilePath(InName, pPath);
+					switch (i)
+					{
+					case 1:
+						pAssimpMateria.DiffuseMapFileName = pPath;
+						break;
+					case 2:
+						pAssimpMateria.SpecularMapFileName = pPath;
+						break;
+					case 3:
+						pAssimpMateria.AmbientMapFileName = pPath;
+						break;
+					case 6:
+						pAssimpMateria.NormalsMapFileName = pPath;
+						break;
+					default:
+						break;
+					}
+
+					if (pImportModel.MaterialMap.find(0) == pImportModel.MaterialMap.end())
+						pImportModel.MaterialMap.insert(make_pair(0, pAssimpMateria));
+				}
+			}
+		}
+	}
+	aiImporter.FreeScene();
+}

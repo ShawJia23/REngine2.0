@@ -70,8 +70,8 @@ struct RASSETIMPORT_API RImportMaterial
 {
 	std::string DiffuseMapFileName;
 	std::string SpecularMapFileName;
-	std::string AlphaMapFileName;
-	std::string BumpMapFileName;
+	std::string AmbientMapFileName;
+	std::string NormalsMapFileName;
 };
 
 //Model
@@ -98,3 +98,74 @@ struct RAssetImport
 {
 	RASSETIMPORT_API void LoadMeshData(const char *InPath,RImportRenderData &OutData);
 }; 
+
+struct RAssimpVector2
+{
+	RAssimpVector2()
+		:X(0.f)
+		, Y(0.f)
+	{}
+	float X;
+	float Y;
+};
+
+//3DœÚ¡ø
+struct RAssimpVector3 :public RAssimpVector2
+{
+	RAssimpVector3()
+		:RAssimpVector2()
+		, Z(0.f)
+	{}
+	float Z;
+};
+
+struct RAssimpVector4 :public RAssimpVector3
+{
+	RAssimpVector4()
+		:RAssimpVector3()
+		, W(0.f)
+	{}
+
+	float W;
+};
+
+struct RASSETIMPORT_API RAssimpMaterial
+{
+	std::string DiffuseMapFileName;
+	std::string SpecularMapFileName;
+	std::string AmbientMapFileName;
+	std::string NormalsMapFileName;
+};
+
+struct RASSETIMPORT_API RAssimpVertex
+{
+	RAssimpVector3 Position;
+	RAssimpVector4 Color;
+	RAssimpVector3 Normal;
+	RAssimpVector3 TangentU;
+	RAssimpVector2 TexC;
+};
+
+
+struct RASSETIMPORT_API RAssimpData
+{
+	std::vector<RAssimpVertex> VertexData;
+	std::vector<uint16_t> IndexData;
+};
+
+//Model
+struct RASSETIMPORT_API RAssimpModel
+{
+	std::vector<RAssimpData> MeshData;
+	std::map<int, RAssimpMaterial> MaterialMap;
+};
+
+struct RASSETIMPORT_API RAssimpObj
+{
+	std::vector<RAssimpModel> ModelData;
+};
+
+struct  RAssimpObject
+{
+	RASSETIMPORT_API void LoadMeshData(const char* InPath, const char* InName, RAssimpObj& OutData);
+};

@@ -74,7 +74,7 @@
     <OutDir>$(SolutionDir)Binaries\Win64\Debug\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\Debug\Other\</IntDir>
     <IncludePath>$(SolutionDir)Source\SimpleLibrary\;$(SolutionDir)Source\REngineCoreObject\;$(SolutionDir)Source\REngineHelp\;$(SolutionDir)Intermediate\CodeReflection\;$(SolutionDir)Source\AssetImport\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Binaries\Win64\Debug;$(SolutionDir)Source\AssetImport\ThirdPartyLibrary\FBX\lib\vs2017\x64\debug\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Binaries\Win64\Debug;$(SolutionDir)Source\AssetImport\ThirdPartyLibrary\FBX\lib\vs2015\x64\debug\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Binaries\Win64\Release\</OutDir>
@@ -118,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;RASSETSDK_EXPORTS;SIMPLE_LIBRARY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -180,7 +181,7 @@
     <ClCompile Include="Engine\Light\PointLight.cpp" />
     <ClCompile Include="Engine\Light\SpotLight.cpp" />
     <ClCompile Include="Engine\LoadAsset\DDSTextureLoader.cpp" />
-    <ClCompile Include="Engine\LoadAsset\ObjectAnalysis.cpp" />
+    <ClCompile Include="Engine\Manage\ActorManage.cpp" />
     <ClCompile Include="Engine\Manage\TextureManage.cpp" />
     <ClCompile Include="Engine\Mesh\SubMesh\BoxMesh.cpp" />
     <ClCompile Include="Engine\Mesh\SubMesh\ConeMesh.cpp" />
@@ -221,7 +222,6 @@
     <ClCompile Include="Engine\Manage\MeshManage.cpp" />
     <ClCompile Include="Engine\Mesh\MeshType.cpp" />
     <ClCompile Include="Engine\Render\ConstontBuffer\ObjectTransformation.cpp" />
-    <ClCompile Include="Engine\Mesh\SubMesh\MeshGroup.cpp" />
     <ClCompile Include="Engine\Platform\Windows\WindowsEngine.cpp" />
     <ClCompile Include="Engine\Platform\Windows\WindowsMessageProcessing.cpp" />
     <ClCompile Include="Engine\main.cpp" />
@@ -293,7 +293,7 @@
     <ClInclude Include="Engine\Light\RLightMinimal.h" />
     <ClInclude Include="Engine\Light\SpotLight.h" />
     <ClInclude Include="Engine\LoadAsset\DDSTextureLoader.h" />
-    <ClInclude Include="Engine\LoadAsset\ObjectAnalysis.h" />
+    <ClInclude Include="Engine\Manage\ActorManage.h" />
     <ClInclude Include="Engine\Manage\TextureManage.h" />
     <ClInclude Include="Engine\Mesh\MeshMinimal.h" />
     <ClInclude Include="Engine\Mesh\SubMesh\BoxMesh.h" />
@@ -343,7 +343,6 @@
     <ClInclude Include="Engine\Manage\MeshManage.h" />
     <ClInclude Include="Engine\Mesh\MeshType.h" />
     <ClInclude Include="Engine\Render\ConstontBuffer\ObjectTransformation.h" />
-    <ClInclude Include="Engine\Mesh\SubMesh\MeshGroup.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsEngine.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsMessageProcessing.h" />
     <ClInclude Include="Engine\Platform\Windows\WindowsPlatform.h" />
@@ -381,17 +380,6 @@
   <ItemGroup>
     <Library Include="imgui\libs\glfw\lib-vc2010-32\glfw3.lib" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\..\packages\AssimpCpp.5.0.1.6\build\native\AssimpCpp.targets" Condition="Exists('..\..\packages\AssimpCpp.5.0.1.6\build\native\AssimpCpp.targets')" />
-  </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\AssimpCpp.5.0.1.6\build\native\AssimpCpp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\AssimpCpp.5.0.1.6\build\native\AssimpCpp.targets'))" />
-  </Target>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

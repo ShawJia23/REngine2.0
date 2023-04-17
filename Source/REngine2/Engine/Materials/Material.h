@@ -43,7 +43,7 @@ private:
 	EMaterialType m_MaterialType;
 	EMaterialDisplayStatue m_MaterialState;
 	float	 m_Roughness;
-
+	//textureË÷Òý
 	std::string m_BaseColorIndexKey;
 	std::string m_NormalIndexKey;
 	std::string m_SpecularIndexKey;

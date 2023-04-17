@@ -4,30 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "REngine2", "Source\REngine2\REngine2.vcxproj", "{39903DD4-ED6B-4576-A61F-E3FF6227EB52}"
-	ProjectSection(ProjectDependencies) = postProject
-		{02A0D248-D23A-4675-B5D2-23AD38FA9C99} = {02A0D248-D23A-4675-B5D2-23AD38FA9C99}
-		{2BEED27B-583B-4647-BA4E-44E0025AEBE1} = {2BEED27B-583B-4647-BA4E-44E0025AEBE1}
-		{A727E5AA-9312-4888-8E52-D5480A07B2A1} = {A727E5AA-9312-4888-8E52-D5480A07B2A1}
-		{D359466A-841F-42ED-9B5B-D0A6C4C5601F} = {D359466A-841F-42ED-9B5B-D0A6C4C5601F}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleLibrary", "Source\SimpleLibrary\SimpleLibrary.vcxproj", "{D359466A-841F-42ED-9B5B-D0A6C4C5601F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "REngineCoreObject", "Source\REngineCoreObject\REngineCoreObject.vcxproj", "{2BEED27B-583B-4647-BA4E-44E0025AEBE1}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D359466A-841F-42ED-9B5B-D0A6C4C5601F} = {D359466A-841F-42ED-9B5B-D0A6C4C5601F}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "REngineHelp", "Source\REngineHelp\REngineHelp.vcxproj", "{02A0D248-D23A-4675-B5D2-23AD38FA9C99}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D359466A-841F-42ED-9B5B-D0A6C4C5601F} = {D359466A-841F-42ED-9B5B-D0A6C4C5601F}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineBuildTool", "Source\EngineBuildTool\EngineBuildTool.vcxproj", "{10391D87-2D13-4956-BD4E-460D7317359E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{02A0D248-D23A-4675-B5D2-23AD38FA9C99} = {02A0D248-D23A-4675-B5D2-23AD38FA9C99}
-		{D359466A-841F-42ED-9B5B-D0A6C4C5601F} = {D359466A-841F-42ED-9B5B-D0A6C4C5601F}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssetImport", "Source\AssetImport\AssetImport.vcxproj", "{A727E5AA-9312-4888-8E52-D5480A07B2A1}"
 EndProject

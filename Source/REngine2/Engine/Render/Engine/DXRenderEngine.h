@@ -5,6 +5,7 @@
 class RMeshManage;
 class RLightManage;
 class RTextureManage;
+class RActorManage;
 class RWorld;
 class DXRenderEngine :public RenderingEngine
 {
@@ -38,9 +39,6 @@ protected:
 	void CreateFence();
 	void InitSimpleLevel();
 	void PostInitDirect3D();
-	void CreateMesh();
-	void LoadAsset();
-	void LoadModel(const char* inPath);
 protected:
 	//Ã¿Ö¡µ÷ÓÃ
 	void WaitGPUCommandQueueComplete();
@@ -54,8 +52,8 @@ public:
 
 protected:
 	RMeshManage* m_meshManage;
-	RLightManage* m_lightManage;
-	RTextureManage* m_textureManage;
+	RActorManage* m_ActorManage;
+
 protected:
 	UINT m_frameIndex;
 	UINT64 m_fenceValues[2];
@@ -103,6 +101,6 @@ public:
 	ComPtr<ID3D12CommandQueue> GetCommandQueue() { return m_commandQueue; }
 	UINT64 GetCurrentFenceIndex() { return m_frameIndex; }
 	RMeshManage* GetMeshManage() { return m_meshManage; }
-	RLightManage* GetLightManage() { return m_lightManage; }
-	RTextureManage* GetTextureManage() { return m_textureManage; }
+	RLightManage* GetLightManage();
+	RTextureManage* GetTextureManage();
 };

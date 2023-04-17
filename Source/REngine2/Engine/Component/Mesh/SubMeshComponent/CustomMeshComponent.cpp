@@ -1,6 +1,5 @@
 #include"CustomMeshComponent.h"
 #include"../../../Mesh/MeshType.h"
-#include"../../../LoadAsset/ObjectAnalysis.h"
 #pragma comment(lib, "AssetImport.lib")
 #include "ImportSDK.h"
 #include"../../../EngineMinimal.h"
@@ -12,26 +11,13 @@ CustomMeshComponent::CustomMeshComponent()
 
 void CustomMeshComponent::CreateMesh(MeshRenderData& meshData, const string& name, MeshRenderData& inData)
 {
-	auto str1 = StringSplit(name, '.');
-	std:; string objType = "fbx";
-	if (str1.size() > 1)
-	{
-		objType = str1.back();
-	}
-	else 
-	{
-		meshData.VertexData = inData.VertexData;
-		meshData.IndexData = inData.IndexData;
-		return;
-	}
-
 	char Buff[1024] = { 0 };
 	get_path_clean_filename(Buff, name.c_str());
 
 	char PathBuff[1024] = { 0 };
 	get_full_path(PathBuff, 1024, name.c_str());
 
-	
+
 	LoadFBXFromBuff(meshData, PathBuff);
 
 }
@@ -81,42 +67,5 @@ bool CustomMeshComponent::LoadFBXFromBuff(MeshRenderData& MeshData, const string
 			MeshData.IndexData = MeshTmp.IndexData;
 		}
 	}
-	return true;
-}
-
-bool CustomMeshComponent::LoadOBJFromBuff(MeshRenderData& MeshData, const string& inName)
-{
-	//ObjectAnalysisByAssimp lo;
-	//RAssimpObj RenderData;
-	//lo.LoadMeshData(inName.c_str(), RenderData);
-
-	////RFBXRenderData RenderData;
-	////RAssetImport().LoadMeshData(inName.c_str(), RenderData);
-
-	//if (RenderData.ModelData.size() > 1)
-	//{
-	//	CustomMesh* pCM = m_World->CreateActorObject<CustomMesh>();
-	//	if (pSMesh)
-	//	{
-	//		pSMesh->CreateMesh(AssetPath + "/Model/yamato/yamato.obj");
-	//	}
-	//}
-	//else 
-	//{
-	//	for (auto& TmpModel : RenderData.ModelData)
-	//	{
-	//		for (auto& MeshTmp : TmpModel.MeshData)
-	//		{
-	//			for (auto& VertexTmp : MeshTmp.VertexData)
-	//			{
-	//				MeshData.VertexData.push_back(VertexTmp);
-	//			}
-	//			for (auto& IndexData : MeshTmp.IndexData)
-	//			{
-	//				MeshData.IndexData.push_back(IndexData);
-	//			}
-	//		}
-	//	}
-	//}
 	return true;
 }

@@ -1,29 +1,11 @@
 #include "DXRenderEngine.h"
 #include"../../Config/RenderConfig.h"
 #include"../../Manage/MeshManage.h"
-#include"../../Manage/LightManage.h"
-#include"../../Manage/TextureManage.h"
-#include"../../Materials/Material.h"
-#include"../../World.h"
-#include".././../Mesh/MeshMinimal.h"
-#include"../../Light/RLightMinimal.h"
-#include"../../LoadAsset/ObjectAnalysis.h"
-#include"../../Component/RComponentMinimal.h"
+#include"../../Manage/ActorManage.h"
 #include"../../World.h"
 #include"../../Camera/Camera.h"
-#include "Path/PathHelper.h"
+
 #if defined(_WIN32)
-
-#if EDITOR_ENGINE
-#include"../../../Editor/OperationHandle/MoveArrow.h"
-#include"../../../Editor/OperationHandle/RotatorArrow.h"
-#include"../../../Editor/OperationHandle/ScalingArrow.h"
-
-extern RMoveArrow* MoveArrow;
-//extern RScalingArrow* ScalingArrow;
-//extern RRotatorArrow* RotatorArrow;
-#endif
-
 
 void DXRenderEngine::UpdateCalculations(GameTimer& gt, const ViewportInfo viewportInfo)
 {
@@ -253,8 +235,7 @@ DXRenderEngine::DXRenderEngine()
 	bTick = false;
 
 	m_meshManage = new RMeshManage();
-	m_lightManage = new RLightManage();
-	m_textureManage = new RTextureManage();
+	m_ActorManage = new RActorManage();
 }
 
 int DXRenderEngine::PreInit(WinMainCommandParameters InParameters)
@@ -282,8 +263,8 @@ int DXRenderEngine::PostInit()
 
 	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
-		CreateMesh();
-		LoadAsset();
+		m_ActorManage->LoadObject();
+		m_ActorManage->LoadAsset();
 	}
 	Engine_Log("W A S D to Move");
 	Engine_Log("Press RMouse + Move Mouse to Rotate");
@@ -298,224 +279,6 @@ int DXRenderEngine::PostInit()
 	WaitGPUCommandQueueComplete();
 
 	return 0;
-}
-
-void DXRenderEngine::CreateMesh()
-{
-	////点光源
-	//if (GPointLight* pPointLight = m_World->CreateActorObject<GPointLight>())
-	//{
-	//	pPointLight->SetPosition(XMFLOAT3(0.f, 3.f, 4.f));
-	//	pPointLight->SetRotation(fvector_3d(0.f, 0.f, 0.f));
-
-	//	pPointLight->SetLightIntensity(fvector_3d(10.f, 10.f, 10.f));
-	//	pPointLight->SetEndAttenuation(150.f);
-	//}
-
-
-	//GPointLight* pLight = m_World->CreateActorObject<GPointLight>();
-	//if (pLight)
-	//{
-	//	pLight->SetPosition(XMFLOAT3(0.f, -10.f, 0.f));
-	//	pLight->SetRotation(fvector_3d(0.f, 0.f, 0.f));
-	//	pLight->SetLightIntensity(fvector_3d(10.f, 10.f, 10.f));
-	//	pLight->SetEndAttenuation(150.f);
-	//}
-
-	//构建Mesh
-	// 
-	//PlaneMesh* pMesh = m_World->CreateActorObject<PlaneMesh>();
-	//if (pMesh)
-	//{
-	//	pMesh->CreateMesh(4.f, 3.f, 20, 20);
-	//	pMesh->SetPosition(XMFLOAT3(0.f, -2.f, 0.f));
-	//	pMesh->SetScale(fvector_3d(20.f, 20.f, 10.f));
-	//	pMesh->SetPickup(false);
-	//}
-	GParallelLight* pLight = m_World->CreateActorObject<GParallelLight>();
-	if (pLight)
-	{
-		pLight->SetPosition(XMFLOAT3(0.f, 3.f, 4.f));
-		pLight->SetRotation(fvector_3d(0, 0, 0));
-	}
-
-	SphereMesh* pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10, EMeshRenderLayerType::RENDERLAYER_CUBEMAP);
-		pSMesh->SetPosition(XMFLOAT3(0.f, 0.f, 0.f));
-		pSMesh->SetScale(fvector_3d(200.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.2f, 0.2f, 0.2f, 1.f));
-			pMaterial->SetSpecular(fvector_3d(0.2f));
-			pMaterial->SetMaterialType(EMaterialType::BaseColor);
-		}
-		pSMesh->SetPickup(false);
-	}
-
-
-	/*SphereMesh* pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(8.f, 2, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::BlinnPhong);
-
-			pMaterial->SetRoughness(0.8f);
-		}
-	}
-	SphereMesh* pSMesh1 = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh1)
-	{
-		pSMesh1->CreateMesh(2.f, 10, 10);
-		pSMesh1->SetPosition(XMFLOAT3(0.f, 6, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh1->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::WrapLight);
-		}
-	}
-
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(-4.f, 6, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::Minnaert);
-		}
-	}
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(8.f, 6, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::Banded);
-		}
-	}
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(8.f, 10, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::GradualBanded);
-		}
-	}
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(4.f, 10, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::FinalBanded);
-			pMaterial->SetRoughness(0.8f);
-		}
-	}
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(0.f, 10, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.2f, 0.8f, 0.3f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::Back);
-		}
-	}
-
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(-4.f, 10, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(1.f));
-			pMaterial->SetMaterialType(EMaterialType::Normal);
-		}
-	}*/
-}
-
-void DXRenderEngine::LoadAsset()
-{
-	if (RMoveArrow* InMoveArrow = m_World->CreateActorObject<RMoveArrow>())
-	{
-		InMoveArrow->CreateMesh();
-
-		MoveArrow = InMoveArrow;
-	}
-
-	//if (RScalingArrow* InScalingArrow = m_World->CreateActorObject<RScalingArrow>())
-	//{
-	//	InScalingArrow->CreateMesh();
-
-	//	ScalingArrow = InScalingArrow;
-	//}
-
-	//if (RRotatorArrow* InRotatorArrow = m_World->CreateActorObject<RRotatorArrow>())
-	//{
-	//	InRotatorArrow->CreateMesh();
-
-	//	RotatorArrow = InRotatorArrow;
-	//}
-
-	string AssetPath = PathHelper::RelativeToAbsolutePath(PathHelper::GetEngineAssetPath());
-
-	LoadModel((AssetPath+"/Model/yamato/yamato.obj").c_str());
-
-	MeshGroup* pMeshGroup = new MeshGroup();
-	ObjectAnalysisByAssimp lo;
-	lo.LoadMesh(AssetPath + "/Model/shennvpiguan/shennvpiguan.pmx", "shennvpiguan",
-		XMFLOAT3(0.f, 0.f, 0.f), fvector_3d(0.5f, 0.5f, 0.5f), true, pMeshGroup);
-	pMeshGroup->SetPickup(false);
-	GetTextureManage()->LoadCubeMapFormPath("cubemap", AssetPath + "/Cubemap/grasscube1024.dds");
-}
-
-void DXRenderEngine::LoadModel(const char* inPath)
-{
-	ObjectAnalysisByAssimp lo;
-	RAssimpObj RenderData;
-	lo.LoadMeshData(inPath, RenderData);
-	
-	int num = 0;
-	for (auto& TmpModel : RenderData.ModelData)
-	{
-		num++;
-		for (auto& MeshTmp : TmpModel.MeshData)
-		{
-			MeshRenderData pData;
-			for (auto& VertexTmp : MeshTmp.VertexData)
-			{
-				pData.VertexData.push_back(VertexTmp);
-			}
-			for (auto& IndexData : MeshTmp.IndexData)
-			{
-				pData.IndexData.push_back(IndexData);
-			}
-			CustomMesh* pSMesh = m_World->CreateActorObject<CustomMesh>();
-			if (pSMesh)
-			{
-				pSMesh->SetMeshRenderData(pData);
-
-				string name = "yamato" + std::to_string(num);
-				pSMesh->CreateMesh(name);
-			}
-		}
-	}
 }
 
 bool DXRenderEngine::InitDirect3D()
@@ -688,8 +451,7 @@ void DXRenderEngine::PostInitDirect3D()
 DXRenderEngine::~DXRenderEngine()
 {
 	delete m_meshManage;
-	delete m_lightManage;
-	delete m_textureManage;
+	delete m_ActorManage;
 	CloseHandle(m_fenceEvent);
 	m_swapChain.Reset();
 }
@@ -739,6 +501,18 @@ UINT DXRenderEngine::GetDXGISampleCount() const
 UINT DXRenderEngine::GetDXGISampleQuality() const
 {
 	return bMSAA4XEnabled ? (M4XQualityLevels - 1) : 0;
+}
+
+
+RLightManage* DXRenderEngine::GetLightManage() 
+{ 
+	return m_ActorManage->m_lightManage;
+}
+
+
+RTextureManage* DXRenderEngine::GetTextureManage() 
+{ 
+	return m_ActorManage->m_textureManage;
 }
 
 #endif

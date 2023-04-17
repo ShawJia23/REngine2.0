@@ -4,8 +4,6 @@
 #include"../../Engine/Construction/MacroConstruction.h"
 #include"../../Engine/RayCast/RayCastSystem.h"
 #include"Path/PathHelper.h"
-#include"../../Engine/LoadAsset/ObjectAnalysis.h"
-#include"../../Engine/Mesh/SubMesh/MeshGroup.h"
 extern GActorObject* SelectedObject;
 extern bool bOperationHandleSelect;
 extern RMeshComponent* SelectAxisComponent;
