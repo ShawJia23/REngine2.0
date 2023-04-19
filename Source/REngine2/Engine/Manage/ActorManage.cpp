@@ -21,14 +21,12 @@ extern RMoveArrow* MoveArrow;
 
 RActorManage::RActorManage() 
 {
-	m_lightManage = new RLightManage();
-	m_textureManage = new RTextureManage();
+	
 }
 
 RActorManage::~RActorManage()
 {
-	delete m_lightManage;
-	delete m_textureManage;
+	
 }
 
 
@@ -189,7 +187,7 @@ void RActorManage::LoadObject()
 
 void RActorManage::LoadAsset()
 {
-	if (RMoveArrow* InMoveArrow = GetWorld()->CreateActorObject<RMoveArrow>())
+	if (auto InMoveArrow = GetWorld()->CreateActorObject<RMoveArrow>())
 	{
 		InMoveArrow->CreateMesh();
 
@@ -218,15 +216,15 @@ void RActorManage::LoadAsset()
 	LoadModel((AssetPath + "/Model/shennvpiguan/shennvpiguan.pmx").c_str(), "shennvpiguan",
 		XMFLOAT3(0.f, 0.f, 0.f), fvector_3d(0.5f, 0.5f, 0.5f));
 
-	GetTextureManage()->CreateTexture();
-	GetTextureManage()->LoadCubeMapFormPath("cubemap", AssetPath + "/Cubemap/grasscube1024.dds");
+	RTextureManage::getInstance().CreateTexture();
+	RTextureManage::getInstance().LoadCubeMapFormPath("cubemap", AssetPath + "/Cubemap/grasscube1024.dds");
 }
 
 void RActorManage::LoadModel(const char* inPath, const char* inName,
 	const XMFLOAT3& newPosition, const fvector_3d& newScale)
 {
 	RAssimpObj RenderData;
-	RAssimpObject().LoadMeshData(inPath, inName, RenderData);
+	RAssetImport().LoadMeshData(inPath, inName, RenderData);
 
 	int num = 0;
 	for (auto& TmpModel : RenderData.ModelData)
@@ -254,10 +252,14 @@ void RActorManage::LoadModel(const char* inPath, const char* inName,
 				pTempData.TexC.x = VertexTmp.TexC.X;
 				pTempData.TexC.y = VertexTmp.TexC.Y;
 			}
+			MeshTmp.VertexData.clear();
+			MeshTmp.VertexData.shrink_to_fit();
 			for (auto& IndexData : MeshTmp.IndexData)
 			{
 				pData.IndexData.push_back(IndexData);
 			}
+			MeshTmp.IndexData.clear();
+			MeshTmp.IndexData.shrink_to_fit();
 			auto pMesh = GetWorld()->CreateActorObject<CustomMesh>();
 			if (pMesh)
 			{
@@ -268,15 +270,18 @@ void RActorManage::LoadModel(const char* inPath, const char* inName,
 				pMesh->SetScale(newScale);
 				if (TmpModel.MaterialMap[0].DiffuseMapFileName.size() > 1)
 				{
-					GetTextureManage()->LoadTextureFormPath(inName + TmpModel.MaterialMap[0].DiffuseMapFileName, TmpModel.MaterialMap[0].DiffuseMapFileName);
+					RTextureManage::getInstance().LoadTextureFormPath(inName + TmpModel.MaterialMap[0].DiffuseMapFileName, TmpModel.MaterialMap[0].DiffuseMapFileName);
 					if (RMaterial* pMaterial = (*pMesh->GetMeshComponent()->GetMaterials())[0])
 					{
 						pMaterial->SetBaseColorIndexKey(inName + TmpModel.MaterialMap[0].DiffuseMapFileName);
 						pMaterial->SetRoughness(0.8f);
 					}
 				}
+				TmpModel.MaterialMap.clear();
 			}
 		}
-
+		TmpModel.MeshData.clear();
+		TmpModel.MeshData.shrink_to_fit();
 	}
+
 }

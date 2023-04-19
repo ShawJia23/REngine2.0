@@ -12,7 +12,4 @@ public:
 	void LoadAsset();
 	void LoadModel(const char* inPath, const char* inName,
 		const XMFLOAT3& newPosition, const fvector_3d& newScale);
-public:
-	RLightManage* m_lightManage;
-	RTextureManage* m_textureManage;
 };

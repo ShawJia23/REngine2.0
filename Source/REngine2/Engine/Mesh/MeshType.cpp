@@ -1,6 +1,6 @@
 #include "MeshType.h"
 
-RVertex::RVertex() 
+RVertex::RVertex():Position(0,0,0), Color(0,0,0,0), Normal(0,0,0), TangentU(0,0,0), TexC(0,0)
 {
 
 }

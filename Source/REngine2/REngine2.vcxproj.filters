@@ -704,6 +704,9 @@
     <ClInclude Include="Engine\Manage\ActorManage.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Core\public_singleton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="imgui\libs\glfw\lib-vc2010-32\glfw3.lib" />

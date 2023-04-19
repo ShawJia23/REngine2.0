@@ -2,10 +2,10 @@
 #include "ActorMeshConstruction.h"
 
 #define CREATE_RENDER_DATA(T,...)\
-ActorMeshConstruction::CreateMeshRenderData<T>(inObjectParam,GetMeshManage(),type,##__VA_ARGS__);
+ActorMeshConstruction::CreateMeshRenderData<T>(inObjectParam,type,##__VA_ARGS__);
 
 #define CREATE_RENDER_DATA_BY_COMPONENT(T,Component,...)\
-ActorMeshConstruction::CreateMeshRenderDataByComponent<T>(GetMeshManage(), dynamic_cast<T*>(Component),##__VA_ARGS__);
+ActorMeshConstruction::CreateMeshRenderDataByComponent<T>(dynamic_cast<T*>(Component),##__VA_ARGS__);
 
 //组件构建
 #define BUILD_OBJECT_PARAMETERS_BY_COMPONENT(InComponent,InOuter)\

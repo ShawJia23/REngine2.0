@@ -4,14 +4,14 @@
 namespace ActorMeshConstruction
 {
 	template<class T, typename ...ParamTypes>
-	T* CreateMeshRenderData(const CreateObjectParam& inObjectParam, RMeshManage* manage,EMeshRenderLayerType type,ParamTypes &&...Params)
+	T* CreateMeshRenderData(const CreateObjectParam& inObjectParam,EMeshRenderLayerType type,ParamTypes &&...Params)
 	{
-		return MeshConstruction::CreateMeshComponent<T>(inObjectParam,manage, type,Params...);
+		return MeshConstruction::CreateMeshComponent<T>(inObjectParam, type,Params...);
 	}
 
 	template<class T, typename ...ParamTypes>
-	T* CreateMeshRenderDataByComponent(RMeshManage* InManage, T* InMeshComponent, ParamTypes &&...Params)
+	T* CreateMeshRenderDataByComponent(T* InMeshComponent, ParamTypes &&...Params)
 	{
-		return MeshConstruction::CreateMeshComponent<T>(InManage, InMeshComponent, InMeshComponent->GetRenderLayerType(), Params...);
+		return MeshConstruction::CreateMeshComponent<T>(InMeshComponent, InMeshComponent->GetRenderLayerType(), Params...);
 	}
 }

@@ -2,9 +2,6 @@
 #include "RenderEngine.h"
 #include"../../Config/RenderConfig.h"
 #include"../../ViewPort/ViewportInfo.h"
-class RMeshManage;
-class RLightManage;
-class RTextureManage;
 class RActorManage;
 class RWorld;
 class DXRenderEngine :public RenderingEngine
@@ -51,7 +48,6 @@ public:
 	RWorld* m_World;
 
 protected:
-	RMeshManage* m_meshManage;
 	RActorManage* m_ActorManage;
 
 protected:
@@ -100,7 +96,4 @@ public:
 	ComPtr<ID3D12CommandAllocator> GetCommandAllocator() { return m_commandAllocator; }
 	ComPtr<ID3D12CommandQueue> GetCommandQueue() { return m_commandQueue; }
 	UINT64 GetCurrentFenceIndex() { return m_frameIndex; }
-	RMeshManage* GetMeshManage() { return m_meshManage; }
-	RLightManage* GetLightManage();
-	RTextureManage* GetTextureManage();
 };

@@ -3,6 +3,7 @@
 #include"../../Engine/Actor/ActorObject.h"
 #include"../../Engine/Render/Pipeline/DX12Pipeline.h"
 #include"../OperationHandle/OperationHandleManage.h"
+#include"../../Engine/Manage/MeshManage.h"
 void ObjectExplorerEditor::BuildEditor()
 {
 }
@@ -15,7 +16,7 @@ void ObjectExplorerEditor::DrawEditor(GameTimer& gt)
 	ImGui::Begin("Object", &bOpen);
 	if (RWorld* world = GetWorld())
 	{
-		const vector<GActorObject*> Actors = world->GetActors();
+		auto Actors = world->GetActors();
 		for (int i = 0; i < Actors.size(); i++)
 		{
 			char ObjectNameString[128] = { 0 };
@@ -41,9 +42,11 @@ void ObjectExplorerEditor::ExitEditor()
 
 void ObjectExplorerEditor::HighlightDisplayObject(GActorObject* actor)
 {
-	if (std::shared_ptr<RenderLayerManage> layer = GetRenderLayerManage())
+	std::shared_ptr<RenderLayerManage> layer = RMeshManage::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRenderLayerManage();
+	
+	if (layer.get());
 	{
-		auto pObject=GetRenderPipeline()->GetGeometryMap().GetRGeometry(0).FindRenderData(actor);
+		auto pObject= RMeshManage::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRGeometry(0).FindRenderData(actor);
 		if(!pObject.expired())
 			layer->HighlightDisplayObject(pObject);
 	}

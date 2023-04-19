@@ -9,16 +9,30 @@ CustomMeshComponent::CustomMeshComponent()
 
 }
 
+std::vector<std::string> StringSplit(const std::string& str, char delim) {
+	std::stringstream ss(str);
+	std::string item;
+	std::vector<std::string> elems;
+	while (std::getline(ss, item, delim)) {
+		if (!item.empty()) {
+			elems.push_back(item);
+		}
+	}
+	return elems;
+}
+
 void CustomMeshComponent::CreateMesh(MeshRenderData& meshData, const string& name, MeshRenderData& inData)
 {
-	char Buff[1024] = { 0 };
-	get_path_clean_filename(Buff, name.c_str());
-
-	char PathBuff[1024] = { 0 };
-	get_full_path(PathBuff, 1024, name.c_str());
-
-
-	LoadFBXFromBuff(meshData, PathBuff);
+	auto str1 = StringSplit(name, '.');
+	if (str1.size() > 1 && strcmp("fbx",str1.back().c_str())==0)
+	{
+		//LoadFBXFromBuff(meshData, name.c_str());
+	}
+	else
+	{
+		meshData.VertexData = inData.VertexData;
+		meshData.IndexData = inData.IndexData;
+	}
 
 }
 

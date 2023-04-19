@@ -5,7 +5,7 @@
 #include"../World.h"
 #include"../Render/Pipeline/DX12Pipeline.h"
 #include"../RayCast/RayCastSystem.h"
-
+#include"../Manage/MeshManage.h"
 
 void GetRaycastDataByLocal(
 	std::shared_ptr<RRenderData>& inRenderingData,
@@ -49,7 +49,7 @@ bool CollisionScene::RaycastSingle(RWorld* inWorld,
 	float FinalTime = FLT_MAX;
 	float BoundTime = 0.f;
 	float dis = FLT_MAX;
-	auto renderDatas = inWorld->GetCamera()->GetRenderPipeline()->GetGeometryMap().GetRGeometry(0).RenderDatasPool;
+	auto renderDatas = RMeshManage::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRGeometry(0).RenderDatasPool;
 	for (size_t i = 0; i < renderDatas.size(); i++)
 	{
 		std::shared_ptr<RRenderData>& pRenderData = renderDatas[i];
@@ -133,10 +133,10 @@ bool CollisionScene::RaycastSingle(
 	const XMMATRIX& viewInverseMatrix,
 	CollisionResult& outResult)
 {
-	auto renderDatas = inWorld->GetCamera()->GetRenderPipeline()->GetGeometryMap().GetRGeometry(0).RenderDatasPool;
+	auto renderDatas = RMeshManage::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRGeometry(0).RenderDatasPool;
 	for (size_t i = 0; i < renderDatas.size(); i++)
 	{
-		std::shared_ptr<RRenderData>& pRenderData = renderDatas[i];
+		std::shared_ptr<RRenderData>& pRenderData = renderDatas[i ];
 		if (pRenderData->Mesh->IsPickup())
 		{
 			if (!IsIgnoreComponents(pRenderData->Mesh, ignoreComponents))

@@ -49,31 +49,31 @@ void RMeshManage::PreDraw(GameTimer& gt)
 
 RMeshComponent* RMeshManage::CreateSphereMeshComponent(const CreateObjectParam& inObjectParam, float inRadius, uint32_t inAxialSubdivision, uint32_t inHeightSubdivision)
 {
-    return MeshConstruction::CreateMeshComponent<SphereMeshComponent>(inObjectParam,this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, inRadius, inAxialSubdivision, inHeightSubdivision);
+    return MeshConstruction::CreateMeshComponent<SphereMeshComponent>(inObjectParam, EMeshRenderLayerType::RENDERLAYER_OPAQUE, inRadius, inAxialSubdivision, inHeightSubdivision);
 }
 
 RMeshComponent* RMeshManage::CreateBoxMeshComponent(const CreateObjectParam& inObjectParam, float inHeight, float inWidth, float inDepth)
 {
-    return MeshConstruction::CreateMeshComponent<BoxMeshComponent>(inObjectParam,this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, inHeight, inWidth, inDepth);
+    return MeshConstruction::CreateMeshComponent<BoxMeshComponent>(inObjectParam, EMeshRenderLayerType::RENDERLAYER_OPAQUE, inHeight, inWidth, inDepth);
 }
 
 RMeshComponent* RMeshManage::CreateConeMeshComponent(const CreateObjectParam& inObjectParam, float inRadius, float inHeight, uint32_t inAxialSubdivision, uint32_t inHeightSubdivision)
 {
-    return MeshConstruction::CreateMeshComponent<ConeMeshComponent>(inObjectParam, this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, inRadius, inHeight, inAxialSubdivision, inHeightSubdivision);
+    return MeshConstruction::CreateMeshComponent<ConeMeshComponent>(inObjectParam,EMeshRenderLayerType::RENDERLAYER_OPAQUE, inRadius, inHeight, inAxialSubdivision, inHeightSubdivision);
 }
 
 RMeshComponent* RMeshManage::CreateCylinderMeshComponent(const CreateObjectParam& inObjectParam, float inTopRadius, float inBottomRadius, float inHeight, uint32_t inAxialSubdivision, uint32_t inHeightSubdivision)
 {
-    return MeshConstruction::CreateMeshComponent<CylinderMeshComponent>(inObjectParam, this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, inTopRadius, inBottomRadius, inHeight, inAxialSubdivision, inHeightSubdivision);
+    return MeshConstruction::CreateMeshComponent<CylinderMeshComponent>(inObjectParam, EMeshRenderLayerType::RENDERLAYER_OPAQUE, inTopRadius, inBottomRadius, inHeight, inAxialSubdivision, inHeightSubdivision);
 }
 
 RMeshComponent* RMeshManage::CreatePlaneMeshComponent(const CreateObjectParam& inObjectParam, float inHeight, float inWidth, uint32_t inHeightSubdivide, uint32_t inWidthSubdivide)
 {
-    return MeshConstruction::CreateMeshComponent<PlaneMeshComponent>(inObjectParam, this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, inHeight, inWidth, inHeightSubdivide, inWidthSubdivide);
+    return MeshConstruction::CreateMeshComponent<PlaneMeshComponent>(inObjectParam,  EMeshRenderLayerType::RENDERLAYER_OPAQUE, inHeight, inWidth, inHeightSubdivide, inWidthSubdivide);
 }
 
 RMeshComponent* RMeshManage::CreateCustomMeshComponent(const CreateObjectParam& inObjectParam)
 {
     MeshRenderData pData;
-    return MeshConstruction::CreateMeshComponent<CustomMeshComponent>(inObjectParam, this, EMeshRenderLayerType::RENDERLAYER_OPAQUE, "name", pData);
+    return MeshConstruction::CreateMeshComponent<CustomMeshComponent>(inObjectParam,  EMeshRenderLayerType::RENDERLAYER_OPAQUE, "name", pData);
 }

@@ -12,7 +12,7 @@ class RWorld :public RMinimalObject
 {
 public:
 	RWorld();
-
+	~RWorld();
 	RCamera* GetCamera() { return m_camera; }
 
 	template<class T>
@@ -21,7 +21,7 @@ public:
 		T* InArray = new T();
 		InArray->SetOuter(this);
 		InArray->InitMinimalObject();
-		ActorObjects.push_back(InArray);
+		ActorObjects.push_back(std::move(InArray));
 
 		return InArray;
 	}

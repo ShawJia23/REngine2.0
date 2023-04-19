@@ -37,7 +37,7 @@ void DX12Pipeline::BuildPipeline()
 
     
     //texture=0时构建根签名和shader会报错
-    m_RootSignature.BuildRootSignature(GetTextureManage()->GetTextureSize());
+    m_RootSignature.BuildRootSignature(RTextureManage::getInstance().GetTextureSize());
 
     m_PipelineState.BindRootSignature(m_RootSignature.GetRootSignature());
 

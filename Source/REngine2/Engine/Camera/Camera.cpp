@@ -222,7 +222,7 @@ void RCamera::OnClickedScreen(int X, int Y)
 	CollisionResult collisionResult;
 	RayCastSystem::HitResultByScreen(GetWorld(), X, Y, collisionResult);
 
-	std::shared_ptr<RenderLayerManage> layer = GetRenderLayerManage();
+	std::shared_ptr<RenderLayerManage> layer = RMeshManage::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRenderLayerManage();
 	if (layer && collisionResult.bHit)
 	{
 		layer->HighlightDisplayObject(collisionResult.RenderData);

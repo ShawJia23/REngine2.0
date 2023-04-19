@@ -1,14 +1,13 @@
 #pragma once
 #include"../ViewPort/ViewportInfo.h"
-#include"../Interface/DXDeviceInterface.h"
 #include"RObject/RMinimalObject.h"
 #include"../Render/Render.h"
 #include"../EngineMinimal.h"
 #include"../Render/Pipeline/DX12Pipeline.h"
-
+#include"../Core/public_singleton.h"
 class RMeshComponent;
 struct CreateObjectParam;
-class RMeshManage :public RMinimalObject, public IRenderingInterface,public IDirectXDeviceInterface
+class RMeshManage:public PublicSingleton<RMeshManage>
 {
 public:
 	RMeshManage();

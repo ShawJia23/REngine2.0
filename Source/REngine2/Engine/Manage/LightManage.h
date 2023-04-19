@@ -1,7 +1,7 @@
 #include"RObject/RMinimalObject.h"
-
+#include"../Core/public_singleton.h"
 class RLightComponent;
-class RLightManage :public RMinimalObject 
+class RLightManage:public PublicSingleton<RLightManage>
 {
 	friend struct RGeometryMap;
 public:

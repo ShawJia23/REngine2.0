@@ -7,9 +7,6 @@ class RWindowsEngine;
 class REngine;
 #endif
 
-class RLightManage;
-class RMeshManage;
-class RTextureManage;
 class RWorld;
 class DX12Pipeline;
 class RenderLayerManage;
@@ -20,13 +17,8 @@ class IDirectXDeviceInterface
 public:
 	ComPtr<ID3D12Fence> GetFence() const;
 	ComPtr<ID3D12Device> GetD3dDevice() const;
-	RMeshManage* GetMeshManage() const;
-	RTextureManage* GetTextureManage() const;
-	RLightManage* GetLightManage() const;
 	RWorld* GetWorld() const;
 	RCamera* GetCamera() const;
-	DX12Pipeline* GetRenderPipeline() const;
-	std::shared_ptr<RenderLayerManage> GetRenderLayerManage() const;
 
 	ComPtr<ID3D12GraphicsCommandList> GetCommandList() const;
 	ComPtr<ID3D12CommandAllocator> GetCommandAllocator() const;
@@ -55,13 +47,8 @@ struct IDirectXDeviceInterface_Struct
 public:
 	ComPtr<ID3D12Fence> GetFence() const;
 	ComPtr<ID3D12Device> GetD3dDevice() const;
-	RMeshManage* GetMeshManage() const;
-	RLightManage* GetLightManage() const;
-	RTextureManage* GetTextureManage() const;
 	RWorld* GetWorld() const;
 	RCamera* GetCamera() const;
-	DX12Pipeline* GetRenderPipeline() const;
-	std::shared_ptr<RenderLayerManage> GetRenderLayerManage() const;
 
 	ComPtr<ID3D12GraphicsCommandList> GetCommandList() const;
 	ComPtr<ID3D12CommandAllocator> GetCommandAllocator() const;

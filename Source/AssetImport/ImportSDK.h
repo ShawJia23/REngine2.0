@@ -94,11 +94,6 @@ struct RASSETIMPORT_API RImportVersion
 	int Revision;
 };
 
-struct RAssetImport
-{
-	RASSETIMPORT_API void LoadMeshData(const char *InPath,RImportRenderData &OutData);
-}; 
-
 struct RAssimpVector2
 {
 	RAssimpVector2()
@@ -165,7 +160,9 @@ struct RASSETIMPORT_API RAssimpObj
 	std::vector<RAssimpModel> ModelData;
 };
 
-struct  RAssimpObject
+struct RAssetImport
 {
-	RASSETIMPORT_API void LoadMeshData(const char* InPath, const char* InName, RAssimpObj& OutData);
-};
+	RASSETIMPORT_API static void LoadMeshData(const char *InPath,RImportRenderData &OutData);
+	RASSETIMPORT_API static void LoadMeshData(const char* InPath, const char* InName, RAssimpObj& OutData);
+}; 
+

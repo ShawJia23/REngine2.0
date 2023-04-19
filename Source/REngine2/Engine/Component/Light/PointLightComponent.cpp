@@ -8,7 +8,7 @@ RPointLightComponent::RPointLightComponent() :
 	EndAttenuation(1.0f)
 {
 	BUILD_OBJECT_PARAMETERS_BY_NO_COMPONENT(this);
-	SetLightMesh(GetMeshManage()->CreateSphereMeshComponent(inObjectParam, 2.f, 50, 50));
+	SetLightMesh(RMeshManage::getInstance().CreateSphereMeshComponent(inObjectParam, 2.f, 50, 50));
 	if (GetLightMesh())
 	{
 		if (RMaterial* pMaterial = (*GetLightMesh()->GetMaterials())[0])

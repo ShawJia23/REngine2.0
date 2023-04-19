@@ -7,7 +7,7 @@
 RLightComponent::RLightComponent()
 	:LightIntensity(1.f, 1.f, 1.f)
 {
-	GetLightManage()->AddLight(this);
+	RLightManage::getInstance().AddLight(this);
 }
 
 RLightComponent::~RLightComponent()

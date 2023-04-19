@@ -7,8 +7,6 @@
 
 class DXRenderEngine;
 class RWorld;
-class RMeshManage;
-class RLightManage;
 class EditorEngine;
 
 class RWindowsEngine :public REngine
@@ -40,9 +38,6 @@ public:
 #endif
 
 public:
-	RMeshManage* GetMeshManage();
-	RLightManage* GetLightManage();
-	RTextureManage* GetTextureManage();
 	RWorld* GetWorld() { return m_world; }
 	GameTimer GetTimer() { return m_Timer; }
 	std::wstring mMainWndCaption;

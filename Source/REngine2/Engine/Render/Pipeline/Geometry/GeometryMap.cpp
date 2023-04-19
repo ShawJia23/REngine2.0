@@ -72,7 +72,7 @@ void RGeometryMap::BuildMaterialsConstantBufferView()
 
 void RGeometryMap::BuildTextureConstantBuffer() 
 {
-	GetTextureManage()->BuildTextureConstantBuffer(m_DescriptorHeap.GetHeap(),0);
+	RTextureManage::getInstance().BuildTextureConstantBuffer(m_DescriptorHeap.GetHeap(),0);
 }
 
 
@@ -116,7 +116,7 @@ UINT RGeometryMap::GetLightsNumber()
 
 UINT RGeometryMap::GetTextureNumber()
 {
-	return GetTextureManage()->GetTextureSize();
+	return RTextureManage::getInstance().GetTextureSize();
 }
 
 UINT RGeometryMap::GetCubeMapNumber()
@@ -127,7 +127,7 @@ UINT RGeometryMap::GetCubeMapNumber()
 
 UINT RGeometryMap::GetDesptorSize()
 {
-	return GetTextureManage()->GetTextureSize()+ GetCubeMapNumber();//cubemapsize
+	return RTextureManage::getInstance().GetTextureSize()+ GetCubeMapNumber();//cubemapsize
 }
 
 
@@ -166,7 +166,7 @@ void RGeometryMap::DrawTexture()
 	GetCommandList()->SetGraphicsRootDescriptorTable(4, DesHandle);
 
 	auto DesHandle1 = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
-	DesHandle1.Offset(GetTextureManage()->GetTextureSize(), m_DescriptorOffset);
+	DesHandle1.Offset(RTextureManage::getInstance().GetTextureSize(), m_DescriptorOffset);
 
 	GetCommandList()->SetGraphicsRootDescriptorTable(5, DesHandle1);
 }
@@ -183,9 +183,9 @@ void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 	UpdateMaterialShaderResourceView();
 	
 	RLightConstantBuffer LightConstantBuffer;
-	for (size_t i = 0; i < GetLightManage()->Lights.size(); i++)
+	for (size_t i = 0; i < RLightManage::getInstance().Lights.size(); i++)
 	{
-		if (RLightComponent* pLight = GetLightManage()->Lights[i])
+		if (RLightComponent* pLight = RLightManage::getInstance().Lights[i])
 		{
 			fvector_3d LightIntensity = pLight->GetLightIntensity();
 			LightConstantBuffer.SceneLights[i].LightIntensity = XMFLOAT3(LightIntensity.x, LightIntensity.y, LightIntensity.z);
@@ -257,9 +257,9 @@ void RGeometryMap::UpdateMaterialShaderResourceView()
 				//类型输入
 				MaterialConstantBuffer.MaterialType = InMaterial->GetMaterialType();
 
-				MaterialConstantBuffer.BaseColorIndex = GetTextureManage()->FindRenderingTextureIndex(InMaterial->GetBaseColorIndexKey());
-				MaterialConstantBuffer.NormalIndex = GetTextureManage()->FindRenderingTextureIndex(InMaterial->GetNormalIndexKey());
-				MaterialConstantBuffer.SpecularIndex = GetTextureManage()->FindRenderingTextureIndex(InMaterial->GetSpecularIndexKey());
+				MaterialConstantBuffer.BaseColorIndex = RTextureManage::getInstance().FindRenderingTextureIndex(InMaterial->GetBaseColorIndexKey());
+				MaterialConstantBuffer.NormalIndex = RTextureManage::getInstance().FindRenderingTextureIndex(InMaterial->GetNormalIndexKey());
+				MaterialConstantBuffer.SpecularIndex = RTextureManage::getInstance().FindRenderingTextureIndex(InMaterial->GetSpecularIndexKey());
 
 				//材质矩阵
 				XMMATRIX MaterialTransform = XMLoadFloat4x4(&InMaterial->GetMaterialTransform());

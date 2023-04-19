@@ -1,6 +1,7 @@
 #pragma once
 #include"../EngineMinimal.h"
 #include"../Interface/DXDeviceInterface.h"
+#include"../Core/public_singleton.h"
 struct RTexture
 {
 	RTexture()
@@ -15,7 +16,7 @@ struct RTexture
 	D3D12_SRV_DIMENSION Dimension = D3D12_SRV_DIMENSION_TEXTURE2D;
 };
 
-class RTextureManage: public IDirectXDeviceInterface
+class RTextureManage: public IDirectXDeviceInterface, public PublicSingleton<RTextureManage>
 {
 public:
 	RTextureManage();

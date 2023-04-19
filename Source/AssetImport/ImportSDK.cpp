@@ -400,10 +400,11 @@ std::string GetTexName(std::string ObjName, std::string TexName)
 	return pTexName;
 }
 
-void RAssimpObject::LoadMeshData(const char* InPath, const char* InName, RAssimpObj& OutData)
+void RAssetImport::LoadMeshData(const char* InPath, const char* InName, RAssimpObj& OutData)
 {
 	Assimp::Importer aiImporter;
 	const aiScene* pModel = aiImporter.ReadFile(InPath, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_ConvertToLeftHanded);
+	
 	if (nullptr == pModel)
 	{
 		return;

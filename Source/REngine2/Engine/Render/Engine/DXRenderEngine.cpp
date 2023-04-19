@@ -9,7 +9,7 @@
 
 void DXRenderEngine::UpdateCalculations(GameTimer& gt, const ViewportInfo viewportInfo)
 {
-	m_meshManage->UpdateCalculations(gt,viewportInfo);
+	RMeshManage::getInstance().UpdateCalculations(gt,viewportInfo);
 }
 
 void DXRenderEngine::BeforeDraw() 
@@ -61,11 +61,11 @@ void DXRenderEngine::Tick(GameTimer& gt)
 	//重置录制相关的内存，为下一帧做准备
 	ANALYSIS_HRESULT(m_commandAllocator->Reset());
 
-	m_meshManage->PreDraw(gt);
+	RMeshManage::getInstance().PreDraw(gt);
 
 	BeforeDraw();
 
-	m_meshManage->Draw(gt);
+	RMeshManage::getInstance().Draw(gt);
 
 	AfterDraw();
 
@@ -74,7 +74,7 @@ void DXRenderEngine::Tick(GameTimer& gt)
 	ANALYSIS_HRESULT(m_swapChain->Present(0, presentFlags));
 	MoveToNextFrame();
 
-	m_meshManage->PostDraw(gt);
+	RMeshManage::getInstance().PostDraw(gt);
 	//CPU等GPU
 	WaitGPUCommandQueueComplete();
 }
@@ -115,7 +115,7 @@ void DXRenderEngine::OnResetSize(int width, int height)
 		if (m_World && m_World->GetCamera())
 			m_World->GetCamera()->OnResetSize(width, height);
 		//mesh
-		m_meshManage->OnResetSize(width, height);
+		RMeshManage::getInstance().OnResetSize(width, height);
 
 		WaitGPUCommandQueueComplete();
 	}
@@ -234,7 +234,6 @@ DXRenderEngine::DXRenderEngine()
 
 	bTick = false;
 
-	m_meshManage = new RMeshManage();
 	m_ActorManage = new RActorManage();
 }
 
@@ -250,7 +249,7 @@ int DXRenderEngine::Init(WinMainCommandParameters InParameters)
 
 	PostInitDirect3D();
 
-	m_meshManage->Init();
+	RMeshManage::getInstance().Init();
 
 	Engine_Log("Init DXRenderEngine");
 
@@ -269,7 +268,7 @@ int DXRenderEngine::PostInit()
 	Engine_Log("W A S D to Move");
 	Engine_Log("Press RMouse + Move Mouse to Rotate");
 	
-	m_meshManage->BuildPipeline();
+	RMeshManage::getInstance().BuildPipeline();
 
 	ANALYSIS_HRESULT(m_commandList->Close());
 
@@ -450,7 +449,6 @@ void DXRenderEngine::PostInitDirect3D()
 
 DXRenderEngine::~DXRenderEngine()
 {
-	delete m_meshManage;
 	delete m_ActorManage;
 	CloseHandle(m_fenceEvent);
 	m_swapChain.Reset();
@@ -501,18 +499,6 @@ UINT DXRenderEngine::GetDXGISampleCount() const
 UINT DXRenderEngine::GetDXGISampleQuality() const
 {
 	return bMSAA4XEnabled ? (M4XQualityLevels - 1) : 0;
-}
-
-
-RLightManage* DXRenderEngine::GetLightManage() 
-{ 
-	return m_ActorManage->m_lightManage;
-}
-
-
-RTextureManage* DXRenderEngine::GetTextureManage() 
-{ 
-	return m_ActorManage->m_textureManage;
 }
 
 #endif
