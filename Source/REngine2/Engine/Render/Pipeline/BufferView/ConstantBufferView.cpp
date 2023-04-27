@@ -1,9 +1,9 @@
 #include"ConstantBufferView.h"
-
+#include"../../Engine/DXRenderEngine.h"
 void RConstantBufferView::CreateConstant(UINT objectSize, UINT objectCount,bool bConstBuffer)
 {
     m_Constant = make_shared<ResourcesUpdate>();
-    m_Constant->Init(GetD3dDevice().Get(), objectSize, objectCount, bConstBuffer);
+    m_Constant->Init(DXRenderEngine::getInstance().GetD3dDevice().Get(), objectSize, objectCount, bConstBuffer);
 }
 
 void RConstantBufferView::Update(int index, const void* data)
@@ -16,7 +16,7 @@ void RConstantBufferView::BuildConstantBuffer(
     UINT constantBufferNum,
     UINT handleOffset)
 {
-    UINT DescriptorOffset = GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+    UINT DescriptorOffset = DXRenderEngine::getInstance().GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
     D3D12_GPU_VIRTUAL_ADDRESS Addr = m_Constant->GetBuffer()->GetGPUVirtualAddress();
 
     for (int i = 0; i < constantBufferNum; i++)
@@ -29,7 +29,7 @@ void RConstantBufferView::BuildConstantBuffer(
 
         Handle.Offset(i + handleOffset, DescriptorOffset);
 
-        GetD3dDevice()->CreateConstantBufferView(&CBVDesc, Handle);
+        DXRenderEngine::getInstance().GetD3dDevice()->CreateConstantBufferView(&CBVDesc, Handle);
     }
 }
 

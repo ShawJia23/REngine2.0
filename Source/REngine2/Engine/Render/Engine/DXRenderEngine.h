@@ -1,10 +1,14 @@
 #pragma once
-#include "RenderEngine.h"
+
+#include"../Pipeline/DX12Pipeline.h"
 #include"../../Config/RenderConfig.h"
 #include"../../ViewPort/ViewportInfo.h"
+#include "RenderEngine.h"
+#include"../../Core/public_singleton.h"
+
 class RActorManage;
-class RWorld;
-class DXRenderEngine :public RenderingEngine
+class DX12Pipeline;
+class DXRenderEngine :public RenderingEngine, public PublicSingleton<DXRenderEngine>
 {
 	friend class IRenderingInterface;
 public:
@@ -44,12 +48,6 @@ protected:
 	void AfterDraw();
 	void ChangeResources(int width, int height);
 
-public:
-	RWorld* m_World;
-
-protected:
-	RActorManage* m_ActorManage;
-
 protected:
 	UINT m_frameIndex;
 	UINT64 m_fenceValues[2];
@@ -73,15 +71,16 @@ protected:
 
 	vector<ComPtr<ID3D12Resource>> m_swapChainBuffer;
 	ComPtr<ID3D12Resource> m_depthStencilBuffer;
-
+	
 protected:
 	UINT M4XQualityLevels;
 	bool bMSAA4XEnabled;
 	DXGI_FORMAT BackBufferFormat;
 	DXGI_FORMAT DepthStencilFormat;
 	UINT RTVDescriptorSize;
-
+	DX12Pipeline m_pipeline;
 public:
+	DX12Pipeline* GetDX12Pipeline() const { return const_cast<DX12Pipeline*>(&m_pipeline); }
 	ID3D12Resource* GetCurrentSwapBuff() const;
 	D3D12_CPU_DESCRIPTOR_HANDLE GetCurrentSwapBufferView() const;
 	D3D12_CPU_DESCRIPTOR_HANDLE GetCurrentDepthStencilView() const;
@@ -92,8 +91,8 @@ public:
 	UINT GetDXGISampleQuality()const;
 	ComPtr<ID3D12Fence> GetFence() { return m_fence; }
 	ComPtr<ID3D12Device> GetD3dDevice() { return m_D3dDevice; }
-	ComPtr<ID3D12GraphicsCommandList> GetCommandList() { return m_commandList; }
-	ComPtr<ID3D12CommandAllocator> GetCommandAllocator() { return m_commandAllocator; }
+	ComPtr<ID3D12GraphicsCommandList>GetCommandList() { return m_commandList; }
+	ComPtr<ID3D12CommandAllocator>GetCommandAllocator() { return m_commandAllocator; }
 	ComPtr<ID3D12CommandQueue> GetCommandQueue() { return m_commandQueue; }
 	UINT64 GetCurrentFenceIndex() { return m_frameIndex; }
 };

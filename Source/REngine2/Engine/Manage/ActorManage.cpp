@@ -62,14 +62,14 @@ void RActorManage::LoadObject()
 //	pMesh->SetScale(fvector_3d(20.f, 20.f, 10.f));
 //	pMesh->SetPickup(false);
 //}
-	auto pLight = GetWorld()->CreateActorObject<GParallelLight>();
+	auto pLight = RWorld::getInstance().CreateActorObject<GParallelLight>();
 	if (pLight)
 	{
 		pLight->SetPosition(XMFLOAT3(0.f, 3.f, 4.f));
 		pLight->SetRotation(fvector_3d(0, 0, 0));
 	}
 
-	auto pSMesh = GetWorld()->CreateActorObject<SphereMesh>();
+	auto pSMesh = RWorld::getInstance().CreateActorObject<SphereMesh>();
 	if (pSMesh)
 	{
 		pSMesh->CreateMesh(2.f, 10, 10, EMeshRenderLayerType::RENDERLAYER_CUBEMAP);
@@ -83,111 +83,13 @@ void RActorManage::LoadObject()
 		}
 		pSMesh->SetPickup(false);
 	}
-
-
-	/*SphereMesh* pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(8.f, 2, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::BlinnPhong);
-
-			pMaterial->SetRoughness(0.8f);
-		}
-	}
-	SphereMesh* pSMesh1 = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh1)
-	{
-		pSMesh1->CreateMesh(2.f, 10, 10);
-		pSMesh1->SetPosition(XMFLOAT3(0.f, 6, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh1->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::WrapLight);
-		}
-	}
-
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(-4.f, 6, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::Minnaert);
-		}
-	}
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(8.f, 6, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::Banded);
-		}
-	}
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(8.f, 10, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::GradualBanded);
-		}
-	}
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(4.f, 10, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.5f, 0.5f, 0.5f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::FinalBanded);
-			pMaterial->SetRoughness(0.8f);
-		}
-	}
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(0.f, 10, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(0.2f, 0.8f, 0.3f, 1.f));
-			pMaterial->SetMaterialType(EMaterialType::Back);
-		}
-	}
-
-	pSMesh = m_World->CreateActorObject<SphereMesh>();
-	if (pSMesh)
-	{
-		pSMesh->CreateMesh(2.f, 10, 10);
-		pSMesh->SetPosition(XMFLOAT3(-4.f, 10, 0.f));
-		if (RMaterial* pMaterial = (*pSMesh->GetMaterials())[0])
-		{
-			pMaterial->SetBaseColor(fvector_4d(1.f));
-			pMaterial->SetMaterialType(EMaterialType::Normal);
-		}
-	}*/
-
-
-
 }
 
 
 
 void RActorManage::LoadAsset()
 {
-	if (auto InMoveArrow = GetWorld()->CreateActorObject<RMoveArrow>())
+	if (auto InMoveArrow = RWorld::getInstance().CreateActorObject<RMoveArrow>())
 	{
 		InMoveArrow->CreateMesh();
 
@@ -213,8 +115,8 @@ void RActorManage::LoadAsset()
 	LoadModel((AssetPath + "/Model/yamato/yamato.obj").c_str(), "yamato",
 		XMFLOAT3(0.f, 0.f, 0.f), fvector_3d(0.1f, 0.1f, 0.1f));
 
-	LoadModel((AssetPath + "/Model/shennvpiguan/shennvpiguan.pmx").c_str(), "shennvpiguan",
-		XMFLOAT3(0.f, 0.f, 0.f), fvector_3d(0.5f, 0.5f, 0.5f));
+	/*LoadModel((AssetPath + "/Model/shennvpiguan/shennvpiguan.pmx").c_str(), "shennvpiguan",
+		XMFLOAT3(0.f, 0.f, 0.f), fvector_3d(0.5f, 0.5f, 0.5f));*/
 
 	RTextureManage::getInstance().CreateTexture();
 	RTextureManage::getInstance().LoadCubeMapFormPath("cubemap", AssetPath + "/Cubemap/grasscube1024.dds");
@@ -252,15 +154,11 @@ void RActorManage::LoadModel(const char* inPath, const char* inName,
 				pTempData.TexC.x = VertexTmp.TexC.X;
 				pTempData.TexC.y = VertexTmp.TexC.Y;
 			}
-			MeshTmp.VertexData.clear();
-			MeshTmp.VertexData.shrink_to_fit();
 			for (auto& IndexData : MeshTmp.IndexData)
 			{
 				pData.IndexData.push_back(IndexData);
 			}
-			MeshTmp.IndexData.clear();
-			MeshTmp.IndexData.shrink_to_fit();
-			auto pMesh = GetWorld()->CreateActorObject<CustomMesh>();
+			auto pMesh =RWorld::getInstance().CreateActorObject<CustomMesh>();
 			if (pMesh)
 			{
 				pMesh->SetMeshRenderData(pData);
@@ -268,6 +166,7 @@ void RActorManage::LoadModel(const char* inPath, const char* inName,
 				pMesh->CreateMesh(name);
 				pMesh->SetPosition(newPosition);
 				pMesh->SetScale(newScale);
+				pMesh->SetPickup(true);
 				if (TmpModel.MaterialMap[0].DiffuseMapFileName.size() > 1)
 				{
 					RTextureManage::getInstance().LoadTextureFormPath(inName + TmpModel.MaterialMap[0].DiffuseMapFileName, TmpModel.MaterialMap[0].DiffuseMapFileName);
@@ -280,8 +179,6 @@ void RActorManage::LoadModel(const char* inPath, const char* inName,
 				TmpModel.MaterialMap.clear();
 			}
 		}
-		TmpModel.MeshData.clear();
-		TmpModel.MeshData.shrink_to_fit();
 	}
 
 }

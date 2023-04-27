@@ -30,17 +30,17 @@ void ToolbarEditor::DrawEditor(GameTimer& gt)
 		{
 			if (ImGui::MenuItem("Exploer"))
 			{
-				GetEditorEngine()->m_ObjectExplorerEditor->RenderStart();
+				EditorEngine::getInstance().m_ObjectExplorerEditor->RenderStart();
 			}
 
 			if (ImGui::MenuItem("Inspector"))
 			{
-				GetEditorEngine()->m_InspectorEditor->RenderStart();
+				EditorEngine::getInstance().m_InspectorEditor->RenderStart();
 			}
 
 			if (ImGui::MenuItem("Log"))
 			{
-				GetEditorEngine()->m_LogEditor->RenderStart();
+				EditorEngine::getInstance().m_LogEditor->RenderStart();
 			}
 
 			ImGui::EndMenu();

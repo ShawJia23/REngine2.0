@@ -195,7 +195,7 @@ void RRotatorArrow::Tick(GameTimer& gt)
 			GetUPVector(),
 			GetForwardVector());
 
-		FXMVECTOR CameraPosition = XMLoadFloat3(&GetWorld()->GetCamera()->GetPosition());
+		FXMVECTOR CameraPosition = XMLoadFloat3(&RWorld::getInstance().GetCamera()->GetPosition());
 
 		XMVECTOR OutLocalOriginPoint = XMVector3TransformCoord(CameraPosition, ArrowWorldInverseMatrix);
 
@@ -520,7 +520,7 @@ void RRotatorArrow::OnMouseMove(int X, int Y)
 					ActorWorldDir = OperationHandleBase::GetSelectedObjectDirection(fvector_3d(), fvector_3d(), fvector_3d());
 
 					float CameraAndSelectedDistance =
-						(RMath::ToVector3d(GetWorld()->GetCamera()->GetPosition()) -
+						(RMath::ToVector3d(RWorld::getInstance().GetCamera()->GetPosition()) -
 							RMath::ToVector3d(SelectedObject->GetPosition())).len();
 
 					//摄像机和物体的相对 拖拽相对偏移保持不变

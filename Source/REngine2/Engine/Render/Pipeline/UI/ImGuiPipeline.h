@@ -1,7 +1,6 @@
 #pragma once
-#include"../../../Interface/DXDeviceInterface.h"
-
-struct RImGuiPipeline :public IDirectXDeviceInterface_Struct 
+#include"../../../EngineMinimal.h"
+struct RImGuiPipeline 
 {
 	RImGuiPipeline(); 
 

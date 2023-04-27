@@ -1,5 +1,4 @@
 #pragma once
-#include"../../../Interface/DXDeviceInterface.h"
 #include"../DescriptorHeap/DXDescriptorHeap.h"
 #include"../BufferView/ConstantBufferView.h"
 #include"../../../Mesh/MeshType.h"
@@ -13,7 +12,7 @@ struct RDXPipelineState;
 struct ViewportInfo;
 class GActorObject;
 
-struct RGeometry :public IDirectXDeviceInterface_Struct
+struct RGeometry 
 {
 	RGeometry();
 
@@ -52,7 +51,7 @@ public:
 };
 
 
-struct RGeometryMap :public IDirectXDeviceInterface_Struct
+struct RGeometryMap 
 {
 public:
 	RGeometryMap();

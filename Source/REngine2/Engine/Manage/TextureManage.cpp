@@ -1,6 +1,7 @@
 #include"TextureManage.h"
 #include"ThirdParty/stb/stb_image.h"
 #include"../LoadAsset/DDSTextureLoader.h"
+#include"../Render/Engine/DXRenderEngine.h"
 std::wstring String2Wstring(std::string str)
 {
 	std::wstring result;
@@ -64,7 +65,7 @@ RTexture* RTextureManage::FindRenderingTexture(const std::string& key)
 
 void RTextureManage::BuildTextureConstantBuffer(ID3D12DescriptorHeap* InHeap, int Offset)
 {
-	UINT DescriptorOffset = GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	UINT DescriptorOffset = DXRenderEngine::getInstance().GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 
 	CD3DX12_CPU_DESCRIPTOR_HANDLE Handle(InHeap->GetCPUDescriptorHandleForHeapStart());
 	Handle.Offset(Offset, DescriptorOffset);
@@ -85,7 +86,7 @@ void RTextureManage::BuildTextureConstantBuffer(ID3D12DescriptorHeap* InHeap, in
 		Tmp.second->HeapIndex = NowTextureIndex;
 		NowTextureIndex++;
 
-		GetD3dDevice()->CreateShaderResourceView(
+		DXRenderEngine::getInstance().GetD3dDevice()->CreateShaderResourceView(
 			Tmp.second->Resource.Get(),
 			&ShaderResourceViewDesc, Handle);
 
@@ -105,7 +106,7 @@ void RTextureManage::BuildTextureConstantBuffer(ID3D12DescriptorHeap* InHeap, in
 		m_CubeMap->HeapIndex = NowTextureIndex;
 		NowTextureIndex++;
 
-		GetD3dDevice()->CreateShaderResourceView(
+		DXRenderEngine::getInstance().GetD3dDevice()->CreateShaderResourceView(
 			m_CubeMap->Resource.Get(),
 			&ShaderResourceViewDesc, Handle);
 
@@ -154,7 +155,7 @@ void RTextureManage::CreateTexture(
 	
 	auto defaultHeap = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
 	//创建szFileName：实际用的纹理资源   
-	GetD3dDevice()->CreateCommittedResource(
+	DXRenderEngine::getInstance().GetD3dDevice()->CreateCommittedResource(
 		&defaultHeap,
 		D3D12_HEAP_FLAG_NONE,
 		&textureDesc,
@@ -169,7 +170,7 @@ void RTextureManage::CreateTexture(
 	auto defaultUpload = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
 	auto ResourcesBuffer = CD3DX12_RESOURCE_DESC::Buffer(uploadBufferSize);
 	// Create the GPU upload buffer.
-	ANALYSIS_HRESULT(GetD3dDevice()->CreateCommittedResource(
+	ANALYSIS_HRESULT(DXRenderEngine::getInstance().GetD3dDevice()->CreateCommittedResource(
 		&defaultUpload,
 		D3D12_HEAP_FLAG_NONE,
 		&ResourcesBuffer,
@@ -183,20 +184,20 @@ void RTextureManage::CreateTexture(
 		D3D12_RESOURCE_STATE_COMMON, 
 		D3D12_RESOURCE_STATE_COPY_DEST);
 	//将数据复制给中间资源，然后从中间资源复制给实际的资源
-	GetCommandList()->ResourceBarrier(1, &TmpBarrier);
+	DXRenderEngine::getInstance().GetCommandList()->ResourceBarrier(1, &TmpBarrier);
 
 	D3D12_SUBRESOURCE_DATA textureData = {};
 	textureData.pData = pixels;
 	textureData.RowPitch = texWidth * TexturePixelSize;
 	textureData.SlicePitch = textureData.RowPitch * texHeight;
-	UpdateSubresources(GetCommandList().Get(), texture.Get(), textureUploadHeap.Get(), 0, 0, num2DSubresources, &textureData);
+	UpdateSubresources(DXRenderEngine::getInstance().GetCommandList().Get(), texture.Get(), textureUploadHeap.Get(), 0, 0, num2DSubresources, &textureData);
 
 
 	auto TmpBarrier2 = CD3DX12_RESOURCE_BARRIER::Transition(
 		texture.Get(),
 		D3D12_RESOURCE_STATE_COPY_DEST, 
 		D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE);
-	GetCommandList()->ResourceBarrier(1, &TmpBarrier2);
+	DXRenderEngine::getInstance().GetCommandList()->ResourceBarrier(1, &TmpBarrier2);
 }
 
 void RTextureManage::LoadCubeMapFormPath(const std::string& name, const std::string& path)
@@ -206,8 +207,8 @@ void RTextureManage::LoadCubeMapFormPath(const std::string& name, const std::str
 	Tex->Name = name;
 	Tex->Filename = path;
 	auto Tmp=String2Wstring(Tex->Filename);
-	CreateDDSTextureFromFile12(GetD3dDevice().Get(),
-		GetCommandList().Get(), Tmp.c_str(),
+	CreateDDSTextureFromFile12(DXRenderEngine::getInstance().GetD3dDevice().Get(),
+		DXRenderEngine::getInstance().GetCommandList().Get(), Tmp.c_str(),
 		Tex->Resource, Tex->UploadHeap);
 
 	m_CubeMap = std::move(Tex);

@@ -3,13 +3,12 @@
 #include"../ViewPort/ClientViewport.h"
 #include"RObject/RMinimalObject.h"
 #include"CameraType.h"
-#include"../Interface/DXDeviceInterface.h"
 #include"../Actor/ActorObject.h"
 #include "Camera.CodeReflection.h"
 struct RInputKey;
 class RInputComponent;
 
-class RCamera :public ClientViewport,public IDirectXDeviceInterface
+class RCamera :public ClientViewport
 {
 	CODEREFLECTION()
 

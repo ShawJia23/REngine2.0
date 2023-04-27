@@ -1,6 +1,6 @@
 #include "DXRootSignature.h"
-
-
+#include"../.././../EngineMinimal.h"
+#include"../../Engine/DXRenderEngine.h"
 std::vector<CD3DX12_STATIC_SAMPLER_DESC> GetStaticSamplers()
 {
 	const CD3DX12_STATIC_SAMPLER_DESC pointWrap(
@@ -97,7 +97,7 @@ void RDXRootSignature::BuildRootSignature(UINT textureNum)
         Engine_Log_Error("%s", (char*)ErrorBlob->GetBufferPointer());
     }
 
-    GetD3dDevice()->CreateRootSignature(
+    DXRenderEngine::getInstance().GetD3dDevice()->CreateRootSignature(
         0,
         SerializeRootSignature->GetBufferPointer(),
         SerializeRootSignature->GetBufferSize(),
@@ -106,5 +106,5 @@ void RDXRootSignature::BuildRootSignature(UINT textureNum)
 
 void RDXRootSignature::SetRootSignature()
 {
-    GetCommandList()->SetGraphicsRootSignature(m_RootSignature.Get());
+    DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootSignature(m_RootSignature.Get());
 }

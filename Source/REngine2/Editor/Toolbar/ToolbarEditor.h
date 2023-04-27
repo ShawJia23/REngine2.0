@@ -1,7 +1,6 @@
 #pragma once
 #include"../EditorBase.h"
-#include"../../Engine/Interface/DXDeviceInterface.h"
-class ToolbarEditor :public EditorBase, public IDirectXDeviceInterface
+class ToolbarEditor :public EditorBase
 {
 public:
 	virtual void BuildEditor();

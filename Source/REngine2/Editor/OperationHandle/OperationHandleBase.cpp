@@ -136,11 +136,9 @@ void OperationHandleBase::Tick(GameTimer& gt)
 {
 	Super::Tick(gt);
 
-	if (!GetWorld())
-		return;
-	if (GetWorld()->GetCamera())
+	if (RWorld::getInstance().GetCamera())
 	{
-		fvector_3d New3Value = RMath::ToVector3d(GetWorld()->GetCamera()->GetPosition()) - RMath::ToVector3d(GetPosition());
+		fvector_3d New3Value = RMath::ToVector3d(RWorld::getInstance().GetCamera()->GetPosition()) - RMath::ToVector3d(GetPosition());
 		fvector_3d Scale = New3Value.len() / FixedZoom;
 
 		SetScale(Scale);
@@ -233,7 +231,6 @@ void OperationHandleBase::OnMouseMove(int X, int Y)
 		return;
 	CollisionResult CollisionResult;
 	RayCastSystem::HitSpecificObjectsResultByScreen(
-		GetWorld(),
 		this,
 		IgnoreComponents,
 		X, Y,
@@ -300,7 +297,6 @@ float OperationHandleBase::GetMouseCreenMovePosition(
 		XMVECTOR ViewDirection;
 		XMMATRIX ViewInverseMatrix;
 		if (RayCastSystem::GetRayParamByScreen(
-			GetWorld(),
 			fvector_2id(X, Y),
 			ViewOriginPoint,
 			ViewDirection,

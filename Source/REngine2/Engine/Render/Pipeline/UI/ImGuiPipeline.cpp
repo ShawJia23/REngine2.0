@@ -1,5 +1,7 @@
 #include "ImGuiPipeline.h"
-
+#include"../../Engine/DXRenderEngine.h"
+#include"../../../../Editor/Editor.h"
+#include"../../../Platform/Windows/WindowsEngine.h"
 #if EDITOR_ENGINE
 #include "../../../../Editor/Editor.h"
 #endif // EDITOR_ENGINE
@@ -16,9 +18,9 @@ void RImGuiPipeline::Init(ID3D12DescriptorHeap* heap, UINT offset)
 
 	ImGui::StyleColorsDark();
 
-	ImGui_ImplWin32_Init(GetMianWindowsHandle());
+	ImGui_ImplWin32_Init(RWindowsEngine::getInstance().GetMainWindowsHandle());
 	 
-	UINT CBVSize= GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	UINT CBVSize= DXRenderEngine::getInstance().GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 
 	auto pCpu=
 		CD3DX12_CPU_DESCRIPTOR_HANDLE(heap->GetCPUDescriptorHandleForHeapStart(), offset, CBVSize);
@@ -26,12 +28,12 @@ void RImGuiPipeline::Init(ID3D12DescriptorHeap* heap, UINT offset)
 	auto pGpu =
 		CD3DX12_GPU_DESCRIPTOR_HANDLE(heap->GetGPUDescriptorHandleForHeapStart(), offset, CBVSize);
 
-	ImGui_ImplDX12_Init(GetD3dDevice().Get(),
+	ImGui_ImplDX12_Init(DXRenderEngine::getInstance().GetD3dDevice().Get(),
 		1,DXGI_FORMAT_R8G8B8A8_UNORM, heap,
 		pCpu,pGpu);
 
 #if EDITOR_ENGINE
-	GetEditorEngine()->BuildEditor();
+	EditorEngine::getInstance().BuildEditor();
 #endif
 }
 
@@ -46,13 +48,13 @@ void RImGuiPipeline::Draw(GameTimer& gt)
 
 	ImGui::Render();
 
-	ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), GetCommandList().Get());
+	ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), DXRenderEngine::getInstance().GetCommandList().Get());
 }
 
 void RImGuiPipeline::Exit()
 {
 #if EDITOR_ENGINE
-	GetEditorEngine()->ExitEditor();
+	EditorEngine::getInstance().ExitEditor();
 #endif
 	ImGui_ImplDX12_Shutdown();
 	ImGui_ImplWin32_Shutdown();
@@ -61,6 +63,6 @@ void RImGuiPipeline::Exit()
 void RImGuiPipeline::Tick(GameTimer& gt)
 {
 #if EDITOR_ENGINE
-	GetEditorEngine()->DrawEditor(gt);
+	EditorEngine::getInstance().DrawEditor(gt);
 #endif
 }

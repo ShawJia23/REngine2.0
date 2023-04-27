@@ -1,5 +1,4 @@
 #pragma once
-#include"../../Interface/DXDeviceInterface.h"
 #include"RootSignature/DXRootSignature.h"
 #include"../../Mesh/MeshType.h"
 #include"../../ViewPort/ViewportInfo.h"
@@ -8,7 +7,7 @@
 #include"UI/ImGuiPipeline.h"
 
 class RMeshComponent;
-class  DX12Pipeline:IDirectXDeviceInterface
+class  DX12Pipeline
 {
 public:
 	 DX12Pipeline();

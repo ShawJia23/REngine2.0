@@ -2,5 +2,4 @@
 
 REngine::REngine()
 {
-	SetTick(false);
 }

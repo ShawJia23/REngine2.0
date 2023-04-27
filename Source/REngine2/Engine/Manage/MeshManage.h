@@ -11,19 +11,8 @@ class RMeshManage:public PublicSingleton<RMeshManage>
 {
 public:
 	RMeshManage();
+	~RMeshManage();
 
-	virtual void Init();
-
-	virtual void BuildPipeline();
-
-	virtual void UpdateCalculations(GameTimer& gt, const ViewportInfo viewportInfo);
-	virtual void OnResetSize(int width, int height);
-
-	virtual void PreDraw(GameTimer& gt);
-	virtual void Draw(GameTimer& gt);
-	virtual void PostDraw(GameTimer& gt);
-
-public:
 	RMeshComponent* CreateBoxMeshComponent(
 		const CreateObjectParam& inObjectParam,
 		float inHeight,
@@ -59,9 +48,4 @@ public:
 		uint32_t inHeightSubdivision);
 
 	RMeshComponent* CreateCustomMeshComponent(const CreateObjectParam& inObjectParam);
-
-	DX12Pipeline* GetDX12Pipeline() const { return const_cast<DX12Pipeline*>(&m_pipeline); }
-protected:
-	DX12Pipeline m_pipeline;
-
 };

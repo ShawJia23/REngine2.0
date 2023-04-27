@@ -5,7 +5,8 @@
 #include "Toolbar/ToolbarEditor.h"
 #include"Explorer/ObjectExplorer.h"
 #include"Inspector/InspectorEditor.h"
-class EditorEngine:public REngine, public EditorBase
+#include"../Engine/Core/public_singleton.h"
+class EditorEngine:public REngine, public EditorBase, public PublicSingleton<EditorEngine>
 {
 public:
 	EditorEngine();

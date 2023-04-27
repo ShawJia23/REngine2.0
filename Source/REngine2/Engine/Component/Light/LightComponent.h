@@ -1,11 +1,10 @@
 #pragma once
 #include"../TransformComponent/TransformComponent.h"
-#include"../../Interface/DXDeviceInterface.h"
 #include"LightType.h"
 #include"LightComponent.CodeReflection.h"
 class RMeshComponent;
 
-class RLightComponent :public RTransformComponent, public IDirectXDeviceInterface
+class RLightComponent :public RTransformComponent
 {
 	CODEREFLECTION()
 

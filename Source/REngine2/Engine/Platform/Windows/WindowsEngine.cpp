@@ -20,16 +20,13 @@
 #include "WindowsMessageProcessing.h"
 
 
-RWindowsEngine::RWindowsEngine():
-	m_renderEngine(new DXRenderEngine()),
-	m_EditorEngine(new EditorEngine())
+RWindowsEngine::RWindowsEngine()
 {
 
 }
 
 RWindowsEngine::~RWindowsEngine()
 {
-	delete m_renderEngine;
 }
 
 int RWindowsEngine::PreInit(WinMainCommandParameters InParameters)
@@ -41,7 +38,7 @@ int RWindowsEngine::PreInit(WinMainCommandParameters InParameters)
 	Engine_Log("Init logSystem.");
 
 	//渲染引擎初始化
-	m_renderEngine->PreInit(InParameters);
+	DXRenderEngine::getInstance().PreInit(InParameters);
 
 	Engine_Log("PreInit Engine.");
 
@@ -54,12 +51,9 @@ int RWindowsEngine::Init(WinMainCommandParameters InParameters)
 
 	InitWindows(InParameters);
 
-	m_renderEngine->SetMianWindowsHandle(MianWindowsHandle);
+	DXRenderEngine::getInstance().SetMianWindowsHandle(MianWindowsHandle);
 
-	m_renderEngine->Init(InParameters);
-	BUILD_OBJECT_PARAMETERS_BY_NO_COMPONENT(this);
-	m_world = CreateObject<RWorld>(inObjectParam,new RWorld());
-	m_renderEngine->m_World = m_world;
+	DXRenderEngine::getInstance().Init(InParameters);
 	Engine_Log("Init Engine.");
 	return 0;
 }
@@ -68,7 +62,7 @@ int RWindowsEngine::PostInit()
 {
 	Engine_Log("PostInit Engine.");
 
-	m_renderEngine->PostInit();
+	DXRenderEngine::getInstance().PostInit();
 
 	for (auto& Tmp : GRObjects)
 	{
@@ -77,29 +71,6 @@ int RWindowsEngine::PostInit()
 
 	return 0;
 }
-
-//void RWindowsEngine::Tick(GameTimer& gt)
-//{
-//	m_Timer.Tick();
-//	CalculateFrameStats();
-//	for (auto& Temp : GRObjects)
-//	{
-//		if(Temp->IsTick())
-//			Temp->Tick(gt);
-//	}
-//
-//	if (m_world && m_world->GetCamera())
-//	{
-//		ViewportInfo pViewportInfo;
-//		XMFLOAT3 pViewPosition = m_world->GetCamera()->GetPosition();
-//		pViewportInfo.ViewportPosition = XMFLOAT4(pViewPosition.x, pViewPosition.y, pViewPosition.z, 1.f);
-//		pViewportInfo.ProjectMatrix= m_world->GetCamera()->GetProjectMatrix();
-//		pViewportInfo.ViewMatrix = m_world->GetCamera()->GetViewMatrix();
-//		m_renderEngine->UpdateCalculations(gt, pViewportInfo);
-//	}
-//
-//	m_renderEngine->Tick(gt);
-//}
 
 void RWindowsEngine::Tick()
 {
@@ -111,29 +82,29 @@ void RWindowsEngine::Tick()
 			Temp->Tick(m_Timer);
 	}
 
-	if (m_world && m_world->GetCamera())
+	if (RWorld::getInstance().GetCamera())
 	{
 		ViewportInfo pViewportInfo;
-		XMFLOAT3 pViewPosition = m_world->GetCamera()->GetPosition();
+		XMFLOAT3 pViewPosition = RWorld::getInstance().GetCamera()->GetPosition();
 		pViewportInfo.ViewportPosition = XMFLOAT4(pViewPosition.x, pViewPosition.y, pViewPosition.z, 1.f);
-		pViewportInfo.ProjectMatrix = m_world->GetCamera()->GetProjectMatrix();
-		pViewportInfo.ViewMatrix = m_world->GetCamera()->GetViewMatrix();
-		m_renderEngine->UpdateCalculations(m_Timer, pViewportInfo);
+		pViewportInfo.ProjectMatrix = RWorld::getInstance().GetCamera()->GetProjectMatrix();
+		pViewportInfo.ViewMatrix = RWorld::getInstance().GetCamera()->GetViewMatrix();
+		DXRenderEngine::getInstance().UpdateCalculations(m_Timer, pViewportInfo);
 	}
 
-	m_renderEngine->Tick(m_Timer);
+	DXRenderEngine::getInstance().Tick(m_Timer);
 }
 
 
 void RWindowsEngine::OnResetSize(int width, int height)
 {
-	m_renderEngine->OnResetSize(width, height);
-	m_EditorEngine->OnResetSize(width, height);
+	DXRenderEngine::getInstance().OnResetSize(width, height);
+	DXRenderEngine::getInstance().OnResetSize(width, height);
 }
 
 int RWindowsEngine::PreExit()
 {
-	m_renderEngine->PreExit();
+	DXRenderEngine::getInstance().PreExit();
 
 	Engine_Log("PreExit Engine.");
 	return 0;
@@ -141,7 +112,7 @@ int RWindowsEngine::PreExit()
 
 int RWindowsEngine::Exit()
 {
-	m_renderEngine->PreExit();
+	DXRenderEngine::getInstance().PreExit();
 
 	Engine_Log("Exit Engine.");
 	return 0;
@@ -149,7 +120,7 @@ int RWindowsEngine::Exit()
 
 int RWindowsEngine::PostExit()
 {
-	m_renderEngine->PostExit();
+	DXRenderEngine::getInstance(). PostExit();
 
 	Engine_Log("PostExit Engine.");
 	return 0;

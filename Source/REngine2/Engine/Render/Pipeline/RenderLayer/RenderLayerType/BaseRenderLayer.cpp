@@ -7,6 +7,7 @@
 #include"../../Geometry/GeometryMap.h"
 #include"../../../../World.h"
 #include"../../../../Camera/Camera.h"
+#include"../../../Engine/DXRenderEngine.h"
 
 RenderLayer::RenderLayer():RenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPAQUE)
 {
@@ -102,24 +103,24 @@ void RenderLayer::DrawMesh(std::weak_ptr<RRenderData>& geometry)
 	D3D12_VERTEX_BUFFER_VIEW VBV = m_GeometryMap->GetRGeometry(pRenderData->GeometryIndex).GetVertexBufferView();
 	D3D12_INDEX_BUFFER_VIEW IBV = m_GeometryMap->GetRGeometry(pRenderData->GeometryIndex).GetIndexBufferView();
 
-	GetCommandList()->IASetIndexBuffer(&IBV);
+	DXRenderEngine::getInstance().GetCommandList()->IASetIndexBuffer(&IBV);
 
 	//绑定渲染流水线上的输入槽，可以在输入装配器阶段传入顶点数据
-	GetCommandList()->IASetVertexBuffers(
+	DXRenderEngine::getInstance().GetCommandList()->IASetVertexBuffers(
 		0,//起始输入槽 0-15 
 		1,//k k+1 ... k+n-1 
 		&VBV);
 
 	//定义要绘制的图元 点 线 面
 	EMaterialDisplayStatue pDisplayState = (*pRenderData->Mesh->GetMaterials())[0]->GetMaterialDisplayState();
-	GetCommandList()->IASetPrimitiveTopology((D3D_PRIMITIVE_TOPOLOGY)pDisplayState);
+	DXRenderEngine::getInstance().GetCommandList()->IASetPrimitiveTopology((D3D_PRIMITIVE_TOPOLOGY)pDisplayState);
 
 	D3D12_GPU_VIRTUAL_ADDRESS VAddress =
 		FirstVirtualMeshAddress + pRenderData->ObjectIndex * MeshOffset;
 
-	GetCommandList()->SetGraphicsRootConstantBufferView(0, VAddress);
+	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootConstantBufferView(0, VAddress);
 
-	GetCommandList()->DrawIndexedInstanced(
+	DXRenderEngine::getInstance().GetCommandList()->DrawIndexedInstanced(
 		pRenderData->IndexSize,//顶点数量
 		1,//绘制实例数量
 		pRenderData->IndexOffsetPosition,//顶点缓冲区第一个被绘制的索引

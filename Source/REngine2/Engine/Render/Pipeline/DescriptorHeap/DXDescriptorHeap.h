@@ -1,7 +1,6 @@
 #pragma once
-#include"../../../Interface/DXDeviceInterface.h"
-
-struct RDXDescriptorHeap :public IDirectXDeviceInterface_Struct
+#include"../../../EngineMinimal.h"
+struct RDXDescriptorHeap 
 {
 	void CreatePSO(UINT numDescriptor);
 	void SetDescriptorHeap();

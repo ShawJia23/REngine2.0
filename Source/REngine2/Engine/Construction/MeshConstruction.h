@@ -11,16 +11,16 @@ namespace MeshConstruction
         mesh->BuildKey(hashKey, forward<Args>(rest)...);
         mesh->SetMeshRenderLayerType(type);
         std::shared_ptr<RRenderData> RenderingData;
-        if (RMeshManage::getInstance().GetDX12Pipeline()->FindMeshRenderingDataByHash(
+        if (DXRenderEngine::getInstance().GetDX12Pipeline()->FindMeshRenderingDataByHash(
             hashKey, RenderingData, (int)mesh->GetRenderLayerType()))
         {
-            RMeshManage::getInstance().GetDX12Pipeline()->DuplicateMesh(mesh, RenderingData);
+            DXRenderEngine::getInstance().GetDX12Pipeline()->DuplicateMesh(mesh, RenderingData);
         }
         else
         {
             MeshRenderData meshData;
             mesh->CreateMesh(meshData, forward<Args>(rest)...);
-            RMeshManage::getInstance().GetDX12Pipeline()->BuildMesh(hashKey, mesh, meshData);
+            DXRenderEngine::getInstance().GetDX12Pipeline()->BuildMesh(hashKey, mesh, meshData);
         }
         mesh->Init();
 

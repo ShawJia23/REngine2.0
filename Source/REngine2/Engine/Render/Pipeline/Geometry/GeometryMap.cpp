@@ -9,7 +9,7 @@
 #include"../../../Actor/ActorObject.h"
 #include"../../../Light/RLightMinimal.h"
 #include"../../../ViewPort/ViewportInfo.h"
-
+#include"../../Engine/DXRenderEngine.h"
 UINT MeshObjectCount=0;
 
 RGeometryMap::RGeometryMap()
@@ -22,7 +22,7 @@ RGeometryMap::RGeometryMap()
 
 void RGeometryMap::Init() 
 {
-	m_DescriptorOffset = GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	m_DescriptorOffset = DXRenderEngine::getInstance().GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 }
 
 void RGeometryMap::BuildDescriptorHeap()
@@ -145,13 +145,13 @@ void RGeometryMap::Draw()
 {
 	m_DescriptorHeap.SetDescriptorHeap();
 
-	GetCommandList()->SetGraphicsRootConstantBufferView(
+	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootConstantBufferView(
 		1,
 		m_ViewportConstantBufferView.GetBuffer()->GetGPUVirtualAddress());
-	GetCommandList()->SetGraphicsRootConstantBufferView(
+	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootConstantBufferView(
 		2,
 		m_LightsBufferView.GetBuffer()->GetGPUVirtualAddress());
-	GetCommandList()->SetGraphicsRootShaderResourceView(
+	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootShaderResourceView(
 		3,
 		m_MaterialsBufferView.GetBuffer()->GetGPUVirtualAddress());
 	DrawTexture();
@@ -163,12 +163,12 @@ void RGeometryMap::DrawTexture()
 	auto DesHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
 	DesHandle.Offset(0, m_DescriptorOffset);
 
-	GetCommandList()->SetGraphicsRootDescriptorTable(4, DesHandle);
+	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootDescriptorTable(4, DesHandle);
 
 	auto DesHandle1 = CD3DX12_GPU_DESCRIPTOR_HANDLE(GetHeap()->GetGPUDescriptorHandleForHeapStart());
 	DesHandle1.Offset(RTextureManage::getInstance().GetTextureSize(), m_DescriptorOffset);
 
-	GetCommandList()->SetGraphicsRootDescriptorTable(5, DesHandle1);
+	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootDescriptorTable(5, DesHandle1);
 }
 
 void RGeometryMap::OnResetSize(int width, int height)

@@ -105,7 +105,7 @@ void RenderLayerManage::HighlightDisplayObject(std::weak_ptr<RRenderData> render
 
 	if (GActorObject* pActor = dynamic_cast<GActorObject*>(renderData.lock()->Mesh->GetOuter()))
 	{
-		auto actors = GetWorld()->GetActors();
+		auto actors = RWorld::getInstance().GetActors();
 		for (size_t i = 0; i < actors.size(); i++)
 		{
 			if (actors[i] == pActor)

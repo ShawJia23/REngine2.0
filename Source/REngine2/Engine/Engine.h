@@ -1,12 +1,12 @@
 ﻿#pragma once
 
 #include"RObject/RMinimalObject.h"
-
+#include"Core/public_singleton.h"
 #if defined(_WIN32)
 #include"Platform/Windows/WinMainCommandParameters.h"
 #endif // 1
 
-class REngine:public RMinimalObject
+class REngine
 {
 public:
 	REngine();

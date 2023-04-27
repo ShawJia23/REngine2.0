@@ -2,13 +2,13 @@
 
 #include"ViewPort/Viewport.h"
 #include"RObject/RMinimalObject.h"
-
+#include"Core/public_singleton.h"
 struct RInputKey;
 class RTransformComponent;
 class RInputComponent;
 class RCamera;
 class GActorObject;
-class RWorld :public RMinimalObject 
+class RWorld:public PublicSingleton<RWorld>
 {
 public:
 	RWorld();
@@ -19,9 +19,8 @@ public:
 	T* CreateActorObject()
 	{
 		T* InArray = new T();
-		InArray->SetOuter(this);
 		InArray->InitMinimalObject();
-		ActorObjects.push_back(std::move(InArray));
+		ActorObjects.push_back(InArray);
 
 		return InArray;
 	}

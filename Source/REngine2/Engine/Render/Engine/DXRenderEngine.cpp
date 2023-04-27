@@ -9,7 +9,7 @@
 
 void DXRenderEngine::UpdateCalculations(GameTimer& gt, const ViewportInfo viewportInfo)
 {
-	RMeshManage::getInstance().UpdateCalculations(gt,viewportInfo);
+	m_pipeline.UpdateCalculations(viewportInfo);
 }
 
 void DXRenderEngine::BeforeDraw() 
@@ -22,8 +22,8 @@ void DXRenderEngine::BeforeDraw()
 
 	//需要每帧执行
 	//绑定矩形框
-	m_commandList->RSSetViewports(1, &m_World->GetCamera()->ViewprotInfo);
-	m_commandList->RSSetScissorRects(1, &m_World->GetCamera()->ViewprotRect);
+	m_commandList->RSSetViewports(1, &RWorld::getInstance().GetCamera()->ViewprotInfo);
+	m_commandList->RSSetScissorRects(1, &RWorld::getInstance().GetCamera()->ViewprotRect);
 
 	//清除画布
 	m_commandList->ClearRenderTargetView(GetCurrentSwapBufferView(),
@@ -61,11 +61,11 @@ void DXRenderEngine::Tick(GameTimer& gt)
 	//重置录制相关的内存，为下一帧做准备
 	ANALYSIS_HRESULT(m_commandAllocator->Reset());
 
-	RMeshManage::getInstance().PreDraw(gt);
+	m_pipeline.ResetCommandList();
 
 	BeforeDraw();
 
-	RMeshManage::getInstance().Draw(gt);
+	m_pipeline.Draw(gt);
 
 	AfterDraw();
 
@@ -74,7 +74,7 @@ void DXRenderEngine::Tick(GameTimer& gt)
 	ANALYSIS_HRESULT(m_swapChain->Present(0, presentFlags));
 	MoveToNextFrame();
 
-	RMeshManage::getInstance().PostDraw(gt);
+	m_pipeline.PostDraw(gt);
 	//CPU等GPU
 	WaitGPUCommandQueueComplete();
 }
@@ -112,10 +112,10 @@ void DXRenderEngine::OnResetSize(int width, int height)
 		ChangeResources(width, height);
 
 		//camera
-		if (m_World && m_World->GetCamera())
-			m_World->GetCamera()->OnResetSize(width, height);
+		if (RWorld::getInstance().GetCamera())
+			RWorld::getInstance().GetCamera()->OnResetSize(width, height);
 		//mesh
-		RMeshManage::getInstance().OnResetSize(width, height);
+		m_pipeline.OnResetSize(width, height);
 
 		WaitGPUCommandQueueComplete();
 	}
@@ -179,10 +179,9 @@ void DXRenderEngine::ChangeResources(int width, int height)
 	ID3D12CommandList* CommandList[] = { m_commandList.Get() };
 	m_commandQueue->ExecuteCommandLists(_countof(CommandList), CommandList);
 
-	if (m_World &&
-		m_World->GetCamera())
+	if (RWorld::getInstance().GetCamera())
 	{
-		m_World->GetCamera()->OnResetSize(width, height);
+		RWorld::getInstance().GetCamera()->OnResetSize(width, height);
 	}
 }
 
@@ -232,9 +231,6 @@ DXRenderEngine::DXRenderEngine()
 		m_swapChainBuffer.push_back(ComPtr<ID3D12Resource>());
 	}
 
-	bTick = false;
-
-	m_ActorManage = new RActorManage();
 }
 
 int DXRenderEngine::PreInit(WinMainCommandParameters InParameters)
@@ -249,7 +245,7 @@ int DXRenderEngine::Init(WinMainCommandParameters InParameters)
 
 	PostInitDirect3D();
 
-	RMeshManage::getInstance().Init();
+	m_pipeline.Init();
 
 	Engine_Log("Init DXRenderEngine");
 
@@ -262,13 +258,13 @@ int DXRenderEngine::PostInit()
 
 	ANALYSIS_HRESULT(m_commandList->Reset(m_commandAllocator.Get(), NULL));
 	{
-		m_ActorManage->LoadObject();
-		m_ActorManage->LoadAsset();
+		RActorManage::getInstance().LoadObject();
+		RActorManage::getInstance().LoadAsset();
 	}
 	Engine_Log("W A S D to Move");
 	Engine_Log("Press RMouse + Move Mouse to Rotate");
 	
-	RMeshManage::getInstance().BuildPipeline();
+	m_pipeline.BuildPipeline();
 
 	ANALYSIS_HRESULT(m_commandList->Close());
 
@@ -365,7 +361,7 @@ void DXRenderEngine::CreateSwapChain()
 	ANALYSIS_HRESULT(swapChain.As(&m_swapChain));
 	m_frameIndex = m_swapChain->GetCurrentBackBufferIndex();
 }
-
+ 
 void DXRenderEngine::CreateDescriptor()
 {
 	//资源描述符
@@ -449,7 +445,6 @@ void DXRenderEngine::PostInitDirect3D()
 
 DXRenderEngine::~DXRenderEngine()
 {
-	delete m_ActorManage;
 	CloseHandle(m_fenceEvent);
 	m_swapChain.Reset();
 }

@@ -26,7 +26,7 @@ void CustomMeshComponent::CreateMesh(MeshRenderData& meshData, const string& nam
 	auto str1 = StringSplit(name, '.');
 	if (str1.size() > 1 && strcmp("fbx",str1.back().c_str())==0)
 	{
-		//LoadFBXFromBuff(meshData, name.c_str());
+		LoadFBXFromBuff(meshData, name.c_str());
 	}
 	else
 	{

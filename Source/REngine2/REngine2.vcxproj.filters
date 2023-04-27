@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\EngineFactory.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -82,9 +79,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Component\Input\Input.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Interface\DXDeviceInterface.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Render\Buffer\ConstructBuffer.cpp">
@@ -329,9 +323,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\EngineFactory.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\EngineMinimal.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -411,9 +402,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Component\Input\Input.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Interface\DXDeviceInterface.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Render\Buffer\ConstructBuffer.h">

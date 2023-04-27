@@ -40,8 +40,7 @@ CollisionResult::CollisionResult()
 {
 }
 
-bool CollisionScene::RaycastSingle(RWorld* inWorld, 
-	const XMVECTOR& originPoint,
+bool CollisionScene::RaycastSingle(const XMVECTOR& originPoint,
 	const XMVECTOR& direction, 
 	const XMMATRIX& viewInverseMatrix,
 	CollisionResult& outResult)
@@ -49,7 +48,7 @@ bool CollisionScene::RaycastSingle(RWorld* inWorld,
 	float FinalTime = FLT_MAX;
 	float BoundTime = 0.f;
 	float dis = FLT_MAX;
-	auto renderDatas = RMeshManage::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRGeometry(0).RenderDatasPool;
+	auto renderDatas = DXRenderEngine::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRGeometry(0).RenderDatasPool;
 	for (size_t i = 0; i < renderDatas.size(); i++)
 	{
 		std::shared_ptr<RRenderData>& pRenderData = renderDatas[i];
@@ -81,7 +80,7 @@ bool CollisionScene::RaycastSingle(RWorld* inWorld,
 			continue;
 
 		auto oPos = pRenderData->Mesh->GetPosition();
-		auto cPos = inWorld->GetCamera()->GetPosition();
+		auto cPos = RWorld::getInstance().GetCamera()->GetPosition();
 		float a = abs(cPos.x - oPos.x);
 		float b = abs(cPos.y - oPos.y);
 		float c = abs(cPos.z - oPos.z);
@@ -125,7 +124,6 @@ bool CollisionScene::RaycastSingle(RWorld* inWorld,
 }
 
 bool CollisionScene::RaycastSingle(
-	RWorld* inWorld,
 	GActorObject* inSpecificObjects,
 	const std::vector<RComponent*>& ignoreComponents,
 	const XMVECTOR& originPoint,
@@ -133,10 +131,10 @@ bool CollisionScene::RaycastSingle(
 	const XMMATRIX& viewInverseMatrix,
 	CollisionResult& outResult)
 {
-	auto renderDatas = RMeshManage::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRGeometry(0).RenderDatasPool;
+	auto renderDatas = DXRenderEngine::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRGeometry(0).RenderDatasPool;
 	for (size_t i = 0; i < renderDatas.size(); i++)
 	{
-		std::shared_ptr<RRenderData>& pRenderData = renderDatas[i ];
+		std::shared_ptr<RRenderData>& pRenderData = renderDatas[i];
 		if (pRenderData->Mesh->IsPickup())
 		{
 			if (!IsIgnoreComponents(pRenderData->Mesh, ignoreComponents))

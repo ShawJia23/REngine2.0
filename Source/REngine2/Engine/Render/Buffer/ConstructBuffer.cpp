@@ -1,6 +1,6 @@
 #include "ConstructBuffer.h"
 #include"../../Debug/EngineLog.h"
-
+#include"../Engine/DXRenderEngine.h"
 namespace ConstructBuffer
 {
 	ComPtr<ID3D12Resource> RConstructBuffer::ConstructDefaultBuffer(ComPtr<ID3D12Resource>& OutTmpBuffer, const void* InData, UINT64 InDataSize)
@@ -9,7 +9,7 @@ namespace ConstructBuffer
 
 		CD3DX12_RESOURCE_DESC BufferResourceDESC = CD3DX12_RESOURCE_DESC::Buffer(InDataSize);
 		CD3DX12_HEAP_PROPERTIES BufferProperties = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
-		ANALYSIS_HRESULT(GetD3dDevice()->CreateCommittedResource(
+		ANALYSIS_HRESULT(DXRenderEngine::getInstance().GetD3dDevice()->CreateCommittedResource(
 			&BufferProperties,
 			D3D12_HEAP_FLAG_NONE,
 			&BufferResourceDESC,
@@ -17,7 +17,7 @@ namespace ConstructBuffer
 			NULL, IID_PPV_ARGS(Buffer.GetAddressOf())));
 
 		CD3DX12_HEAP_PROPERTIES UpdateBufferProperties = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
-		ANALYSIS_HRESULT(GetD3dDevice()->CreateCommittedResource(
+		ANALYSIS_HRESULT(DXRenderEngine::getInstance().GetD3dDevice()->CreateCommittedResource(
 			&UpdateBufferProperties,
 			D3D12_HEAP_FLAG_NONE,
 			&BufferResourceDESC,
@@ -34,11 +34,11 @@ namespace ConstructBuffer
 			D3D12_RESOURCE_STATE_COMMON,
 			D3D12_RESOURCE_STATE_COPY_DEST);
 
-		GetCommandList()->ResourceBarrier(1, &CopyDestBarrier);
+		DXRenderEngine::getInstance().GetCommandList()->ResourceBarrier(1, &CopyDestBarrier);
 
 		//更新子资源，应该填充所有子资源数组
 		UpdateSubresources<1>(
-			GetCommandList().Get(),
+			DXRenderEngine::getInstance().GetCommandList().Get(),
 			Buffer.Get(),
 			OutTmpBuffer.Get(),
 			0,//0 -> D3D12_REQ_SUBRESOURCES

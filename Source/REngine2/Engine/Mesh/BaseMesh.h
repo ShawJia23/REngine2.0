@@ -4,12 +4,11 @@
 #include "../Render/Render.h"
 #include "../Shader/Shader.h"
 #include"../Actor/ActorObject.h"
-#include"../Interface/DXDeviceInterface.h"
 #include"../Render/Pipeline/RenderLayer/RenderLayerType.h"
 #include "BaseMesh.CodeReflection.h"
 class RMaterial;
 class RMeshComponent;
-class BMesh : public GActorObject, public IRenderingInterface, public IDirectXDeviceInterface
+class BMesh : public GActorObject, public IRenderingInterface
 {
 	CODEREFLECTION()
 

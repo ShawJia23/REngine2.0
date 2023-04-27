@@ -378,7 +378,7 @@ std::string GetFilePath(std::string ObjName, std::string TexName)
 	std::string pTexNamePath = PathHelper::RelativeToAbsolutePath(PathHelper::GetEngineAssetPath()) + "/Model/";;
 	pTexNamePath += ObjName;
 	pTexNamePath += "/";
-	pTexNamePath += "tex";
+	pTexNamePath += "textures";
 	pTexNamePath += "/";
 
 	if (GetLastString(pTexNamePath, TexName, '\\'))

@@ -2,13 +2,12 @@
 #include"../Camera/Camera.h"
 #include"../World.h"
 #include"../Config/RenderConfig.h"
-bool RayCastSystem::GetRayParamByScreen(RWorld* inWorld,
-	const fvector_2id& ScreenXY,
+bool RayCastSystem::GetRayParamByScreen(const fvector_2id& ScreenXY,
 	XMVECTOR& OriginPoint,
 	XMVECTOR& Direction,
 	XMMATRIX& ViewInverseMatrix)
 {
-	if (RCamera* camera = inWorld->GetCamera())
+	if (RCamera* camera = RWorld::getInstance().GetCamera())
 	{
 		int H = camera->GetHeight();
 		int W = camera->GetWidth();
@@ -31,26 +30,24 @@ bool RayCastSystem::GetRayParamByScreen(RWorld* inWorld,
 	return false;
 }
 
-bool RayCastSystem::HitResultByScreen(RWorld* InWorld, int ScreenX, int ScreenY, CollisionResult& OutResult)
+bool RayCastSystem::HitResultByScreen(int ScreenX, int ScreenY, CollisionResult& OutResult)
 {
 	XMVECTOR OriginPoint;
 	XMVECTOR Direction;
 	XMMATRIX ViewInverseMatrix;
 	if (GetRayParamByScreen(
-		InWorld,
 		fvector_2id(ScreenX, ScreenY),
 		OriginPoint,
 		Direction,
 		ViewInverseMatrix))
 	{
-		return CollisionScene::RaycastSingle(InWorld, OriginPoint, Direction, ViewInverseMatrix, OutResult);
+		return CollisionScene::RaycastSingle(OriginPoint, Direction, ViewInverseMatrix, OutResult);
 	}
 
 	return false;
 }
 
 bool RayCastSystem::HitSpecificObjectsResultByScreen(
-	RWorld* InWorld,
 	GActorObject* InSpecificObjects,
 	const std::vector<RComponent*>& IgnoreComponents,
 	int ScreenX, int ScreenY, CollisionResult& OutResult)
@@ -59,14 +56,12 @@ bool RayCastSystem::HitSpecificObjectsResultByScreen(
 	XMVECTOR Direction;
 	XMMATRIX ViewInverseMatrix;
 	if (GetRayParamByScreen(
-		InWorld,
 		fvector_2id(ScreenX, ScreenY),
 		OriginPoint,
 		Direction,
 		ViewInverseMatrix))
 	{
 		return CollisionScene::RaycastSingle(
-			InWorld,
 			InSpecificObjects,
 			IgnoreComponents,
 			OriginPoint, Direction, ViewInverseMatrix, OutResult);

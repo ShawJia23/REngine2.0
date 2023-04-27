@@ -1,9 +1,8 @@
 #pragma once
 #include"RenderLayerMinimal.h"
-#include"../../../Interface/DXDeviceInterface.h"
 class GActorObject;
 class RComponent;
-class RenderLayerManage :public IDirectXDeviceInterface
+class RenderLayerManage
 {
 public:
 	RenderLayerManage();

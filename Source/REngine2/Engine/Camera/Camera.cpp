@@ -5,6 +5,7 @@
 #include"../Render/Pipeline/RenderLayer/RenderLayerManage.h"
 #include"../../Editor/OperationHandle/OperationHandleManage.h"
 #include"../../Engine/Construction/MacroConstruction.h"
+#include"../Platform/Windows/WindowsEngine.h"
 extern RMeshComponent* SelectAxisComponent;
 extern GActorObject* SelectedObject;
 RCamera::RCamera():Super()
@@ -114,7 +115,7 @@ void RCamera::OnRMouseButtonDown(int X, int Y)
 	LastMousePosition.x = X;
 	LastMousePosition.y = Y;
 
-	SetCapture(GetMianWindowsHandle());
+	SetCapture(RWindowsEngine::getInstance().GetMainWindowsHandle());
 }
 
 void RCamera::OnRMouseButtonUp(int X, int Y)
@@ -220,9 +221,9 @@ void RCamera::OnClickedScreen(int X, int Y)
 		return;
 
 	CollisionResult collisionResult;
-	RayCastSystem::HitResultByScreen(GetWorld(), X, Y, collisionResult);
+	RayCastSystem::HitResultByScreen(X, Y, collisionResult);
 
-	std::shared_ptr<RenderLayerManage> layer = RMeshManage::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRenderLayerManage();
+	std::shared_ptr<RenderLayerManage> layer = DXRenderEngine::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRenderLayerManage();
 	if (layer && collisionResult.bHit)
 	{
 		layer->HighlightDisplayObject(collisionResult.RenderData);

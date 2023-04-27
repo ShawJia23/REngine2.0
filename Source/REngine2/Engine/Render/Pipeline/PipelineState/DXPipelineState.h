@@ -1,9 +1,8 @@
 #pragma once
 #include"../../../Shader/Shader.h"
-#include"../../../Interface/DXDeviceInterface.h"
 #include"../DX12PipelineType.h"
 //提供渲染内容的接口
-struct RDXPipelineState :public IDirectXDeviceInterface_Struct
+struct RDXPipelineState
 {
 public:
 	RDXPipelineState();

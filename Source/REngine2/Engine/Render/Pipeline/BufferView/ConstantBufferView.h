@@ -1,7 +1,6 @@
 #pragma once
-#include"../../../Interface/DXDeviceInterface.h"
 #include"../../ResourcesUpdate.h"
-struct RConstantBufferView :public IDirectXDeviceInterface_Struct
+struct RConstantBufferView 
 {
 	void CreateConstant(UINT objectSize, UINT objectCount,bool bConstBuffer = true);
 

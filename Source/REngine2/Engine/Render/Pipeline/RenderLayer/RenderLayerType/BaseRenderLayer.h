@@ -2,7 +2,6 @@
 #include"../RenderLayerType.h"
 #include"../../../../Shader/Shader.h"
 #include"../../../../Shader/ShaderMacro.h"
-#include"../../../../Interface/DXDeviceInterface.h"
 #include"../../PipelineState/DXPipelineState.h"
 #include"Path/PathHelper.h"
 struct ViewportInfo;
@@ -10,7 +9,7 @@ struct RConstantBufferView;
 struct RRenderData;
 struct RGeometry;
 struct RGeometryMap;
-class RenderLayer :public IDirectXDeviceInterface
+class RenderLayer 
 {
 public:
 	RenderLayer();

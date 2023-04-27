@@ -1,6 +1,5 @@
 #pragma once
 #include"../../Engine/Actor/ActorObject.h"
-#include"../../Engine/Interface/DXDeviceInterface.h"
 #include"../../Engine/Component/Input/RInputType.h"
 #include "OperationHandleBase.CodeReflection.h"
 class CustomMeshComponent;
@@ -8,7 +7,7 @@ class RInputComponent;
 enum class EMeshRenderLayerType;
 class RComponent;
 
-class OperationHandleBase :public GActorObject, public IDirectXDeviceInterface
+class OperationHandleBase :public GActorObject
 {
 	CODEREFLECTION()
 protected:

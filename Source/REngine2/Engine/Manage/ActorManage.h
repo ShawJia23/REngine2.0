@@ -1,9 +1,9 @@
 #pragma once
 #include"../EngineMinimal.h"
-#include"../Interface/DXDeviceInterface.h"
+#include"../Core/public_singleton.h"
 
 
-class RActorManage : public IDirectXDeviceInterface
+class RActorManage : public PublicSingleton<RActorManage>
 {
 public:
 	RActorManage();

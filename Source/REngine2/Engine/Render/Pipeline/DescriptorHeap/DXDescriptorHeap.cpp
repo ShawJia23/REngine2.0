@@ -1,5 +1,5 @@
 #include"DXDescriptorHeap.h"
-
+#include"../../Engine/DXRenderEngine.h"
 void RDXDescriptorHeap::CreatePSO(UINT numDescriptor)
 {
     D3D12_DESCRIPTOR_HEAP_DESC HeapDesc;
@@ -8,11 +8,11 @@ void RDXDescriptorHeap::CreatePSO(UINT numDescriptor)
     HeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
     HeapDesc.NodeMask = 0;
 
-    GetD3dDevice()->CreateDescriptorHeap(&HeapDesc, IID_PPV_ARGS(&m_CBVHeap));
+    DXRenderEngine::getInstance().GetD3dDevice()->CreateDescriptorHeap(&HeapDesc, IID_PPV_ARGS(&m_CBVHeap));
 }
 
 void RDXDescriptorHeap::SetDescriptorHeap()
 {
 	ID3D12DescriptorHeap* DescriptorHeap[] = { m_CBVHeap.Get() };
-	GetCommandList()->SetDescriptorHeaps(_countof(DescriptorHeap), DescriptorHeap);
+	DXRenderEngine::getInstance().GetCommandList()->SetDescriptorHeaps(_countof(DescriptorHeap), DescriptorHeap);
 }

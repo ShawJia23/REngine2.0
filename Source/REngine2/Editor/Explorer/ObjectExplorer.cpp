@@ -14,23 +14,20 @@ void ObjectExplorerEditor::DrawEditor(GameTimer& gt)
 	if (!bOpen)
 		return;
 	ImGui::Begin("Object", &bOpen);
-	if (RWorld* world = GetWorld())
+	auto Actors = RWorld::getInstance().GetActors();
+	for (int i = 0; i < Actors.size(); i++)
 	{
-		auto Actors = world->GetActors();
-		for (int i = 0; i < Actors.size(); i++)
+		char ObjectNameString[128] = { 0 };
+		sprintf(ObjectNameString, "%s_%d", Actors[i]->GetName().c_str(), i);
+
+		if (ImGui::Selectable(ObjectNameString, SelectedVariable == i))
 		{
-			char ObjectNameString[128] = { 0 };
-			sprintf(ObjectNameString, "%s_%d",Actors[i]->GetName().c_str(), i);
+			HighlightDisplayObject(Actors[i]);
+			//设置选择对象
+			OperationHandleManage::Get()->SetNewSelectedObject(Actors[i]);
 
-			if (ImGui::Selectable(ObjectNameString, SelectedVariable == i))
-			{
-				HighlightDisplayObject(Actors[i]);
-				//设置选择对象
-				OperationHandleManage::Get()->SetNewSelectedObject(Actors[i]);
-
-				//显示操作手柄
-				OperationHandleManage::Get()->DisplaySelectedOperationHandle();
-			}
+			//显示操作手柄
+			OperationHandleManage::Get()->DisplaySelectedOperationHandle();
 		}
 	}
 	ImGui::End();
@@ -42,11 +39,11 @@ void ObjectExplorerEditor::ExitEditor()
 
 void ObjectExplorerEditor::HighlightDisplayObject(GActorObject* actor)
 {
-	std::shared_ptr<RenderLayerManage> layer = RMeshManage::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRenderLayerManage();
+	std::shared_ptr<RenderLayerManage> layer = DXRenderEngine::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRenderLayerManage();
 	
 	if (layer.get());
 	{
-		auto pObject= RMeshManage::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRGeometry(0).FindRenderData(actor);
+		auto pObject= DXRenderEngine::getInstance().GetDX12Pipeline()->GetGeometryMap().GetRGeometry(0).FindRenderData(actor);
 		if(!pObject.expired())
 			layer->HighlightDisplayObject(pObject);
 	}

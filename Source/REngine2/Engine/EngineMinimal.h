@@ -30,5 +30,3 @@
 using namespace Microsoft::WRL;
 using namespace DirectX;
 using namespace std;
-
-extern class REngine* Engine;

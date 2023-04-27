@@ -1,9 +1,8 @@
 #pragma once
-#include"../../../Interface/DXDeviceInterface.h"
-
+#include"../../../EngineMinimal.h"
 class RMeshComponent;
 struct MeshRenderData;
-struct RRenderData :public IDirectXDeviceInterface_Struct
+struct RRenderData 
 {
 public:
 	RRenderData();

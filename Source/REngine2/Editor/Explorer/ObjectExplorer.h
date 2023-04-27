@@ -1,9 +1,8 @@
 #pragma once
 #include"../EditorBase.h"
-#include"../../Engine/Interface/DXDeviceInterface.h"
 
 class GActorObject;
-class ObjectExplorerEditor :public EditorBase, public IDirectXDeviceInterface
+class ObjectExplorerEditor :public EditorBase
 {
 public:
 	virtual void BuildEditor();

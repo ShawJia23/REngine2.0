@@ -26,14 +26,12 @@ struct CollisionResult
 struct CollisionScene
 {
 	static bool RaycastSingle(
-		RWorld* inWorld,
 		const XMVECTOR& originPoint,
 		const XMVECTOR& direction,
 		const XMMATRIX& viewInverseMatrix,
 		CollisionResult& outResult);
 
 	static bool RaycastSingle(
-		RWorld* inWorld,
 		GActorObject* inSpecificObjects,
 		const std::vector<RComponent*>& ignoreComponents,
 		const XMVECTOR& OriginPoint,

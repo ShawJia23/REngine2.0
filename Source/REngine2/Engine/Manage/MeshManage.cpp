@@ -12,39 +12,8 @@ RMeshManage::RMeshManage()
 {
 }
 
-void RMeshManage::Init()
+RMeshManage::~RMeshManage()
 {
-    m_pipeline.Init();
-}
-
-void RMeshManage::BuildPipeline()
-{
-    m_pipeline.BuildPipeline();
-}
-
-void RMeshManage::UpdateCalculations(GameTimer& gt, const ViewportInfo viewportInfo)
-{
-    m_pipeline.UpdateCalculations(viewportInfo);
-}
-
-void RMeshManage::OnResetSize(int width, int height)
-{
-    m_pipeline.OnResetSize(width, height);
-}
-
-void RMeshManage::PostDraw(GameTimer& gt)
-{
-    m_pipeline.PostDraw(gt);
-}
-
-void RMeshManage::Draw(GameTimer& gt)
-{
-    m_pipeline.Draw(gt);
-}
-
-void RMeshManage::PreDraw(GameTimer& gt)
-{
-    m_pipeline.ResetCommandList();
 }
 
 RMeshComponent* RMeshManage::CreateSphereMeshComponent(const CreateObjectParam& inObjectParam, float inRadius, uint32_t inAxialSubdivision, uint32_t inHeightSubdivision)

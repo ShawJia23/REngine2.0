@@ -1,7 +1,6 @@
 #pragma once
-#include"../../../Interface/DXDeviceInterface.h"
-
-struct RDXRootSignature :public IDirectXDeviceInterface_Struct
+#include"../../../EngineMinimal.h"
+struct RDXRootSignature
 {
 	RDXRootSignature();
 
