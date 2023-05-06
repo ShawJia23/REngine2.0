@@ -32,11 +32,15 @@ public:
 	void SetVisible(bool bNewVisible) { bVisible = bNewVisible; }
 	bool IsVisible()const { return bVisible; }
 
+	void SetShadow(bool bNewShadow) { bCastShadow = bNewShadow; }
+	bool IsShadow()const { return bCastShadow; }
+
 protected:
 	RVARIABLE(CodeType = Resources, Category = Mesh, Draggable)
 	bool bVisible;
 	RVARIABLE(CodeType = Resources, Category = Mesh, Draggable)
 	bool bPickup;
-
+	RVARIABLE(CodeType = Resources, Category = Mesh, Draggable)
+	bool bCastShadow;
 	EMeshRenderLayerType MeshRenderLayerType;
 };

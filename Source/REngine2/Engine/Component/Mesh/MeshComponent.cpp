@@ -4,7 +4,8 @@
 RMeshComponent::RMeshComponent():
 	MeshRenderLayerType(EMeshRenderLayerType::RENDERLAYER_OPAQUE),
 	bVisible(true),
-	bPickup(true)
+	bPickup(true),
+	bCastShadow(true)
 {
 	BUILD_OBJECT_PARAMETERS_BY_NO_COMPONENT(this);
 	m_Materials.push_back(CreateObject<RMaterial>(inObjectParam,new RMaterial()));

@@ -19,7 +19,7 @@ public:
 	void FaceTarget(const fvector_3d& InPosition, const fvector_3d& InTargetPosition, const fvector_3d& InUP = fvector_3d(0.f, 1.f, 0.f));
 
 	virtual void Tick(GameTimer& gt);
-	virtual void BuildViewMatrix(GameTimer& gt);
+	virtual void BuildViewMatrix();
 	virtual void OnResetSize(int InWidth, int InHeight);
 
 	void BuildOrthographicOffCenterLHMatrix(float InRadius, const fvector_3d& InTargetPosition);

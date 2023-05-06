@@ -71,7 +71,9 @@ protected:
 
 	vector<ComPtr<ID3D12Resource>> m_swapChainBuffer;
 	ComPtr<ID3D12Resource> m_depthStencilBuffer;
-	
+public:
+	ID3D12DescriptorHeap* GetRTV() { return m_RTVHeap.Get(); }
+	ID3D12GraphicsCommandList* GetCommandList() { return m_commandList.Get(); }
 protected:
 	UINT M4XQualityLevels;
 	bool bMSAA4XEnabled;

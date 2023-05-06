@@ -77,7 +77,7 @@ void ClientViewport::Tick(GameTimer& gt)
     BuildViewMatrix(gt);
 }
 
-void ClientViewport::BuildViewMatrix(GameTimer& gt)
+void ClientViewport::BuildViewMatrix()
 {
     //¼ÆËãºÍ½ÃÕýÖá
     GetTransformationComponent()->CorrectionVector();
