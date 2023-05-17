@@ -35,6 +35,7 @@ public:
 	void SetShadow(bool bNewShadow) { bCastShadow = bNewShadow; }
 	bool IsShadow()const { return bCastShadow; }
 
+	bool IsDynamicReflection() const;
 protected:
 	RVARIABLE(CodeType = Resources, Category = Mesh, Draggable)
 	bool bVisible;

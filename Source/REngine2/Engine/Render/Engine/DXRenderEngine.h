@@ -28,7 +28,9 @@ public:
 	virtual int PreExit();
 	virtual int Exit();
 	virtual int PostExit();
-
+	void StartSetMainViewportRenderTarget();
+	void EndSetMainViewportRenderTarget();
+	void ClearMainSwapChainCanvas();
 protected:
 	//初始化
 	bool InitDirect3D();
@@ -40,6 +42,7 @@ protected:
 	void CreateFence();
 	void InitSimpleLevel();
 	void PostInitDirect3D();
+
 protected:
 	//每帧调用
 	void WaitGPUCommandQueueComplete();
@@ -71,9 +74,6 @@ protected:
 
 	vector<ComPtr<ID3D12Resource>> m_swapChainBuffer;
 	ComPtr<ID3D12Resource> m_depthStencilBuffer;
-public:
-	ID3D12DescriptorHeap* GetRTV() { return m_RTVHeap.Get(); }
-	ID3D12GraphicsCommandList* GetCommandList() { return m_commandList.Get(); }
 protected:
 	UINT M4XQualityLevels;
 	bool bMSAA4XEnabled;
@@ -96,5 +96,6 @@ public:
 	ComPtr<ID3D12GraphicsCommandList>GetCommandList() { return m_commandList; }
 	ComPtr<ID3D12CommandAllocator>GetCommandAllocator() { return m_commandAllocator; }
 	ComPtr<ID3D12CommandQueue> GetCommandQueue() { return m_commandQueue; }
+	ComPtr<ID3D12DescriptorHeap> GetRTVHeap() { return  m_RTVHeap; }
 	UINT64 GetCurrentFenceIndex() { return m_frameIndex; }
 };

@@ -11,7 +11,7 @@ public:
 	RDynamicMap();
 	~RDynamicMap();
 public:
-	virtual void UpdateCalculations(float deltaTime, const ViewportInfo& viewportInfo);
+	virtual void UpdateCalculations(const ViewportInfo& viewportInfo);
 	virtual void Init(RGeometryMap* inGeometryMap, RDXPipelineState* inDirectXPipelineState, RenderLayerManage* inRenderLayer);
 	virtual void Init(int inWidth, int inHeight);
 	virtual void PreDraw(float deltaTime);

@@ -5,7 +5,7 @@
 class RCubeMapRenderTarget :public RRenderTarget
 {
 	typedef RRenderTarget Super;
-	friend class FDynamicCubeMap;
+	friend class RDynamicCubeMap;
 public:
 	RCubeMapRenderTarget();
 	~RCubeMapRenderTarget();

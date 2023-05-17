@@ -36,7 +36,7 @@ void RGeometryMap::BuildConstantBufferView()
 	m_ObjectConstantBufferView.CreateConstant(sizeof(RObjectTransformation), GetMeshNumber());
 	BuildMaterialsConstantBufferView();
 	m_LightsBufferView.CreateConstant(sizeof(RLightConstantBuffer), 1);
-	m_ViewportConstantBufferView.CreateConstant(sizeof(ViewportTransformation), 1);
+	m_ViewportConstantBufferView.CreateConstant(sizeof(ViewportTransformation), 1+GetDynamicReflectionViewportNum());
 	BuildTextureConstantBuffer();
 }
 
@@ -127,9 +127,29 @@ UINT RGeometryMap::GetCubeMapNumber()
 
 UINT RGeometryMap::GetDesptorSize()
 {
-	return RTextureManage::getInstance().GetTextureSize()+ GetCubeMapNumber();//cubemapsize
+	return RTextureManage::getInstance().GetTextureSize()
+		+ GetCubeMapNumber()//cubemapsize
+		+ 1;//动态cubemap
 }
 
+UINT RGeometryMap::GetDynamicReflectionViewportNum()
+{
+	return DynamicReflectionMeshComponents.size() * 6;
+}
+
+void RGeometryMap::BuildDynamicReflectionMesh()
+{
+	for (auto& Tmp : GRObjects)
+	{
+		if (RMeshComponent* InMeshComponent = dynamic_cast<RMeshComponent*>(Tmp))
+		{
+			if (InMeshComponent->IsDynamicReflection())
+			{
+				DynamicReflectionMeshComponents.push_back(InMeshComponent);
+			}
+		}
+	}
+}
 
 void RGeometryMap::InitRenderLayer(RDXPipelineState* pipelineState)
 {
@@ -145,14 +165,11 @@ void RGeometryMap::Draw()
 {
 	m_DescriptorHeap.SetDescriptorHeap();
 
-	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootConstantBufferView(
-		1,
+	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootConstantBufferView(1,
 		m_ViewportConstantBufferView.GetBuffer()->GetGPUVirtualAddress());
-	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootConstantBufferView(
-		2,
+	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootConstantBufferView(2,
 		m_LightsBufferView.GetBuffer()->GetGPUVirtualAddress());
-	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootShaderResourceView(
-		3,
+	DXRenderEngine::getInstance().GetCommandList()->SetGraphicsRootShaderResourceView(3,
 		m_MaterialsBufferView.GetBuffer()->GetGPUVirtualAddress());
 	DrawTexture();
 	m_RenderLayerManage->DrawMesh();
@@ -232,6 +249,32 @@ void RGeometryMap::UpdateCalculations(const ViewportInfo viewportInfo)
 	viewTrans.ViewportPosition = viewportInfo.ViewportPosition;
 
 	m_ViewportConstantBufferView.Update(0, &viewTrans);
+}
+
+void RGeometryMap::UpdateCalculationsViewport(
+	const ViewportInfo& viewportInfo,
+	UINT inConstantBufferOffset) 
+{
+	XMMATRIX ViewMatrix = XMLoadFloat4x4(&viewportInfo.ViewMatrix);
+	XMMATRIX ProjectMatrix = XMLoadFloat4x4(&viewportInfo.ProjectMatrix);
+	XMMATRIX ViewProject = XMMatrixMultiply(ViewMatrix, ProjectMatrix);
+
+	XMMATRIX HalfLambert(
+		0.5f, 0.0f, 0.0f, 0.0f,
+		0.0f, -0.5f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f,
+		0.5f, 0.5f, 0.0f, 1.0f);
+
+	XMMATRIX TexViewProjectionMatrix = XMMatrixMultiply(ViewProject, HalfLambert);
+
+	ViewportTransformation ViewportTransformation;
+	XMStoreFloat4x4(&ViewportTransformation.ViewProjectionMatrix, XMMatrixTranspose(ViewProject));
+	XMStoreFloat4x4(&ViewportTransformation.TexViewProjectionMatrix, XMMatrixTranspose(TexViewProjectionMatrix));
+
+	//拿到视口位置
+	ViewportTransformation.ViewportPosition = viewportInfo.ViewportPosition;
+
+	m_ViewportConstantBufferView.Update(inConstantBufferOffset, &ViewportTransformation);
 }
 
 void RGeometryMap::UpdateMaterialShaderResourceView()

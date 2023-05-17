@@ -16,6 +16,7 @@ RenderLayerManage::RenderLayerManage()
 	CreateRenderLayer<SelectLayer>();
 	CreateRenderLayer<PositionHandleLayer>();
 	CreateRenderLayer<RotateHandleLayer>();
+	CreateRenderLayer<OpaqueReflectorRenderLayer>();
 }
 
 RenderLayerManage::~RenderLayerManage()

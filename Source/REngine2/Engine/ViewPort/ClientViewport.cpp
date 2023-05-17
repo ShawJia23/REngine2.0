@@ -74,7 +74,7 @@ void ClientViewport::FaceTarget(
 
 void ClientViewport::Tick(GameTimer& gt)
 {
-    BuildViewMatrix(gt);
+    BuildViewMatrix();
 }
 
 void ClientViewport::BuildViewMatrix()

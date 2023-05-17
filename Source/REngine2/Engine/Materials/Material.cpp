@@ -85,6 +85,12 @@ void RMaterial::SetSpecular(const fvector_3d& vector)
 	SetDirty(true);
 }
 
+void RMaterial::SetDynamicReflection(bool InDynamicReflection)
+{
+	bDynamicReflection = InDynamicReflection;
+
+	SetDirty(true);
+}
 
 void RMaterial::SetMaterialTransform(const XMFLOAT4X4& value)
 { 

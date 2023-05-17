@@ -5,3 +5,4 @@
 #include"RenderLayerType/SkyLayer.h"
 #include"RenderLayerType/RotateHandleLayer.h"
 #include"RenderLayerType/PositionHandleLayer.h"
+#include"RenderLayerType/OpaqueReflectorRenderLayer.h"

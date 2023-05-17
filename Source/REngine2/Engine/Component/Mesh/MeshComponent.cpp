@@ -20,3 +20,14 @@ void RMeshComponent::BuildMesh(const MeshRenderData* InRenderingData)
 {
 
 }
+
+bool RMeshComponent::IsDynamicReflection() const
+{
+	if (m_Materials.size() >= 1)
+	{
+		return
+			m_Materials[0]->IsDynamicReflection();
+	}
+
+	return false;
+}

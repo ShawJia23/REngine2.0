@@ -2,6 +2,7 @@
 #include"../../Component/Mesh/MeshComponent.h"
 #include"../../Manage/TextureManage.h"
 #include"../DX12/d3dx12.h"
+#include"../Engine/DXRenderEngine.h"
 
 DX12Pipeline::DX12Pipeline()
 {
@@ -28,24 +29,40 @@ void DX12Pipeline::BuildPipeline()
 
     m_GeometryMap.BuildGeometry();
 
+    m_GeometryMap.BuildDynamicReflectionMesh();
+
     m_GeometryMap.BuildDescriptorHeap();
 
     m_UIPipeline.Init(
         m_GeometryMap.GetHeap(),
-        m_GeometryMap.GetDesptorSize());//ShadowCubeMap
+        m_GeometryMap.GetDesptorSize());
+
     m_GeometryMap.BuildConstantBufferView();
 
-    
+    //构建动态的CubeMap
+    m_DynamicCubeMap.Init(
+        &m_GeometryMap,
+        &m_PipelineState,GetRenderLayer().get());
+
+
     //texture=0时构建根签名和shader会报错
     m_RootSignature.BuildRootSignature(RTextureManage::getInstance().GetTextureSize());
 
     m_PipelineState.BindRootSignature(m_RootSignature.GetRootSignature());
+
+    m_DynamicCubeMap.BuildViewport(fvector_3d(0,0,0));
+    //构建RTVDes
+    m_DynamicCubeMap.BuildRenderTargetDescriptor();
+
+    //构建深度模板
+    m_DynamicCubeMap.BuildDepthStencil();
 
     m_GeometryMap.BuildPSO();
 }
 
 void DX12Pipeline::UpdateCalculations(const ViewportInfo viewportInfo)
 {
+    m_DynamicCubeMap.UpdateCalculations(viewportInfo);
     m_GeometryMap.UpdateCalculations(viewportInfo);
 }
 
@@ -56,6 +73,8 @@ void DX12Pipeline::Draw(GameTimer& gt)
     m_PipelineState.CaptureKeyboardKeys();
 
     m_GeometryMap.Draw();
+
+    m_DynamicCubeMap.PreDraw();
 
     m_UIPipeline.Draw(gt);
 }

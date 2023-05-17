@@ -82,6 +82,5 @@ void RCubeMapRenderTarget::BuildSRVDescriptors()
 
 	DXRenderEngine::getInstance().GetD3dDevice()->CreateShaderResourceView(
 		RenderTargetMap.Get(),
-		&SRVDesc,
-		CPUShaderResourceView);
+		&SRVDesc,CPUShaderResourceView);
 }

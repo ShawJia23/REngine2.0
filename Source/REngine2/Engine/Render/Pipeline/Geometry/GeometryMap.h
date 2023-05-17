@@ -79,23 +79,30 @@ public:
 	D3D12_INDEX_BUFFER_VIEW GetIndexBufferView();
 
 	void UpdateCalculations(const ViewportInfo viewportInfo);
+	void UpdateCalculationsViewport(
+		const ViewportInfo& viewportInfo,
+		UINT inConstantBufferOffset);
 	void UpdateMaterialShaderResourceView();
 
 	ID3D12DescriptorHeap* GetHeap()const { return m_DescriptorHeap.GetHeap(); }
 
 	void BuildMesh(const size_t meshHash, RMeshComponent* mesh, const MeshRenderData& meshData);
 
+
+	void BuildDynamicReflectionMesh();
 	UINT GetMaterialsNumber();
 	UINT GetMeshNumber();
 	UINT GetLightsNumber();
 	UINT GetTextureNumber();
 	UINT GetCubeMapNumber();
 	UINT GetDesptorSize();
+	UINT GetDynamicReflectionViewportNum();
 
 	void InitRenderLayer(RDXPipelineState* pipelineState);
 	void BuildPSO();
 
 	RConstantBufferView GetObjectConstantBufferView() { return m_ObjectConstantBufferView; }
+	RConstantBufferView GetViewportConstantBufferView() { return m_ViewportConstantBufferView; }
 	RGeometry GetRGeometry(int ID) 
 	{
 		if(m_Geometrys.find(ID)!= m_Geometrys.end())
@@ -106,6 +113,7 @@ public:
 	{
 		return m_RenderLayerManage;
 	}
+	std::vector<RMeshComponent*> DynamicReflectionMeshComponents;
 protected:
 	map<int, RGeometry> m_Geometrys;
 private:

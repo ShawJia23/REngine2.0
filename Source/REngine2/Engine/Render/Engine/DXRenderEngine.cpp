@@ -11,7 +11,7 @@ void DXRenderEngine::UpdateCalculations(GameTimer& gt, const ViewportInfo viewpo
 {
 	m_pipeline.UpdateCalculations(viewportInfo);
 }
-
+ 
 void DXRenderEngine::BeforeDraw() 
 {
 	//指向哪个资源 转换其状态
@@ -372,7 +372,10 @@ void DXRenderEngine::CreateDescriptor()
 	//D3D12_DESCRIPTOR_HEAP_TYPE_DSV			//深度/模板的视图资源
 	//RTV
 	D3D12_DESCRIPTOR_HEAP_DESC RTVDescriptorHeapDesc;
-	RTVDescriptorHeapDesc.NumDescriptors = EngineRenderConfig::GetRenderConfig()->SwapChainCount + 1;
+	RTVDescriptorHeapDesc.NumDescriptors = 
+		EngineRenderConfig::GetRenderConfig()->SwapChainCount //交换链
+		+ 1//cubemap
+		+6;//动态cubemap
 	RTVDescriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
 	RTVDescriptorHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
 	RTVDescriptorHeapDesc.NodeMask = 0;
@@ -382,7 +385,9 @@ void DXRenderEngine::CreateDescriptor()
 
 	//DSV
 	D3D12_DESCRIPTOR_HEAP_DESC DSVDescriptorHeapDesc;
-	DSVDescriptorHeapDesc.NumDescriptors = 1;
+	DSVDescriptorHeapDesc.NumDescriptors =
+		1  //本身深度 Main视口
+		+ 1; //CubeMap深度 反射;
 	DSVDescriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
 	DSVDescriptorHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
 	DSVDescriptorHeapDesc.NodeMask = 0;
@@ -441,6 +446,46 @@ void DXRenderEngine::PostInitDirect3D()
 {
 	OnResetSize(EngineRenderConfig::GetRenderConfig()->ScreenWidth,
 		EngineRenderConfig::GetRenderConfig()->ScreenHeight);
+}
+
+void DXRenderEngine::StartSetMainViewportRenderTarget()
+{
+	//指向哪个资源 转换其状态
+	CD3DX12_RESOURCE_BARRIER ResourceBarrierPresent = CD3DX12_RESOURCE_BARRIER::Transition(GetCurrentSwapBuff(),
+		D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+
+	m_commandList->ResourceBarrier(1, &ResourceBarrierPresent);
+
+	//需要每帧执行
+	//绑定矩形框
+	m_commandList->RSSetViewports(1, & RWorld::getInstance().GetCamera()->ViewprotInfo);
+	m_commandList->RSSetScissorRects(1, &RWorld::getInstance().GetCamera()->ViewprotRect);
+
+	//输出的合并阶段
+	D3D12_CPU_DESCRIPTOR_HANDLE SwapBufferView = GetCurrentSwapBufferView();
+	D3D12_CPU_DESCRIPTOR_HANDLE DepthStencilView = GetCurrentDepthStencilView();
+	m_commandList->OMSetRenderTargets(1, &SwapBufferView,
+		true, &DepthStencilView);
+}
+
+void DXRenderEngine::EndSetMainViewportRenderTarget()
+{
+	CD3DX12_RESOURCE_BARRIER ResourceBarrierPresentRenderTarget = CD3DX12_RESOURCE_BARRIER::Transition(GetCurrentSwapBuff(),
+		D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+	m_commandList->ResourceBarrier(1, &ResourceBarrierPresentRenderTarget);
+}
+
+void DXRenderEngine::ClearMainSwapChainCanvas()
+{
+	//清除画布
+	m_commandList->ClearRenderTargetView(GetCurrentSwapBufferView(),
+		DirectX::Colors::Black,
+		0, nullptr);
+
+	//清除深度模板缓冲区
+	m_commandList->ClearDepthStencilView(GetCurrentDepthStencilView(),
+		D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL,
+		1.f, 0, 0, NULL);
 }
 
 DXRenderEngine::~DXRenderEngine()

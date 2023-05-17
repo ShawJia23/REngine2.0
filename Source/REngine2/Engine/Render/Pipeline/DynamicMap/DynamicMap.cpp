@@ -18,7 +18,7 @@ RDynamicMap::~RDynamicMap()
 }
 
 
-void RDynamicMap::UpdateCalculations(float deltaTime, const ViewportInfo& viewportInfo)
+void RDynamicMap::UpdateCalculations(const ViewportInfo& viewportInfo)
 {
 
 }
@@ -64,9 +64,9 @@ void RDynamicMap::BuildRTVOffset()
 {
 	RenderTarget.get()->GetCPURenderTargetView() =
 		CD3DX12_CPU_DESCRIPTOR_HANDLE(
-			DXRenderEngine::getInstance().GetRTV()->GetCPUDescriptorHandleForHeapStart(),
+			DXRenderEngine::getInstance().GetRTVHeap()->GetCPUDescriptorHandleForHeapStart(),
 			GetRTVOffset(),
-			DXRenderEngine::getInstance().GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV););
+			DXRenderEngine::getInstance().GetD3dDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV));
 }
 
 void RDynamicMap::Init(int inWidth, int inHeight)

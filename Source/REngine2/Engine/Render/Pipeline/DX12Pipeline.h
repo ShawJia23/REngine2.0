@@ -5,6 +5,7 @@
 #include"Geometry/GeometryMap.h"
 #include"RenderLayer/RenderLayerManage.h"
 #include"UI/ImGuiPipeline.h"
+#include"DynamicMap/DynamicCubeMap.h"
 
 class RMeshComponent;
 class  DX12Pipeline
@@ -48,5 +49,6 @@ private:
 	RDXPipelineState m_PipelineState;
 	RDXRootSignature m_RootSignature;
 	RImGuiPipeline m_UIPipeline;
+	RDynamicCubeMap m_DynamicCubeMap;
 };
 

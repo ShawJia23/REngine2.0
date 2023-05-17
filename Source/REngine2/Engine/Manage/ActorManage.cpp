@@ -62,6 +62,28 @@ void RActorManage::LoadObject()
 //	pMesh->SetScale(fvector_3d(20.f, 20.f, 10.f));
 //	pMesh->SetPickup(false);
 //}
+			//À¼²®ÌØ
+	if (SphereMesh* sphereMesh = RWorld::getInstance().CreateActorObject<SphereMesh>())
+	{
+		sphereMesh->CreateMesh(2.f, 50, 50);
+		sphereMesh->SetPosition(XMFLOAT3(-3.f, 2, 0.f));
+		if (RMaterial* InMaterial = (*sphereMesh->GetMaterials())[0])
+		{
+			InMaterial->SetMaterialType(EMaterialType::Lambert);
+		}
+	}
+
+	if (SphereMesh* sphereMesh = RWorld::getInstance().CreateActorObject<SphereMesh>())
+	{
+		sphereMesh->CreateMesh(2.f, 50, 50, EMeshRenderLayerType::RENDERLAYER_OPAQUE_REFLECTOR);
+		sphereMesh->SetPosition(XMFLOAT3(-3.f, 5, 0.f));
+		if (RMaterial* InMaterial = (*sphereMesh->GetMaterials())[0])
+		{
+			InMaterial->SetMaterialType(EMaterialType::BlinnPhong);
+			InMaterial->SetDynamicReflection(true);
+		}
+	}
+
 	auto pLight = RWorld::getInstance().CreateActorObject<GParallelLight>();
 	if (pLight)
 	{

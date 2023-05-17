@@ -4,19 +4,25 @@
 
 struct ViewportInfo;
 class RDXPipelineState;
-class RGeometryMap;
 class RenderLayerManage;
+class RGeometryMap;
 class ClientViewport;
 
-class RDynamicCubeMap :public RDynamicMap
+class RDynamicCubeMap:public RDynamicMap
 {
 	typedef RDynamicMap Super;
+public:
+	RDynamicCubeMap();
+	~RDynamicCubeMap();
+	virtual void UpdateCalculations(const ViewportInfo& viewportInfo);
+	virtual void Init(RGeometryMap* inGeometryMap, RDXPipelineState* inDirectXPipelineState, RenderLayerManage* RenderManage);
+	virtual void PreDraw();
+	virtual void Draw();
 protected:
 	struct RTmpViewportCapture
 	{
 		RTmpViewportCapture() {}
-		~RTmpViewportCapture() {}
-		RTmpViewportCapture(const fvector_3d& inCenterPoint);
+		RTmpViewportCapture(const fvector_3d& InCenterPoint);
 
 		fvector_3d TargetPoint[6];
 		fvector_3d UP[6];
@@ -24,19 +30,14 @@ protected:
 		void BuildViewportCapture(const fvector_3d& inCenterPoint);
 	};
 public:
-	RDynamicCubeMap();
-	~RDynamicCubeMap();
-	virtual void Init(RGeometryMap* inGeometryMap, RDXPipelineState* inDirectXPipelineState, RenderLayerManage* inRenderLayer);
-
 	void SetViewportPosition(const fvector_3d& inPosition);
 	virtual void BuildViewport(const fvector_3d& inCenterPoint);
-
-protected:
-	virtual void BuildRenderTargetRTV() {}
-	virtual void BuildRenderTargetSRV() {}
-public:
 	virtual void BuildDepthStencil();
 	virtual void BuildRenderTargetDescriptor();
+
+protected:
+	virtual void BuildRenderTargetRTV();
+	virtual void BuildRenderTargetSRV();
 
 protected:
 

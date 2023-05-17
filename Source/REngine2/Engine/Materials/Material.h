@@ -20,6 +20,7 @@ public:
 	void SetMaterialIndex(int index);
 	void SetDirty(bool bNewDirty);
 	void SetSpecular(const fvector_3d& InVector);
+	void SetDynamicReflection(bool InDynamicReflection);
 
 	FORCEINLINE fvector_4d GetBaseColor()const { return m_BaseColor; }
 	FORCEINLINE fvector_3d GetSpecularColor()const { return m_SpecularColor; }
@@ -27,6 +28,13 @@ public:
 	FORCEINLINE float GetRoughness()const { return m_Roughness; }
 	FORCEINLINE EMaterialDisplayStatue GetMaterialDisplayState()const { return m_MaterialState; }
 	FORCEINLINE bool IsDirty() const { return m_Dirty; }
+	FORCEINLINE float IsDynamicReflection() const {
+		return bDynamicReflection &&
+			(m_MaterialType == EMaterialType::Back ||
+				m_MaterialType == EMaterialType::Phong ||
+				m_MaterialType == EMaterialType::BlinnPhong ||
+				m_MaterialType == EMaterialType::PBR);
+	}
 
 	FORCEINLINE XMFLOAT4X4& GetMaterialTransform() { return m_MaterialTransform; }
 	FORCEINLINE std::string& GetBaseColorIndexKey() { return m_BaseColorIndexKey; }
@@ -36,7 +44,7 @@ public:
 
 private:
 	bool m_Dirty;
-
+	bool bDynamicReflection;
 	fvector_4d m_BaseColor;
 	std::string BaseColorIndexKey;
 	fvector_3d m_SpecularColor;

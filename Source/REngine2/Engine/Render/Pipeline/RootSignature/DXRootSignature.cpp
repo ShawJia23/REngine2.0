@@ -67,11 +67,11 @@ void RDXRootSignature::BuildRootSignature(UINT textureNum)
 	CD3DX12_DESCRIPTOR_RANGE DescriptorRangeCubeMapSRV;
 	DescriptorRangeCubeMapSRV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
 
-    RootParam[0].InitAsConstantBufferView(0);
-    RootParam[1].InitAsConstantBufferView(1);
-    RootParam[2].InitAsConstantBufferView(2);
+    RootParam[0].InitAsConstantBufferView(0);//物体缓冲区
+    RootParam[1].InitAsConstantBufferView(1);//视口
+    RootParam[2].InitAsConstantBufferView(2);//灯光
 
-    RootParam[3].InitAsShaderResourceView(0, 1);
+    RootParam[3].InitAsShaderResourceView(0, 1);//材质
 
 	RootParam[4].InitAsDescriptorTable(1, &DescriptorRangeTextureSRV, D3D12_SHADER_VISIBILITY_PIXEL);
 	RootParam[5].InitAsDescriptorTable(1, &DescriptorRangeCubeMapSRV, D3D12_SHADER_VISIBILITY_PIXEL);
